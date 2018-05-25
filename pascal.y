@@ -6,6 +6,7 @@
 
 #include "absyn.h"
 #include "util.h"
+#include "symbol.h"
 
 void yyerror(const char *s);
 extern int yylex(void);
@@ -221,7 +222,8 @@ const_part :        CONST  const_expr_list {
 ;
 
 const_expr_list :   const_expr_list  ID  EQUAL  const_value  SEMI {
-    $$ = A_ConstExprListSeq(line_no, $1, $2, $4);
+    // $$ = A_ConstExprListSeq(line_no, $1, $2, $4);
+    $$ = A_ConstExprListSeq(line_no, S_Symbol($1), $2, $4);
 }
                 |   ID  EQUAL  const_value  SEMI {
     $$ = A_ConstExprList(line_no, $1, $3);
@@ -262,7 +264,8 @@ type_decl_list :    type_decl_list  type_definition {
 ;
 
 type_definition :   ID  EQUAL  type_decl  SEMI {
-    $$ = A_TypeDefinition(line_no, $1, $3);
+    // $$ = A_TypeDefinition(line_no, $1, $3);
+    $$ = A_TypeDefinition(line_no, S_Symbol($1), $3);
 }
 ;
 
@@ -281,7 +284,8 @@ simple_type_decl :  SYS_TYPE {
     $$ = A_SimpleTypeDeclSysType(line_no, $1);
 }
                 |   ID {
-    $$ = A_SimpleTypeDeclId(line_no, $1);
+    // $$ = A_SimpleTypeDeclId(line_no, $1);
+    $$ = A_SimpleTypeDeclId(line_no, S_Symbol($1));
 }
                 |   LP  name_list  RP {
     $$ = A_SimpleTypeDeclNameList(line_no, $1);
@@ -312,7 +316,8 @@ simple_type_decl :  SYS_TYPE {
     $$ = A_SimpleTypeDeclRangeConst(line_no, from, to);
 }
                 |   ID  DOTDOT  ID {
-    $$ = A_SimpleTypeDeclIdRangeId(line_no, $1, $3);
+    //  $$ = A_SimpleTypeDeclIdRangeId(line_no, $1, $3);
+    $$ = A_SimpleTypeDeclRangeId(line_no, S_Symbol($1), S_Symbol($3));
 }
 ;
 
@@ -340,10 +345,12 @@ field_decl :        name_list  COLON  type_decl  SEMI {
 ;
 
 name_list :         name_list  COMMA  ID {
-    $$ = A_NameListSeq(line_no, $1, $3);
+    // $$ = A_NameListSeq(line_no, $1, $3);
+    $$ = A_NameListSeq(line_no, $1, S_Symbol($3));
 }
                 |   ID {
-    $$ = A_NameList(line_no, $1);
+    // $$ = A_NameList(line_no, $1);
+    $$ = A_NameList(line_no, S_Symbol($1));
 }
 ;
 
@@ -401,7 +408,8 @@ procedure_decl :    procedure_head  SEMI  sub_routine  SEMI {
 ;
 
 procedure_head :    PROCEDURE ID parameters {
-    $$ = A_ProcedureHead(line_no, $2, $3);
+    //$$ = A_ProcedureHead(line_no, $2, $3);
+    $$ = A_ProcedureHead(line_no, S_Symbol($2), $3);
 }
 ;
 
@@ -496,21 +504,25 @@ non_label_stmt :    assign_stmt {
 ;
 
 assign_stmt :       ID  ASSIGN  expression {
-    $$ = A_AssignStmtSimple(line_no, $1, $3);
+    //$$ = A_AssignStmtSimple(line_no, $1, $3);
+    $$ = A_AssignStmtSimple(line_no, S_Symbol($1, $3);
 }
                 |   ID  LB  expression  RB  ASSIGN  expression {
-    $$ = A_AssignStmtArray(line_no, $1, $3, $6);
+    //$$ = A_AssignStmtArray(line_no, $1, $3, $6);
+    $$ = A_AssignStmtArray(line_no, S_Symbol($1), $3, $6);
 }
                 |   ID  DOT  ID  ASSIGN  expression {
-    $$ = A_AssignStmtRecord(line_no, $1, $3, $5);
+    //$$ = A_AssignStmtRecord(line_no, $1, $3, $5);
+    $$ = A_AssignStmtRecord(line_no, S_Symbol($1), S_Symbol($3), $5);
 }
 ;
 
 proc_stmt :         ID {
-    $$ = A_ProcStmtID(line_no, $1);
+    // $$ = A_ProcStmtID(line_no, $1);
+    $$ = A_ProcStmtID(line_no, S_Symbol($1));
 }
                 |   ID  LP  args_list  RP {
-    $$ = A_ProcStmtIDWithArgs(line_no, $1, $3);
+    $$ = A_ProcStmtIDWithArgs(line_no, S_Symbol($1), $3);
 }
                 |   SYS_PROC {
     $$ = A_ProcStmtSysProc(line_no, $1);
@@ -547,7 +559,7 @@ while_stmt :        WHILE  expression  DO stmt {
 ;
 
 for_stmt :          FOR  ID  ASSIGN  expression  direction  expression  DO stmt {
-    $$ = A_ForStmt(line_no, $2, $4, $5, $6, $8);
+    $$ = A_ForStmt(line_no, S_Symbol($2), $4, $5, $6, $8);
 }
 ;
 
@@ -576,7 +588,8 @@ case_expr :         const_value  COLON  stmt  SEMI {
     $$ = A_CaseExprConst(line_no, $1, $3);
 }
                 |   ID  COLON  stmt  SEMI {
-    $$ = A_CaseExprNonConst(line_no, $1, $3);
+    //$$ = A_CaseExprNonConst(line_no, $1, $3);
+    $$ = A_CaseExprNonConst(line_no, S_Symbol($1), $3);
 }
 ;
 
@@ -648,10 +661,12 @@ term :              term  MUL  factor {
 ;
 
 factor :            ID {
-    $$ = A_FactorId(line_no, $1);
+    //$$ = A_FactorId(line_no, $1);
+    $$ = A_FactorId(line_no, S_Symbol($1));
 }
                 |   ID  LP  args_list  RP {
-    $$ = A_FactorIdWithArgs(line_no, $1, $3);
+    //$$ = A_FactorIdWithArgs(line_no, $1, $3);
+    $$ = A_FactorIdWithArgs(line_no, S_Symbol($1), $3);
 }
                 |   SYS_FUNCT {
     $$ = A_FactorSysFunct(line_no, $1);
@@ -672,10 +687,12 @@ factor :            ID {
     $$ = A_FactorUnOp(line_no, NEG, $2);
 }
                 |   ID  LB  expression  RB {
-    $$ = A_FactorArrayVar(line_no, $1, $3);
+    //$$ = A_FactorArrayVar(line_no, $1, $3);
+    $$ = A_FactorArrayVar(line_no, S_Symbol($1), S_Symbol($3));
 }
                 |   ID  DOT  ID {
-    $$ = A_FactorRecordVar(line_no, $1, $3);
+    //$$ = A_FactorRecordVar(line_no, $1, $3);
+    $$ = A_FactorRecordVar(line_no, S_Symbol($1), S_Symbol($3));
 }
 ;
 

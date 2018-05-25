@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 #include "util.h"
 #include "absyn.h"
@@ -13,11 +12,11 @@ A_program A_Program(A_pos pos, A_program_head program_head, A_routine routine)
     return p;
 }
 
-A_program_head A_ProgramHead(A_pos pos, char *ID)
+A_program_head A_ProgramHead(A_pos pos, char *id)
 {
     A_program_head p = (A_program_head) checked_malloc(sizeof(struct A_program_head_));
     p->pos = pos;
-    p->ID = ID;
+    p->id = id;
     return p;
 }
 
@@ -137,25 +136,27 @@ A_routine_part A_RoutinePartWithFunctionDecl(A_pos pos, A_function_decl function
     return p;
 }
 
+//A_const_expr_list A_ConstExprListSeq(A_pos pos, A_const_expr_list const_expr_list, char *id, A_const_value const_value)
 A_const_expr_list
-A_ConstExprListSeq(A_pos pos, A_const_expr_list const_expr_list, char *NAME, A_const_value const_value)
+A_ConstExprListSeq(A_pos pos, A_const_expr_list const_expr_list, S_symbol id, A_const_value const_value)
 {
     A_const_expr_list p = (A_const_expr_list) checked_malloc(sizeof(struct A_const_expr_list_));
     p->pos = pos;
     p->is_seq = SEQ;
     p->const_expr_list = const_expr_list;
-    p->NAME = NAME;
+    p->id = id;
     p->const_value = const_value;
     return p;
 }
 
-A_const_expr_list A_ConstExprList(A_pos pos, char *NAME, A_const_value const_value)
+// A_const_expr_list A_ConstExprList(A_pos pos, char *id, A_const_value const_value)
+A_const_expr_list A_ConstExprList(A_pos pos, S_symbol id, A_const_value const_value)
 {
     A_const_expr_list p = (A_const_expr_list) checked_malloc(sizeof(struct A_const_expr_list_));
     p->pos = pos;
     p->is_seq = NONSEQ;
     p->const_expr_list = NULL;
-    p->NAME = NAME;
+    p->id = id;
     p->const_value = const_value;
     return p;
 }
@@ -164,7 +165,7 @@ A_const_value A_ConstValueInteger(A_pos pos, int intt)
 {
     A_const_value p = (A_const_value) checked_malloc(sizeof(struct A_const_value_));
     p->pos = pos;
-    p->kind = INTEGER;
+    p->kind = CONST_INTEGER;
     p->u.intt = intt;
     return p;
 }
@@ -173,16 +174,16 @@ A_const_value A_ConstValueReal(A_pos pos, double real)
 {
     A_const_value p = (A_const_value) checked_malloc(sizeof(struct A_const_value_));
     p->pos = pos;
-    p->kind = REAL;
+    p->kind = CONST_REAL;
     p->u.real = real;
     return p;
 }
 
-A_const_value A_ConstValueChar(A_pos pos, char charr)
+A_const_value A_ConstValueChar(A_pos pos, char *charr)
 {
     A_const_value p = (A_const_value) checked_malloc(sizeof(struct A_const_value_));
     p->pos = pos;
-    p->kind = CHAR;
+    p->kind = CONST_CHAR;
     p->u.charr = charr;
     return p;
 }
@@ -191,7 +192,7 @@ A_const_value A_ConstValueString(A_pos pos, char *string)
 {
     A_const_value p = (A_const_value) checked_malloc(sizeof(struct A_const_value_));
     p->pos = pos;
-    p->kind = STRING;
+    p->kind = CONST_STRING;
     p->u.string = string;
     return p;
 }
@@ -200,7 +201,7 @@ A_const_value A_ConstValueSysCon(A_pos pos, A_SYS_CON sys_con)
 {
     A_const_value p = (A_const_value) checked_malloc(sizeof(struct A_const_value_));
     p->pos = pos;
-    p->kind = SYS_CON;
+    p->kind = CONST_SYS_CON;
     p->u.sys_con = sys_con;
     return p;
 }
@@ -225,11 +226,12 @@ A_type_decl_list A_TypeDeclList(A_pos pos, A_type_definition type_definition)
     return p;
 }
 
-A_type_definition A_TypeDefinition(A_pos pos, char *NAME, A_type_decl type_decl)
+//A_type_definition A_TypeDefinition(A_pos pos, char *id, A_type_decl type_decl)
+A_type_definition A_TypeDefinition(A_pos pos, S_symbol id, A_type_decl type_decl)
 {
     A_type_definition p = (A_type_definition) checked_malloc(sizeof(struct A_type_definition_));
     p->pos = pos;
-    p->NAME = NAME;
+    p->id = id;
     p->type_decl = type_decl;
     return p;
 }
@@ -261,21 +263,22 @@ A_type_decl A_TypeDeclArray(A_pos pos, A_array_type_decl array_type_decl)
     return p;
 }
 
-A_simple_type_decl A_SimpleTypeDeclSysType(A_pos pos, A_SYS_TYPE SYS_TYPE)
+A_simple_type_decl A_SimpleTypeDeclSysType(A_pos pos, A_SYS_TYPE sys_type)
 {
     A_simple_type_decl p = (A_simple_type_decl) checked_malloc(sizeof(struct A_simple_type_decl_));
     p->pos = pos;
     p->kind = simple_type_decl_sys_type;
-    p->u.sys_type = SYS_TYPE;
+    p->u.sys_type = sys_type;
     return p;
 }
 
-A_simple_type_decl A_SimpleTypeDeclName(A_pos pos, char *NAME)
+//A_simple_type_decl A_SimpleTypeDeclId(A_pos pos, char *id)
+A_simple_type_decl A_SimpleTypeDeclId(A_pos pos, S_symbol id)
 {
     A_simple_type_decl p = (A_simple_type_decl) checked_malloc(sizeof(struct A_array_type_decl_));
     p->pos = pos;
-    p->kind = simple_type_decl_name;
-    p->u.name = NAME;
+    p->kind = simple_type_decl_id;
+    p->u.id = id;
     return p;
 }
 
@@ -298,13 +301,14 @@ A_simple_type_decl A_SimpleTypeDeclRangeConst(A_pos pos, A_const_value from, A_c
     return p;
 }
 
-A_simple_type_decl A_SimpleTypeDeclRangeName(A_pos pos, char *from, char *to)
+//A_simple_type_decl A_SimpleTypeDeclRangeId(A_pos pos, char *from, char *to)
+A_simple_type_decl A_SimpleTypeDeclRangeId(A_pos pos, S_symbol from, S_symbol to)
 {
     A_simple_type_decl p = (A_simple_type_decl) checked_malloc(sizeof(struct A_simple_type_decl_));
     p->pos = pos;
-    p->kind = simple_type_decl_range_name_to_name;
-    p->u.name_range.from = from;
-    p->u.name_range.to = to;
+    p->kind = simple_type_decl_range_id_to_id;
+    p->u.id_range.from = from;
+    p->u.id_range.to = to;
     return p;
 }
 
@@ -354,22 +358,24 @@ A_field_decl A_FieldDecl(A_pos pos, A_name_list name_list, A_type_decl type_decl
     return p;
 }
 
-A_name_list A_NameListSeq(A_pos pos, A_name_list name_list, char *ID)
+//A_name_list A_NameListSeq(A_pos pos, A_name_list name_list, char *id)
+A_name_list A_NameListSeq(A_pos pos, A_name_list name_list, S_symbol id)
 {
     A_name_list p = (A_name_list) checked_malloc(sizeof(struct A_name_list_));
     p->pos = pos;
     p->is_seq = SEQ;
-    p->ID = ID;
+    p->id = id;
     p->name_list = name_list;
     return p;
 }
 
-A_name_list A_NameList(A_pos pos, char *ID)
+//A_name_list A_NameList(A_pos pos, char *id)
+A_name_list A_NameList(A_pos pos, S_symbol id)
 {
     A_name_list p = (A_name_list) checked_malloc(sizeof(struct A_name_list_));
     p->pos = pos;
     p->is_seq = NONSEQ;
-    p->ID = ID;
+    p->id = id;
     p->name_list = NULL;
     return p;
 }
@@ -421,21 +427,23 @@ A_procedure_decl A_ProcedureDecl(A_pos pos, A_procedure_head procedure_head, A_s
     return p;
 }
 
-A_function_head A_FunctionHead(A_pos pos, char *ID, A_parameters parameters, A_simple_type_decl simple_type_decl)
+//A_function_head A_FunctionHead(A_pos pos, char *id, A_parameters parameters, A_simple_type_decl simple_type_decl)
+A_function_head A_FunctionHead(A_pos pos, S_symbol id, A_parameters parameters, A_simple_type_decl simple_type_decl)
 {
     A_function_head p = (A_function_head) checked_malloc(sizeof(struct A_function_head_));
     p->pos = pos;
-    p->ID = ID;
+    p->id = id;
     p->parameters = parameters;
     p->simple_type_decl = simple_type_decl;
     return p;
 }
 
-A_procedure_head A_ProcedureHead(A_pos pos, char *ID, A_parameters parameters)
+//A_procedure_head A_ProcedureHead(A_pos pos, char *id, A_parameters parameters)
+A_procedure_head A_ProcedureHead(A_pos pos, S_symbol id, A_parameters parameters)
 {
     A_procedure_head p = (A_procedure_head) checked_malloc(sizeof(struct A_procedure_head_));
     p->pos = pos;
-    p->ID = ID;
+    p->id = id;
     p->parameters = parameters;
     return p;
 }
@@ -621,72 +629,77 @@ A_non_label_stmt A_NonLabelStmtGoto(A_pos pos, A_goto_stmt goto_stmt)
     return p;
 }
 
-A_assign_stmt A_AssignStmtSimple(A_pos pos, char *ID, A_expression right_expression)
+//A_assign_stmt A_AssignStmtSimple(A_pos pos, char *id, A_expression right_expression)
+A_assign_stmt A_AssignStmtSimple(A_pos pos, S_symbol id, A_expression right_expression)
 {
     A_assign_stmt p = (A_assign_stmt) checked_malloc(sizeof(struct A_assign_stmt_));
     p->pos = pos;
     p->kind = assign_stmt_simple;
-    p->u.simple_var_assign_stmt.ID = ID;
+    p->u.simple_var_assign_stmt.id = id;
     p->u.simple_var_assign_stmt.right_expression = right_expression;
     return p;
 }
 
-A_assign_stmt A_AssignStmtRecord(A_pos pos, char *ID, char *field_ID, A_expression right_expression)
+//A_assign_stmt A_AssignStmtRecord(A_pos pos, char *id, char *field_id, A_expression right_expression)
+A_assign_stmt A_AssignStmtRecord(A_pos pos, S_symbol id, S_symbol field_id, A_expression right_expression)
 {
     A_assign_stmt p = (A_assign_stmt) checked_malloc(sizeof(struct A_assign_stmt_));
     p->pos = pos;
     p->kind = assign_stmt_record;
-    p->u.record_var_assign_stmt.ID = ID;
-    p->u.record_var_assign_stmt.field_ID = field_ID;
+    p->u.record_var_assign_stmt.id = id;
+    p->u.record_var_assign_stmt.field_id = field_id;
     p->u.record_var_assign_stmt.right_expression = right_expression;
     return p;
 }
 
-A_assign_stmt A_AssignStmtArray(A_pos pos, char *ID, A_expression subscript_expression, A_expression right_expression)
+//A_assign_stmt A_AssignStmtArray(A_pos pos, char *id, A_expression subscript_expression, A_expression right_expression)
+A_assign_stmt A_AssignStmtArray(A_pos pos, S_symbol id, A_expression subscript_expression, A_expression right_expression)
 {
     A_assign_stmt p = (A_assign_stmt) checked_malloc(sizeof(struct A_assign_stmt_));
     p->pos = pos;
     p->kind = assign_stmt_array;
-    p->u.array_var_assign_stmt.ID = ID;
+    p->u.array_var_assign_stmt.id = id;
     p->u.array_var_assign_stmt.subscript_expression = subscript_expression;
     p->u.array_var_assign_stmt.right_expression = right_expression;
     return p;
 }
 
-A_proc_stmt A_ProcStmtID(A_pos pos, char *ID)
+//A_proc_stmt A_ProcStmtID(A_pos pos, char *id)
+A_proc_stmt A_ProcStmtID(A_pos pos, S_symbol id)
 {
     A_proc_stmt p = (A_proc_stmt) checked_malloc(sizeof(struct A_proc_stmt_));
     p->pos = pos;
-    p->kind = proc_stmt_id; // ID
-    p->u.ID = ID;
+    p->kind = proc_stmt_id; // id
+    p->u.id = id;
     return p;
 }
 
-A_proc_stmt A_ProcStmtIDWithArgs(A_pos pos, char *ID, A_args_list args_list)
+//A_proc_stmt A_ProcStmtIDWithArgs(A_pos pos, char *id, A_args_list args_list)
+A_proc_stmt A_ProcStmtIDWithArgs(A_pos pos, S_symbol id, A_args_list args_list)
 {
     A_proc_stmt p = (A_proc_stmt) checked_malloc(sizeof(struct A_proc_stmt_));
     p->pos = pos;
-    p->kind = proc_stmt_id_with_args; // ID with args
-    p->u.ID_with_args.ID = ID;
-    p->u.ID_with_args.args_list = args_list;
+    p->kind = proc_stmt_id_with_args; // id with args
+    p->u.id_with_args.id = id;
+    p->u.id_with_args.args_list = args_list;
     return p;
 }
 
-A_proc_stmt A_ProcStmtSysProc(A_pos pos, A_SYS_PROC SYS_PROC)
+A_proc_stmt A_ProcStmtSysProc(A_pos pos, A_SYS_PROC sys_proc)
 {
     A_proc_stmt p = (A_proc_stmt) checked_malloc(sizeof(struct A_proc_stmt_));
     p->pos = pos;
     p->kind = proc_stmt_sys_proc; // sys_proc
-    p->u.sys_proc = SYS_PROC;
+    p->u.sys_proc = sys_proc;
     return p;
 }
 
-A_proc_stmt A_ProcStmtSysProcWithArgs(A_pos pos, A_SYS_PROC SYS_PROC, A_expression_list expression_list)
+A_proc_stmt A_ProcStmtSysProcWithArgs(A_pos pos, A_SYS_PROC sys_proc, A_expression_list expression_list)
 {
     A_proc_stmt p = (A_proc_stmt) checked_malloc(sizeof(struct A_proc_stmt_));
     p->pos = pos;
     p->kind = proc_stmt_sys_proc_with_args; // sys_proc with args
-    p->u.sys_proc_with_args.sys_proc = SYS_PROC;
+    p->u.sys_proc_with_args.sys_proc = sys_proc;
     p->u.sys_proc_with_args.expression_list = expression_list;
     return p;
 }
@@ -727,7 +740,8 @@ A_while_stmt A_WhileStmt(A_pos pos, A_expression test, A_stmt body)
     return p;
 }
 
-A_for_stmt A_ForStmt(A_pos pos, char *loop_var, A_expression lo, A_direction direction, A_expression hi)
+//A_for_stmt A_ForStmt(A_pos pos, char *loop_var, A_expression lo, A_direction direction, A_expression hi)
+A_for_stmt A_ForStmt(A_pos pos, S_symbol loop_var, A_expression lo, A_direction direction, A_expression hi, A_stmt body)
 {
     A_for_stmt p = (A_for_stmt) checked_malloc(sizeof(struct A_for_stmt_));
     p->pos = pos;
@@ -735,6 +749,7 @@ A_for_stmt A_ForStmt(A_pos pos, char *loop_var, A_expression lo, A_direction dir
     p->lo = lo;
     p->hi = hi;
     p->direction = direction;
+    p->body = body;
     return p;
 }
 
@@ -792,12 +807,13 @@ A_case_expr A_CaseExprConst(A_pos pos, A_const_value const_value, A_stmt body)
     return p;
 }
 
-A_case_expr A_CaseExprNonConst(A_pos pos, char *ID, A_stmt body)
+//A_case_expr A_CaseExprNonConst(A_pos pos, char *id, A_stmt body)
+A_case_expr A_CaseExprNonConst(A_pos pos, S_symbol id, A_stmt body)
 {
     A_case_expr p = (A_case_expr) checked_malloc(sizeof(struct A_case_expr_));
     p->pos = pos;
     p->kind = case_expr_non_const_value; // non_const_value
-    p->u.non_const_value.ID = ID;
+    p->u.non_const_value.id = id;
     p->u.non_const_value.body = body;
     return p;
 }
@@ -879,40 +895,42 @@ A_term A_TermUn(A_pos pos, A_factor factor)
     p->u.factor = factor;
 }
 
-A_factor A_FactorName(A_pos pos, char *NAME)
+//A_factor A_FactorId(A_pos pos, char *id)
+A_factor A_FactorId(A_pos pos, S_symbol id)
 {
     A_factor p = (A_factor) checked_malloc(sizeof(struct A_factor_));
     p->pos = pos;
-    p->kind = factor_name; // name
-    p->u.NAME = NAME;
+    p->kind = factor_id; // id
+    p->u.id = id;
     return p;
 }
 
-A_factor A_FactorNameWithArgs(A_pos pos, char *NAME, A_args_list args_list)
+//A_factor A_FactorIdWithArgs(A_pos pos, char *id, A_args_list args_list)
+A_factor A_FactorIdWithArgs(A_pos pos, S_symbol id, A_args_list args_list)
 {
     A_factor p = (A_factor) checked_malloc(sizeof(struct A_factor_));
     p->pos = pos;
-    p->kind = factor_name_with_args; // name_with_args
-    p->u.name_with_args.NAME = NAME;
-    p->u.name_with_args.args_list = args_list;
+    p->kind = factor_id_with_args; // id_with_args
+    p->u.id_with_args.id = id;
+    p->u.id_with_args.args_list = args_list;
     return p;
 }
 
-A_factor A_FactorSysFunct(A_pos pos, A_SYS_FUNCT SYS_FUNCT)
+A_factor A_FactorSysFunct(A_pos pos, A_SYS_FUNCT sys_funct)
 {
     A_factor p = (A_factor) checked_malloc(sizeof(struct A_factor_));
     p->pos = pos;
     p->kind = factor_sys_funct; // sys_funct
-    p->u.sys_funct = SYS_FUNCT;
+    p->u.sys_funct = sys_funct;
     return p;
 }
 
-A_factor A_FactorSysFunctWithArgs(A_pos pos, A_SYS_FUNCT SYS_FUNCT, A_args_list args_list)
+A_factor A_FactorSysFunctWithArgs(A_pos pos, A_SYS_FUNCT sys_funct, A_args_list args_list)
 {
     A_factor p = (A_factor) checked_malloc(sizeof(struct A_factor_));
     p->pos = pos;
     p->kind = factor_sys_funct_with_args; // sys_funct_with_args
-    p->u.sys_funct_with_args.SYS_FUNCT = SYS_FUNCT;
+    p->u.sys_funct_with_args.sys_funct = sys_funct;
     p->u.sys_funct_with_args.args_list = args_list;
     return p;
 }
@@ -945,22 +963,24 @@ A_factor A_FactorUnOp(A_pos pos, A_un_op un_op, A_factor factor)
     return p;
 }
 
-A_factor A_FactorRecordVar(A_pos pos, char *ID, char *field_ID)
+//A_factor A_FactorRecordVar(A_pos pos, char *id, char *field_id)
+A_factor A_FactorRecordVar(A_pos pos, S_symbol id, S_symbol field_id)
 {
     A_factor p = (A_factor) checked_malloc(sizeof(struct A_args_list_));
     p->pos = pos;
     p->kind = factor_record_var; // record_var
-    p->u.record_var.ID = ID;
-    p->u.record_var.field_ID = field_ID;
+    p->u.record_var.id = id;
+    p->u.record_var.field_id = field_id;
     return p;
 }
 
-A_factor A_FactorArrayVar(A_pos pos, char *ID, A_expression subscript_expression)
+//A_factor A_FactorArrayVar(A_pos pos, char *id, A_expression subscript_expression)
+A_factor A_FactorArrayVar(A_pos pos, S_symbol id, A_expression subscript_expression)
 {
     A_factor p = (A_factor) checked_malloc(sizeof(struct A_args_list_));
     p->pos = pos;
     p->kind = factor_array_var; // array_var
-    p->u.array_var.ID = ID;
+    p->u.array_var.id = id;
     p->u.array_var.subscript_expression = subscript_expression;
     return p;
 }
@@ -985,4 +1005,4 @@ A_args_list A_ArgsList(A_pos pos, A_expression expression)
     return p;
 }
 
-// TODO: 实现absyn.h中声明的所有构造函数
+

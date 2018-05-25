@@ -2,6 +2,8 @@
 #define _ABSYN_H_
 
 #include "util.h"
+#include "symbol.h"
+
 
 typedef enum
 {
@@ -84,29 +86,29 @@ typedef struct A_args_list_ *A_args_list;
 /* Unary operators */
 typedef enum
 {
-    NOT, NEG
+    OP_NOT, OP_NEG
 } A_un_op;
 
 /* Binary opertors */
 typedef enum
 {
-    GE, GT, LE, LT, EQUAL, UNEQUAL
+    OP_GE, OP_GT, OP_LE, OP_LT, OP_EQUAL, OP_UNEQUAL
 } A_rel_op;
 
 typedef enum
 {
-    PLUS, MINUS, OR
+    OP_PLUS, OP_MINUS, OP_OR
 } A_plus_op;
 
 typedef enum
 {
-    MUL, DIV, MOD, AND
+    OP_MUL, OP_DIV, OP_MOD, OP_AND
 } A_mul_op;
 
 /* Directions */
 typedef enum
 {
-    TO, DOWNTO
+    DIRECTION_TO, DIRECTION_DOWNTO
 } A_direction;
 
 /* TOKENS */
@@ -117,12 +119,19 @@ typedef enum
 
 typedef enum
 {
-    ABS, CHR, ODD, ORD, PRED, SQR, SQRT, SUCC
+    SYS_FUNCT_ABS,
+    SYS_FUNCT_CHR,
+    SYS_FUNCT_ODD,
+    SYS_FUNCT_ORD,
+    SYS_FUNCT_PRED,
+    SYS_FUNCT_SQR,
+    SYS_FUNCT_SQRT,
+    SYS_FUNCT_SUCC
 } A_SYS_FUNCT;
 
 typedef enum
 {
-    WRITE, WRITELN
+    SYS_PROC_WRITE, SYS_PROC_WRITELN
 } A_SYS_PROC;
 
 typedef enum
@@ -141,7 +150,7 @@ struct A_program_
 struct A_program_head_
 {
     A_pos pos;
-    char *ID;
+    char *id;
 };
 
 struct A_routine_
@@ -184,7 +193,8 @@ struct A_const_expr_list_
     A_pos pos;
     A_is_seq is_seq;
     A_const_expr_list const_expr_list;
-    char *ID;
+//    char *id;
+    S_symbol id;
     A_const_value const_value;
 };
 
@@ -193,13 +203,13 @@ struct A_const_value_
     A_pos pos;
     enum
     {
-        INTEGER, REAL, CHAR, STRING, SYS_CON
+        CONST_INTEGER, CONST_REAL, CONST_CHAR, CONST_STRING, CONST_SYS_CON
     } kind;
     union
     {
         int intt;
         double real;
-        char charr;
+        char *charr;
         char *string;
         A_SYS_CON sys_con;
     } u;
@@ -222,7 +232,8 @@ struct A_type_decl_list_
 struct A_type_definition_
 {
     A_pos pos;
-    char *ID;
+//    char *id;
+    S_symbol id;
     A_type_decl type_decl;
 };
 
@@ -250,14 +261,15 @@ struct A_simple_type_decl_
     {
         simple_type_decl_sys_type,
         simple_type_decl_id,
-        simple_type_decl_id_list,
+        simple_type_decl_name_list,
         simple_type_decl_range_const_to_const,
         simple_type_decl_range_id_to_id
     } kind;
     union
     {
         A_SYS_TYPE sys_type;
-        char *id;
+//        char *id;
+        S_symbol id;
         A_name_list name_list;
         struct
         {
@@ -266,8 +278,10 @@ struct A_simple_type_decl_
         } const_range;
         struct
         {
-            char *from;
-            char *to;
+//            char *from;
+//            char *to;
+            S_symbol from;
+            S_symbol to;
         } id_range;
     } u;
 };
@@ -305,7 +319,8 @@ struct A_name_list_
     A_pos pos;
     A_is_seq is_seq;
     A_name_list name_list;
-    char *ID;
+//    char *id;
+    S_symbol id;
 };
 
 struct A_var_part_
@@ -356,7 +371,8 @@ struct A_function_decl_
 struct A_function_head_
 {
     A_pos pos;
-    char *ID;
+//    char *id;
+    S_symbol id;
     A_parameters parameters;
     A_simple_type_decl simple_type_decl;
 };
@@ -371,7 +387,8 @@ struct A_procedure_decl_
 struct A_procedure_head_
 {
     A_pos pos;
-    char *ID;
+//    char *id;
+    S_symbol id;
     A_parameters parameters;
 };
 
@@ -493,18 +510,22 @@ struct A_assign_stmt_
     {
         struct
         {
-            char *ID;
+//            char *id;
+            S_symbol id;
             A_expression right_expression;
         } simple_var_assign_stmt;
         struct
         {
-            char *ID;
-            char *field_ID;
+//            char *id;
+//            char *field_id;
+            S_symbol id;
+            S_symbol field_id;
             A_expression right_expression;
         } record_var_assign_stmt;
         struct
         {
-            char *ID;
+//            char *id;
+            S_symbol id;
             A_expression subscript_expression;
             A_expression right_expression;
         } array_var_assign_stmt;
@@ -524,12 +545,14 @@ struct A_proc_stmt_
     } kind;
     union
     {
-        char *ID;
+//        char *id;
+        S_symbol id;
         struct
         {
-            char *ID;
+//            char *id;
+            S_symbol id;
             A_args_list args_list;
-        } ID_with_args;
+        } id_with_args;
         A_SYS_PROC sys_proc;
         struct
         {
@@ -568,14 +591,15 @@ struct A_while_stmt_
     A_stmt body;
 };
 
-/* there may be a problem: no loop body*/
 struct A_for_stmt_
 {
     A_pos pos;
-    char *loop_var;
+//    char *loop_var;
+    S_symbol loop_var;
     A_expression lo;
     A_direction direction;
     A_expression hi;
+    A_stmt body;
 };
 
 struct A_case_stmt_
@@ -609,7 +633,8 @@ struct A_case_expr_
         } const_value;
         struct
         {
-            char *ID;
+//            char *id;
+            S_symbol id;
             A_stmt body;
         } non_const_value;
     } u;
@@ -694,16 +719,18 @@ struct A_factor_
     } kind;
     union
     {
-        char *ID;
+//        char *id;
+        S_symbol id;
         struct
         {
-            char *ID;
+//            char *id;
+            S_symbol id;
             A_args_list args_list;
         } id_with_args;
         A_SYS_FUNCT sys_funct;
         struct
         {
-            A_SYS_FUNCT SYS_FUNCT;
+            A_SYS_FUNCT sys_funct;
             A_args_list args_list;
         } sys_funct_with_args;
         A_const_value const_value;
@@ -715,12 +742,15 @@ struct A_factor_
         } un_op;
         struct
         {
-            char *ID;
-            char *field_ID;
+//            char *id;
+            S_symbol id;
+//            char *field_id;
+            S_symbol field_id;
         } record_var;
         struct
         {
-            char *ID;
+//            char *id;
+            S_symbol id;
             A_expression subscript_expression;
         } array_var;
     } u;
@@ -736,7 +766,7 @@ struct A_args_list_
 
 A_program A_Program(A_pos pos, A_program_head program_head, A_routine routine);
 
-A_program_head A_ProgramHead(A_pos, char *ID);
+A_program_head A_ProgramHead(A_pos, char *id);
 
 A_routine A_Routine(A_pos pos, A_routine_head routine_head, A_routine_body routine_body);
 
@@ -765,15 +795,15 @@ A_routine_part A_RoutinePartWithProcedureDecl(A_pos pos, A_procedure_decl proced
 
 A_routine_part A_RoutinePartWithFunctionDecl(A_pos pos, A_function_decl function_decl);
 
-A_const_expr_list A_ConstExprListSeq(A_pos pos, A_const_expr_list const_expr_list, char *ID, A_const_value const_value);
+A_const_expr_list A_ConstExprListSeq(A_pos pos, A_const_expr_list const_expr_list, S_symbol id, A_const_value const_value);
 
-A_const_expr_list A_ConstExprList(A_pos pos, char *ID, A_const_value const_value);
+A_const_expr_list A_ConstExprList(A_pos pos, S_symbol id, A_const_value const_value);
 
 A_const_value A_ConstValueInteger(A_pos pos, int intt);
 
 A_const_value A_ConstValueReal(A_pos pos, double real);
 
-A_const_value A_ConstValueChar(A_pos pos, char charr);
+A_const_value A_ConstValueChar(A_pos pos, char *charr);
 
 A_const_value A_ConstValueString(A_pos pos, char *string);
 
@@ -783,7 +813,7 @@ A_type_decl_list A_TypeDeclListSeq(A_pos pos, A_type_decl_list type_decl_list, A
 
 A_type_decl_list A_TypeDeclList(A_pos pos, A_type_definition type_definition);
 
-A_type_definition A_TypeDefinition(A_pos pos, char *ID, A_type_decl type_decl);
+A_type_definition A_TypeDefinition(A_pos pos, S_symbol id, A_type_decl type_decl);
 
 A_type_decl A_TypeDeclSimple(A_pos pos, A_simple_type_decl simple_type_decl);
 
@@ -791,15 +821,15 @@ A_type_decl A_TypeDeclRecord(A_pos pos, A_record_type_decl record_type_decl);
 
 A_type_decl A_TypeDeclArray(A_pos pos, A_array_type_decl array_type_decl);
 
-A_simple_type_decl A_SimpleTypeDeclSysType(A_pos pos, A_SYS_TYPE SYS_TYPE);
+A_simple_type_decl A_SimpleTypeDeclSysType(A_pos pos, A_SYS_TYPE sys_type);
 
-A_simple_type_decl A_SimpleTypeDeclId(A_pos pos, char *ID);
+A_simple_type_decl A_SimpleTypeDeclId(A_pos pos, S_symbol id);
 
-A_simple_type_decl A_SimpleTypeDeclIdList(A_pos pos, A_name_list name_list);
+A_simple_type_decl A_SimpleTypeDeclNameList(A_pos pos, A_name_list name_list);
 
 A_simple_type_decl A_SimpleTypeDeclRangeConst(A_pos pos, A_const_value from, A_const_value to);
 
-A_simple_type_decl A_SimpleTypeDeclRangeId(A_pos pos, char *from, char *to);
+A_simple_type_decl A_SimpleTypeDeclRangeId(A_pos pos, S_symbol from, S_symbol to);
 
 A_array_type_decl A_ArrayTypeDecl(A_pos pos, A_simple_type_decl simple_decl, A_type_decl type_decl);
 
@@ -811,9 +841,9 @@ A_field_decl_list A_FieldDeclList(A_pos, A_field_decl field_decl);
 
 A_field_decl A_FieldDecl(A_pos pos, A_name_list name_list, A_type_decl type_decl);
 
-A_name_list A_NameListSeq(A_pos pos, A_name_list name_list, char *ID);
+A_name_list A_NameListSeq(A_pos pos, A_name_list name_list, S_symbol id);
 
-A_name_list A_NameList(A_pos pos, char *ID);
+A_name_list A_NameList(A_pos pos, S_symbol id);
 
 A_var_decl_list A_VarDeclListSeq(A_pos pos, A_var_decl_list var_decl_list, A_var_decl var_decl);
 
@@ -825,9 +855,9 @@ A_function_decl A_FunctionDecl(A_pos pos, A_function_head function_head, A_sub_r
 
 A_procedure_decl A_ProcedureDecl(A_pos pos, A_procedure_head procedure_head, A_sub_routine sub_routine);
 
-A_function_head A_FunctionHead(A_pos pos, char *ID, A_parameters parameters, A_simple_type_decl simple_type_decl);
+A_function_head A_FunctionHead(A_pos pos, S_symbol id, A_parameters parameters, A_simple_type_decl simple_type_decl);
 
-A_procedure_head A_ProcedureHead(A_pos pos, char *ID, A_parameters parameters);
+A_procedure_head A_ProcedureHead(A_pos pos, S_symbol id, A_parameters parameters);
 
 A_parameters A_Parameters(A_pos pos, A_para_decl_list para_decl_list);
 
@@ -869,19 +899,19 @@ A_non_label_stmt A_NonLabelStmtFor(A_pos pos, A_for_stmt for_stmt);
 
 A_non_label_stmt A_NonLabelStmtGoto(A_pos pos, A_goto_stmt goto_stmt);
 
-A_assign_stmt A_AssignStmtSimple(A_pos pos, char *ID, A_expression right_expression);
+A_assign_stmt A_AssignStmtSimple(A_pos pos, S_symbol id, A_expression right_expression);
 
-A_assign_stmt A_AssignStmtRecord(A_pos pos, char *ID, char *field_ID, A_expression right_expression);
+A_assign_stmt A_AssignStmtRecord(A_pos pos, S_symbol id, S_symbol field_id, A_expression right_expression);
 
-A_assign_stmt A_AssignStmtArray(A_pos pos, char *ID, A_expression subscript_expression, A_expression right_expression);
+A_assign_stmt A_AssignStmtArray(A_pos pos, S_symbol id, A_expression subscript_expression, A_expression right_expression);
 
-A_proc_stmt A_ProcStmtID(A_pos pos, char *ID);
+A_proc_stmt A_ProcStmtID(A_pos pos, S_symbol id);
 
-A_proc_stmt A_ProcStmtIDWithArgs(A_pos pos, char *ID, A_args_list args_list);
+A_proc_stmt A_ProcStmtIDWithArgs(A_pos pos, S_symbol id, A_args_list args_list);
 
-A_proc_stmt A_ProcStmtSysProc(A_pos pos, A_SYS_PROC SYS_PROC);
+A_proc_stmt A_ProcStmtSysProc(A_pos pos, A_SYS_PROC sys_proc);
 
-A_proc_stmt A_ProcStmtSysProcWithArgs(A_pos pos, A_SYS_PROC SYS_PROC, A_expression_list expression_list);
+A_proc_stmt A_ProcStmtSysProcWithArgs(A_pos pos, A_SYS_PROC sys_proc, A_expression_list expression_list);
 
 A_proc_stmt A_ProcStmtRead(A_pos pos, A_factor);
 
@@ -891,7 +921,7 @@ A_repeat_stmt A_RepeatStmt(A_pos pos, A_stmt_list body, A_expression until);
 
 A_while_stmt A_WhileStmt(A_pos pos, A_expression test, A_stmt body);
 
-A_for_stmt A_ForStmt(A_pos pos, char *loop_var, A_expression lo, A_direction direction, A_expression hi);
+A_for_stmt A_ForStmt(A_pos pos, S_symbol loop_var, A_expression lo, A_direction direction, A_expression hi, A_stmt body);
 
 A_case_stmt A_CaseStmt(A_pos pos, A_expression expression, A_case_expr_list case_expr_list);
 
@@ -905,7 +935,7 @@ A_case_expr_list A_CaseExprList(A_pos pos, A_case_expr case_expr);
 
 A_case_expr A_CaseExprConst(A_pos pos, A_const_value const_value, A_stmt body);
 
-A_case_expr A_CaseExprNonConst(A_pos pos, char *ID, A_stmt body);
+A_case_expr A_CaseExprNonConst(A_pos pos, S_symbol id, A_stmt body);
 
 A_expression_list A_ExpressionListSeq(A_pos pos, A_expression_list expression_list, A_expression expression);
 
@@ -923,13 +953,13 @@ A_term A_TermBin(A_pos pos, A_term left_term, A_mul_op mul_op, A_factor right_fa
 
 A_term A_TermUn(A_pos pos, A_factor factor);
 
-A_factor A_FactorId(A_pos pos, char *ID);
+A_factor A_FactorId(A_pos pos, S_symbol id);
 
-A_factor A_FactorIdWithArgs(A_pos pos, char *ID, A_args_list args_list);
+A_factor A_FactorIdWithArgs(A_pos pos, S_symbol id, A_args_list args_list);
 
-A_factor A_FactorSysFunct(A_pos pos, A_SYS_FUNCT SYS_FUNCT);
+A_factor A_FactorSysFunct(A_pos pos, A_SYS_FUNCT sys_funct);
 
-A_factor A_FactorSysFunctWithArgs(A_pos pos, A_SYS_FUNCT SYS_FUNCT, A_args_list args_list);
+A_factor A_FactorSysFunctWithArgs(A_pos pos, A_SYS_FUNCT sys_funct, A_args_list args_list);
 
 A_factor A_FactorConst(A_pos pos, A_const_value const_value);
 
@@ -937,9 +967,9 @@ A_factor A_FactorInBrackets(A_pos pos, A_expression expression);
 
 A_factor A_FactorUnOp(A_pos pos, A_un_op un_op, A_factor factor);
 
-A_factor A_FactorRecordVar(A_pos pos, char *ID, char *field_ID);
+A_factor A_FactorRecordVar(A_pos pos, S_symbol id, S_symbol field_id);
 
-A_factor A_FactorArrayVar(A_pos pos, char *ID, A_expression subscript_expression);
+A_factor A_FactorArrayVar(A_pos pos, S_symbol id, A_expression subscript_expression);
 
 A_args_list A_ArgsListSeq(A_pos pos, A_args_list args_list, A_expression expression);
 
