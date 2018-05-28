@@ -42,7 +42,7 @@ A_var A_Simple(A_pos pos, S_symbol s)
 {
     A_var simple = checked_malloc(sizeof(*simple));
     simple->pos = pos;
-    simple->kind = A_var_::A_SIMPLE;
+    simple->kind = A_SIMPLE;
     simple->u.simple = s;
     return simple;
 }
@@ -51,7 +51,7 @@ A_var A_Array(A_pos pos, S_symbol s, A_expression a)
 {
     A_var array = checked_malloc(sizeof(*array));
     array->pos = pos;
-    array->kind = A_var_::A_ARRAY;
+    array->kind = A_ARRAY;
     array->u.array.array = s;
     array->u.array.subscript = a;
     return array;
@@ -61,7 +61,7 @@ A_var A_Record(A_pos pos, S_symbol s, S_symbol f)
 {
     A_var record = checked_malloc(sizeof(*record));
     record->pos = pos;
-    record->kind = A_var_::A_RECORD;
+    record->kind = A_RECORD;
     record->u.record.record = s;
     record->u.record.field = f;
     return record;
@@ -103,28 +103,28 @@ int typeSize(Ty_ty ty)
 {
     switch (ty->kind)
     {
-        case Ty_ty_::Ty_int:
+        case Ty_int:
             return INT_SIZE;
-        case Ty_ty_::Ty_real:
+        case Ty_real:
             return REAL_SIZE;
-        case Ty_ty_::Ty_bool:
+        case Ty_bool:
             return BOOL_SIZE;
-        case Ty_ty_::Ty_char:
+        case Ty_char:
             return CHAR_SIZE;
-        case Ty_ty_::Ty_subrange:
+        case Ty_subrange:
             break;
-        case Ty_ty_::Ty_record:
+        case Ty_record:
         {
             int size = 0;
             for (Ty_fieldList l = ty->u.record; l; l = l->tail)
                 size += typeSize(l->head->ty);
             return size;
         }
-        case Ty_ty_::Ty_array:
+        case Ty_array:
         {
             return typeSize(ty->u.array.ty) * (ty->u.array.rightBound - ty->u.array.leftBound);
         }
-        case Ty_ty_::Ty_const:
+        case Ty_const_ty:
         {
             switch (ty->u.constt)
             {
@@ -144,25 +144,25 @@ int typeSize(Ty_ty ty)
                 }
             }
         }
-        case Ty_ty_::Ty_name:
+        case Ty_name_ty:
         {
-            return NULL;
+            return 0;
         }
-        case Ty_ty_::Ty_void:
+        case Ty_void:
         {
-            return NULL;
+            return 0;
         }
-        case Ty_ty_::Ty_math:
+        case Ty_math:
             break;
-        case Ty_ty_::Ty_write:
+        case Ty_write:
             break;
     }
-    return NULL;
+    return 0;
 }
 
 Ty_ty actual_ty(Ty_ty ty)
 {
-    if (ty->kind == Ty_ty_::Ty_name)
+    if (ty->kind == Ty_name_ty)
         return actual_ty(ty->u.name.ty);
     else
         return ty;
@@ -174,52 +174,52 @@ bool typeMatch(Ty_ty ty1, Ty_ty ty2)
     ty2 = actual_ty(ty2);
     switch (ty1->kind)
     {
-        case Ty_ty_::Ty_int:
-        case Ty_ty_::Ty_real:
-        case Ty_ty_::Ty_bool:
-        case Ty_ty_::Ty_char:
-        case Ty_ty_::Ty_const:
+        case Ty_int:
+        case Ty_real:
+        case Ty_bool:
+        case Ty_char:
+        case Ty_const_ty:
         {
-            if (ty2->kind == Ty_ty_::Ty_int ||
-                ty2->kind == Ty_ty_::Ty_real ||
-                ty2->kind == Ty_ty_::Ty_bool ||
-                ty2->kind == Ty_ty_::Ty_char ||
-                ty2->kind == Ty_ty_::Ty_math ||
-                ty2->kind == Ty_ty_::Ty_const
+            if (ty2->kind == Ty_int ||
+                ty2->kind == Ty_real ||
+                ty2->kind == Ty_bool ||
+                ty2->kind == Ty_char ||
+                ty2->kind == Ty_math ||
+                ty2->kind == Ty_const_ty
                     )
                 return TRUE;
             else
                 return FALSE;
         }
-        case Ty_ty_::Ty_subrange:
+        case Ty_subrange:
             break;
-        case Ty_ty_::Ty_record:
+        case Ty_record:
         {
-            if (ty2->kind == Ty_ty_::Ty_record)
+            if (ty2->kind == Ty_record)
                 return TRUE;
             else
                 return FALSE;
         }
-        case Ty_ty_::Ty_array:
+        case Ty_array:
         {
-            if (ty2->kind == Ty_ty_::Ty_array)
+            if (ty2->kind == Ty_array)
                 return TRUE;
             else
                 return FALSE;
         }
-        case Ty_ty_::Ty_name:
+        case Ty_name_ty:
             break;
-        case Ty_ty_::Ty_void:
+        case Ty_void:
         {
             return FALSE;
         }
-        case Ty_ty_::Ty_math:
+        case Ty_math:
         {
-            if (ty2->kind == Ty_ty_::Ty_int ||
-                ty2->kind == Ty_ty_::Ty_real ||
-                ty2->kind == Ty_ty_::Ty_math)
+            if (ty2->kind == Ty_int ||
+                ty2->kind == Ty_real ||
+                ty2->kind == Ty_math)
                 return TRUE;
-            else if (ty2->kind == Ty_ty_::Ty_const)
+            else if (ty2->kind == Ty_const_ty)
             {
                 if (ty2->u.constt == TY_CONST_INT || ty2->u.constt == TY_CONST_REAL)
                     return TRUE;
@@ -229,14 +229,14 @@ bool typeMatch(Ty_ty ty1, Ty_ty ty2)
             else
                 return FALSE;
         }
-        case Ty_ty_::Ty_write:
+        case Ty_write:
         {
             switch (ty2->kind)
             {
-                case Ty_ty_::Ty_int:
-                case Ty_ty_::Ty_real:
-                case Ty_ty_::Ty_bool:
-                case Ty_ty_::Ty_const:
+                case Ty_int:
+                case Ty_real:
+                case Ty_bool:
+                case Ty_const_ty:
                     return TRUE;
 
                 default:
@@ -247,12 +247,13 @@ bool typeMatch(Ty_ty ty1, Ty_ty ty2)
     return FALSE;
 }
 
-void SEM_transProg(A_program a)
+struct expty SEM_transProg(A_program a)
 {
     struct expty exp;
     S_table type_base_env = E_base_tenv();
     S_table value_base_env = E_base_venv();
     exp = transProgram(value_base_env, type_base_env, a);
+    return exp;
 }
 
 
@@ -307,16 +308,16 @@ struct expty transConst(A_const_value a)
 {
     switch (a->kind)
     {
-        case A_const_value_::CONST_INTEGER:
+        case CONST_INTEGER:
             return expTy(Tr_IntExp(a->u.intt), Ty_Const_Int());
-        case A_const_value_::CONST_REAL:
+        case CONST_REAL:
             return expTy(Tr_RealExp(a->u.real), Ty_Const_Real());
-        case A_const_value_::CONST_CHAR:
+        case CONST_CHAR:
             return expTy(Tr_CharExp(a->u.charr[0]), Ty_Const_Char());
-        case A_const_value_::CONST_STRING:
+        case CONST_STRING:
             // todo: convert to array
             return expTy(NULL, Ty_Const_String());
-        case A_const_value_::CONST_SYS_CON:
+        case CONST_SYS_CON:
         {
             switch (a->u.sys_con)
             {
@@ -377,11 +378,11 @@ Ty_ty transTy(Tr_level level, S_table venv, S_table tenv, A_type_decl a)
 {
     switch (a->kind)
     {
-        case A_type_decl_::type_decl_simple:
+        case type_decl_simple:
         {
             switch (a->u.simple_type_decl->kind)
             {
-                case A_simple_type_decl_::simple_type_decl_sys_type:
+                case simple_type_decl_sys_type:
                 {
                     switch (a->u.simple_type_decl->u.sys_type)
                     {
@@ -395,7 +396,7 @@ Ty_ty transTy(Tr_level level, S_table venv, S_table tenv, A_type_decl a)
                             return Ty_Real();
                     }
                 }
-                case A_simple_type_decl_::simple_type_decl_id:
+                case simple_type_decl_id:
                 {
                     Ty_ty ty = S_look(tenv, a->u.simple_type_decl->u.id);
                     if (ty)
@@ -411,30 +412,30 @@ Ty_ty transTy(Tr_level level, S_table venv, S_table tenv, A_type_decl a)
                     /*
                      * Temporarily omit.
                      */
-                case A_simple_type_decl_::simple_type_decl_name_list:
+                case simple_type_decl_name_list:
                 {
                     break;
                 }
-                case A_simple_type_decl_::simple_type_decl_range_const_to_const:
+                case simple_type_decl_range_const_to_const:
                 {
                     break;
                 }
-                case A_simple_type_decl_::simple_type_decl_range_id_to_id:
+                case simple_type_decl_range_id_to_id:
                 {
                     break;
                 }
             }
         }
-        case A_type_decl_::type_decl_record:
+        case type_decl_record:
         {
             return Ty_Record(makeFieldList(level, venv, tenv, a->u.record_type_decl->field_decl_list));
         }
-        case A_type_decl_::type_decl_array:
+        case type_decl_array:
         {
             switch (a->u.array_type_decl->simple_type_decl->kind)
             {
 
-                case A_simple_type_decl_::simple_type_decl_range_const_to_const:
+                case simple_type_decl_range_const_to_const:
                 {
 //                    Ty_ty range = Ty_Const_Range(
 //                            Ty_Const(a->u.array_type_decl->simple_type_decl->u.const_range.from),
@@ -444,8 +445,8 @@ Ty_ty transTy(Tr_level level, S_table venv, S_table tenv, A_type_decl a)
 //                    return Ty_Array(range, transTy(tenv, a->u.array_type_decl->type_decl));
                     A_const_value leftBound = a->u.array_type_decl->simple_type_decl->u.const_range.from;
                     A_const_value rightBound = a->u.array_type_decl->simple_type_decl->u.const_range.to;
-                    if (leftBound->kind == A_const_value_::CONST_INTEGER &&
-                        rightBound->kind == A_const_value_::CONST_INTEGER)
+                    if (leftBound->kind == CONST_INTEGER &&
+                        rightBound->kind == CONST_INTEGER)
                     {
                         return Ty_Array(transTy(level, venv, tenv, a->u.array_type_decl->type_decl), leftBound->u.intt,
                                         rightBound->u.intt);
@@ -458,7 +459,7 @@ Ty_ty transTy(Tr_level level, S_table venv, S_table tenv, A_type_decl a)
                     }
 
                 }
-                case A_simple_type_decl_::simple_type_decl_range_id_to_id:
+                case simple_type_decl_range_id_to_id:
                 {
 //                    Ty_ty range = Ty_Name_Range(
 //                            a->u.array_type_decl->simple_type_decl->u.id_range.from,
@@ -474,8 +475,8 @@ Ty_ty transTy(Tr_level level, S_table venv, S_table tenv, A_type_decl a)
                                                        A_Simple(a->u.array_type_decl->pos,
                                                                 a->u.array_type_decl->simple_type_decl->u.id_range.to));
 
-                    if (leftBound.ty->kind == Ty_ty_::Ty_const &&
-                        rightBound.ty->kind == Ty_ty_::Ty_const &&
+                    if (leftBound.ty->kind == Ty_const_ty &&
+                        rightBound.ty->kind == Ty_const_ty &&
                         leftBound.ty->u.constt == TY_CONST_INT &&
                         rightBound.ty->u.constt == TY_CONST_INT)
                     {
@@ -491,11 +492,11 @@ Ty_ty transTy(Tr_level level, S_table venv, S_table tenv, A_type_decl a)
                     /*
                      * Temporarily omit.
                      */
-                case A_simple_type_decl_::simple_type_decl_sys_type:
+                case simple_type_decl_sys_type:
                     break;
-                case A_simple_type_decl_::simple_type_decl_id:
+                case simple_type_decl_id:
                     break;
-                case A_simple_type_decl_::simple_type_decl_name_list:
+                case simple_type_decl_name_list:
                     break;
 
             }
@@ -512,7 +513,7 @@ void transTypeDec(Tr_level level, S_table venv, S_table tenv, A_type_part a)
      */
     for (A_type_decl_list l = reverse_type_dec_list(a->type_decl_list); l; l = l->type_decl_list)
     {
-        if (l->type_definition->type_decl->kind == A_type_decl_::type_decl_record)
+        if (l->type_definition->type_decl->kind == type_decl_record)
         {
             S_enter(tenv, l->type_definition->id, Ty_Name(l->type_definition->id, NULL));
             Ty_ty declaration = transTy(level, venv, tenv, l->type_definition->type_decl);
@@ -577,12 +578,12 @@ Ty_tyList makeFormalTyList(Tr_level level, S_table venv, S_table tenv, A_para_de
          * convert simple_type_decl to A_type_decl
          */
         A_type_decl ty = checked_malloc(sizeof(*ty));
-        ty->kind = A_type_decl_::type_decl_simple;
+        ty->kind = type_decl_simple;
         ty->u.simple_type_decl = l->para_type_list->u.var_para_list.simple_type_decl;
 
         switch (l->para_type_list->kind)
         {
-            case A_para_type_list_::para_type_list_var:
+            case para_type_list_var:
             {
                 for (A_name_list para = l->para_type_list->u.var_para_list.var_para_list->name_list;
                      para; para = para->name_list)
@@ -591,7 +592,7 @@ Ty_tyList makeFormalTyList(Tr_level level, S_table venv, S_table tenv, A_para_de
                 }
                 break;
             }
-            case A_para_type_list_::para_type_list_val:
+            case para_type_list_val:
             {
                 for (A_name_list para = l->para_type_list->u.val_para_list.val_para_list->name_list;
                      para; para = para->name_list)
@@ -619,10 +620,10 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
     {
         switch (l->kind)
         {
-            case A_routine_part_::routine_part_function:
+            case routine_part_function:
             {
                 A_type_decl ty = checked_malloc(sizeof(*ty));
-                ty->kind = A_type_decl_::type_decl_simple;
+                ty->kind = type_decl_simple;
                 ty->u.simple_type_decl = a->u.function_decl->function_head->simple_type_decl;
                 Ty_ty resultTy = transTy(level, venv, tenv, ty);
                 Ty_tyList formalTys = makeFormalTyList(level, venv, tenv,
@@ -631,7 +632,7 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
                 S_enter(venv, l->u.function_decl->function_head->id, E_FunEntry(level, label, formalTys, resultTy));
                 break;
             }
-            case A_routine_part_::routine_part_procedure:
+            case routine_part_procedure:
             {
                 Ty_ty resultTy = Ty_Void();
                 Ty_tyList formalTys = makeFormalTyList(level, venv, tenv,
@@ -646,7 +647,7 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
     {
         switch (l->kind)
         {
-            case A_routine_part_::routine_part_function:
+            case routine_part_function:
             {
                 E_enventry fun = (E_enventry) S_look(venv, l->u.procedure_decl->procedure_head->id);
                 Ty_tyList formalTys = fun->u.fun.formals;
@@ -670,7 +671,7 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
                     {
                         switch (declList->para_type_list->kind)
                         {
-                            case A_para_type_list_::para_type_list_var:
+                            case para_type_list_var:
                             {
                                 for (A_name_list nameList =
                                         declList->para_type_list->u.var_para_list.var_para_list->name_list;
@@ -681,7 +682,7 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
                                 }
                                 break;
                             }
-                            case A_para_type_list_::para_type_list_val:
+                            case para_type_list_val:
                             {
                                 for (A_name_list nameList =
                                         declList->para_type_list->u.var_para_list.var_para_list->name_list;
@@ -701,7 +702,7 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
                 S_endScope(tenv);
                 break;
             }
-            case A_routine_part_::routine_part_procedure:
+            case routine_part_procedure:
             {
                 E_enventry fun = (E_enventry) S_look(venv, l->u.procedure_decl->procedure_head->id);
                 Ty_tyList formalTys = fun->u.fun.formals;
@@ -725,7 +726,7 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
                     {
                         switch (declList->para_type_list->kind)
                         {
-                            case A_para_type_list_::para_type_list_var:
+                            case para_type_list_var:
                             {
                                 for (A_name_list nameList =
                                         declList->para_type_list->u.var_para_list.var_para_list->name_list;
@@ -736,7 +737,7 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
                                 }
                                 break;
                             }
-                            case A_para_type_list_::para_type_list_val:
+                            case para_type_list_val:
                             {
                                 for (A_name_list nameList =
                                         declList->para_type_list->u.val_para_list.val_para_list->name_list;
@@ -838,7 +839,7 @@ Tr_exp convertCaseStm(Tr_level level, S_table venv, S_table tenv, A_case_expr_li
     switch (a->case_expr->kind)
     {
 
-        case A_case_expr_::case_expr_const_value:
+        case case_expr_const_value:
         {
             cond = Tr_RelExp(OP_EQUAL,
                              transExp(level, venv, tenv, c).exp,
@@ -847,7 +848,7 @@ Tr_exp convertCaseStm(Tr_level level, S_table venv, S_table tenv, A_case_expr_li
             body = transStm(level, venv, tenv, a->case_expr->u.const_value.body).exp;
             break;
         }
-        case A_case_expr_::case_expr_non_const_value:
+        case case_expr_non_const_value:
         {
             cond = Tr_RelExp(OP_EQUAL, transExp(level, venv, tenv, c).exp,
                              transVar(level, venv, tenv,
@@ -866,19 +867,19 @@ struct expty transStm(Tr_level level, S_table venv, S_table tenv, A_stmt a)
 {
     switch (a->non_label_stmt->kind)
     {
-        case A_non_label_stmt_::non_label_stmt_assign:
+        case non_label_stmt_assign:
         {
             struct expty left, right;
             switch (a->non_label_stmt->u.assign_stmt->kind)
             {
-                case A_assign_stmt_::assign_stmt_simple:
+                case assign_stmt_simple:
                 {
                     left = transVar(level, venv, tenv,
                                     A_Simple(a->non_label_stmt->u.assign_stmt->pos,
                                              a->non_label_stmt->u.assign_stmt->u.simple_var_assign_stmt.id));
                     break;
                 }
-                case A_assign_stmt_::assign_stmt_record:
+                case assign_stmt_record:
                 {
                     left = transVar(level, venv, tenv,
                                     A_Record(a->non_label_stmt->u.assign_stmt->pos,
@@ -886,7 +887,7 @@ struct expty transStm(Tr_level level, S_table venv, S_table tenv, A_stmt a)
                                              a->non_label_stmt->u.assign_stmt->u.record_var_assign_stmt.field_id));
                     break;
                 }
-                case A_assign_stmt_::assign_stmt_array:
+                case assign_stmt_array:
                 {
                     left = transVar(level, venv, tenv,
                                     A_Array(a->non_label_stmt->u.assign_stmt->pos,
@@ -898,7 +899,7 @@ struct expty transStm(Tr_level level, S_table venv, S_table tenv, A_stmt a)
             right = transExp(level, venv, tenv,
                              a->non_label_stmt->u.assign_stmt->u.simple_var_assign_stmt.right_expression);
 
-            if (left.ty->kind == Ty_ty_::Ty_const)
+            if (left.ty->kind == Ty_const_ty)
             {
                 EM_error(a->pos, "Const value cannot be assigned.\n");
                 return expTy(NULL, Ty_Void());
@@ -914,16 +915,16 @@ struct expty transStm(Tr_level level, S_table venv, S_table tenv, A_stmt a)
                 return expTy(NULL, Ty_Void());
             }
         }
-        case A_non_label_stmt_::non_label_stmt_proc:
+        case non_label_stmt_proc:
         {
             switch (a->non_label_stmt->u.proc_stmt->kind)
             {
-                case A_proc_stmt_::proc_stmt_id:
+                case proc_stmt_id:
                     break;
-                case A_proc_stmt_::proc_stmt_id_with_args:
+                case proc_stmt_id_with_args:
                 {
                     E_enventry fun = (E_enventry) S_look(venv, a->non_label_stmt->u.proc_stmt->u.id_with_args.id);
-                    if (fun && fun->kind == E_enventry_::E_funEntry)
+                    if (fun && fun->kind == E_funEntry)
                     {
                         Tr_expList argList = makeArgsList(level, venv, tenv,
                                                           a->non_label_stmt->u.proc_stmt->u.id_with_args.args_list,
@@ -936,19 +937,19 @@ struct expty transStm(Tr_level level, S_table venv, S_table tenv, A_stmt a)
                         return expTy(NULL, Ty_Int());
                     }
                 }
-                case A_proc_stmt_::proc_stmt_sys_proc:
+                case proc_stmt_sys_proc:
                     break;
-                case A_proc_stmt_::proc_stmt_sys_proc_with_args:
+                case proc_stmt_sys_proc_with_args:
                     break;
-                case A_proc_stmt_::proc_stmt_read:
+                case proc_stmt_read:
                     break;
             }
         }
-        case A_non_label_stmt_::non_label_stmt_compound:
+        case non_label_stmt_compound:
         {
             return transStms(level, venv, tenv, a->non_label_stmt->u.compound_stmt->stmt_list);
         }
-        case A_non_label_stmt_::non_label_stmt_if:
+        case non_label_stmt_if:
         {
             struct expty cond, e1, e2;
             cond = transExp(level, venv, tenv, a->non_label_stmt->u.if_stmt->test);
@@ -957,7 +958,7 @@ struct expty transStm(Tr_level level, S_table venv, S_table tenv, A_stmt a)
                 e2 = transStm(level, venv, tenv, a->non_label_stmt->u.if_stmt->else_clause->body);
             return expTy(Tr_IfExp(cond.exp, e1.exp, e2.exp), Ty_Void());
         }
-        case A_non_label_stmt_::non_label_stmt_repeat:
+        case non_label_stmt_repeat:
         {
             struct expty cond = transExp(level, venv, tenv, a->non_label_stmt->u.repeat_stmt->until);
             struct expty body = transStms(level, venv, tenv, a->non_label_stmt->u.repeat_stmt->body);
@@ -965,13 +966,13 @@ struct expty transStm(Tr_level level, S_table venv, S_table tenv, A_stmt a)
                                    Tr_WhileExp(cond.exp, body.exp, Tr_LabelExp(Temp_newlabel()))),
                          Ty_Void());
         }
-        case A_non_label_stmt_::non_label_stmt_while:
+        case non_label_stmt_while:
         {
             struct expty cond = transExp(level, venv, tenv, a->non_label_stmt->u.while_stmt->test);
             struct expty body = transStm(level, venv, tenv, a->non_label_stmt->u.while_stmt->body);
             return expTy(Tr_WhileExp(cond.exp, body.exp, Tr_LabelExp(Temp_newlabel())), Ty_Void());
         }
-        case A_non_label_stmt_::non_label_stmt_for:
+        case non_label_stmt_for:
         {
             struct expty loopVar = transVar(level, venv, tenv,
                                             A_Simple(a->non_label_stmt->u.for_stmt->pos,
@@ -1007,25 +1008,25 @@ struct expty transStm(Tr_level level, S_table venv, S_table tenv, A_stmt a)
                                    Tr_WhileExp(cond, body, Tr_LabelExp(Temp_newlabel()))), Ty_Void());
 
         }
-        case A_non_label_stmt_::non_label_stmt_case:
+        case non_label_stmt_case:
         {
             return expTy(convertCaseStm(level, venv, tenv, a->non_label_stmt->u.case_stmt->case_expr_list,
                                         a->non_label_stmt->u.case_stmt->expression),
                          Ty_Void());
         }
-        case A_non_label_stmt_::non_label_stmt_goto:
+        case non_label_stmt_goto:
         {
             char label[10];
             sprintf(label, "%d", a->non_label_stmt->u.goto_stmt->label);
             return expTy(Tr_GotoExp(Tr_LabelExp(Temp_namedlabel(label))), Ty_Void());
         }
     }
-    return NULL;
+    return expTy(NULL, Ty_Void());
 }
 
 struct expty transStms(Tr_level level, S_table venv, S_table tenv, A_stmt_list stmts)
 {
-    struct expty exp = NULL;
+    struct expty exp = expTy(NULL, Ty_Void());
     if (stmts->stmt->is_label == LABEL)
     {
         char label[10];
@@ -1046,7 +1047,7 @@ struct expty transVar(Tr_level level, S_table venv, S_table tenv, A_var a)
 {
     switch (a->kind)
     {
-        case A_var_::A_SIMPLE:
+        case A_SIMPLE:
         {
             E_enventry varEntry = (E_enventry) S_look(venv, a->u.simple);
             if (!varEntry)
@@ -1054,12 +1055,12 @@ struct expty transVar(Tr_level level, S_table venv, S_table tenv, A_var a)
                 EM_error(a->pos, "Variable is not declared: %s.\n", S_name(a->u.simple));
                 return expTy(NULL, Ty_Int());
             }
-            if (varEntry->kind == E_enventry_::E_varEntry &&
-                (varEntry->u.var.ty->kind == Ty_ty_::Ty_int ||
-                 varEntry->u.var.ty->kind == Ty_ty_::Ty_char ||
-                 varEntry->u.var.ty->kind == Ty_ty_::Ty_real ||
-                 varEntry->u.var.ty->kind == Ty_ty_::Ty_bool ||
-                 varEntry->u.var.ty->kind == Ty_ty_::Ty_const))
+            if (varEntry->kind == E_varEntry &&
+                (varEntry->u.var.ty->kind == Ty_int ||
+                 varEntry->u.var.ty->kind == Ty_char ||
+                 varEntry->u.var.ty->kind == Ty_real ||
+                 varEntry->u.var.ty->kind == Ty_bool ||
+                 varEntry->u.var.ty->kind == Ty_const_ty))
             {
                 return expTy(Tr_SimpleVar(varEntry->u.var.access, level), actual_ty(varEntry->u.var.ty));
             }
@@ -1069,7 +1070,7 @@ struct expty transVar(Tr_level level, S_table venv, S_table tenv, A_var a)
                 return expTy(NULL, Ty_Int());
             }
         }
-        case A_var_::A_ARRAY:
+        case A_ARRAY:
         {
             E_enventry varEntry = (E_enventry) S_look(venv, a->u.array.array);
             if (!varEntry)
@@ -1078,11 +1079,11 @@ struct expty transVar(Tr_level level, S_table venv, S_table tenv, A_var a)
                 return expTy(NULL, Ty_Int());
             }
 
-            if (varEntry->kind == E_enventry_::E_varEntry &&
-                varEntry->u.var.ty->kind == Ty_ty_::Ty_array)
+            if (varEntry->kind == E_varEntry &&
+                varEntry->u.var.ty->kind == Ty_array)
             {
                 struct expty subscript = transExp(level, venv, tenv, a->u.array.subscript);
-                if (subscript.ty->kind == Ty_ty_::Ty_int)
+                if (subscript.ty->kind == Ty_int)
                 {
                     return expTy(Tr_SubscriptVar(Tr_SimpleVar(varEntry->u.var.access, level),
                                                  subscript.exp, typeSize(varEntry->u.var.ty)),
@@ -1101,7 +1102,7 @@ struct expty transVar(Tr_level level, S_table venv, S_table tenv, A_var a)
             }
 
         }
-        case A_var_::A_RECORD:
+        case A_RECORD:
         {
             E_enventry varEntry = (E_enventry) S_look(venv, a->u.record.record);
             if (!varEntry)
@@ -1110,8 +1111,8 @@ struct expty transVar(Tr_level level, S_table venv, S_table tenv, A_var a)
                 return expTy(NULL, Ty_Int());
             }
             int offset = 0;
-            if (varEntry->kind == E_enventry_::E_varEntry &&
-                varEntry->u.var.ty->kind == Ty_ty_::Ty_record)
+            if (varEntry->kind == E_varEntry &&
+                varEntry->u.var.ty->kind == Ty_record)
             {
                 for (Ty_fieldList field = varEntry->u.var.ty->u.record; field; field = field->tail)
                 {
@@ -1140,14 +1141,14 @@ struct expty transFactor(Tr_level level, S_table venv, S_table tenv, A_factor a)
 {
     switch (a->kind)
     {
-        case A_factor_::factor_id:
+        case factor_id:
         {
             return transVar(level, venv, tenv, A_Simple(a->pos, a->u.id));
         }
-        case A_factor_::factor_id_with_args:
+        case factor_id_with_args:
         {
             E_enventry fun = (E_enventry) S_look(venv, a->u.id_with_args.id);
-            if (fun && fun->kind == E_enventry_::E_funEntry)
+            if (fun && fun->kind == E_funEntry)
             {
                 Tr_expList argList = makeArgsList(level, venv, tenv, a->u.id_with_args.args_list, fun);
                 return expTy(Tr_CallExp(fun->u.fun.label, fun->u.fun.level, level, argList),
@@ -1159,25 +1160,25 @@ struct expty transFactor(Tr_level level, S_table venv, S_table tenv, A_factor a)
                 return expTy(NULL, Ty_Int());
             }
         }
-        case A_factor_::factor_sys_funct:
+        case factor_sys_funct:
             break;
-        case A_factor_::factor_sys_funct_with_args:
+        case factor_sys_funct_with_args:
             break;
-        case A_factor_::factor_const_value:
+        case factor_const_value:
         {
             return transConst(a->u.const_value);
         }
-        case A_factor_::factor_in_brackets:
+        case factor_in_brackets:
         {
             return transExp(level, venv, tenv, a->u.expression);
         }
-        case A_factor_::factor_un_op:
+        case factor_un_op:
             break;
-        case A_factor_::factor_array_var:
+        case factor_array_var:
         {
             return transVar(level, venv, tenv, A_Array(a->pos, a->u.array_var.id, a->u.array_var.subscript_expression));
         }
-        case A_factor_::factor_record_var:
+        case factor_record_var:
         {
             return transVar(level, venv, tenv, A_Record(a->pos, a->u.record_var.id, a->u.record_var.field_id));
         }

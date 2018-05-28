@@ -47,7 +47,7 @@ struct Ty_ty_
     enum
     {
         Ty_int, Ty_real, Ty_bool, Ty_char, Ty_subrange, Ty_record,
-        Ty_array, Ty_const, Ty_name, Ty_void, Ty_math, Ty_write
+        Ty_array, Ty_const_ty, Ty_name_ty, Ty_void, Ty_math, Ty_write
     } kind;
     union
     {
@@ -78,7 +78,7 @@ struct Ty_range_
 {
     enum
     {
-        Ty_const, Ty_name
+        Ty_range_const, Ty_range_name
     } kind;
     union
     {
@@ -143,9 +143,9 @@ Ty_ty Ty_Math(void);
 
 Ty_ty Ty_Write(void);
 
-//Ty_const Ty_Const(A_const_value const_value);
+//Ty_range_const Ty_Const(A_const_value const_value);
 //
-//Ty_ty Ty_Const_Range(Ty_const left_bound, Ty_const right_bound);
+//Ty_ty Ty_Const_Range(Ty_range_const left_bound, Ty_range_const right_bound);
 //
 //Ty_ty Ty_Name_Range(S_symbol left_bound, S_symbol right_bound);
 

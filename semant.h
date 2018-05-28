@@ -25,7 +25,7 @@ struct expty expTy(Tr_exp exp, Ty_ty ty)
     e.ty = ty;
 }
 
-void SEM_transProg(A_program a);
+struct expty SEM_transProg(A_program a);
 
 
 #endif //PASCALCOMPLIER_SEMANT_H

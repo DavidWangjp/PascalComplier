@@ -279,7 +279,7 @@ type_decl :         simple_type_decl {
                 |   array_type_decl {
     $$ = A_TypeDeclArray(line_no, $1);
 }
-                |   record_type_decl {                    
+                |   record_type_decl {
     $$ = A_TypeDeclRecord(line_no, $1);
 }
 ;
@@ -404,7 +404,7 @@ function_decl :     function_head  SEMI  sub_routine  SEMI {
 function_head :     FUNCTION  ID  parameters  COLON  simple_type_decl {
     $$ = A_FunctionHead(line_no, S_Symbol($2), $3, $5);
 }
-; 
+;
 
 procedure_decl :    procedure_head  SEMI  sub_routine  SEMI {
     $$ = A_ProcedureDecl(line_no, $1, $3);
@@ -611,22 +611,22 @@ expression_list :   expression_list  COMMA  expression {
 ;
 
 expression :        expression  GE  expr {
-    $$ = A_ExpressionBin(line_no, $1, GE, $3);
+    $$ = A_ExpressionBin(line_no, $1, OP_GE, $3);
 }
                 |   expression  GT  expr {
-    $$ = A_ExpressionBin(line_no, $1, GT, $3);
+    $$ = A_ExpressionBin(line_no, $1, OP_GT, $3);
 }
                 |   expression  LE  expr {
-    $$ = A_ExpressionBin(line_no, $1, LE, $3);
+    $$ = A_ExpressionBin(line_no, $1, OP_LE, $3);
 }
                 |   expression  LT  expr {
-    $$ = A_ExpressionBin(line_no, $1, LT, $3);
+    $$ = A_ExpressionBin(line_no, $1, OP_LT, $3);
 }
                 |   expression  EQUAL  expr {
-    $$ = A_ExpressionBin(line_no, $1, EQUAL, $3);
+    $$ = A_ExpressionBin(line_no, $1, OP_EQUAL, $3);
 }
                 |   expression  UNEQUAL  expr {
-    $$ = A_ExpressionBin(line_no, $1, UNEQUAL, $3);
+    $$ = A_ExpressionBin(line_no, $1, OP_UNEQUAL, $3);
 }
                 |   expr {
     $$ = A_ExpressionUn(line_no, $1);
@@ -634,13 +634,13 @@ expression :        expression  GE  expr {
 ;
 
 expr :              expr  PLUS  term {
-    $$ = A_ExprBin(line_no, $1, PLUS, $3);
+    $$ = A_ExprBin(line_no, $1, OP_PLUS, $3);
 }
                 |   expr  MINUS  term {
-    $$ = A_ExprBin(line_no, $1, MINUS, $3);
+    $$ = A_ExprBin(line_no, $1, OP_MINUS, $3);
 }
                 |   expr  OR  term {
-    $$ = A_ExprBin(line_no, $1, OR, $3);
+    $$ = A_ExprBin(line_no, $1, OP_OR, $3);
 }
                 |   term {
     $$ = A_ExprUn(line_no, $1);
@@ -648,16 +648,16 @@ expr :              expr  PLUS  term {
 ;
 
 term :              term  MUL  factor {
-    $$ = A_TermBin(line_no, $1, MUL, $3);
+    $$ = A_TermBin(line_no, $1, OP_MUL, $3);
 }
                 |   term  DIV  factor {
-    $$ = A_TermBin(line_no, $1, DIV, $3);
+    $$ = A_TermBin(line_no, $1, OP_DIV, $3);
 }
                 |   term  MOD  factor {
-    $$ = A_TermBin(line_no, $1, MOD, $3);
+    $$ = A_TermBin(line_no, $1, OP_MOD, $3);
 }
                 |   term  AND  factor {
-    $$ = A_TermBin(line_no, $1, AND, $3);
+    $$ = A_TermBin(line_no, $1, OP_AND, $3);
 }
                 |   factor {
     $$ = A_TermUn(line_no, $1);
@@ -692,7 +692,7 @@ factor :            ID {
 }
                 |   ID  LB  expression  RB {
     //$$ = A_FactorArrayVar(line_no, $1, $3);
-    $$ = A_FactorArrayVar(line_no, S_Symbol($1), S_Symbol($3));
+    $$ = A_FactorArrayVar(line_no, S_Symbol($1), $3);
 }
                 |   ID  DOT  ID {
     //$$ = A_FactorRecordVar(line_no, $1, $3);

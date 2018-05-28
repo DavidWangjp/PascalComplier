@@ -1082,7 +1082,7 @@ case 22:
     break;}
 case 23:
 #line 282 "pascal.y"
-{                    
+{
     yyval.type_decl = A_TypeDeclRecord(line_no, yyvsp[0].record_type_decl);
 ;
     break;}
@@ -1565,37 +1565,37 @@ case 98:
 case 99:
 #line 613 "pascal.y"
 {
-    yyval.expression = A_ExpressionBin(line_no, yyvsp[-2].expression, GE, yyvsp[0].expr);
+    yyval.expression = A_ExpressionBin(line_no, yyvsp[-2].expression, OP_GE, yyvsp[0].expr);
 ;
     break;}
 case 100:
 #line 616 "pascal.y"
 {
-    yyval.expression = A_ExpressionBin(line_no, yyvsp[-2].expression, GT, yyvsp[0].expr);
+    yyval.expression = A_ExpressionBin(line_no, yyvsp[-2].expression, OP_GT, yyvsp[0].expr);
 ;
     break;}
 case 101:
 #line 619 "pascal.y"
 {
-    yyval.expression = A_ExpressionBin(line_no, yyvsp[-2].expression, LE, yyvsp[0].expr);
+    yyval.expression = A_ExpressionBin(line_no, yyvsp[-2].expression, OP_LE, yyvsp[0].expr);
 ;
     break;}
 case 102:
 #line 622 "pascal.y"
 {
-    yyval.expression = A_ExpressionBin(line_no, yyvsp[-2].expression, LT, yyvsp[0].expr);
+    yyval.expression = A_ExpressionBin(line_no, yyvsp[-2].expression, OP_LT, yyvsp[0].expr);
 ;
     break;}
 case 103:
 #line 625 "pascal.y"
 {
-    yyval.expression = A_ExpressionBin(line_no, yyvsp[-2].expression, EQUAL, yyvsp[0].expr);
+    yyval.expression = A_ExpressionBin(line_no, yyvsp[-2].expression, OP_EQUAL, yyvsp[0].expr);
 ;
     break;}
 case 104:
 #line 628 "pascal.y"
 {
-    yyval.expression = A_ExpressionBin(line_no, yyvsp[-2].expression, UNEQUAL, yyvsp[0].expr);
+    yyval.expression = A_ExpressionBin(line_no, yyvsp[-2].expression, OP_UNEQUAL, yyvsp[0].expr);
 ;
     break;}
 case 105:
@@ -1607,19 +1607,19 @@ case 105:
 case 106:
 #line 636 "pascal.y"
 {
-    yyval.expr = A_ExprBin(line_no, yyvsp[-2].expr, PLUS, yyvsp[0].term);
+    yyval.expr = A_ExprBin(line_no, yyvsp[-2].expr, OP_PLUS, yyvsp[0].term);
 ;
     break;}
 case 107:
 #line 639 "pascal.y"
 {
-    yyval.expr = A_ExprBin(line_no, yyvsp[-2].expr, MINUS, yyvsp[0].term);
+    yyval.expr = A_ExprBin(line_no, yyvsp[-2].expr, OP_MINUS, yyvsp[0].term);
 ;
     break;}
 case 108:
 #line 642 "pascal.y"
 {
-    yyval.expr = A_ExprBin(line_no, yyvsp[-2].expr, OR, yyvsp[0].term);
+    yyval.expr = A_ExprBin(line_no, yyvsp[-2].expr, OP_OR, yyvsp[0].term);
 ;
     break;}
 case 109:
@@ -1631,25 +1631,25 @@ case 109:
 case 110:
 #line 650 "pascal.y"
 {
-    yyval.term = A_TermBin(line_no, yyvsp[-2].term, MUL, yyvsp[0].factor);
+    yyval.term = A_TermBin(line_no, yyvsp[-2].term, OP_MUL, yyvsp[0].factor);
 ;
     break;}
 case 111:
 #line 653 "pascal.y"
 {
-    yyval.term = A_TermBin(line_no, yyvsp[-2].term, DIV, yyvsp[0].factor);
+    yyval.term = A_TermBin(line_no, yyvsp[-2].term, OP_DIV, yyvsp[0].factor);
 ;
     break;}
 case 112:
 #line 656 "pascal.y"
 {
-    yyval.term = A_TermBin(line_no, yyvsp[-2].term, MOD, yyvsp[0].factor);
+    yyval.term = A_TermBin(line_no, yyvsp[-2].term, OP_MOD, yyvsp[0].factor);
 ;
     break;}
 case 113:
 #line 659 "pascal.y"
 {
-    yyval.term = A_TermBin(line_no, yyvsp[-2].term, AND, yyvsp[0].factor);
+    yyval.term = A_TermBin(line_no, yyvsp[-2].term, OP_AND, yyvsp[0].factor);
 ;
     break;}
 case 114:
@@ -1712,7 +1712,7 @@ case 123:
 #line 693 "pascal.y"
 {
     //$$ = A_FactorArrayVar(line_no, $1, $3);
-    yyval.factor = A_FactorArrayVar(line_no, S_Symbol(yyvsp[-3].sval), S_Symbol(yyvsp[-1].expression));
+    yyval.factor = A_FactorArrayVar(line_no, S_Symbol(yyvsp[-3].sval), yyvsp[-1].expression);
 ;
     break;}
 case 124:

@@ -6,7 +6,6 @@ set(CMAKE_C_STANDARD 11)
 add_executable(PascalComplier
         absyn.c absyn.h
         util.h util.c
-        pascal.l pascal.y
         table.h table.c
         symbol.c symbol.h
         types.c types.h
@@ -18,4 +17,6 @@ add_executable(PascalComplier
         frame.c frame.h
         lex.yy.c
         pascal.tab.c pascal.tab.h
+        printtree.c printtree.h
+        main.c
         )

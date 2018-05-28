@@ -157,4 +157,6 @@ Tr_exp Tr_SeqExp(Tr_exp left, Tr_exp right);
 
 Tr_exp Tr_LabelExp(Temp_label label);
 
+Tr_exp Tr_nullExp(void);
+
 #endif

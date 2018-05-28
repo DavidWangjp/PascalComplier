@@ -10,35 +10,35 @@
 #define MAXINT 2147483647
 
 
-static struct Ty_ty_ tyint = {Ty_ty_::Ty_int};
+static struct Ty_ty_ tyint = {Ty_int};
 
 Ty_ty Ty_Int(void)
 {
     return &tyint;
 }
 
-static struct Ty_ty_ tyreal = {Ty_ty_::Ty_real};
+static struct Ty_ty_ tyreal = {Ty_real};
 
 Ty_ty Ty_Real(void)
 {
     return &tyreal;
 }
 
-static struct Ty_ty_ tybool = {Ty_ty_::Ty_bool};
+static struct Ty_ty_ tybool = {Ty_bool};
 
 Ty_ty Ty_Bool(void)
 {
     return &tybool;
 }
 
-static struct Ty_ty_ tychar = {Ty_ty_::Ty_char};
+static struct Ty_ty_ tychar = {Ty_char};
 
 Ty_ty Ty_Char(void)
 {
     return &tychar;
 }
 
-static struct Ty_ty_ tyvoid = {Ty_ty_::Ty_void};
+static struct Ty_ty_ tyvoid = {Ty_void};
 
 Ty_ty Ty_Void(void)
 {
@@ -46,7 +46,7 @@ Ty_ty Ty_Void(void)
 }
 
 static struct Ty_ty_ tyconstint = {
-        .kind=Ty_ty_::Ty_const,
+        .kind=Ty_const_ty,
         .u.constt=TY_CONST_INT};
 
 Ty_ty Ty_Const_Int(void)
@@ -55,7 +55,7 @@ Ty_ty Ty_Const_Int(void)
 }
 
 static struct Ty_ty_ tyconstreal = {
-        .kind=Ty_ty_::Ty_const,
+        .kind=Ty_const_ty,
         .u.constt=TY_CONST_REAL};
 
 Ty_ty Ty_Const_Real(void)
@@ -64,7 +64,7 @@ Ty_ty Ty_Const_Real(void)
 }
 
 static struct Ty_ty_ tyconstchar = {
-        .kind=Ty_ty_::Ty_const,
+        .kind=Ty_const_ty,
         .u.constt=TY_CONST_CHAR};
 
 Ty_ty Ty_Const_Char(void)
@@ -73,7 +73,7 @@ Ty_ty Ty_Const_Char(void)
 }
 
 static struct Ty_ty_ tyconstbool = {
-        .kind=Ty_ty_::Ty_const,
+        .kind=Ty_const_ty,
         .u.constt=TY_CONST_BOOL};
 
 Ty_ty Ty_Const_Bool(void)
@@ -82,7 +82,7 @@ Ty_ty Ty_Const_Bool(void)
 }
 
 static struct Ty_ty_ tyconststring = {
-        .kind=Ty_ty_::Ty_const,
+        .kind=Ty_const_ty,
         .u.constt=TY_CONST_STRING};
 
 Ty_ty Ty_Const_String(void)
@@ -90,9 +90,9 @@ Ty_ty Ty_Const_String(void)
     return &tyconststring;
 }
 
-//Ty_const Ty_Const(A_const_value const_value)
+//Ty_range_const Ty_Const(A_const_value const_value)
 //{
-//    Ty_const p = checked_malloc(sizeof(*p));
+//    Ty_range_const p = checked_malloc(sizeof(*p));
 //    switch (const_value->kind)
 //    {
 //        case A_const_value_::CONST_INTEGER:
@@ -148,11 +148,11 @@ Ty_ty Ty_Const_String(void)
 //    return p;
 //}
 //
-//Ty_ty Ty_Const_Range(Ty_const left_bound, Ty_const right_bound)
+//Ty_ty Ty_Const_Range(Ty_range_const left_bound, Ty_range_const right_bound)
 //{
 //    Ty_ty p = checked_malloc(sizeof(*p));
 //    p->kind = Ty_ty_::Ty_subrange;
-//    p->u.range->kind = Ty_range_::Ty_const;
+//    p->u.range->kind = Ty_range_::Ty_range_const;
 //    p->u.range->u.constt.left_bound = left_bound;
 //    p->u.range->u.constt.right_bound = right_bound;
 //    return p;
@@ -162,20 +162,20 @@ Ty_ty Ty_Const_String(void)
 //{
 //    Ty_ty p = checked_malloc(sizeof(*p));
 //    p->kind = Ty_ty_::Ty_subrange;
-//    p->u.range->kind = Ty_range_::Ty_name;
+//    p->u.range->kind = Ty_range_::Ty_range_name;
 //    p->u.range->u.name.left_bound = left_bound;
 //    p->u.range->u.name.right_bound = right_bound;
 //    return p;
 //}
 
-static struct Ty_ty_ tymath = {Ty_ty_::Ty_math};
+static struct Ty_ty_ tymath = {Ty_math};
 
 Ty_ty Ty_Math(void)
 {
     return &tymath;
 }
 
-static struct Ty_ty_ tywrite = {Ty_ty_::Ty_write};
+static struct Ty_ty_ tywrite = {Ty_write};
 
 Ty_ty Ty_Write(void)
 {
@@ -185,7 +185,7 @@ Ty_ty Ty_Write(void)
 Ty_ty Ty_Record(Ty_fieldList fields)
 {
     Ty_ty p = checked_malloc(sizeof(*p));
-    p->kind = Ty_ty_::Ty_record;
+    p->kind = Ty_record;
     p->u.record = fields;
     return p;
 }
@@ -201,7 +201,7 @@ Ty_ty Ty_Record(Ty_fieldList fields)
 Ty_ty Ty_Array(Ty_ty ty, int leftBound, int rightBound)
 {
     Ty_ty p = checked_malloc(sizeof(*p));
-    p->kind = Ty_ty_::Ty_array;
+    p->kind = Ty_array;
     p->u.array.ty = ty;
     p->u.array.leftBound = leftBound;
     p->u.array.rightBound = rightBound;
@@ -211,7 +211,7 @@ Ty_ty Ty_Array(Ty_ty ty, int leftBound, int rightBound)
 Ty_ty Ty_Name(S_symbol sym, Ty_ty ty)
 {
     Ty_ty p = checked_malloc(sizeof(*p));
-    p->kind = Ty_ty_::Ty_name;
+    p->kind = Ty_name_ty;
     p->u.name.sym = sym;
     p->u.name.ty = ty;
     return p;
