@@ -90,83 +90,83 @@ Ty_ty Ty_Const_String(void)
     return &tyconststring;
 }
 
-Ty_const Ty_Const(A_const_value const_value)
-{
-    Ty_const p = checked_malloc(sizeof(*p));
-    switch (const_value->kind)
-    {
-        case A_const_value_::CONST_INTEGER:
-        {
-            p->kind = TY_CONST_INT;
-            p->u.intt = const_value->u.intt;
-            break;
-        }
-        case A_const_value_::CONST_REAL:
-        {
-            p->kind = TY_CONST_REAL;
-            p->u.real = const_value->u.real;
-            break;
-        }
-        case A_const_value_::CONST_CHAR:
-        {
-            p->kind = TY_CONST_CHAR;
-            p->u.charr = const_value->u.charr;
-            break;
-        }
-        case A_const_value_::CONST_STRING:
-        {
-            p->kind = TY_CONST_STRING;
-            p->u.string = const_value->u.string;
-            break;
-        }
-        case A_const_value_::CONST_SYS_CON:
-        {
-            switch (const_value->u.sys_con)
-            {
-                case SYS_CON_FALSE:
-                {
-                    p->kind = TY_CONST_BOOL;
-                    p->u.booll = FALSE;
-                    break;
-                }
-                case SYS_CON_TRUE:
-                {
-                    p->kind = TY_CONST_BOOL;
-                    p->u.booll = TRUE;
-                    break;
-                }
-                case SYS_CON_MAXINT:
-                {
-                    p->kind = TY_CONST_INT;
-                    p->u.intt = MAXINT;
-                    break;
-                }
-            }
-            break;
-        }
-    }
-    return p;
-}
-
-Ty_ty Ty_Const_Range(Ty_const left_bound, Ty_const right_bound)
-{
-    Ty_ty p = checked_malloc(sizeof(*p));
-    p->kind = Ty_ty_::Ty_subrange;
-    p->u.range->kind = Ty_range_::Ty_const;
-    p->u.range->u.constt.left_bound = left_bound;
-    p->u.range->u.constt.right_bound = right_bound;
-    return p;
-}
-
-Ty_ty Ty_Name_Range(S_symbol left_bound, S_symbol right_bound)
-{
-    Ty_ty p = checked_malloc(sizeof(*p));
-    p->kind = Ty_ty_::Ty_subrange;
-    p->u.range->kind = Ty_range_::Ty_name;
-    p->u.range->u.name.left_bound = left_bound;
-    p->u.range->u.name.right_bound = right_bound;
-    return p;
-}
+//Ty_const Ty_Const(A_const_value const_value)
+//{
+//    Ty_const p = checked_malloc(sizeof(*p));
+//    switch (const_value->kind)
+//    {
+//        case A_const_value_::CONST_INTEGER:
+//        {
+//            p->kind = TY_CONST_INT;
+//            p->u.intt = const_value->u.intt;
+//            break;
+//        }
+//        case A_const_value_::CONST_REAL:
+//        {
+//            p->kind = TY_CONST_REAL;
+//            p->u.real = const_value->u.real;
+//            break;
+//        }
+//        case A_const_value_::CONST_CHAR:
+//        {
+//            p->kind = TY_CONST_CHAR;
+//            p->u.charr = const_value->u.charr;
+//            break;
+//        }
+//        case A_const_value_::CONST_STRING:
+//        {
+//            p->kind = TY_CONST_STRING;
+//            p->u.string = const_value->u.string;
+//            break;
+//        }
+//        case A_const_value_::CONST_SYS_CON:
+//        {
+//            switch (const_value->u.sys_con)
+//            {
+//                case SYS_CON_FALSE:
+//                {
+//                    p->kind = TY_CONST_BOOL;
+//                    p->u.booll = FALSE;
+//                    break;
+//                }
+//                case SYS_CON_TRUE:
+//                {
+//                    p->kind = TY_CONST_BOOL;
+//                    p->u.booll = TRUE;
+//                    break;
+//                }
+//                case SYS_CON_MAXINT:
+//                {
+//                    p->kind = TY_CONST_INT;
+//                    p->u.intt = MAXINT;
+//                    break;
+//                }
+//            }
+//            break;
+//        }
+//    }
+//    return p;
+//}
+//
+//Ty_ty Ty_Const_Range(Ty_const left_bound, Ty_const right_bound)
+//{
+//    Ty_ty p = checked_malloc(sizeof(*p));
+//    p->kind = Ty_ty_::Ty_subrange;
+//    p->u.range->kind = Ty_range_::Ty_const;
+//    p->u.range->u.constt.left_bound = left_bound;
+//    p->u.range->u.constt.right_bound = right_bound;
+//    return p;
+//}
+//
+//Ty_ty Ty_Name_Range(S_symbol left_bound, S_symbol right_bound)
+//{
+//    Ty_ty p = checked_malloc(sizeof(*p));
+//    p->kind = Ty_ty_::Ty_subrange;
+//    p->u.range->kind = Ty_range_::Ty_name;
+//    p->u.range->u.name.left_bound = left_bound;
+//    p->u.range->u.name.right_bound = right_bound;
+//    return p;
+//}
 
 static struct Ty_ty_ tymath = {Ty_ty_::Ty_math};
 
@@ -177,7 +177,7 @@ Ty_ty Ty_Math(void)
 
 static struct Ty_ty_ tywrite = {Ty_ty_::Ty_write};
 
-Ty_ty Ty_Math(void)
+Ty_ty Ty_Write(void)
 {
     return &tywrite;
 }

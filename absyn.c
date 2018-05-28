@@ -91,8 +91,8 @@ A_var_part A_VarPart(A_pos pos, A_var_decl_list var_decl_list)
     return p;
 }
 
-A_routine_part
-A_RoutinePartSeqWithProcedureDecl(A_pos pos, A_routine_part routine_part, A_procedure_decl procedure_decl)
+
+A_routine_part A_RoutinePartSeqWithProcedureDecl(A_pos pos, A_routine_part routine_part, A_procedure_decl procedure_decl)
 {
     A_routine_part p = (A_routine_part) checked_malloc(sizeof(struct A_routine_part_));
     p->pos = pos;
@@ -135,6 +135,44 @@ A_routine_part A_RoutinePartWithFunctionDecl(A_pos pos, A_function_decl function
     p->u.function_decl = function_decl;
     return p;
 }
+
+
+/*A_routine_part A_RoutinePartWithFunctionDecl(A_pos pos, A_function_decl function_decl, A_routine_part_prime routine_part_prime) {
+    A_routine_part p = (A_routine_part) checked_malloc(sizeof(struct A_routine_part_));
+    p->pos = pos;
+    p->kind = p->routine_part_function;
+    p->u.function_decl = function_decl;
+    p->routine_part_prime = routine_part_prime;
+    return p;
+}
+
+A_routine_part A_RoutinePartWithProcedureDecl(A_pos pos, A_procedure_decl procedure_decl, A_routine_part_prime routine_part_prime) {
+    A_routine_part p = (A_routine_part) checked_malloc(sizeof(struct A_routine_part_));
+    p->pos = pos;
+    p->kind = p->routine_part_procedure;
+    p->u.procedure_decl = procedure_decl;
+    p->routine_part_prime = routine_part_prime;
+    return p;
+}
+
+A_routine_part_prime A_RoutinePartPrimeWithFunctionDecl(A_pos pos, A_function_decl function_decl, A_routine_part_prime routine_part_prime) {
+    A_routine_part_prime p = (A_routine_part_prime) checked_malloc(sizeof(struct A_routine_part_prime_));
+    p->pos = pos;
+    p->kind = p->routine_part_prime_function;
+    p->u.function_decl = function_decl;
+    p->routine_part_prime = routine_part_prime;
+    return p;
+}
+
+A_routine_part_prime A_RoutinePartPrimeWithProcedureDecl(A_pos pos, A_procedure_decl procedure_decl, A_routine_part_prime routine_part_prime) {
+    A_routine_part_prime p = (A_routine_part_prime) checked_malloc(sizeof(struct A_routine_part_prime_));
+    p->pos = pos;
+    p->kind = p->routine_part_prime_procedure;
+    p->u.procedure_decl = procedure_decl;
+    p->routine_part_prime = routine_part_prime;
+    return p;
+}*/
+
 
 //A_const_expr_list A_ConstExprListSeq(A_pos pos, A_const_expr_list const_expr_list, char *id, A_const_value const_value)
 A_const_expr_list

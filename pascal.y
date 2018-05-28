@@ -2,21 +2,18 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string>
+#include <string.h>
 
 #include "absyn.h"
 #include "util.h"
 #include "symbol.h"
-#include "absyn.h"
-#include "lex.yy.c"
-
-A_program absyn_root;
 
 void yyerror(const char *s);
 extern int yylex(void);
 extern int line_no;
 
 %}
+
 %union
 {
     int ival;
@@ -39,6 +36,7 @@ extern int line_no;
     A_type_part type_part;
     A_var_part var_part;
     A_routine_part routine_part;
+    A_routine_part_prime routine_part_prime;
 
     A_const_expr_list const_expr_list;
     A_const_value const_value;
@@ -103,6 +101,7 @@ extern int line_no;
 %token  <sval> CHAR
 %token  <sval> STRING
 
+%token  PROGRAM
 %token  CONST
 %token  ARRAY  RECORD
 %token  BEGIN  END
@@ -115,7 +114,6 @@ extern int line_no;
 %token  LB  RB  LP  RP
 %token  ASSIGN
 
-%token  <program> PROGRAM
 %token  <un_op> NOT NEG
 %token  <rel_op> EQUAL  UNEQUAL  GE  GT  LE  LT
 %token  <plus_op> PLUS  MINUS  OR
@@ -140,6 +138,7 @@ extern int line_no;
 %type   <var_part> var_part
 %type   <routine_part> routine_part
 %type   <const_expr_list> const_expr_list
+%type   <const_value> const_value
 %type   <type_decl_list> type_decl_list
 %type   <type_definition> type_definition
 %type   <type_decl> type_decl
@@ -147,7 +146,6 @@ extern int line_no;
 %type   <array_type_decl> array_type_decl
 %type   <record_type_decl> record_type_decl
 %type   <name_list> name_list
-%type   <const_value> const_value
 %type   <field_decl_list> field_decl_list
 %type   <field_decl> field_decl
 %type   <var_decl_list> var_decl_list
@@ -184,11 +182,13 @@ extern int line_no;
 %type   <term> term
 %type   <factor> factor
 
+%nonassoc LOWER_THAN_ELSE
+%nonassoc ELSE
+
 %%
 
 program :           program_head  routine  DOT {
     $$ = A_Program(line_no, $1, $2);
-    absyn_root = $$;
 }
 ;
 
@@ -227,10 +227,10 @@ const_part :        CONST  const_expr_list {
 
 const_expr_list :   const_expr_list  ID  EQUAL  const_value  SEMI {
     // $$ = A_ConstExprListSeq(line_no, $1, $2, $4);
-    $$ = A_ConstExprListSeq(line_no, S_Symbol($1), $2, $4);
+    $$ = A_ConstExprListSeq(line_no, $1, S_Symbol($2), $4);
 }
                 |   ID  EQUAL  const_value  SEMI {
-    $$ = A_ConstExprList(line_no, $1, $3);
+    $$ = A_ConstExprList(line_no, S_Symbol($1), $3);
 }
 ;
 
@@ -299,21 +299,21 @@ simple_type_decl :  SYS_TYPE {
 }
                 |   MINUS  const_value  DOTDOT  const_value {
     A_const_value from = NULL;
-    if ($1->kind == INTEGER) {
+    if ($2->kind == INTEGER) {
         from = A_ConstValueInteger(line_no, -($2->u.intt));
     }
-    else if ($1->kind == REAL) {
+    else if ($2->kind == REAL) {
         from = A_ConstValueReal(line_no, -($2->u.real));
     }
     $$ = A_SimpleTypeDeclRangeConst(line_no, from, $4);
 }
                 |   MINUS  const_value  DOTDOT  MINUS  const_value {
     A_const_value from = NULL, to = NULL;
-    if ($1->kind == INTEGER) {
+    if ($2->kind == INTEGER) {
         from = A_ConstValueInteger(line_no, -($2->u.intt));
         to = A_ConstValueInteger(line_no, -($2->u.intt));
     }
-    else if ($1->kind == REAL) {
+    else if ($2->kind == REAL) {
         from = A_ConstValueReal(line_no, -($5->u.real));
         to = A_ConstValueReal(line_no, -($5->u.real));
     }
@@ -402,7 +402,7 @@ function_decl :     function_head  SEMI  sub_routine  SEMI {
 ;
 
 function_head :     FUNCTION  ID  parameters  COLON  simple_type_decl {
-    $$ = A_FunctionHead(line_no, $2, $3, $5);
+    $$ = A_FunctionHead(line_no, S_Symbol($2), $3, $5);
 }
 ; 
 
@@ -453,12 +453,12 @@ val_para_list :     name_list {
 ;
 
 routine_body :      compound_stmt {
-    $$ = A_CompoundStmt(line_no, $1);
+    $$ = A_RoutineBody(line_no, $1);
 }
 ;
 
 compound_stmt :     BEGIN  stmt_list  END {
-    $$ = A_StmtList(line_no, $2);
+    $$ = A_CompoundStmt(line_no, $2);
 }
 ;
 
@@ -546,11 +546,11 @@ if_stmt :           IF  expression  THEN  stmt  else_clause {
 
 else_clause :       ELSE stmt {
     $$ = A_ElseClause(line_no, $2);
-}
-                |   {
-    $$ = A_ElseClause(line_no, NULL);;
+}               |   %prec LOWER_THAN_ELSE {
+    $$ = A_ElseClause(line_no, NULL);
 }
 ;
+
 
 repeat_stmt :       REPEAT  stmt_list  UNTIL  expression {
     $$ = A_RepeatStmt(line_no, $2, $4);
@@ -682,7 +682,7 @@ factor :            ID {
     $$ = A_FactorConst(line_no, $1);
 }
                 |   LP  expression  RP {
-    $$ = A_FactorInBracketsFactor(line_no, $2);
+    $$ = A_FactorInBrackets(line_no, $2);
 }
                 |   NOT  factor {
     $$ = A_FactorUnOp(line_no, NOT, $2);

@@ -143,11 +143,11 @@ Ty_ty Ty_Math(void);
 
 Ty_ty Ty_Write(void);
 
-Ty_const Ty_Const(A_const_value const_value);
-
-Ty_ty Ty_Const_Range(Ty_const left_bound, Ty_const right_bound);
-
-Ty_ty Ty_Name_Range(S_symbol left_bound, S_symbol right_bound);
+//Ty_const Ty_Const(A_const_value const_value);
+//
+//Ty_ty Ty_Const_Range(Ty_const left_bound, Ty_const right_bound);
+//
+//Ty_ty Ty_Name_Range(S_symbol left_bound, S_symbol right_bound);
 
 /*
  * Omit enum for now

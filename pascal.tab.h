@@ -1,5 +1,3 @@
-#include "absyn.h"
-
 typedef union
 {
     int ival;
@@ -22,6 +20,7 @@ typedef union
     A_type_part type_part;
     A_var_part var_part;
     A_routine_part routine_part;
+    A_routine_part_prime routine_part_prime;
 
     A_const_expr_list const_expr_list;
     A_const_value const_value;
@@ -83,38 +82,38 @@ typedef union
 #define	REAL	259
 #define	CHAR	260
 #define	STRING	261
-#define	CONST	262
-#define	ARRAY	263
-#define	RECORD	264
-#define	BEGIN	265
-#define	END	266
-#define	VAR	267
-#define	FUNCTION	268
-#define	PROCEDURE	269
-#define	TYPE	270
-#define	READ	271
-#define	IF	272
-#define	THEN	273
-#define	ELSE	274
-#define	REPEAT	275
-#define	UNTIL	276
-#define	WHILE	277
-#define	DO	278
-#define	FOR	279
-#define	CASE	280
-#define	OF	281
-#define	GOTO	282
-#define	DOT	283
-#define	DOTDOT	284
-#define	SEMI	285
-#define	COLON	286
-#define	COMMA	287
-#define	LB	288
-#define	RB	289
-#define	LP	290
-#define	RP	291
-#define	ASSIGN	292
-#define	PROGRAM	293
+#define	PROGRAM	262
+#define	CONST	263
+#define	ARRAY	264
+#define	RECORD	265
+#define	BEGIN	266
+#define	END	267
+#define	VAR	268
+#define	FUNCTION	269
+#define	PROCEDURE	270
+#define	TYPE	271
+#define	READ	272
+#define	IF	273
+#define	THEN	274
+#define	ELSE	275
+#define	REPEAT	276
+#define	UNTIL	277
+#define	WHILE	278
+#define	DO	279
+#define	FOR	280
+#define	CASE	281
+#define	OF	282
+#define	GOTO	283
+#define	DOT	284
+#define	DOTDOT	285
+#define	SEMI	286
+#define	COLON	287
+#define	COMMA	288
+#define	LB	289
+#define	RB	290
+#define	LP	291
+#define	RP	292
+#define	ASSIGN	293
 #define	NOT	294
 #define	NEG	295
 #define	EQUAL	296
@@ -136,6 +135,7 @@ typedef union
 #define	SYS_FUNCT	312
 #define	SYS_PROC	313
 #define	SYS_CON	314
+#define	LOWER_THAN_ELSE	315
 
 
 extern YYSTYPE yylval;
