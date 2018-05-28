@@ -6,14 +6,11 @@
  * 所有变量作为逃逸变量处理，所有常量是非逃逸变量
  * 忽略枚举和子界类型
  * 字符串类型常量没有处理
- * 递归定义没有处理
  */
 
 #include "semant.h"
 #include "env.h"
 #include "errormsg.h"
-
-
 
 
 typedef struct A_var_ *A_var;
@@ -155,8 +152,99 @@ int typeSize(Ty_ty ty)
         {
             return NULL;
         }
+        case Ty_ty_::Ty_math:
+            break;
+        case Ty_ty_::Ty_write:
+            break;
     }
     return NULL;
+}
+
+Ty_ty actual_ty(Ty_ty ty)
+{
+    if (ty->kind == Ty_ty_::Ty_name)
+        return actual_ty(ty->u.name.ty);
+    else
+        return ty;
+}
+
+bool typeMatch(Ty_ty ty1, Ty_ty ty2)
+{
+    ty1 = actual_ty(ty1);
+    ty2 = actual_ty(ty2);
+    switch (ty1->kind)
+    {
+        case Ty_ty_::Ty_int:
+        case Ty_ty_::Ty_real:
+        case Ty_ty_::Ty_bool:
+        case Ty_ty_::Ty_char:
+        case Ty_ty_::Ty_const:
+        {
+            if (ty2->kind == Ty_ty_::Ty_int ||
+                ty2->kind == Ty_ty_::Ty_real ||
+                ty2->kind == Ty_ty_::Ty_bool ||
+                ty2->kind == Ty_ty_::Ty_char ||
+                ty2->kind == Ty_ty_::Ty_math ||
+                ty2->kind == Ty_ty_::Ty_const
+                    )
+                return TRUE;
+            else
+                return FALSE;
+        }
+        case Ty_ty_::Ty_subrange:
+            break;
+        case Ty_ty_::Ty_record:
+        {
+            if (ty2->kind == Ty_ty_::Ty_record)
+                return TRUE;
+            else
+                return FALSE;
+        }
+        case Ty_ty_::Ty_array:
+        {
+            if (ty2->kind == Ty_ty_::Ty_array)
+                return TRUE;
+            else
+                return FALSE;
+        }
+        case Ty_ty_::Ty_name:
+            break;
+        case Ty_ty_::Ty_void:
+        {
+            return FALSE;
+        }
+        case Ty_ty_::Ty_math:
+        {
+            if (ty2->kind == Ty_ty_::Ty_int ||
+                ty2->kind == Ty_ty_::Ty_real ||
+                ty2->kind == Ty_ty_::Ty_math)
+                return TRUE;
+            else if (ty2->kind == Ty_ty_::Ty_const)
+            {
+                if (ty2->u.constt == TY_CONST_INT || ty2->u.constt == TY_CONST_REAL)
+                    return TRUE;
+                else
+                    return FALSE;
+            }
+            else
+                return FALSE;
+        }
+        case Ty_ty_::Ty_write:
+        {
+            switch (ty2->kind)
+            {
+                case Ty_ty_::Ty_int:
+                case Ty_ty_::Ty_real:
+                case Ty_ty_::Ty_bool:
+                case Ty_ty_::Ty_const:
+                    return TRUE;
+
+                default:
+                    return FALSE;
+            }
+        }
+    }
+    return FALSE;
 }
 
 void SEM_transProg(A_program a)
@@ -419,10 +507,22 @@ Ty_ty transTy(Tr_level level, S_table venv, S_table tenv, A_type_decl a)
 void transTypeDec(Tr_level level, S_table venv, S_table tenv, A_type_part a)
 {
     /*
-     * todo: recursive declaration.
+     * 不支持不同类型之间的超前引用
+     * 只支持同一类型的递归定义
      */
     for (A_type_decl_list l = reverse_type_dec_list(a->type_decl_list); l; l = l->type_decl_list)
-        S_enter(tenv, l->type_definition->id, transTy(level, venv, tenv, l->type_definition->type_decl));
+    {
+        if (l->type_definition->type_decl->kind == A_type_decl_::type_decl_record)
+        {
+            S_enter(tenv, l->type_definition->id, Ty_Name(l->type_definition->id, NULL));
+            Ty_ty declaration = transTy(level, venv, tenv, l->type_definition->type_decl);
+            Ty_ty type = (Ty_ty) S_look(tenv, l->type_definition->id);
+            type->u.name.ty = declaration;
+        }
+        else
+            S_enter(tenv, l->type_definition->id, transTy(level, venv, tenv, l->type_definition->type_decl));
+
+    }
 }
 
 void transVarDec(Tr_level level, S_table venv, S_table tenv, A_var_part a)
@@ -515,7 +615,6 @@ U_boolList makeFormalEscapeList(A_para_decl_list a)
 
 void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part a)
 {
-    // todo: recursive declaration
     for (A_routine_part l = reverse_routine_dec_list(a); l; l = l->routine_part)
     {
         switch (l->kind)
@@ -528,21 +627,37 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
                 Ty_ty resultTy = transTy(level, venv, tenv, ty);
                 Ty_tyList formalTys = makeFormalTyList(level, venv, tenv,
                                                        l->u.function_decl->function_head->parameters->para_decl_list);
+                Temp_label label = Temp_namedlabel(S_name(l->u.function_decl->function_head->id));
+                S_enter(venv, l->u.function_decl->function_head->id, E_FunEntry(level, label, formalTys, resultTy));
+                break;
+            }
+            case A_routine_part_::routine_part_procedure:
+            {
+                Ty_ty resultTy = Ty_Void();
+                Ty_tyList formalTys = makeFormalTyList(level, venv, tenv,
+                                                       l->u.procedure_decl->procedure_head->parameters->para_decl_list);
+                Temp_label label = Temp_namedlabel(S_name(l->u.procedure_decl->procedure_head->id));
+                S_enter(venv, l->u.procedure_decl->procedure_head->id, E_FunEntry(level, label, formalTys, resultTy));
+                break;
+            }
+        }
+    }
+    for (A_routine_part l = reverse_routine_dec_list(a); l; l = l->routine_part)
+    {
+        switch (l->kind)
+        {
+            case A_routine_part_::routine_part_function:
+            {
+                E_enventry fun = (E_enventry) S_look(venv, l->u.procedure_decl->procedure_head->id);
+                Ty_tyList formalTys = fun->u.fun.formals;
+                Temp_label label = fun->u.fun.label;
 
                 U_boolList formalEscapes = makeFormalEscapeList(
                         l->u.function_decl->function_head->parameters->para_decl_list);
 
-                Temp_label label = Temp_namedlabel(S_name(l->u.function_decl->function_head->id));
                 Tr_level newLevel = Tr_NewLevel(level, label, formalEscapes);
-                S_enter(venv, l->u.function_decl->function_head->id, E_FunEntry(level, label, formalTys, resultTy));
                 S_beginScope(tenv);
                 S_beginScope(venv);
-                /*
-                 * Three thing need to be done:
-                 * 1. Add the formal params to the env (in the function head)
-                 * 2. Translate the subroutine head
-                 * 3. Translate the subroutine body
-                 */
                 {
                     A_para_decl_list declList;
                     Ty_tyList tyList;
@@ -579,7 +694,6 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
                             }
                         }
                     }
-                    // Translate subroutine head.
                     transRoutineHead(newLevel, venv, tenv, l->u.function_decl->sub_routine->routine_head);
                 }
                 transRoutineBody(level, venv, tenv, l->u.function_decl->sub_routine->routine_body);
@@ -589,16 +703,15 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
             }
             case A_routine_part_::routine_part_procedure:
             {
-                Ty_ty resultTy = Ty_Void();
-                Ty_tyList formalTys = makeFormalTyList(level, venv, tenv,
-                                                       l->u.procedure_decl->procedure_head->parameters->para_decl_list
-                );
+                E_enventry fun = (E_enventry) S_look(venv, l->u.procedure_decl->procedure_head->id);
+                Ty_tyList formalTys = fun->u.fun.formals;
+                Temp_label label = fun->u.fun.label;
+
                 U_boolList formalEscapes = makeFormalEscapeList(
                         l->u.procedure_decl->procedure_head->parameters->para_decl_list);
 
-                Temp_label label = Temp_namedlabel(S_name(l->u.procedure_decl->procedure_head->id));
                 Tr_level newLevel = Tr_NewLevel(level, label, formalEscapes);
-                S_enter(venv, l->u.procedure_decl->procedure_head->id, E_FunEntry(level, label, formalTys, resultTy));
+                S_beginScope(tenv);
                 S_beginScope(venv);
                 {
                     A_para_decl_list declList;
@@ -640,9 +753,11 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
                 }
                 transRoutineBody(level, venv, tenv, l->u.procedure_decl->sub_routine->routine_body);
                 S_endScope(venv);
+                S_endScope(tenv);
                 break;
             }
         }
+
     }
 }
 
@@ -668,11 +783,41 @@ A_stmt_list reverse_stmt_list(A_stmt_list list)
 
 }
 
-Tr_expList makeArgsList(Tr_level level, S_table venv, S_table tenv, A_args_list a)
+Ty_tyList reverse_type_list(Ty_tyList list)
+{
+    if (list == NULL || list->tail == NULL)
+        return list;
+    else
+    {
+        Ty_tyList new = reverse_type_list(list->tail);
+        list->tail->tail = list;
+        list->tail = NULL;
+        return new;
+    }
+
+}
+
+Tr_expList makeArgsList(Tr_level level, S_table venv, S_table tenv, A_args_list a, E_enventry fun)
 {
     Tr_expList expList = NULL;
-    for (A_args_list l = a; l; l = l->args_list)
-        expList = Tr_ExpList(transExp(level, venv, tenv, l->expression).exp, expList);
+    A_args_list l;
+    Ty_tyList t;
+    for (l = a, t = reverse_type_list(fun->u.fun.formals); l && t; l = l->args_list, t = t->tail)
+    {
+        struct expty arg = transExp(level, venv, tenv, l->expression);
+        if (!typeMatch(t->head, arg.ty))
+        {
+            EM_error(l->pos, "Argument type does not match declaration.\n");
+            return NULL;
+        }
+        expList = Tr_ExpList(arg.exp, expList);
+    }
+    if (l || t)
+    {
+        EM_error(a->pos, "Arguments num does not match.\n");
+        return NULL;
+    }
+
     return expList;
 }
 
@@ -752,14 +897,21 @@ struct expty transStm(Tr_level level, S_table venv, S_table tenv, A_stmt a)
             }
             right = transExp(level, venv, tenv,
                              a->non_label_stmt->u.assign_stmt->u.simple_var_assign_stmt.right_expression);
-            if (left.ty->kind == right.ty->kind)
+
+            if (left.ty->kind == Ty_ty_::Ty_const)
+            {
+                EM_error(a->pos, "Const value cannot be assigned.\n");
+                return expTy(NULL, Ty_Void());
+            }
+
+            if (typeMatch(left.ty, right.ty))
             {
                 return expTy(Tr_AssignExp(left.exp, right.exp), Ty_Void());
             }
             else
             {
                 EM_error(a->pos, "Assign statement type dose not match.\n");
-                return expTy(NULL, Ty_Int());
+                return expTy(NULL, Ty_Void());
             }
         }
         case A_non_label_stmt_::non_label_stmt_proc:
@@ -774,7 +926,8 @@ struct expty transStm(Tr_level level, S_table venv, S_table tenv, A_stmt a)
                     if (fun && fun->kind == E_enventry_::E_funEntry)
                     {
                         Tr_expList argList = makeArgsList(level, venv, tenv,
-                                                          a->non_label_stmt->u.proc_stmt->u.id_with_args.args_list);
+                                                          a->non_label_stmt->u.proc_stmt->u.id_with_args.args_list,
+                                                          fun);
                         return expTy(Tr_CallExp(fun->u.fun.label, fun->u.fun.level, level, argList), fun->u.fun.result);
                     }
                     else
@@ -908,7 +1061,7 @@ struct expty transVar(Tr_level level, S_table venv, S_table tenv, A_var a)
                  varEntry->u.var.ty->kind == Ty_ty_::Ty_bool ||
                  varEntry->u.var.ty->kind == Ty_ty_::Ty_const))
             {
-                return expTy(Tr_SimpleVar(varEntry->u.var.access, level), varEntry->u.var.ty);
+                return expTy(Tr_SimpleVar(varEntry->u.var.access, level), actual_ty(varEntry->u.var.ty));
             }
             else
             {
@@ -933,7 +1086,7 @@ struct expty transVar(Tr_level level, S_table venv, S_table tenv, A_var a)
                 {
                     return expTy(Tr_SubscriptVar(Tr_SimpleVar(varEntry->u.var.access, level),
                                                  subscript.exp, typeSize(varEntry->u.var.ty)),
-                                 varEntry->u.var.ty);
+                                 actual_ty(varEntry->u.var.ty));
                 }
                 else
                 {
@@ -967,7 +1120,7 @@ struct expty transVar(Tr_level level, S_table venv, S_table tenv, A_var a)
                     {
                         return expTy(Tr_RecordVar(Tr_SimpleVar(varEntry->u.var.access, level),
                                                   offset, size),
-                                     field->head->ty);
+                                     actual_ty(field->head->ty));
                     }
                     offset += size;
                 }
@@ -996,8 +1149,9 @@ struct expty transFactor(Tr_level level, S_table venv, S_table tenv, A_factor a)
             E_enventry fun = (E_enventry) S_look(venv, a->u.id_with_args.id);
             if (fun && fun->kind == E_enventry_::E_funEntry)
             {
-                Tr_expList argList = makeArgsList(level, venv, tenv, a->u.id_with_args.args_list);
-                return expTy(Tr_CallExp(fun->u.fun.label, fun->u.fun.level, level, argList), fun->u.fun.result);
+                Tr_expList argList = makeArgsList(level, venv, tenv, a->u.id_with_args.args_list, fun);
+                return expTy(Tr_CallExp(fun->u.fun.label, fun->u.fun.level, level, argList),
+                             actual_ty(fun->u.fun.result));
             }
             else
             {

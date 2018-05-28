@@ -15,4 +15,7 @@ add_executable(PascalComplier
         translate.h translate.c
         tree.h tree.c
         temp.h temp.c
-        frame.c frame.h)
+        frame.c frame.h
+        lex.yy.c
+        pascal.tab.c pascal.tab.h
+        )

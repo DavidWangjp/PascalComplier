@@ -168,6 +168,19 @@ Ty_ty Ty_Name_Range(S_symbol left_bound, S_symbol right_bound)
     return p;
 }
 
+static struct Ty_ty_ tymath = {Ty_ty_::Ty_math};
+
+Ty_ty Ty_Math(void)
+{
+    return &tymath;
+}
+
+static struct Ty_ty_ tywrite = {Ty_ty_::Ty_write};
+
+Ty_ty Ty_Math(void)
+{
+    return &tywrite;
+}
 
 Ty_ty Ty_Record(Ty_fieldList fields)
 {

@@ -7,6 +7,10 @@
 #include "absyn.h"
 #include "util.h"
 #include "symbol.h"
+#include "absyn.h"
+#include "lex.yy.c"
+
+A_program absyn_root;
 
 void yyerror(const char *s);
 extern int yylex(void);
@@ -109,7 +113,9 @@ extern int line_no;
 %token  CASE  OF  GOTO
 %token  DOT  DOTDOT  SEMI  COLON  COMMA
 %token  LB  RB  LP  RP
+%token  ASSIGN
 
+%token  <program> PROGRAM
 %token  <un_op> NOT NEG
 %token  <rel_op> EQUAL  UNEQUAL  GE  GT  LE  LT
 %token  <plus_op> PLUS  MINUS  OR
@@ -134,7 +140,6 @@ extern int line_no;
 %type   <var_part> var_part
 %type   <routine_part> routine_part
 %type   <const_expr_list> const_expr_list
-%type   <const_value> const_value
 %type   <type_decl_list> type_decl_list
 %type   <type_definition> type_definition
 %type   <type_decl> type_decl
@@ -149,13 +154,11 @@ extern int line_no;
 %type   <var_decl> var_decl
 %type   <function_decl> function_decl
 %type   <procedure_decl> procedure_decl
-%type   <function_decl> function_decl
 %type   <function_head> function_head
 %type   <procedure_head> procedure_head
 %type   <parameters> parameters
 %type   <para_decl_list> para_decl_list
 %type   <para_type_list> para_type_list
-%type   <val_decl_list> val_decl_list
 %type   <var_para_list> var_para_list
 %type   <val_para_list> val_para_list
 %type   <compound_stmt> compound_stmt
@@ -173,18 +176,19 @@ extern int line_no;
 %type   <expression> expression
 %type   <args_list> args_list
 %type   <expression_list> expression_list
-%type   <factor> factor
 %type   <else_clause> else_clause
 %type   <direction> direction
 %type   <case_expr_list> case_expr_list
 %type   <case_expr> case_expr
 %type   <expr> expr
+%type   <term> term
 %type   <factor> factor
 
 %%
 
 program :           program_head  routine  DOT {
     $$ = A_Program(line_no, $1, $2);
+    absyn_root = $$;
 }
 ;
 
@@ -248,7 +252,7 @@ const_value :       INTEGER {
 ;
 
 type_part :         TYPE type_decl_list {
-    $$ = A_TypePart(line_no, $1);
+    $$ = A_TypePart(line_no, $2);
 }
                 |   {
     $$ = A_TypePart(line_no, NULL);
@@ -288,7 +292,7 @@ simple_type_decl :  SYS_TYPE {
     $$ = A_SimpleTypeDeclId(line_no, S_Symbol($1));
 }
                 |   LP  name_list  RP {
-    $$ = A_SimpleTypeDeclNameList(line_no, $1);
+    $$ = A_SimpleTypeDeclNameList(line_no, $2);
 }
                 |   const_value  DOTDOT  const_value {
     $$ = A_SimpleTypeDeclRangeConst(line_no, $1, $3);
@@ -505,7 +509,7 @@ non_label_stmt :    assign_stmt {
 
 assign_stmt :       ID  ASSIGN  expression {
     //$$ = A_AssignStmtSimple(line_no, $1, $3);
-    $$ = A_AssignStmtSimple(line_no, S_Symbol($1, $3);
+    $$ = A_AssignStmtSimple(line_no, S_Symbol($1), $3);
 }
                 |   ID  LB  expression  RB  ASSIGN  expression {
     //$$ = A_AssignStmtArray(line_no, $1, $3, $6);

@@ -133,7 +133,7 @@ NQUOTE [^']
     return sys_con;
 }
 
-{M}{A}{X}{I}{N}{T}) {
+{M}{A}{X}{I}{N}{T} {
     adjust();
     yylval.sys_con = SYS_CON_MAXINT;
     return sys_con;
@@ -145,7 +145,7 @@ NQUOTE [^']
     return sys_proc;
 }
 
-{W}{R}{I}{T}{E}{L}{N}) {
+{W}{R}{I}{T}{E}{L}{N} {
     adjust();
     yylval.sys_proc = WRITELN;
     return sys_proc;
@@ -169,7 +169,7 @@ NQUOTE [^']
     return sys_type;
 }
 
-{B}{O}{O}{L}{E}{A}{N}) {
+{B}{O}{O}{L}{E}{A}{N} {
     adjust();
     yylval.sys_type = T_BOOLEAN;
     return sys_type;

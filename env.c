@@ -52,7 +52,17 @@ S_table E_base_venv(void)
     S_enter(value_base_table, S_Symbol("maxint"),
             E_VarEntry(Tr_AllocLocal(Tr_outermost(), FALSE, INT_SIZE), Ty_Int()));
 
-//    S_enter(value_base_table, S_Symbol("writeln"), E_FunEntry(Ty_TyList(Ty_Const_String(), NULL), NULL));
+    S_enter(value_base_table, S_Symbol("writeln"),
+            E_FunEntry(Tr_outermost(), Temp_namedlabel("writeln"), Ty_TyList(Ty_Write(), NULL), NULL));
+    S_enter(value_base_table, S_Symbol("write"),
+            E_FunEntry(Tr_outermost(), Temp_namedlabel("write"), Ty_TyList(Ty_Write(), NULL), NULL));
+    S_enter(value_base_table, S_Symbol("abs"),
+            E_FunEntry(Tr_outermost(), Temp_namedlabel("abs"), Ty_TyList(Ty_Math(), NULL), Ty_Math()));
+    S_enter(value_base_table, S_Symbol("sqr"),
+            E_FunEntry(Tr_outermost(), Temp_namedlabel("sqr"), Ty_TyList(Ty_Math(), NULL), Ty_Math()));
+    S_enter(value_base_table, S_Symbol("sqrt"),
+            E_FunEntry(Tr_outermost(), Temp_namedlabel("sqrt"), Ty_TyList(Ty_Math(), NULL), Ty_Math()));
+
     return value_base_table;
 }
 

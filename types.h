@@ -47,7 +47,7 @@ struct Ty_ty_
     enum
     {
         Ty_int, Ty_real, Ty_bool, Ty_char, Ty_subrange, Ty_record,
-        Ty_array, Ty_const, Ty_name, Ty_void
+        Ty_array, Ty_const, Ty_name, Ty_void, Ty_math, Ty_write
     } kind;
     union
     {
@@ -117,6 +117,8 @@ struct Ty_nameList_
 };
 
 
+
+
 Ty_ty Ty_Int(void);
 
 Ty_ty Ty_Real(void);
@@ -136,6 +138,10 @@ Ty_ty Ty_Const_Bool(void);
 Ty_ty Ty_Const_Real(void);
 
 Ty_ty Ty_Const_String(void);
+
+Ty_ty Ty_Math(void);
+
+Ty_ty Ty_Write(void);
 
 Ty_const Ty_Const(A_const_value const_value);
 
