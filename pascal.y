@@ -104,7 +104,7 @@ extern int line_no;
 %token  PROGRAM
 %token  CONST
 %token  ARRAY  RECORD
-%token  BEGIN  END
+%token  BEGINN  END
 %token  VAR  FUNCTION  PROCEDURE
 %token  TYPE  READ 
 %token  IF  THEN  ELSE
@@ -457,7 +457,7 @@ routine_body :      compound_stmt {
 }
 ;
 
-compound_stmt :     BEGIN  stmt_list  END {
+compound_stmt :     BEGINN  stmt_list  END {
     $$ = A_CompoundStmt(line_no, $2);
 }
 ;

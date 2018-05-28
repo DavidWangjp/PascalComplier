@@ -345,24 +345,6 @@ struct A_var_decl_
     A_type_decl type_decl;
 };
 
-//struct A_routine_part_
-//{
-//    A_pos pos;
-//    A_is_seq is_seq;
-//    enum
-//    {
-//        routine_part_function,
-//        routine_part_procedure,
-//        //routine_part_empty
-//    } kind;
-//    //A_routine_part_prime routine_part_prime;
-//    union
-//    {
-//        A_function_decl function_decl;
-//        A_procedure_decl procedure_decl;
-//    } u;
-//};
-
 struct A_routine_part_
 {
     A_pos pos;
@@ -370,9 +352,10 @@ struct A_routine_part_
     enum
     {
         routine_part_function,
-        routine_part_procedure
+        routine_part_procedure,
+        routine_part_empty
     } kind;
-    A_routine_part routine_part;
+    A_routine_part_prime routine_part_prime;
     union
     {
         A_function_decl function_decl;
@@ -380,20 +363,20 @@ struct A_routine_part_
     } u;
 };
 
-//struct A_routine_part_prime_ {
-//    A_pos pos;
-//    A_is_seq is_seq;
-//    enum {
-//        routine_part_prime_function,
-//        routine_part_prime_procedure,
-//        routine_part_prime_empty
-//    } kind;
-//    A_routine_part_prime routine_part_prime;
-//    union {
-//        A_function_decl function_decl;
-//        A_procedure_decl procedure_decl;
-//    } u;
-//};
+struct A_routine_part_prime_ {
+    A_pos pos;
+    A_is_seq is_seq;
+    enum {
+        routine_part_prime_function,
+        routine_part_prime_procedure,
+        routine_part_prime_empty
+    } kind;
+    A_routine_part_prime routine_part_prime;
+    union {
+        A_function_decl function_decl;
+        A_procedure_decl procedure_decl;
+    } u;
+};
 
 struct A_function_decl_
 {
@@ -820,7 +803,7 @@ A_type_part A_TypePart(A_pos pos, A_type_decl_list type_decl_list);
 
 A_var_part A_VarPart(A_pos pos, A_var_decl_list var_decl_list);
 
-
+/*
 A_routine_part A_RoutinePartSeqWithProcedureDecl(A_pos pos, A_routine_part routine_part, A_procedure_decl procedure_decl);
 
 A_routine_part A_RoutinePartSeqWithFunctionDecl(A_pos pos, A_routine_part routine_part, A_function_decl function_decl);
@@ -828,12 +811,12 @@ A_routine_part A_RoutinePartSeqWithFunctionDecl(A_pos pos, A_routine_part routin
 A_routine_part A_RoutinePartWithProcedureDecl(A_pos pos, A_procedure_decl procedure_decl);
 
 A_routine_part A_RoutinePartWithFunctionDecl(A_pos pos, A_function_decl function_decl);
+*/
 
-
-//A_routine_part A_RoutinePartWithFunctionDecl(A_pos pos, A_function_decl function_decl, A_routine_part_prime routine_part_prime);
-//A_routine_part A_RoutinePartWithProcedureDecl(A_pos pos, A_procedure_decl procedure_decl, A_routine_part_prime routine_part_prime);
-//A_routine_part_prime A_RoutinePartPrimeWithFunctionDecl(A_pos pos, A_function_decl function_decl, A_routine_part_prime routine_part_prime);
-//A_routine_part_prime A_RoutinePartPrimeWithProcedureDecl(A_pos pos, A_procedure_decl procedure_decl, A_routine_part_prime routine_part_prime);
+A_routine_part A_RoutinePartWithFunctionDecl(A_pos pos, A_function_decl function_decl, A_routine_part_prime routine_part_prime);
+A_routine_part A_RoutinePartWithProcedureDecl(A_pos pos, A_procedure_decl procedure_decl, A_routine_part_prime routine_part_prime);
+A_routine_part_prime A_RoutinePartPrimeWithFunctionDecl(A_pos pos, A_function_decl function_decl, A_routine_part_prime routine_part_prime);
+A_routine_part_prime A_RoutinePartPrimeWithProcedureDecl(A_pos pos, A_procedure_decl procedure_decl, A_routine_part_prime routine_part_prime);
 
 A_const_expr_list A_ConstExprListSeq(A_pos pos, A_const_expr_list const_expr_list, S_symbol id, A_const_value const_value);
 

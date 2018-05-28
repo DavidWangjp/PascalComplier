@@ -94,7 +94,7 @@ NQUOTE [^']
 
 {A}{N}{D} { adjust(); return AND; }
 {A}{R}{R}{A}{Y} { adjust(); return ARRAY; }
-{B}{E}{G}{I}{N} { adjust(); return BEGIN; }
+{B}{E}{G}{I}{N} { adjust(); return BEGINN; }
 {C}{A}{S}{E} { adjust(); return CASE; }
 {C}{O}{N}{S}{T} { adjust(); return CONST; }
 {D}{O} { adjust(); return DO; }
