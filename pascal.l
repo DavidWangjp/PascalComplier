@@ -1,5 +1,7 @@
 %{
 
+#include "pascal.tab.h"
+
 /* C Declarations: */
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,36 +10,18 @@
 #include "absyn.h"
 #include "util.h"
 
+#ifdef __cplusplus
+static int yyinput (void );
+#else
+static int input (void );
+#endif
+
 /* These variables and functions refers to 
  * Modern Compiler Implementation in C
  */
 int charPos=1;
-
-// comments depth and strings defines
-const int INITIAL_BUF_LEN = 32;
-char *str_buf;
-unsigned int str_buf_cap;
-int commentNesting = 0;
-
-void init_str_buf(void) {
-    str_buf = checked_malloc(INITIAL_BUF_LEN);
-    str_buf[0] = 0;
-    str_buf_cap = INITIAL_BUF_LEN;
-}
-
-static void append_char2str_buf(char ch) {
-    size_t new_length = strlen(str_buf) + 1;
-    if (new_length == str_buf_cap){
-        char *temp;
-        str_buf_cap *= 2;
-        temp = checked_malloc(str_buf_cap);
-        memcpy(temp, str_buf, new_length);
-        free(str_buf);
-        str_buf = temp;
-    }
-    str_buf[new_length - 1] = ch;
-    str_buf[new_length] = 0;
-}
+int EM_tokPos = 0;
+int line_no = 1;
 
 int yywrap(void)
 {
@@ -57,7 +41,6 @@ void adjust(void)
     EM_tokPos = charPos;
     charPos += yyleng;
 }
-
 
 %}
 
@@ -124,103 +107,103 @@ NQUOTE [^']
 {T}{R}{U}{E} {
     adjust();
     yylval.sys_con = SYS_CON_TRUE;
-    return sys_con;
+    return SYS_CON;
 }
 
 {F}{A}{L}{S}{E} {
     adjust();
     yylval.sys_con = SYS_CON_FALSE;
-    return sys_con;
+    return SYS_CON;
 }
 
 {M}{A}{X}{I}{N}{T} {
     adjust();
     yylval.sys_con = SYS_CON_MAXINT;
-    return sys_con;
+    return SYS_CON;
 }
 
 {W}{R}{I}{T}{E} {
     adjust();
-    yylval.sys_proc = WRITE;
-    return sys_proc;
+    yylval.sys_proc = SYS_PROC_WRITE;
+    return SYS_PROC;
 }
 
 {W}{R}{I}{T}{E}{L}{N} {
     adjust();
-    yylval.sys_proc = WRITELN;
-    return sys_proc;
+    yylval.sys_proc = SYS_PROC_WRITELN;
+    return SYS_PROC;
 }
 
 {I}{N}{T}{E}{G}{E}{R} {
     adjust();
     yylval.sys_type = T_INTEGER;
-    return sys_type;
+    return SYS_TYPE;
 }
 
 {R}{E}{A}{L} {
     adjust();
     yylval.sys_type = T_REAL;
-    return sys_type;
+    return SYS_TYPE;
 }
 
 {C}{H}{A}{R} {
     adjust();
     yylval.sys_type = T_CHAR;
-    return sys_type;
+    return SYS_TYPE;
 }
 
 {B}{O}{O}{L}{E}{A}{N} {
     adjust();
     yylval.sys_type = T_BOOLEAN;
-    return sys_type;
+    return SYS_TYPE;
 }
 
 {A}{B}{S} {
     adjust();
-    yylval.sys_funct = ABS;
-    return sys_funct;
+    yylval.sys_funct = SYS_FUNCT_ABS;
+    return SYS_FUNCT;
 }
 
 {C}{H}{R} {
     adjust();
-    yylval.sys_funct = CHR;
-    return sys_funct;
+    yylval.sys_funct = SYS_FUNCT_CHR;
+    return SYS_FUNCT;
 }
 
 {O}{D}{D} {
     adjust();
-    yylval.sys_funct = ODD;
-    return sys_funct;
+    yylval.sys_funct = SYS_FUNCT_ODD;
+    return SYS_FUNCT;
 }
 
 {O}{R}{D} {
     adjust();
-    yylval.sys_funct = ORD;
-    return sys_funct;
+    yylval.sys_funct = SYS_FUNCT_ORD;
+    return SYS_FUNCT;
 }
 
 {P}{R}{E}{D} {
     adjust();
-    yylval.sys_funct = PRED;
-    return sys_funct;
+    yylval.sys_funct = SYS_FUNCT_PRED;
+    return SYS_FUNCT;
 }
 
 {S}{Q}{R} {
     adjust();
-    yylval.sys_funct = SQR;
-    return sys_funct;
+    yylval.sys_funct = SYS_FUNCT_SQR;
+    return SYS_FUNCT;
 }
 
 {S}{Q}{R}{T} {
     adjust();
-    yylval.sys_funct = SQRT;
-    return sys_funct;
+    yylval.sys_funct = SYS_FUNCT_SQRT;
+    return SYS_FUNCT;
 }
 
 {S}{U}{C}{C} {
     adjust();
-    yylval.sys_funct = SUCC;
-    return sys_funct;
+    yylval.sys_funct = SYS_FUNCT_SUCC;
+    return SYS_FUNCT;
 }
 
 [a-zA-Z]([a-zA-Z0-9_])* {
@@ -280,7 +263,7 @@ NQUOTE [^']
 "{" {
     adjust();
     register int c;
-    while ((c = yyinput()))
+    while ((c = input()))
     {
         adjust();
         if (c == '}')
@@ -295,12 +278,12 @@ NQUOTE [^']
 "(*" {
     adjust();
     register int c;
-    while ((c = yyinput()))
+    while ((c = input()))
     {
         adjust();
         if (c=='*')
         {
-            if ((c = yyinput()) == ')')
+            if ((c = input()) == ')')
                 break;
             else
                 unput (c);

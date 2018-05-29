@@ -4,7 +4,6 @@
 #include "util.h"
 #include "symbol.h"
 
-
 typedef enum
 {
     NONLABEL, LABEL

@@ -1,24 +1,23 @@
-/* A Bison parser, made by GNU Bison 2.3.  */
+
+/* A Bison parser, made by GNU Bison 2.4.1.  */
 
 /* Skeleton implementation for Bison's Yacc-like parsers in C
-
-   Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005, 2006
+   
+      Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005, 2006
    Free Software Foundation, Inc.
-
-   This program is free software; you can redistribute it and/or modify
+   
+   This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 2, or (at your option)
-   any later version.
-
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+   
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
-
+   
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor,
-   Boston, MA 02110-1301, USA.  */
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
 
 /* As a special exception, you may create a larger work that contains
    part or all of the Bison parser skeleton and distribute that work
@@ -29,7 +28,7 @@
    special exception, which will cause the skeleton and the resulting
    Bison output files to be licensed under the GNU General Public
    License without this special exception.
-
+   
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
@@ -47,7 +46,7 @@
 #define YYBISON 1
 
 /* Bison version.  */
-#define YYBISON_VERSION "2.3"
+#define YYBISON_VERSION "2.4.1"
 
 /* Skeleton name.  */
 #define YYSKELETON_NAME "yacc.c"
@@ -55,9 +54,59 @@
 /* Pure parsers.  */
 #define YYPURE 0
 
+/* Push parsers.  */
+#define YYPUSH 0
+
+/* Pull parsers.  */
+#define YYPULL 1
+
 /* Using locations.  */
 #define YYLSP_NEEDED 0
 
+
+
+/* Copy the first part of user declarations.  */
+
+/* Line 189 of yacc.c  */
+#line 1 "pascal.y"
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "absyn.h"
+#include "util.h"
+#include "symbol.h"
+
+void yyerror(const char *s);
+int yylex();
+
+extern A_program root;
+extern int line_no;
+
+
+
+/* Line 189 of yacc.c  */
+#line 92 "pascal.tab.c"
+
+/* Enabling traces.  */
+#ifndef YYDEBUG
+# define YYDEBUG 0
+#endif
+
+/* Enabling verbose error messages.  */
+#ifdef YYERROR_VERBOSE
+# undef YYERROR_VERBOSE
+# define YYERROR_VERBOSE 1
+#else
+# define YYERROR_VERBOSE 0
+#endif
+
+/* Enabling the token table.  */
+#ifndef YYTOKEN_TABLE
+# define YYTOKEN_TABLE 0
+#endif
 
 
 /* Tokens.  */
@@ -127,112 +176,18 @@
      LOWER_THAN_ELSE = 316
    };
 #endif
-/* Tokens.  */
-#define ID 258
-#define INTEGER 259
-#define REAL 260
-#define CHAR 261
-#define STRING 262
-#define PROGRAM 263
-#define CONST 264
-#define ARRAY 265
-#define RECORD 266
-#define BEGINN 267
-#define END 268
-#define VAR 269
-#define FUNCTION 270
-#define PROCEDURE 271
-#define TYPE 272
-#define READ 273
-#define IF 274
-#define THEN 275
-#define ELSE 276
-#define REPEAT 277
-#define UNTIL 278
-#define WHILE 279
-#define DO 280
-#define FOR 281
-#define CASE 282
-#define OF 283
-#define GOTO 284
-#define DOT 285
-#define DOTDOT 286
-#define SEMI 287
-#define COLON 288
-#define COMMA 289
-#define LB 290
-#define RB 291
-#define LP 292
-#define RP 293
-#define ASSIGN 294
-#define NOT 295
-#define NEG 296
-#define EQUAL 297
-#define UNEQUAL 298
-#define GE 299
-#define GT 300
-#define LE 301
-#define LT 302
-#define PLUS 303
-#define MINUS 304
-#define OR 305
-#define MUL 306
-#define DIV 307
-#define MOD 308
-#define AND 309
-#define TO 310
-#define DOWNTO 311
-#define SYS_TYPE 312
-#define SYS_FUNCT 313
-#define SYS_PROC 314
-#define SYS_CON 315
-#define LOWER_THAN_ELSE 316
 
 
-
-
-/* Copy the first part of user declarations.  */
-#line 1 "pascal.y"
-
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-#include "absyn.h"
-#include "util.h"
-#include "symbol.h"
-
-void yyerror(const char *s);
-extern int yylex(void);
-extern int line_no;
-
-
-
-/* Enabling traces.  */
-#ifndef YYDEBUG
-# define YYDEBUG 0
-#endif
-
-/* Enabling verbose error messages.  */
-#ifdef YYERROR_VERBOSE
-# undef YYERROR_VERBOSE
-# define YYERROR_VERBOSE 1
-#else
-# define YYERROR_VERBOSE 0
-#endif
-
-/* Enabling the token table.  */
-#ifndef YYTOKEN_TABLE
-# define YYTOKEN_TABLE 0
-#endif
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 18 "pascal.y"
 {
+
+/* Line 214 of yacc.c  */
+#line 20 "pascal.y"
+
     int ival;
-	double dval;
+    double dval;
     char* sval;
 
     A_SYS_FUNCT sys_funct;
@@ -307,22 +262,23 @@ typedef union YYSTYPE
     A_plus_op plus_op;
     A_mul_op mul_op;
     A_direction direction;
-}
-/* Line 193 of yacc.c.  */
-#line 313 "pascal.tab.c"
-	YYSTYPE;
+
+
+
+/* Line 214 of yacc.c  */
+#line 270 "pascal.tab.c"
+} YYSTYPE;
+# define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
-# define YYSTYPE_IS_TRIVIAL 1
 #endif
-
 
 
 /* Copy the second part of user declarations.  */
 
 
-/* Line 216 of yacc.c.  */
-#line 326 "pascal.tab.c"
+/* Line 264 of yacc.c  */
+#line 282 "pascal.tab.c"
 
 #ifdef short
 # undef short
@@ -372,7 +328,7 @@ typedef short int yytype_int16;
 #define YYSIZE_MAXIMUM ((YYSIZE_T) -1)
 
 #ifndef YY_
-# if defined YYENABLE_NLS && YYENABLE_NLS
+# if YYENABLE_NLS
 #  if ENABLE_NLS
 #   include <libintl.h> /* INFRINGES ON USER NAME SPACE */
 #   define YY_(msgid) dgettext ("bison-runtime", msgid)
@@ -397,14 +353,14 @@ typedef short int yytype_int16;
 #if (defined __STDC__ || defined __C99__FUNC__ \
      || defined __cplusplus || defined _MSC_VER)
 static int
-YYID (int i)
+YYID (int yyi)
 #else
 static int
-YYID (i)
-    int i;
+YYID (yyi)
+    int yyi;
 #endif
 {
-  return i;
+  return yyi;
 }
 #endif
 
@@ -485,9 +441,9 @@ void free (void *); /* INFRINGES ON USER NAME SPACE */
 /* A type that is properly aligned for any stack member.  */
 union yyalloc
 {
-  yytype_int16 yyss;
-  YYSTYPE yyvs;
-  };
+  yytype_int16 yyss_alloc;
+  YYSTYPE yyvs_alloc;
+};
 
 /* The size of the maximum gap between one aligned stack and the next.  */
 # define YYSTACK_GAP_MAXIMUM (sizeof (union yyalloc) - 1)
@@ -521,12 +477,12 @@ union yyalloc
    elements in the stack, and YYPTR gives the new location of the
    stack.  Advance YYPTR to a properly aligned location for the next
    stack.  */
-# define YYSTACK_RELOCATE(Stack)					\
+# define YYSTACK_RELOCATE(Stack_alloc, Stack)				\
     do									\
       {									\
 	YYSIZE_T yynewbytes;						\
-	YYCOPY (&yyptr->Stack, Stack, yysize);				\
-	Stack = &yyptr->Stack;						\
+	YYCOPY (&yyptr->Stack_alloc, Stack, yysize);			\
+	Stack = &yyptr->Stack_alloc;					\
 	yynewbytes = yystacksize * sizeof (*Stack) + YYSTACK_GAP_MAXIMUM; \
 	yyptr += yynewbytes / sizeof (*yyptr);				\
       }									\
@@ -663,19 +619,19 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,   190,   190,   195,   200,   205,   210,   215,   220,   223,
-     228,   232,   237,   240,   243,   246,   249,   254,   257,   262,
-     265,   270,   276,   279,   282,   287,   290,   294,   297,   300,
-     310,   322,   328,   333,   338,   341,   346,   351,   355,   361,
-     364,   369,   372,   377,   382,   385,   388,   391,   394,   399,
-     404,   409,   414,   420,   423,   428,   431,   437,   440,   445,
-     450,   455,   460,   465,   468,   473,   476,   481,   484,   487,
-     490,   493,   496,   499,   502,   505,   510,   514,   518,   524,
-     528,   531,   534,   537,   542,   547,   549,   555,   560,   565,
-     570,   573,   578,   583,   586,   591,   594,   600,   605,   608,
-     613,   616,   619,   622,   625,   628,   631,   636,   639,   642,
-     645,   650,   653,   656,   659,   662,   667,   671,   675,   678,
-     681,   684,   687,   690,   693,   697,   703,   706
+       0,   192,   192,   198,   203,   208,   213,   218,   223,   226,
+     231,   235,   240,   243,   246,   249,   252,   257,   260,   265,
+     268,   273,   279,   282,   285,   290,   293,   297,   300,   303,
+     313,   325,   331,   336,   341,   344,   349,   354,   358,   364,
+     367,   372,   375,   380,   385,   388,   391,   394,   397,   402,
+     407,   412,   417,   423,   426,   431,   434,   440,   443,   448,
+     453,   458,   463,   468,   471,   476,   479,   484,   487,   490,
+     493,   496,   499,   502,   505,   508,   513,   517,   521,   527,
+     531,   534,   537,   540,   545,   550,   552,   558,   563,   568,
+     573,   576,   581,   586,   589,   594,   597,   603,   608,   611,
+     616,   619,   622,   625,   628,   631,   634,   639,   642,   645,
+     648,   653,   656,   659,   662,   665,   670,   674,   678,   681,
+     684,   687,   690,   693,   696,   700,   706,   709
 };
 #endif
 
@@ -1033,7 +989,7 @@ while (YYID (0))
    we won't break user code: when these are the locations we know.  */
 
 #ifndef YY_LOCATION_PRINT
-# if defined YYLTYPE_IS_TRIVIAL && YYLTYPE_IS_TRIVIAL
+# if YYLTYPE_IS_TRIVIAL
 #  define YY_LOCATION_PRINT(File, Loc)			\
      fprintf (File, "%d.%d-%d.%d",			\
 	      (Loc).first_line, (Loc).first_column,	\
@@ -1144,17 +1100,20 @@ yy_symbol_print (yyoutput, yytype, yyvaluep)
 #if (defined __STDC__ || defined __C99__FUNC__ \
      || defined __cplusplus || defined _MSC_VER)
 static void
-yy_stack_print (yytype_int16 *bottom, yytype_int16 *top)
+yy_stack_print (yytype_int16 *yybottom, yytype_int16 *yytop)
 #else
 static void
-yy_stack_print (bottom, top)
-    yytype_int16 *bottom;
-    yytype_int16 *top;
+yy_stack_print (yybottom, yytop)
+    yytype_int16 *yybottom;
+    yytype_int16 *yytop;
 #endif
 {
   YYFPRINTF (stderr, "Stack now");
-  for (; bottom <= top; ++bottom)
-    YYFPRINTF (stderr, " %d", *bottom);
+  for (; yybottom <= yytop; yybottom++)
+    {
+      int yybot = *yybottom;
+      YYFPRINTF (stderr, " %d", yybot);
+    }
   YYFPRINTF (stderr, "\n");
 }
 
@@ -1188,11 +1147,11 @@ yy_reduce_print (yyvsp, yyrule)
   /* The symbols being reduced.  */
   for (yyi = 0; yyi < yynrhs; yyi++)
     {
-      fprintf (stderr, "   $%d = ", yyi + 1);
+      YYFPRINTF (stderr, "   $%d = ", yyi + 1);
       yy_symbol_print (stderr, yyrhs[yyprhs[yyrule] + yyi],
 		       &(yyvsp[(yyi + 1) - (yynrhs)])
 		       		       );
-      fprintf (stderr, "\n");
+      YYFPRINTF (stderr, "\n");
     }
 }
 
@@ -1472,10 +1431,8 @@ yydestruct (yymsg, yytype, yyvaluep)
 	break;
     }
 }
-
 
 /* Prevent warnings from -Wmissing-prototypes.  */
-
 #ifdef YYPARSE_PARAM
 #if defined __STDC__ || defined __cplusplus
 int yyparse (void *YYPARSE_PARAM);
@@ -1491,11 +1448,10 @@ int yyparse ();
 #endif /* ! YYPARSE_PARAM */
 
 
-
-/* The look-ahead symbol.  */
+/* The lookahead symbol.  */
 int yychar;
 
-/* The semantic value of the look-ahead symbol.  */
+/* The semantic value of the lookahead symbol.  */
 YYSTYPE yylval;
 
 /* Number of syntax errors so far.  */
@@ -1503,9 +1459,9 @@ int yynerrs;
 
 
 
-/*----------.
-| yyparse.  |
-`----------*/
+/*-------------------------.
+| yyparse or yypush_parse.  |
+`-------------------------*/
 
 #ifdef YYPARSE_PARAM
 #if (defined __STDC__ || defined __C99__FUNC__ \
@@ -1529,14 +1485,39 @@ yyparse ()
 #endif
 #endif
 {
-  
-  int yystate;
+
+
+    int yystate;
+    /* Number of tokens to shift before error messages enabled.  */
+    int yyerrstatus;
+
+    /* The stacks and their tools:
+       `yyss': related to states.
+       `yyvs': related to semantic values.
+
+       Refer to the stacks thru separate pointers, to allow yyoverflow
+       to reallocate them elsewhere.  */
+
+    /* The state stack.  */
+    yytype_int16 yyssa[YYINITDEPTH];
+    yytype_int16 *yyss;
+    yytype_int16 *yyssp;
+
+    /* The semantic value stack.  */
+    YYSTYPE yyvsa[YYINITDEPTH];
+    YYSTYPE *yyvs;
+    YYSTYPE *yyvsp;
+
+    YYSIZE_T yystacksize;
+
   int yyn;
   int yyresult;
-  /* Number of tokens to shift before error messages enabled.  */
-  int yyerrstatus;
-  /* Look-ahead token as an internal (translated) token number.  */
-  int yytoken = 0;
+  /* Lookahead token as an internal (translated) token number.  */
+  int yytoken;
+  /* The variables used to return semantic value and location from the
+     action routines.  */
+  YYSTYPE yyval;
+
 #if YYERROR_VERBOSE
   /* Buffer for error messages, and its allocated size.  */
   char yymsgbuf[128];
@@ -1544,51 +1525,28 @@ yyparse ()
   YYSIZE_T yymsg_alloc = sizeof yymsgbuf;
 #endif
 
-  /* Three stacks and their tools:
-     `yyss': related to states,
-     `yyvs': related to semantic values,
-     `yyls': related to locations.
-
-     Refer to the stacks thru separate pointers, to allow yyoverflow
-     to reallocate them elsewhere.  */
-
-  /* The state stack.  */
-  yytype_int16 yyssa[YYINITDEPTH];
-  yytype_int16 *yyss = yyssa;
-  yytype_int16 *yyssp;
-
-  /* The semantic value stack.  */
-  YYSTYPE yyvsa[YYINITDEPTH];
-  YYSTYPE *yyvs = yyvsa;
-  YYSTYPE *yyvsp;
-
-
-
 #define YYPOPSTACK(N)   (yyvsp -= (N), yyssp -= (N))
-
-  YYSIZE_T yystacksize = YYINITDEPTH;
-
-  /* The variables used to return semantic value and location from the
-     action routines.  */
-  YYSTYPE yyval;
-
 
   /* The number of symbols on the RHS of the reduced rule.
      Keep to zero when no symbol should be popped.  */
   int yylen = 0;
+
+  yytoken = 0;
+  yyss = yyssa;
+  yyvs = yyvsa;
+  yystacksize = YYINITDEPTH;
 
   YYDPRINTF ((stderr, "Starting parse\n"));
 
   yystate = 0;
   yyerrstatus = 0;
   yynerrs = 0;
-  yychar = YYEMPTY;		/* Cause a token to be read.  */
+  yychar = YYEMPTY; /* Cause a token to be read.  */
 
   /* Initialize stack pointers.
      Waste one element of value and location stack
      so that they stay on the same level as the state stack.
      The wasted elements are never initialized.  */
-
   yyssp = yyss;
   yyvsp = yyvs;
 
@@ -1618,7 +1576,6 @@ yyparse ()
 	YYSTYPE *yyvs1 = yyvs;
 	yytype_int16 *yyss1 = yyss;
 
-
 	/* Each stack pointer address is followed by the size of the
 	   data in use in that stack, in bytes.  This used to be a
 	   conditional around just the two extra args, but that might
@@ -1626,7 +1583,6 @@ yyparse ()
 	yyoverflow (YY_("memory exhausted"),
 		    &yyss1, yysize * sizeof (*yyssp),
 		    &yyvs1, yysize * sizeof (*yyvsp),
-
 		    &yystacksize);
 
 	yyss = yyss1;
@@ -1649,9 +1605,8 @@ yyparse ()
 	  (union yyalloc *) YYSTACK_ALLOC (YYSTACK_BYTES (yystacksize));
 	if (! yyptr)
 	  goto yyexhaustedlab;
-	YYSTACK_RELOCATE (yyss);
-	YYSTACK_RELOCATE (yyvs);
-
+	YYSTACK_RELOCATE (yyss_alloc, yyss);
+	YYSTACK_RELOCATE (yyvs_alloc, yyvs);
 #  undef YYSTACK_RELOCATE
 	if (yyss1 != yyssa)
 	  YYSTACK_FREE (yyss1);
@@ -1662,7 +1617,6 @@ yyparse ()
       yyssp = yyss + yysize - 1;
       yyvsp = yyvs + yysize - 1;
 
-
       YYDPRINTF ((stderr, "Stack size increased to %lu\n",
 		  (unsigned long int) yystacksize));
 
@@ -1672,6 +1626,9 @@ yyparse ()
 
   YYDPRINTF ((stderr, "Entering state %d\n", yystate));
 
+  if (yystate == YYFINAL)
+    YYACCEPT;
+
   goto yybackup;
 
 /*-----------.
@@ -1680,16 +1637,16 @@ yyparse ()
 yybackup:
 
   /* Do appropriate processing given the current state.  Read a
-     look-ahead token if we need one and don't already have one.  */
+     lookahead token if we need one and don't already have one.  */
 
-  /* First try to decide what to do without reference to look-ahead token.  */
+  /* First try to decide what to do without reference to lookahead token.  */
   yyn = yypact[yystate];
   if (yyn == YYPACT_NINF)
     goto yydefault;
 
-  /* Not known => get a look-ahead token if don't already have one.  */
+  /* Not known => get a lookahead token if don't already have one.  */
 
-  /* YYCHAR is either YYEMPTY or YYEOF or a valid look-ahead symbol.  */
+  /* YYCHAR is either YYEMPTY or YYEOF or a valid lookahead symbol.  */
   if (yychar == YYEMPTY)
     {
       YYDPRINTF ((stderr, "Reading a token: "));
@@ -1721,20 +1678,16 @@ yybackup:
       goto yyreduce;
     }
 
-  if (yyn == YYFINAL)
-    YYACCEPT;
-
   /* Count tokens shifted since error; after three, turn off error
      status.  */
   if (yyerrstatus)
     yyerrstatus--;
 
-  /* Shift the look-ahead token.  */
+  /* Shift the lookahead token.  */
   YY_SYMBOL_PRINT ("Shifting", yytoken, &yylval, &yylloc);
 
-  /* Discard the shifted token unless it is eof.  */
-  if (yychar != YYEOF)
-    yychar = YYEMPTY;
+  /* Discard the shifted token.  */
+  yychar = YYEMPTY;
 
   yystate = yyn;
   *++yyvsp = yylval;
@@ -1774,63 +1727,82 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 190 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 192 "pascal.y"
     {
     (yyval.program) = A_Program(line_no, (yyvsp[(1) - (3)].program_head), (yyvsp[(2) - (3)].routine));
+    root = (yyval.program);
 ;}
     break;
 
   case 3:
-#line 195 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 198 "pascal.y"
     {
     (yyval.program_head) = A_ProgramHead(line_no, (yyvsp[(2) - (3)].sval));
 ;}
     break;
 
   case 4:
-#line 200 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 203 "pascal.y"
     {
     (yyval.routine) = A_Routine(line_no, (yyvsp[(1) - (2)].routine_head), (yyvsp[(2) - (2)].routine_body));
 ;}
     break;
 
   case 5:
-#line 205 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 208 "pascal.y"
     {
     (yyval.sub_routine) = A_SubRoutine(line_no, (yyvsp[(1) - (2)].routine_head), (yyvsp[(2) - (2)].routine_body));
 ;}
     break;
 
   case 6:
-#line 210 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 213 "pascal.y"
     {
     (yyval.routine_head) = A_RoutineHead(line_no, (yyvsp[(1) - (5)].label_part), (yyvsp[(2) - (5)].const_part), (yyvsp[(3) - (5)].type_part), (yyvsp[(4) - (5)].var_part), (yyvsp[(5) - (5)].routine_part));
 ;}
     break;
 
   case 7:
-#line 215 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 218 "pascal.y"
     {
     (yyval.label_part) = A_LabelPart(line_no);
 ;}
     break;
 
   case 8:
-#line 220 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 223 "pascal.y"
     {
     (yyval.const_part) = A_ConstPart(line_no, (yyvsp[(2) - (2)].const_expr_list));
 ;}
     break;
 
   case 9:
-#line 223 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 226 "pascal.y"
     {
     (yyval.const_part) = A_ConstPart(line_no, NULL);
  ;}
     break;
 
   case 10:
-#line 228 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 231 "pascal.y"
     {
     // $$ = A_ConstExprListSeq(line_no, $1, $2, $4);
     (yyval.const_expr_list) = A_ConstExprListSeq(line_no, (yyvsp[(1) - (5)].const_expr_list), S_Symbol((yyvsp[(2) - (5)].sval)), (yyvsp[(4) - (5)].const_value));
@@ -1838,77 +1810,99 @@ yyreduce:
     break;
 
   case 11:
-#line 232 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 235 "pascal.y"
     {
     (yyval.const_expr_list) = A_ConstExprList(line_no, S_Symbol((yyvsp[(1) - (4)].sval)), (yyvsp[(3) - (4)].const_value));
 ;}
     break;
 
   case 12:
-#line 237 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 240 "pascal.y"
     {
     (yyval.const_value) = A_ConstValueInteger(line_no, (yyvsp[(1) - (1)].ival));
 ;}
     break;
 
   case 13:
-#line 240 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 243 "pascal.y"
     {
     (yyval.const_value) = A_ConstValueReal(line_no, (yyvsp[(1) - (1)].dval));
 ;}
     break;
 
   case 14:
-#line 243 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 246 "pascal.y"
     {
     (yyval.const_value) = A_ConstValueChar(line_no, (yyvsp[(1) - (1)].sval));
 ;}
     break;
 
   case 15:
-#line 246 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 249 "pascal.y"
     {
     (yyval.const_value) = A_ConstValueString(line_no, (yyvsp[(1) - (1)].sval));
 ;}
     break;
 
   case 16:
-#line 249 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 252 "pascal.y"
     {
     (yyval.const_value) = A_ConstValueSysCon(line_no, (yyvsp[(1) - (1)].sys_con));
 ;}
     break;
 
   case 17:
-#line 254 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 257 "pascal.y"
     {
     (yyval.type_part) = A_TypePart(line_no, (yyvsp[(2) - (2)].type_decl_list));
 ;}
     break;
 
   case 18:
-#line 257 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 260 "pascal.y"
     {
     (yyval.type_part) = A_TypePart(line_no, NULL);
 ;}
     break;
 
   case 19:
-#line 262 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 265 "pascal.y"
     {
     (yyval.type_decl_list) = A_TypeDeclListSeq(line_no, (yyvsp[(1) - (2)].type_decl_list), (yyvsp[(2) - (2)].type_definition));
 ;}
     break;
 
   case 20:
-#line 265 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 268 "pascal.y"
     {
     (yyval.type_decl_list) = A_TypeDeclList(line_no, (yyvsp[(1) - (1)].type_definition));
 ;}
     break;
 
   case 21:
-#line 270 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 273 "pascal.y"
     {
     // $$ = A_TypeDefinition(line_no, $1, $3);
     (yyval.type_definition) = A_TypeDefinition(line_no, S_Symbol((yyvsp[(1) - (4)].sval)), (yyvsp[(3) - (4)].type_decl));
@@ -1916,35 +1910,45 @@ yyreduce:
     break;
 
   case 22:
-#line 276 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 279 "pascal.y"
     {
     (yyval.type_decl) = A_TypeDeclSimple(line_no, (yyvsp[(1) - (1)].simple_type_decl));
 ;}
     break;
 
   case 23:
-#line 279 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 282 "pascal.y"
     {
     (yyval.type_decl) = A_TypeDeclArray(line_no, (yyvsp[(1) - (1)].array_type_decl));
 ;}
     break;
 
   case 24:
-#line 282 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 285 "pascal.y"
     {
     (yyval.type_decl) = A_TypeDeclRecord(line_no, (yyvsp[(1) - (1)].record_type_decl));
 ;}
     break;
 
   case 25:
-#line 287 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 290 "pascal.y"
     {
     (yyval.simple_type_decl) = A_SimpleTypeDeclSysType(line_no, (yyvsp[(1) - (1)].sys_type));
 ;}
     break;
 
   case 26:
-#line 290 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 293 "pascal.y"
     {
     // $$ = A_SimpleTypeDeclId(line_no, $1);
     (yyval.simple_type_decl) = A_SimpleTypeDeclId(line_no, S_Symbol((yyvsp[(1) - (1)].sval)));
@@ -1952,21 +1956,27 @@ yyreduce:
     break;
 
   case 27:
-#line 294 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 297 "pascal.y"
     {
     (yyval.simple_type_decl) = A_SimpleTypeDeclNameList(line_no, (yyvsp[(2) - (3)].name_list));
 ;}
     break;
 
   case 28:
-#line 297 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 300 "pascal.y"
     {
     (yyval.simple_type_decl) = A_SimpleTypeDeclRangeConst(line_no, (yyvsp[(1) - (3)].const_value), (yyvsp[(3) - (3)].const_value));
 ;}
     break;
 
   case 29:
-#line 300 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 303 "pascal.y"
     {
     A_const_value from = NULL;
     if ((yyvsp[(2) - (4)].const_value)->kind == INTEGER) {
@@ -1980,7 +1990,9 @@ yyreduce:
     break;
 
   case 30:
-#line 310 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 313 "pascal.y"
     {
     A_const_value from = NULL, to = NULL;
     if ((yyvsp[(2) - (5)].const_value)->kind == INTEGER) {
@@ -1996,7 +2008,9 @@ yyreduce:
     break;
 
   case 31:
-#line 322 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 325 "pascal.y"
     {
     //  $$ = A_SimpleTypeDeclIdRangeId(line_no, $1, $3);
     (yyval.simple_type_decl) = A_SimpleTypeDeclRangeId(line_no, S_Symbol((yyvsp[(1) - (3)].sval)), S_Symbol((yyvsp[(3) - (3)].sval)));
@@ -2004,42 +2018,54 @@ yyreduce:
     break;
 
   case 32:
-#line 328 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 331 "pascal.y"
     {
     (yyval.array_type_decl) = A_ArrayTypeDecl(line_no, (yyvsp[(3) - (6)].simple_type_decl), (yyvsp[(6) - (6)].type_decl));
 ;}
     break;
 
   case 33:
-#line 333 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 336 "pascal.y"
     {
     (yyval.record_type_decl) = A_RecordTypeDecl(line_no, (yyvsp[(2) - (3)].field_decl_list));
 ;}
     break;
 
   case 34:
-#line 338 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 341 "pascal.y"
     {
     (yyval.field_decl_list) = A_FieldDeclListSeq(line_no, (yyvsp[(1) - (2)].field_decl_list), (yyvsp[(2) - (2)].field_decl));
 ;}
     break;
 
   case 35:
-#line 341 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 344 "pascal.y"
     {
     (yyval.field_decl_list) = A_FieldDeclList(line_no, (yyvsp[(1) - (1)].field_decl));
 ;}
     break;
 
   case 36:
-#line 346 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 349 "pascal.y"
     {
     (yyval.field_decl) = A_FieldDecl(line_no, (yyvsp[(1) - (4)].name_list), (yyvsp[(3) - (4)].type_decl));
 ;}
     break;
 
   case 37:
-#line 351 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 354 "pascal.y"
     {
     // $$ = A_NameListSeq(line_no, $1, $3);
     (yyval.name_list) = A_NameListSeq(line_no, (yyvsp[(1) - (3)].name_list), S_Symbol((yyvsp[(3) - (3)].sval)));
@@ -2047,7 +2073,9 @@ yyreduce:
     break;
 
   case 38:
-#line 355 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 358 "pascal.y"
     {
     // $$ = A_NameList(line_no, $1);
     (yyval.name_list) = A_NameList(line_no, S_Symbol((yyvsp[(1) - (1)].sval)));
@@ -2055,98 +2083,126 @@ yyreduce:
     break;
 
   case 39:
-#line 361 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 364 "pascal.y"
     {
     (yyval.var_part) = A_VarPart(line_no, (yyvsp[(2) - (2)].var_decl_list));
 ;}
     break;
 
   case 40:
-#line 364 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 367 "pascal.y"
     {
     (yyval.var_part) = A_VarPart(line_no, NULL);
 ;}
     break;
 
   case 41:
-#line 369 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 372 "pascal.y"
     {
     (yyval.var_decl_list) = A_VarDeclListSeq(line_no, (yyvsp[(1) - (2)].var_decl_list), (yyvsp[(2) - (2)].var_decl));
 ;}
     break;
 
   case 42:
-#line 372 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 375 "pascal.y"
     {
     (yyval.var_decl_list) = A_VarDeclList(line_no, (yyvsp[(1) - (1)].var_decl));
 ;}
     break;
 
   case 43:
-#line 377 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 380 "pascal.y"
     {
     (yyval.var_decl) = A_VarDecl(line_no, (yyvsp[(1) - (4)].name_list), (yyvsp[(3) - (4)].type_decl));
 ;}
     break;
 
   case 44:
-#line 382 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 385 "pascal.y"
     {
     (yyval.routine_part) = A_RoutinePartSeqWithFunctionDecl(line_no, (yyvsp[(1) - (2)].routine_part), (yyvsp[(2) - (2)].function_decl));
 ;}
     break;
 
   case 45:
-#line 385 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 388 "pascal.y"
     {
     (yyval.routine_part) = A_RoutinePartSeqWithProcedureDecl(line_no, (yyvsp[(1) - (2)].routine_part), (yyvsp[(2) - (2)].procedure_decl));
 ;}
     break;
 
   case 46:
-#line 388 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 391 "pascal.y"
     {
     (yyval.routine_part) = A_RoutinePartWithFunctionDecl(line_no, (yyvsp[(1) - (1)].function_decl));
 ;}
     break;
 
   case 47:
-#line 391 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 394 "pascal.y"
     {
     (yyval.routine_part) = A_RoutinePartWithProcedureDecl(line_no, (yyvsp[(1) - (1)].procedure_decl));
 ;}
     break;
 
   case 48:
-#line 394 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 397 "pascal.y"
     {
     (yyval.routine_part) = NULL;
 ;}
     break;
 
   case 49:
-#line 399 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 402 "pascal.y"
     {
     (yyval.function_decl) = A_FunctionDecl(line_no, (yyvsp[(1) - (4)].function_head), (yyvsp[(3) - (4)].sub_routine));
 ;}
     break;
 
   case 50:
-#line 404 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 407 "pascal.y"
     {
     (yyval.function_head) = A_FunctionHead(line_no, S_Symbol((yyvsp[(2) - (5)].sval)), (yyvsp[(3) - (5)].parameters), (yyvsp[(5) - (5)].simple_type_decl));
 ;}
     break;
 
   case 51:
-#line 409 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 412 "pascal.y"
     {
     (yyval.procedure_decl) = A_ProcedureDecl(line_no, (yyvsp[(1) - (4)].procedure_head), (yyvsp[(3) - (4)].sub_routine));
 ;}
     break;
 
   case 52:
-#line 414 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 417 "pascal.y"
     {
     //$$ = A_ProcedureHead(line_no, $2, $3);
     (yyval.procedure_head) = A_ProcedureHead(line_no, S_Symbol((yyvsp[(2) - (3)].sval)), (yyvsp[(3) - (3)].parameters));
@@ -2154,168 +2210,216 @@ yyreduce:
     break;
 
   case 53:
-#line 420 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 423 "pascal.y"
     {
     (yyval.parameters) = A_Parameters(line_no, (yyvsp[(2) - (3)].para_decl_list));
 ;}
     break;
 
   case 54:
-#line 423 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 426 "pascal.y"
     {
     (yyval.parameters) = NULL;
 ;}
     break;
 
   case 55:
-#line 428 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 431 "pascal.y"
     {
     (yyval.para_decl_list) = A_ParaDeclListSeq(line_no, (yyvsp[(1) - (3)].para_decl_list), (yyvsp[(3) - (3)].para_type_list));
 ;}
     break;
 
   case 56:
-#line 431 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 434 "pascal.y"
     {
     (yyval.para_decl_list) = A_ParaDeclList(line_no, (yyvsp[(1) - (1)].para_type_list));
 ;}
     break;
 
   case 57:
-#line 437 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 440 "pascal.y"
     {
     (yyval.para_type_list) = A_ParaTypeListVar(line_no, (yyvsp[(1) - (3)].var_para_list), (yyvsp[(3) - (3)].simple_type_decl));
 ;}
     break;
 
   case 58:
-#line 440 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 443 "pascal.y"
     {
     (yyval.para_type_list) = A_ParaTypeListVal(line_no, (yyvsp[(1) - (3)].val_para_list), (yyvsp[(3) - (3)].simple_type_decl));
 ;}
     break;
 
   case 59:
-#line 445 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 448 "pascal.y"
     {
     (yyval.var_para_list) = A_VarParaList(line_no, (yyvsp[(2) - (2)].name_list));
 ;}
     break;
 
   case 60:
-#line 450 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 453 "pascal.y"
     {
     (yyval.val_para_list) = A_ValParaList(line_no, (yyvsp[(1) - (1)].name_list));
 ;}
     break;
 
   case 61:
-#line 455 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 458 "pascal.y"
     {
     (yyval.routine_body) = A_RoutineBody(line_no, (yyvsp[(1) - (1)].compound_stmt));
 ;}
     break;
 
   case 62:
-#line 460 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 463 "pascal.y"
     {
     (yyval.compound_stmt) = A_CompoundStmt(line_no, (yyvsp[(2) - (3)].stmt_list));
 ;}
     break;
 
   case 63:
-#line 465 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 468 "pascal.y"
     {
     (yyval.stmt_list) = A_StmtList(line_no, (yyvsp[(1) - (3)].stmt_list), (yyvsp[(2) - (3)].stmt));
 ;}
     break;
 
   case 64:
-#line 468 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 471 "pascal.y"
     {
     (yyval.stmt_list) = NULL;
 ;}
     break;
 
   case 65:
-#line 473 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 476 "pascal.y"
     {
     (yyval.stmt) = A_StmtLabel(line_no, (yyvsp[(1) - (3)].ival), (yyvsp[(3) - (3)].non_label_stmt));
 ;}
     break;
 
   case 66:
-#line 476 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 479 "pascal.y"
     {
     (yyval.stmt) = A_StmtNonLabel(line_no, (yyvsp[(1) - (1)].non_label_stmt));
 ;}
     break;
 
   case 67:
-#line 481 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 484 "pascal.y"
     {
     (yyval.non_label_stmt) = A_NonLabelStmtAssign(line_no, (yyvsp[(1) - (1)].assign_stmt));
 ;}
     break;
 
   case 68:
-#line 484 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 487 "pascal.y"
     {
     (yyval.non_label_stmt) = A_NonLabelStmtProc(line_no, (yyvsp[(1) - (1)].proc_stmt));
 ;}
     break;
 
   case 69:
-#line 487 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 490 "pascal.y"
     {
     (yyval.non_label_stmt) = A_NonLabelStmtCompound(line_no, (yyvsp[(1) - (1)].compound_stmt));
 ;}
     break;
 
   case 70:
-#line 490 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 493 "pascal.y"
     {
     (yyval.non_label_stmt) = A_NonLabelStmtIf(line_no, (yyvsp[(1) - (1)].if_stmt));
 ;}
     break;
 
   case 71:
-#line 493 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 496 "pascal.y"
     {
     (yyval.non_label_stmt) = A_NonLabelStmtRepeat(line_no, (yyvsp[(1) - (1)].repeat_stmt));
 ;}
     break;
 
   case 72:
-#line 496 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 499 "pascal.y"
     {
     (yyval.non_label_stmt) = A_NonLabelStmtWhile(line_no, (yyvsp[(1) - (1)].while_stmt));
 ;}
     break;
 
   case 73:
-#line 499 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 502 "pascal.y"
     {
     (yyval.non_label_stmt) = A_NonLabelStmtFor(line_no, (yyvsp[(1) - (1)].for_stmt));
 ;}
     break;
 
   case 74:
-#line 502 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 505 "pascal.y"
     {
     (yyval.non_label_stmt) = A_NonLabelStmtCase(line_no, (yyvsp[(1) - (1)].case_stmt));
 ;}
     break;
 
   case 75:
-#line 505 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 508 "pascal.y"
     {
     (yyval.non_label_stmt) = A_NonLabelStmtGoto(line_no, (yyvsp[(1) - (1)].goto_stmt));
 ;}
     break;
 
   case 76:
-#line 510 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 513 "pascal.y"
     {
     //$$ = A_AssignStmtSimple(line_no, $1, $3);
     (yyval.assign_stmt) = A_AssignStmtSimple(line_no, S_Symbol((yyvsp[(1) - (3)].sval)), (yyvsp[(3) - (3)].expression));
@@ -2323,7 +2427,9 @@ yyreduce:
     break;
 
   case 77:
-#line 514 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 517 "pascal.y"
     {
     //$$ = A_AssignStmtArray(line_no, $1, $3, $6);
     (yyval.assign_stmt) = A_AssignStmtArray(line_no, S_Symbol((yyvsp[(1) - (6)].sval)), (yyvsp[(3) - (6)].expression), (yyvsp[(6) - (6)].expression));
@@ -2331,7 +2437,9 @@ yyreduce:
     break;
 
   case 78:
-#line 518 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 521 "pascal.y"
     {
     //$$ = A_AssignStmtRecord(line_no, $1, $3, $5);
     (yyval.assign_stmt) = A_AssignStmtRecord(line_no, S_Symbol((yyvsp[(1) - (5)].sval)), S_Symbol((yyvsp[(3) - (5)].sval)), (yyvsp[(5) - (5)].expression));
@@ -2339,7 +2447,9 @@ yyreduce:
     break;
 
   case 79:
-#line 524 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 527 "pascal.y"
     {
     // $$ = A_ProcStmtID(line_no, $1);
     (yyval.proc_stmt) = A_ProcStmtID(line_no, S_Symbol((yyvsp[(1) - (1)].sval)));
@@ -2347,119 +2457,153 @@ yyreduce:
     break;
 
   case 80:
-#line 528 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 531 "pascal.y"
     {
     (yyval.proc_stmt) = A_ProcStmtIDWithArgs(line_no, S_Symbol((yyvsp[(1) - (4)].sval)), (yyvsp[(3) - (4)].args_list));
 ;}
     break;
 
   case 81:
-#line 531 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 534 "pascal.y"
     {
     (yyval.proc_stmt) = A_ProcStmtSysProc(line_no, (yyvsp[(1) - (1)].sys_proc));
 ;}
     break;
 
   case 82:
-#line 534 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 537 "pascal.y"
     {
     (yyval.proc_stmt) = A_ProcStmtSysProcWithArgs(line_no, (yyvsp[(1) - (4)].sys_proc), (yyvsp[(3) - (4)].expression_list));
 ;}
     break;
 
   case 83:
-#line 537 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 540 "pascal.y"
     {
     (yyval.proc_stmt) = A_ProcStmtRead(line_no, (yyvsp[(3) - (4)].factor));
 ;}
     break;
 
   case 84:
-#line 542 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 545 "pascal.y"
     {
     (yyval.if_stmt) = A_IfStmt(line_no, (yyvsp[(2) - (5)].expression), (yyvsp[(4) - (5)].stmt), (yyvsp[(5) - (5)].else_clause));
 ;}
     break;
 
   case 85:
-#line 547 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 550 "pascal.y"
     {
     (yyval.else_clause) = A_ElseClause(line_no, (yyvsp[(2) - (2)].stmt));
 ;}
     break;
 
   case 86:
-#line 549 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 552 "pascal.y"
     {
     (yyval.else_clause) = A_ElseClause(line_no, NULL);
 ;}
     break;
 
   case 87:
-#line 555 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 558 "pascal.y"
     {
     (yyval.repeat_stmt) = A_RepeatStmt(line_no, (yyvsp[(2) - (4)].stmt_list), (yyvsp[(4) - (4)].expression));
 ;}
     break;
 
   case 88:
-#line 560 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 563 "pascal.y"
     {
     (yyval.while_stmt) = A_WhileStmt(line_no, (yyvsp[(2) - (4)].expression), (yyvsp[(4) - (4)].stmt));
 ;}
     break;
 
   case 89:
-#line 565 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 568 "pascal.y"
     {
     (yyval.for_stmt) = A_ForStmt(line_no, S_Symbol((yyvsp[(2) - (8)].sval)), (yyvsp[(4) - (8)].expression), (yyvsp[(5) - (8)].direction), (yyvsp[(6) - (8)].expression), (yyvsp[(8) - (8)].stmt));
 ;}
     break;
 
   case 90:
-#line 570 "pascal.y"
-    {
-    (yyval.direction) = (yyvsp[(1) - (1)].direction);
-;}
-    break;
 
-  case 91:
+/* Line 1455 of yacc.c  */
 #line 573 "pascal.y"
     {
     (yyval.direction) = (yyvsp[(1) - (1)].direction);
 ;}
     break;
 
+  case 91:
+
+/* Line 1455 of yacc.c  */
+#line 576 "pascal.y"
+    {
+    (yyval.direction) = (yyvsp[(1) - (1)].direction);
+;}
+    break;
+
   case 92:
-#line 578 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 581 "pascal.y"
     {
     (yyval.case_stmt) = A_CaseStmt(line_no, (yyvsp[(2) - (5)].expression), (yyvsp[(4) - (5)].case_expr_list));
 ;}
     break;
 
   case 93:
-#line 583 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 586 "pascal.y"
     {
     (yyval.case_expr_list) = A_CaseExprListSeq(line_no, (yyvsp[(1) - (2)].case_expr_list), (yyvsp[(2) - (2)].case_expr));
 ;}
     break;
 
   case 94:
-#line 586 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 589 "pascal.y"
     {
     (yyval.case_expr_list) = A_CaseExprList(line_no, (yyvsp[(1) - (1)].case_expr));
 ;}
     break;
 
   case 95:
-#line 591 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 594 "pascal.y"
     {
     (yyval.case_expr) = A_CaseExprConst(line_no, (yyvsp[(1) - (4)].const_value), (yyvsp[(3) - (4)].stmt));
 ;}
     break;
 
   case 96:
-#line 594 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 597 "pascal.y"
     {
     //$$ = A_CaseExprNonConst(line_no, $1, $3);
     (yyval.case_expr) = A_CaseExprNonConst(line_no, S_Symbol((yyvsp[(1) - (4)].sval)), (yyvsp[(3) - (4)].stmt));
@@ -2467,140 +2611,180 @@ yyreduce:
     break;
 
   case 97:
-#line 600 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 603 "pascal.y"
     {
     (yyval.goto_stmt) = A_GotoStmt(line_no, (yyvsp[(2) - (2)].ival));
 ;}
     break;
 
   case 98:
-#line 605 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 608 "pascal.y"
     {
     (yyval.expression_list) = A_ExpressionListSeq(line_no, (yyvsp[(1) - (3)].expression_list), (yyvsp[(3) - (3)].expression));
 ;}
     break;
 
   case 99:
-#line 608 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 611 "pascal.y"
     {
     (yyval.expression_list) = A_ExpressionList(line_no, (yyvsp[(1) - (1)].expression));
 ;}
     break;
 
   case 100:
-#line 613 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 616 "pascal.y"
     {
     (yyval.expression) = A_ExpressionBin(line_no, (yyvsp[(1) - (3)].expression), OP_GE, (yyvsp[(3) - (3)].expr));
 ;}
     break;
 
   case 101:
-#line 616 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 619 "pascal.y"
     {
     (yyval.expression) = A_ExpressionBin(line_no, (yyvsp[(1) - (3)].expression), OP_GT, (yyvsp[(3) - (3)].expr));
 ;}
     break;
 
   case 102:
-#line 619 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 622 "pascal.y"
     {
     (yyval.expression) = A_ExpressionBin(line_no, (yyvsp[(1) - (3)].expression), OP_LE, (yyvsp[(3) - (3)].expr));
 ;}
     break;
 
   case 103:
-#line 622 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 625 "pascal.y"
     {
     (yyval.expression) = A_ExpressionBin(line_no, (yyvsp[(1) - (3)].expression), OP_LT, (yyvsp[(3) - (3)].expr));
 ;}
     break;
 
   case 104:
-#line 625 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 628 "pascal.y"
     {
     (yyval.expression) = A_ExpressionBin(line_no, (yyvsp[(1) - (3)].expression), OP_EQUAL, (yyvsp[(3) - (3)].expr));
 ;}
     break;
 
   case 105:
-#line 628 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 631 "pascal.y"
     {
     (yyval.expression) = A_ExpressionBin(line_no, (yyvsp[(1) - (3)].expression), OP_UNEQUAL, (yyvsp[(3) - (3)].expr));
 ;}
     break;
 
   case 106:
-#line 631 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 634 "pascal.y"
     {
     (yyval.expression) = A_ExpressionUn(line_no, (yyvsp[(1) - (1)].expr));
 ;}
     break;
 
   case 107:
-#line 636 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 639 "pascal.y"
     {
     (yyval.expr) = A_ExprBin(line_no, (yyvsp[(1) - (3)].expr), OP_PLUS, (yyvsp[(3) - (3)].term));
 ;}
     break;
 
   case 108:
-#line 639 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 642 "pascal.y"
     {
     (yyval.expr) = A_ExprBin(line_no, (yyvsp[(1) - (3)].expr), OP_MINUS, (yyvsp[(3) - (3)].term));
 ;}
     break;
 
   case 109:
-#line 642 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 645 "pascal.y"
     {
     (yyval.expr) = A_ExprBin(line_no, (yyvsp[(1) - (3)].expr), OP_OR, (yyvsp[(3) - (3)].term));
 ;}
     break;
 
   case 110:
-#line 645 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 648 "pascal.y"
     {
     (yyval.expr) = A_ExprUn(line_no, (yyvsp[(1) - (1)].term));
 ;}
     break;
 
   case 111:
-#line 650 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 653 "pascal.y"
     {
     (yyval.term) = A_TermBin(line_no, (yyvsp[(1) - (3)].term), OP_MUL, (yyvsp[(3) - (3)].factor));
 ;}
     break;
 
   case 112:
-#line 653 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 656 "pascal.y"
     {
     (yyval.term) = A_TermBin(line_no, (yyvsp[(1) - (3)].term), OP_DIV, (yyvsp[(3) - (3)].factor));
 ;}
     break;
 
   case 113:
-#line 656 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 659 "pascal.y"
     {
     (yyval.term) = A_TermBin(line_no, (yyvsp[(1) - (3)].term), OP_MOD, (yyvsp[(3) - (3)].factor));
 ;}
     break;
 
   case 114:
-#line 659 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 662 "pascal.y"
     {
     (yyval.term) = A_TermBin(line_no, (yyvsp[(1) - (3)].term), OP_AND, (yyvsp[(3) - (3)].factor));
 ;}
     break;
 
   case 115:
-#line 662 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 665 "pascal.y"
     {
     (yyval.term) = A_TermUn(line_no, (yyvsp[(1) - (1)].factor));
 ;}
     break;
 
   case 116:
-#line 667 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 670 "pascal.y"
     {
     //$$ = A_FactorId(line_no, $1);
     (yyval.factor) = A_FactorId(line_no, S_Symbol((yyvsp[(1) - (1)].sval)));
@@ -2608,7 +2792,9 @@ yyreduce:
     break;
 
   case 117:
-#line 671 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 674 "pascal.y"
     {
     //$$ = A_FactorIdWithArgs(line_no, $1, $3);
     (yyval.factor) = A_FactorIdWithArgs(line_no, S_Symbol((yyvsp[(1) - (4)].sval)), (yyvsp[(3) - (4)].args_list));
@@ -2616,49 +2802,63 @@ yyreduce:
     break;
 
   case 118:
-#line 675 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 678 "pascal.y"
     {
     (yyval.factor) = A_FactorSysFunct(line_no, (yyvsp[(1) - (1)].sys_funct));
 ;}
     break;
 
   case 119:
-#line 678 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 681 "pascal.y"
     {
     (yyval.factor) = A_FactorSysFunctWithArgs(line_no, (yyvsp[(1) - (4)].sys_funct), (yyvsp[(3) - (4)].args_list));
 ;}
     break;
 
   case 120:
-#line 681 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 684 "pascal.y"
     {
     (yyval.factor) = A_FactorConst(line_no, (yyvsp[(1) - (1)].const_value));
 ;}
     break;
 
   case 121:
-#line 684 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 687 "pascal.y"
     {
     (yyval.factor) = A_FactorInBrackets(line_no, (yyvsp[(2) - (3)].expression));
 ;}
     break;
 
   case 122:
-#line 687 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 690 "pascal.y"
     {
-    (yyval.factor) = A_FactorUnOp(line_no, NOT, (yyvsp[(2) - (2)].factor));
+    (yyval.factor) = A_FactorUnOp(line_no, OP_NOT, (yyvsp[(2) - (2)].factor));
 ;}
     break;
 
   case 123:
-#line 690 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 693 "pascal.y"
     {
-    (yyval.factor) = A_FactorUnOp(line_no, NEG, (yyvsp[(2) - (2)].factor));
+    (yyval.factor) = A_FactorUnOp(line_no, OP_NEG, (yyvsp[(2) - (2)].factor));
 ;}
     break;
 
   case 124:
-#line 693 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 696 "pascal.y"
     {
     //$$ = A_FactorArrayVar(line_no, $1, $3);
     (yyval.factor) = A_FactorArrayVar(line_no, S_Symbol((yyvsp[(1) - (4)].sval)), (yyvsp[(3) - (4)].expression));
@@ -2666,7 +2866,9 @@ yyreduce:
     break;
 
   case 125:
-#line 697 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 700 "pascal.y"
     {
     //$$ = A_FactorRecordVar(line_no, $1, $3);
     (yyval.factor) = A_FactorRecordVar(line_no, S_Symbol((yyvsp[(1) - (3)].sval)), S_Symbol((yyvsp[(3) - (3)].sval)));
@@ -2674,22 +2876,27 @@ yyreduce:
     break;
 
   case 126:
-#line 703 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 706 "pascal.y"
     {
     (yyval.args_list) = A_ArgsListSeq(line_no, (yyvsp[(1) - (3)].args_list), (yyvsp[(3) - (3)].expression));
 ;}
     break;
 
   case 127:
-#line 706 "pascal.y"
+
+/* Line 1455 of yacc.c  */
+#line 709 "pascal.y"
     {
     (yyval.args_list) = A_ArgsList(line_no, (yyvsp[(1) - (1)].expression));
 ;}
     break;
 
 
-/* Line 1267 of yacc.c.  */
-#line 2693 "pascal.tab.c"
+
+/* Line 1455 of yacc.c  */
+#line 2900 "pascal.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -2699,7 +2906,6 @@ yyreduce:
   YY_STACK_PRINT (yyss, yyssp);
 
   *++yyvsp = yyval;
-
 
   /* Now `shift' the result of the reduction.  Determine what state
      that goes to, based on the state we popped back to and the rule
@@ -2765,7 +2971,7 @@ yyerrlab:
 
   if (yyerrstatus == 3)
     {
-      /* If just tried and failed to reuse look-ahead token after an
+      /* If just tried and failed to reuse lookahead token after an
 	 error, discard it.  */
 
       if (yychar <= YYEOF)
@@ -2782,7 +2988,7 @@ yyerrlab:
 	}
     }
 
-  /* Else will try to reuse look-ahead token after shifting the error
+  /* Else will try to reuse lookahead token after shifting the error
      token.  */
   goto yyerrlab1;
 
@@ -2839,9 +3045,6 @@ yyerrlab1:
       YY_STACK_PRINT (yyss, yyssp);
     }
 
-  if (yyn == YYFINAL)
-    YYACCEPT;
-
   *++yyvsp = yylval;
 
 
@@ -2866,7 +3069,7 @@ yyabortlab:
   yyresult = 1;
   goto yyreturn;
 
-#ifndef yyoverflow
+#if !defined(yyoverflow) || YYERROR_VERBOSE
 /*-------------------------------------------------.
 | yyexhaustedlab -- memory exhaustion comes here.  |
 `-------------------------------------------------*/
@@ -2877,7 +3080,7 @@ yyexhaustedlab:
 #endif
 
 yyreturn:
-  if (yychar != YYEOF && yychar != YYEMPTY)
+  if (yychar != YYEMPTY)
      yydestruct ("Cleanup: discarding lookahead",
 		 yytoken, &yylval);
   /* Do not reclaim the symbols of the rule which action triggered
@@ -2903,7 +3106,9 @@ yyreturn:
 }
 
 
-#line 712 "pascal.y"
+
+/* Line 1675 of yacc.c  */
+#line 715 "pascal.y"
 
    
 void yyerror(const char *s)

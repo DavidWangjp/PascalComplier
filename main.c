@@ -8,7 +8,8 @@
 #include "semant.h"
 #include "printtree.h"
 
-extern A_program root;
+extern int yyparse(void);
+A_program root;
 
 A_program parse(string file_name){
     EM_reset(file_name);

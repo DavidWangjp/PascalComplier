@@ -9,14 +9,15 @@ add_executable(PascalComplier
         table.h table.c
         symbol.c symbol.h
         types.c types.h
-        env.c env.h semant.c
-        semant.h translate.c
-        translate.h translate.c
+        env.c env.h
+        semant.c semant.h
+        translate.c translate.h
         tree.h tree.c
         temp.h temp.c
         frame.c frame.h
         lex.yy.c
         pascal.tab.c pascal.tab.h
         printtree.c printtree.h
+        errormsg.c errormsg.h
         main.c
         )

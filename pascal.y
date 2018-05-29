@@ -9,7 +9,9 @@
 #include "symbol.h"
 
 void yyerror(const char *s);
-extern int yylex(void);
+int yylex();
+
+extern A_program root;
 extern int line_no;
 
 %}
@@ -17,7 +19,7 @@ extern int line_no;
 %union
 {
     int ival;
-	double dval;
+    double dval;
     char* sval;
 
     A_SYS_FUNCT sys_funct;
@@ -189,6 +191,7 @@ extern int line_no;
 
 program :           program_head  routine  DOT {
     $$ = A_Program(line_no, $1, $2);
+    root = $$;
 }
 ;
 
@@ -685,10 +688,10 @@ factor :            ID {
     $$ = A_FactorInBrackets(line_no, $2);
 }
                 |   NOT  factor {
-    $$ = A_FactorUnOp(line_no, NOT, $2);
+    $$ = A_FactorUnOp(line_no, OP_NOT, $2);
 }
                 |   MINUS  factor {
-    $$ = A_FactorUnOp(line_no, NEG, $2);
+    $$ = A_FactorUnOp(line_no, OP_NEG, $2);
 }
                 |   ID  LB  expression  RB {
     //$$ = A_FactorArrayVar(line_no, $1, $3);

@@ -1,24 +1,23 @@
-/* A Bison parser, made by GNU Bison 2.3.  */
+#include "absyn.h"
+/* A Bison parser, made by GNU Bison 2.4.1.  */
 
 /* Skeleton interface for Bison's Yacc-like parsers in C
-
-   Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005, 2006
+   
+      Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005, 2006
    Free Software Foundation, Inc.
-
-   This program is free software; you can redistribute it and/or modify
+   
+   This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 2, or (at your option)
-   any later version.
-
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+   
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
-
+   
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor,
-   Boston, MA 02110-1301, USA.  */
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
 
 /* As a special exception, you may create a larger work that contains
    part or all of the Bison parser skeleton and distribute that work
@@ -29,9 +28,10 @@
    special exception, which will cause the skeleton and the resulting
    Bison output files to be licensed under the GNU General Public
    License without this special exception.
-
+   
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
+
 
 /* Tokens.  */
 #ifndef YYTOKENTYPE
@@ -100,76 +100,18 @@
      LOWER_THAN_ELSE = 316
    };
 #endif
-/* Tokens.  */
-#define ID 258
-#define INTEGER 259
-#define REAL 260
-#define CHAR 261
-#define STRING 262
-#define PROGRAM 263
-#define CONST 264
-#define ARRAY 265
-#define RECORD 266
-#define BEGINN 267
-#define END 268
-#define VAR 269
-#define FUNCTION 270
-#define PROCEDURE 271
-#define TYPE 272
-#define READ 273
-#define IF 274
-#define THEN 275
-#define ELSE 276
-#define REPEAT 277
-#define UNTIL 278
-#define WHILE 279
-#define DO 280
-#define FOR 281
-#define CASE 282
-#define OF 283
-#define GOTO 284
-#define DOT 285
-#define DOTDOT 286
-#define SEMI 287
-#define COLON 288
-#define COMMA 289
-#define LB 290
-#define RB 291
-#define LP 292
-#define RP 293
-#define ASSIGN 294
-#define NOT 295
-#define NEG 296
-#define EQUAL 297
-#define UNEQUAL 298
-#define GE 299
-#define GT 300
-#define LE 301
-#define LT 302
-#define PLUS 303
-#define MINUS 304
-#define OR 305
-#define MUL 306
-#define DIV 307
-#define MOD 308
-#define AND 309
-#define TO 310
-#define DOWNTO 311
-#define SYS_TYPE 312
-#define SYS_FUNCT 313
-#define SYS_PROC 314
-#define SYS_CON 315
-#define LOWER_THAN_ELSE 316
-
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 18 "pascal.y"
 {
+
+/* Line 1676 of yacc.c  */
+#line 20 "pascal.y"
+
     int ival;
-	double dval;
+    double dval;
     char* sval;
 
     A_SYS_FUNCT sys_funct;
@@ -244,14 +186,17 @@ typedef union YYSTYPE
     A_plus_op plus_op;
     A_mul_op mul_op;
     A_direction direction;
-}
-/* Line 1529 of yacc.c.  */
-#line 250 "pascal.tab.h"
-	YYSTYPE;
+
+
+
+/* Line 1676 of yacc.c  */
+#line 194 "pascal.tab.h"
+} YYSTYPE;
+# define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
-# define YYSTYPE_IS_TRIVIAL 1
 #endif
 
 extern YYSTYPE yylval;
+
 

@@ -1,0 +1,4 @@
+E:\JetBrains\apps\CLion\ch-0\182.2574.4\bin\cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/Admin/Desktop/PascalComplier-sr/PascalComplier-sr/cmake-build-debug
