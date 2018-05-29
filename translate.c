@@ -120,7 +120,7 @@ static struct Cx unCx(Tr_exp e){
     assert(0);
 }
 
-Tr_exp Tr_simpleVar(Tr_access access, Tr_level level){
+Tr_exp Tr_SimpleVar(Tr_access access, Tr_level level){
     T_exp subtree = T_Temp(F_FP());
     //不一样
     while(access->level!=level && level->parent){
@@ -133,15 +133,15 @@ Tr_exp Tr_simpleVar(Tr_access access, Tr_level level){
     return Tr_Ex(F_Exp(access->access, subtree));
 }
 
-Tr_exp Tr_subscriptVar(Tr_exp base, Tr_exp e, int size){
+Tr_exp Tr_SubscriptVar(Tr_exp base, Tr_exp e, int size){
     return Tr_Ex(T_Mem(T_Binop(T_plus, unEx(base), T_Binop(T_mul, unEx(e), T_Const(size*F_wordSize))), size));
 }
 
-Tr_exp Tr_recordVar(Tr_exp base, int offset, int size){
+Tr_exp Tr_RecordVar(Tr_exp base, int offset, int size){
     return Tr_Ex(T_Mem(T_Binop(T_plus, unEx(base), T_Const(offset*F_wordSize)), size));
 }
 
-Tr_exp Tr_plusArithExp(A_plus_op op, Tr_exp left, Tr_exp right){
+Tr_exp Tr_PlusArithExp(A_plus_op op, Tr_exp left, Tr_exp right){
     T_binOp operator;
     switch (op)
     {
@@ -161,7 +161,7 @@ Tr_exp Tr_plusArithExp(A_plus_op op, Tr_exp left, Tr_exp right){
     return Tr_Ex(T_Binop(operator, unEx(left), unEx(right)));
 }
 
-Tr_exp Tr_mulArithExp(A_mul_op op, Tr_exp left, Tr_exp right){
+Tr_exp Tr_MulArithExp(A_mul_op op, Tr_exp left, Tr_exp right){
     T_binOp operator;
     switch (op)
     {
@@ -184,26 +184,26 @@ Tr_exp Tr_mulArithExp(A_mul_op op, Tr_exp left, Tr_exp right){
     return Tr_Ex(T_Binop(operator, unEx(left), unEx(right)));
 }
 
-Tr_exp Tr_intExp(int i){
+Tr_exp Tr_IntExp(int i){
     return Tr_Ex(T_Const(i));
 }
 
-Tr_exp Tr_boolExp(bool i){
+Tr_exp Tr_BoolExp(bool i){
     if(i == TRUE)
         return Tr_Ex(T_Const(1));
     else
         return Tr_Ex(T_Const(0));
 }
 
-Tr_exp Tr_doubleExp(double i){
+Tr_exp Tr_RealExp(double i){
     return Tr_Ex(T_Double(i));
 }
 
-Tr_exp Tr_charExp(char i){
+Tr_exp Tr_CharExp(char i){
     return Tr_Ex(T_Char(i));
 }
 
-Tr_exp Tr_arrayExp(Tr_exp n, Tr_expList es, int size){
+Tr_exp Tr_ArrayExp(Tr_exp n, Tr_expList es, int size){
     Temp_temp r = Temp_newtemp();
     T_stm alloc = T_Move(T_Temp(r), F_externalCall(String("malloc"), T_ExpList(T_Binop(T_plus, unEx(n), T_Const(F_wordSize)), NULL)));
     T_stm root = NULL;
@@ -217,7 +217,7 @@ Tr_exp Tr_arrayExp(Tr_exp n, Tr_expList es, int size){
     return Tr_Ex(T_Eseq(T_Seq(alloc, root),T_Temp(r)));
 }
 
-Tr_exp Tr_recordExp(int n, Tr_expList es, U_byteList bytes){
+Tr_exp Tr_RecordExp(int n, Tr_expList es, U_byteList bytes){
     Temp_temp r = Temp_newtemp();
     T_stm alloc = T_Move(T_Temp(r), F_externalCall(String("malloc"), T_ExpList(T_Const(n*F_wordSize), NULL)));
     T_stm root = NULL;
@@ -234,7 +234,7 @@ Tr_exp Tr_recordExp(int n, Tr_expList es, U_byteList bytes){
 }
 
 //不一样
-Tr_exp Tr_ifExp(Tr_exp e1, Tr_exp e2, Tr_exp e3){
+Tr_exp Tr_IfExp(Tr_exp e1, Tr_exp e2, Tr_exp e3){
     Tr_exp exp = NULL;
     T_stm tmp1 = NULL;
     T_stm tmp2 = NULL;
@@ -305,14 +305,14 @@ Tr_exp Tr_ifExp(Tr_exp e1, Tr_exp e2, Tr_exp e3){
     return exp;
 }
 
-Tr_exp Tr_whileExp(Tr_exp cond, Tr_exp body, Tr_exp done){
+Tr_exp Tr_WhileExp(Tr_exp cond, Tr_exp body, Tr_exp done){
     Temp_label cond_l = Temp_newlabel();
     Temp_label body_l = Temp_newlabel();
     return Tr_Nx(T_Seq(T_Seq(T_Label(cond_l),T_Cjump(T_eq, unEx(cond), T_Const(1), body_l, unEx(done)->u.NAME)),
                 T_Seq(unNx(body), T_Jump(T_Name(cond_l), Temp_LabelList(cond_l, NULL)))));
 }
 
-Tr_exp Tr_callExp(Temp_label label, Tr_level def_l, Tr_level call_l, Tr_expList paras){
+Tr_exp Tr_CallExp(Temp_label label, Tr_level def_l, Tr_level call_l, Tr_expList paras){
     T_expList tmp = NULL;
     Tr_expList exp_l = checked_malloc(sizeof(*exp_l));
     exp_l->head = getStaticLink(def_l, call_l);
@@ -333,11 +333,11 @@ Tr_exp Tr_callExp(Temp_label label, Tr_level def_l, Tr_level call_l, Tr_expList 
     return Tr_Ex(T_Call(T_Name(label), head));
 }
 
-Tr_exp Tr_assignExp(Tr_exp left, Tr_exp right){
+Tr_exp Tr_AssignExp(Tr_exp left, Tr_exp right){
     return Tr_Nx(T_Move(unEx(left), unEx(right)));
 }
 
-Tr_exp Tr_gotoExp(Tr_exp done){
+Tr_exp Tr_GotoExp(Tr_exp done){
     return Tr_Nx(T_Jump(T_Name(unEx(done)->u.NAME), Temp_LabelList(unEx(done)->u.NAME, NULL)));    
 }
 
@@ -350,14 +350,14 @@ Tr_accessList Tr_AccessList(Tr_access head, Tr_accessList tail){
 
 Tr_level Tr_outermost(void){
     if(outermost_l == NULL){
-        outermost_l = Tr_newLevel(NULL, Temp_newlabel(), NULL);
+        outermost_l = Tr_NewLevel(NULL, Temp_newlabel(), NULL);
     }
     return outermost_l;
 }
 
 Tr_level Tr_NewLevel(Tr_level parent, Temp_label name, U_boolList formals){
     Tr_level new_l = checked_malloc(sizeof(*new_l));
-    U_byteList bytes = constByteList(4);
+    U_byteList bytes = U_constByteList(4);
     new_l->parent = parent;
     new_l->frame = F_newFrame(name, U_BoolList(TRUE, formals), bytes);
     return new_l;
@@ -385,14 +385,14 @@ Tr_accessList Tr_formals(Tr_level level){
     return new_al;
 }
 
-Tr_access Tr_allocLocal(Tr_level level, bool escape, int size){
+Tr_access Tr_AllocLocal(Tr_level level, bool escape, int size){
     Tr_access new_a = checked_malloc(sizeof(*new_a));
     new_a->level = level;
     new_a->access = F_allocLocal(level->frame, escape, size);
     return new_a;
 }
 
-Tr_exp Tr_relExp(A_rel_op oper, Tr_exp left, Tr_exp right){
+Tr_exp Tr_RelExp(A_rel_op oper, Tr_exp left, Tr_exp right){
     T_relOp op;
     switch (oper){
         case OP_EQUAL:
@@ -433,10 +433,10 @@ Tr_exp Tr_SeqExp(Tr_exp left, Tr_exp right){
     return Tr_Nx(T_Seq(unNx(left), unNx(right)));
 }
 
-Tr_exp Tr_labelExp(Temp_label label){
+Tr_exp Tr_LabelExp(Temp_label label){
     return Tr_Nx(T_Exp(T_Name(label)));
 }
 
-Tr_exp Tr_nullExp(void){
+Tr_exp Tr_NullExp(void){
     return Tr_Ex(T_Const(0));
 }

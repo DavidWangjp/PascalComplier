@@ -1,4 +1,4 @@
-ToolSet: 5.0@E:\MinGW
+ToolSet: w64 5.0@D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64
 Options: 
 
 Options:

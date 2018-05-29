@@ -33,19 +33,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = E:\JetBrains\apps\CLion\ch-0\182.2574.4\bin\cmake\bin\cmake.exe
+CMAKE_COMMAND = "D:\Program Files\JetBrains\apps\CLion\ch-0\182.2371.31\bin\cmake\bin\cmake.exe"
 
 # The command to remove a file.
-RM = E:\JetBrains\apps\CLion\ch-0\182.2574.4\bin\cmake\bin\cmake.exe -E remove -f
+RM = "D:\Program Files\JetBrains\apps\CLion\ch-0\182.2371.31\bin\cmake\bin\cmake.exe" -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr
+CMAKE_SOURCE_DIR = D:\Workspace\CLionProjects\PascalComplier
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\cmake-build-debug
+CMAKE_BINARY_DIR = D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/PascalComplier.dir/depend.make
@@ -58,211 +58,211 @@ include CMakeFiles/PascalComplier.dir/flags.make
 
 CMakeFiles/PascalComplier.dir/absyn.c.obj: CMakeFiles/PascalComplier.dir/flags.make
 CMakeFiles/PascalComplier.dir/absyn.c.obj: ../absyn.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/PascalComplier.dir/absyn.c.obj"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\absyn.c.obj   -c C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\absyn.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/PascalComplier.dir/absyn.c.obj"
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\absyn.c.obj   -c D:\Workspace\CLionProjects\PascalComplier\absyn.c
 
 CMakeFiles/PascalComplier.dir/absyn.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PascalComplier.dir/absyn.c.i"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\absyn.c > CMakeFiles\PascalComplier.dir\absyn.c.i
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\Workspace\CLionProjects\PascalComplier\absyn.c > CMakeFiles\PascalComplier.dir\absyn.c.i
 
 CMakeFiles/PascalComplier.dir/absyn.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PascalComplier.dir/absyn.c.s"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\absyn.c -o CMakeFiles\PascalComplier.dir\absyn.c.s
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Workspace\CLionProjects\PascalComplier\absyn.c -o CMakeFiles\PascalComplier.dir\absyn.c.s
 
 CMakeFiles/PascalComplier.dir/util.c.obj: CMakeFiles/PascalComplier.dir/flags.make
 CMakeFiles/PascalComplier.dir/util.c.obj: ../util.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/PascalComplier.dir/util.c.obj"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\util.c.obj   -c C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\util.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/PascalComplier.dir/util.c.obj"
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\util.c.obj   -c D:\Workspace\CLionProjects\PascalComplier\util.c
 
 CMakeFiles/PascalComplier.dir/util.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PascalComplier.dir/util.c.i"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\util.c > CMakeFiles\PascalComplier.dir\util.c.i
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\Workspace\CLionProjects\PascalComplier\util.c > CMakeFiles\PascalComplier.dir\util.c.i
 
 CMakeFiles/PascalComplier.dir/util.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PascalComplier.dir/util.c.s"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\util.c -o CMakeFiles\PascalComplier.dir\util.c.s
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Workspace\CLionProjects\PascalComplier\util.c -o CMakeFiles\PascalComplier.dir\util.c.s
 
 CMakeFiles/PascalComplier.dir/table.c.obj: CMakeFiles/PascalComplier.dir/flags.make
 CMakeFiles/PascalComplier.dir/table.c.obj: ../table.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/PascalComplier.dir/table.c.obj"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\table.c.obj   -c C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\table.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/PascalComplier.dir/table.c.obj"
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\table.c.obj   -c D:\Workspace\CLionProjects\PascalComplier\table.c
 
 CMakeFiles/PascalComplier.dir/table.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PascalComplier.dir/table.c.i"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\table.c > CMakeFiles\PascalComplier.dir\table.c.i
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\Workspace\CLionProjects\PascalComplier\table.c > CMakeFiles\PascalComplier.dir\table.c.i
 
 CMakeFiles/PascalComplier.dir/table.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PascalComplier.dir/table.c.s"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\table.c -o CMakeFiles\PascalComplier.dir\table.c.s
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Workspace\CLionProjects\PascalComplier\table.c -o CMakeFiles\PascalComplier.dir\table.c.s
 
 CMakeFiles/PascalComplier.dir/symbol.c.obj: CMakeFiles/PascalComplier.dir/flags.make
 CMakeFiles/PascalComplier.dir/symbol.c.obj: ../symbol.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/PascalComplier.dir/symbol.c.obj"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\symbol.c.obj   -c C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\symbol.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/PascalComplier.dir/symbol.c.obj"
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\symbol.c.obj   -c D:\Workspace\CLionProjects\PascalComplier\symbol.c
 
 CMakeFiles/PascalComplier.dir/symbol.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PascalComplier.dir/symbol.c.i"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\symbol.c > CMakeFiles\PascalComplier.dir\symbol.c.i
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\Workspace\CLionProjects\PascalComplier\symbol.c > CMakeFiles\PascalComplier.dir\symbol.c.i
 
 CMakeFiles/PascalComplier.dir/symbol.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PascalComplier.dir/symbol.c.s"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\symbol.c -o CMakeFiles\PascalComplier.dir\symbol.c.s
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Workspace\CLionProjects\PascalComplier\symbol.c -o CMakeFiles\PascalComplier.dir\symbol.c.s
 
 CMakeFiles/PascalComplier.dir/types.c.obj: CMakeFiles/PascalComplier.dir/flags.make
 CMakeFiles/PascalComplier.dir/types.c.obj: ../types.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/PascalComplier.dir/types.c.obj"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\types.c.obj   -c C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\types.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/PascalComplier.dir/types.c.obj"
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\types.c.obj   -c D:\Workspace\CLionProjects\PascalComplier\types.c
 
 CMakeFiles/PascalComplier.dir/types.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PascalComplier.dir/types.c.i"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\types.c > CMakeFiles\PascalComplier.dir\types.c.i
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\Workspace\CLionProjects\PascalComplier\types.c > CMakeFiles\PascalComplier.dir\types.c.i
 
 CMakeFiles/PascalComplier.dir/types.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PascalComplier.dir/types.c.s"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\types.c -o CMakeFiles\PascalComplier.dir\types.c.s
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Workspace\CLionProjects\PascalComplier\types.c -o CMakeFiles\PascalComplier.dir\types.c.s
 
 CMakeFiles/PascalComplier.dir/env.c.obj: CMakeFiles/PascalComplier.dir/flags.make
 CMakeFiles/PascalComplier.dir/env.c.obj: ../env.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/PascalComplier.dir/env.c.obj"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\env.c.obj   -c C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\env.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/PascalComplier.dir/env.c.obj"
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\env.c.obj   -c D:\Workspace\CLionProjects\PascalComplier\env.c
 
 CMakeFiles/PascalComplier.dir/env.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PascalComplier.dir/env.c.i"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\env.c > CMakeFiles\PascalComplier.dir\env.c.i
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\Workspace\CLionProjects\PascalComplier\env.c > CMakeFiles\PascalComplier.dir\env.c.i
 
 CMakeFiles/PascalComplier.dir/env.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PascalComplier.dir/env.c.s"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\env.c -o CMakeFiles\PascalComplier.dir\env.c.s
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Workspace\CLionProjects\PascalComplier\env.c -o CMakeFiles\PascalComplier.dir\env.c.s
 
 CMakeFiles/PascalComplier.dir/semant.c.obj: CMakeFiles/PascalComplier.dir/flags.make
 CMakeFiles/PascalComplier.dir/semant.c.obj: ../semant.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/PascalComplier.dir/semant.c.obj"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\semant.c.obj   -c C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\semant.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/PascalComplier.dir/semant.c.obj"
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\semant.c.obj   -c D:\Workspace\CLionProjects\PascalComplier\semant.c
 
 CMakeFiles/PascalComplier.dir/semant.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PascalComplier.dir/semant.c.i"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\semant.c > CMakeFiles\PascalComplier.dir\semant.c.i
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\Workspace\CLionProjects\PascalComplier\semant.c > CMakeFiles\PascalComplier.dir\semant.c.i
 
 CMakeFiles/PascalComplier.dir/semant.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PascalComplier.dir/semant.c.s"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\semant.c -o CMakeFiles\PascalComplier.dir\semant.c.s
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Workspace\CLionProjects\PascalComplier\semant.c -o CMakeFiles\PascalComplier.dir\semant.c.s
 
 CMakeFiles/PascalComplier.dir/translate.c.obj: CMakeFiles/PascalComplier.dir/flags.make
 CMakeFiles/PascalComplier.dir/translate.c.obj: ../translate.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/PascalComplier.dir/translate.c.obj"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\translate.c.obj   -c C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\translate.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/PascalComplier.dir/translate.c.obj"
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\translate.c.obj   -c D:\Workspace\CLionProjects\PascalComplier\translate.c
 
 CMakeFiles/PascalComplier.dir/translate.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PascalComplier.dir/translate.c.i"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\translate.c > CMakeFiles\PascalComplier.dir\translate.c.i
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\Workspace\CLionProjects\PascalComplier\translate.c > CMakeFiles\PascalComplier.dir\translate.c.i
 
 CMakeFiles/PascalComplier.dir/translate.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PascalComplier.dir/translate.c.s"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\translate.c -o CMakeFiles\PascalComplier.dir\translate.c.s
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Workspace\CLionProjects\PascalComplier\translate.c -o CMakeFiles\PascalComplier.dir\translate.c.s
 
 CMakeFiles/PascalComplier.dir/tree.c.obj: CMakeFiles/PascalComplier.dir/flags.make
 CMakeFiles/PascalComplier.dir/tree.c.obj: ../tree.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/PascalComplier.dir/tree.c.obj"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\tree.c.obj   -c C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\tree.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/PascalComplier.dir/tree.c.obj"
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\tree.c.obj   -c D:\Workspace\CLionProjects\PascalComplier\tree.c
 
 CMakeFiles/PascalComplier.dir/tree.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PascalComplier.dir/tree.c.i"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\tree.c > CMakeFiles\PascalComplier.dir\tree.c.i
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\Workspace\CLionProjects\PascalComplier\tree.c > CMakeFiles\PascalComplier.dir\tree.c.i
 
 CMakeFiles/PascalComplier.dir/tree.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PascalComplier.dir/tree.c.s"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\tree.c -o CMakeFiles\PascalComplier.dir\tree.c.s
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Workspace\CLionProjects\PascalComplier\tree.c -o CMakeFiles\PascalComplier.dir\tree.c.s
 
 CMakeFiles/PascalComplier.dir/temp.c.obj: CMakeFiles/PascalComplier.dir/flags.make
 CMakeFiles/PascalComplier.dir/temp.c.obj: ../temp.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/PascalComplier.dir/temp.c.obj"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\temp.c.obj   -c C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\temp.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/PascalComplier.dir/temp.c.obj"
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\temp.c.obj   -c D:\Workspace\CLionProjects\PascalComplier\temp.c
 
 CMakeFiles/PascalComplier.dir/temp.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PascalComplier.dir/temp.c.i"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\temp.c > CMakeFiles\PascalComplier.dir\temp.c.i
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\Workspace\CLionProjects\PascalComplier\temp.c > CMakeFiles\PascalComplier.dir\temp.c.i
 
 CMakeFiles/PascalComplier.dir/temp.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PascalComplier.dir/temp.c.s"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\temp.c -o CMakeFiles\PascalComplier.dir\temp.c.s
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Workspace\CLionProjects\PascalComplier\temp.c -o CMakeFiles\PascalComplier.dir\temp.c.s
 
 CMakeFiles/PascalComplier.dir/frame.c.obj: CMakeFiles/PascalComplier.dir/flags.make
 CMakeFiles/PascalComplier.dir/frame.c.obj: ../frame.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/PascalComplier.dir/frame.c.obj"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\frame.c.obj   -c C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\frame.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/PascalComplier.dir/frame.c.obj"
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\frame.c.obj   -c D:\Workspace\CLionProjects\PascalComplier\frame.c
 
 CMakeFiles/PascalComplier.dir/frame.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PascalComplier.dir/frame.c.i"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\frame.c > CMakeFiles\PascalComplier.dir\frame.c.i
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\Workspace\CLionProjects\PascalComplier\frame.c > CMakeFiles\PascalComplier.dir\frame.c.i
 
 CMakeFiles/PascalComplier.dir/frame.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PascalComplier.dir/frame.c.s"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\frame.c -o CMakeFiles\PascalComplier.dir\frame.c.s
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Workspace\CLionProjects\PascalComplier\frame.c -o CMakeFiles\PascalComplier.dir\frame.c.s
 
 CMakeFiles/PascalComplier.dir/lex.yy.c.obj: CMakeFiles/PascalComplier.dir/flags.make
 CMakeFiles/PascalComplier.dir/lex.yy.c.obj: ../lex.yy.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/PascalComplier.dir/lex.yy.c.obj"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\lex.yy.c.obj   -c C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\lex.yy.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/PascalComplier.dir/lex.yy.c.obj"
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\lex.yy.c.obj   -c D:\Workspace\CLionProjects\PascalComplier\lex.yy.c
 
 CMakeFiles/PascalComplier.dir/lex.yy.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PascalComplier.dir/lex.yy.c.i"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\lex.yy.c > CMakeFiles\PascalComplier.dir\lex.yy.c.i
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\Workspace\CLionProjects\PascalComplier\lex.yy.c > CMakeFiles\PascalComplier.dir\lex.yy.c.i
 
 CMakeFiles/PascalComplier.dir/lex.yy.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PascalComplier.dir/lex.yy.c.s"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\lex.yy.c -o CMakeFiles\PascalComplier.dir\lex.yy.c.s
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Workspace\CLionProjects\PascalComplier\lex.yy.c -o CMakeFiles\PascalComplier.dir\lex.yy.c.s
 
 CMakeFiles/PascalComplier.dir/pascal.tab.c.obj: CMakeFiles/PascalComplier.dir/flags.make
 CMakeFiles/PascalComplier.dir/pascal.tab.c.obj: ../pascal.tab.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/PascalComplier.dir/pascal.tab.c.obj"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\pascal.tab.c.obj   -c C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\pascal.tab.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building C object CMakeFiles/PascalComplier.dir/pascal.tab.c.obj"
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\pascal.tab.c.obj   -c D:\Workspace\CLionProjects\PascalComplier\pascal.tab.c
 
 CMakeFiles/PascalComplier.dir/pascal.tab.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PascalComplier.dir/pascal.tab.c.i"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\pascal.tab.c > CMakeFiles\PascalComplier.dir\pascal.tab.c.i
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\Workspace\CLionProjects\PascalComplier\pascal.tab.c > CMakeFiles\PascalComplier.dir\pascal.tab.c.i
 
 CMakeFiles/PascalComplier.dir/pascal.tab.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PascalComplier.dir/pascal.tab.c.s"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\pascal.tab.c -o CMakeFiles\PascalComplier.dir\pascal.tab.c.s
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Workspace\CLionProjects\PascalComplier\pascal.tab.c -o CMakeFiles\PascalComplier.dir\pascal.tab.c.s
 
 CMakeFiles/PascalComplier.dir/printtree.c.obj: CMakeFiles/PascalComplier.dir/flags.make
 CMakeFiles/PascalComplier.dir/printtree.c.obj: ../printtree.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/PascalComplier.dir/printtree.c.obj"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\printtree.c.obj   -c C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\printtree.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building C object CMakeFiles/PascalComplier.dir/printtree.c.obj"
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\printtree.c.obj   -c D:\Workspace\CLionProjects\PascalComplier\printtree.c
 
 CMakeFiles/PascalComplier.dir/printtree.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PascalComplier.dir/printtree.c.i"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\printtree.c > CMakeFiles\PascalComplier.dir\printtree.c.i
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\Workspace\CLionProjects\PascalComplier\printtree.c > CMakeFiles\PascalComplier.dir\printtree.c.i
 
 CMakeFiles/PascalComplier.dir/printtree.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PascalComplier.dir/printtree.c.s"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\printtree.c -o CMakeFiles\PascalComplier.dir\printtree.c.s
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Workspace\CLionProjects\PascalComplier\printtree.c -o CMakeFiles\PascalComplier.dir\printtree.c.s
 
 CMakeFiles/PascalComplier.dir/errormsg.c.obj: CMakeFiles/PascalComplier.dir/flags.make
 CMakeFiles/PascalComplier.dir/errormsg.c.obj: ../errormsg.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building C object CMakeFiles/PascalComplier.dir/errormsg.c.obj"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\errormsg.c.obj   -c C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\errormsg.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building C object CMakeFiles/PascalComplier.dir/errormsg.c.obj"
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\errormsg.c.obj   -c D:\Workspace\CLionProjects\PascalComplier\errormsg.c
 
 CMakeFiles/PascalComplier.dir/errormsg.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PascalComplier.dir/errormsg.c.i"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\errormsg.c > CMakeFiles\PascalComplier.dir\errormsg.c.i
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\Workspace\CLionProjects\PascalComplier\errormsg.c > CMakeFiles\PascalComplier.dir\errormsg.c.i
 
 CMakeFiles/PascalComplier.dir/errormsg.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PascalComplier.dir/errormsg.c.s"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\errormsg.c -o CMakeFiles\PascalComplier.dir\errormsg.c.s
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Workspace\CLionProjects\PascalComplier\errormsg.c -o CMakeFiles\PascalComplier.dir\errormsg.c.s
 
 CMakeFiles/PascalComplier.dir/main.c.obj: CMakeFiles/PascalComplier.dir/flags.make
 CMakeFiles/PascalComplier.dir/main.c.obj: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/PascalComplier.dir/main.c.obj"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\main.c.obj   -c C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/PascalComplier.dir/main.c.obj"
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\main.c.obj   -c D:\Workspace\CLionProjects\PascalComplier\main.c
 
 CMakeFiles/PascalComplier.dir/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PascalComplier.dir/main.c.i"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\main.c > CMakeFiles\PascalComplier.dir\main.c.i
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\Workspace\CLionProjects\PascalComplier\main.c > CMakeFiles\PascalComplier.dir\main.c.i
 
 CMakeFiles/PascalComplier.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PascalComplier.dir/main.c.s"
-	E:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\main.c -o CMakeFiles\PascalComplier.dir\main.c.s
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Workspace\CLionProjects\PascalComplier\main.c -o CMakeFiles\PascalComplier.dir\main.c.s
 
 # Object files for target PascalComplier
 PascalComplier_OBJECTS = \
@@ -306,7 +306,7 @@ PascalComplier.exe: CMakeFiles/PascalComplier.dir/build.make
 PascalComplier.exe: CMakeFiles/PascalComplier.dir/linklibs.rsp
 PascalComplier.exe: CMakeFiles/PascalComplier.dir/objects1.rsp
 PascalComplier.exe: CMakeFiles/PascalComplier.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking C executable PascalComplier.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking C executable PascalComplier.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\PascalComplier.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -319,6 +319,6 @@ CMakeFiles/PascalComplier.dir/clean:
 .PHONY : CMakeFiles/PascalComplier.dir/clean
 
 CMakeFiles/PascalComplier.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\cmake-build-debug C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\cmake-build-debug C:\Users\Admin\Desktop\PascalComplier-sr\PascalComplier-sr\cmake-build-debug\CMakeFiles\PascalComplier.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" D:\Workspace\CLionProjects\PascalComplier D:\Workspace\CLionProjects\PascalComplier D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles\PascalComplier.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/PascalComplier.dir/depend
 

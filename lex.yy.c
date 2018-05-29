@@ -502,7 +502,9 @@ static int input (void );
  * Modern Compiler Implementation in C
  */
 int charPos=1;
-int EM_tokPos = 0;
+//int EM_tokPos = 0;
+extern int EM_tokPos;
+
 int line_no = 1;
 
 int yywrap(void)

@@ -127,14 +127,15 @@ Tr_exp Tr_RealExp(double i);
 
 Tr_exp Tr_CharExp(char i);
 
-//if e1 then e2 else e3    case语句在sement改成if
-Tr_exp Tr_IfExp(Tr_exp e1, Tr_exp e2, Tr_exp e3);
 
 //传递字符串和数组 数组元素个数 依次的值 每个成员的所占内存
 Tr_exp Tr_ArrayExp(Tr_exp n, Tr_expList es, int size);
 
 //传递record 对象总大小 每个成员的值 成员值所占的内存
 Tr_exp Tr_RecordExp(int n, Tr_expList es, U_byteList bytes);
+
+//if e1 then e2 else e3    case语句在sement改成if
+Tr_exp Tr_IfExp(Tr_exp e1, Tr_exp e2, Tr_exp e3);
 
 //while cond body done done是一个label  for语句在semant改成while
 Tr_exp Tr_WhileExp(Tr_exp cond, Tr_exp body, Tr_exp done);
@@ -157,6 +158,6 @@ Tr_exp Tr_SeqExp(Tr_exp left, Tr_exp right);
 
 Tr_exp Tr_LabelExp(Temp_label label);
 
-Tr_exp Tr_nullExp(void);
+Tr_exp Tr_NullExp(void);
 
 #endif
