@@ -1,69 +1,197 @@
+/* A Bison parser, made by GNU Bison 2.3.  */
 
-/*  A Bison parser, made from pascal.y
-    by GNU Bison version 1.28  */
+/* Skeleton implementation for Bison's Yacc-like parsers in C
 
-#define YYBISON 1  /* Identify Bison output.  */
+   Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005, 2006
+   Free Software Foundation, Inc.
 
-#define	ID	257
-#define	INTEGER	258
-#define	REAL	259
-#define	CHAR	260
-#define	STRING	261
-#define	PROGRAM	262
-#define	CONST	263
-#define	ARRAY	264
-#define	RECORD	265
-#define	BEGIN	266
-#define	END	267
-#define	VAR	268
-#define	FUNCTION	269
-#define	PROCEDURE	270
-#define	TYPE	271
-#define	READ	272
-#define	IF	273
-#define	THEN	274
-#define	ELSE	275
-#define	REPEAT	276
-#define	UNTIL	277
-#define	WHILE	278
-#define	DO	279
-#define	FOR	280
-#define	CASE	281
-#define	OF	282
-#define	GOTO	283
-#define	DOT	284
-#define	DOTDOT	285
-#define	SEMI	286
-#define	COLON	287
-#define	COMMA	288
-#define	LB	289
-#define	RB	290
-#define	LP	291
-#define	RP	292
-#define	ASSIGN	293
-#define	NOT	294
-#define	NEG	295
-#define	EQUAL	296
-#define	UNEQUAL	297
-#define	GE	298
-#define	GT	299
-#define	LE	300
-#define	LT	301
-#define	PLUS	302
-#define	MINUS	303
-#define	OR	304
-#define	MUL	305
-#define	DIV	306
-#define	MOD	307
-#define	AND	308
-#define	TO	309
-#define	DOWNTO	310
-#define	SYS_TYPE	311
-#define	SYS_FUNCT	312
-#define	SYS_PROC	313
-#define	SYS_CON	314
-#define	LOWER_THAN_ELSE	315
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2, or (at your option)
+   any later version.
 
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor,
+   Boston, MA 02110-1301, USA.  */
+
+/* As a special exception, you may create a larger work that contains
+   part or all of the Bison parser skeleton and distribute that work
+   under terms of your choice, so long as that work isn't itself a
+   parser generator using the skeleton or a modified version thereof
+   as a parser skeleton.  Alternatively, if you modify or redistribute
+   the parser skeleton itself, you may (at your option) remove this
+   special exception, which will cause the skeleton and the resulting
+   Bison output files to be licensed under the GNU General Public
+   License without this special exception.
+
+   This special exception was added by the Free Software Foundation in
+   version 2.2 of Bison.  */
+
+/* C LALR(1) parser skeleton written by Richard Stallman, by
+   simplifying the original so-called "semantic" parser.  */
+
+/* All symbols defined below should begin with yy or YY, to avoid
+   infringing on user name space.  This should be done even for local
+   variables, as they might otherwise be expanded by user macros.
+   There are some unavoidable exceptions within include files to
+   define necessary library symbols; they are noted "INFRINGES ON
+   USER NAME SPACE" below.  */
+
+/* Identify Bison output.  */
+#define YYBISON 1
+
+/* Bison version.  */
+#define YYBISON_VERSION "2.3"
+
+/* Skeleton name.  */
+#define YYSKELETON_NAME "yacc.c"
+
+/* Pure parsers.  */
+#define YYPURE 0
+
+/* Using locations.  */
+#define YYLSP_NEEDED 0
+
+
+
+/* Tokens.  */
+#ifndef YYTOKENTYPE
+# define YYTOKENTYPE
+   /* Put the tokens into the symbol table, so that GDB and other debuggers
+      know about them.  */
+   enum yytokentype {
+     ID = 258,
+     INTEGER = 259,
+     REAL = 260,
+     CHAR = 261,
+     STRING = 262,
+     PROGRAM = 263,
+     CONST = 264,
+     ARRAY = 265,
+     RECORD = 266,
+     BEGINN = 267,
+     END = 268,
+     VAR = 269,
+     FUNCTION = 270,
+     PROCEDURE = 271,
+     TYPE = 272,
+     READ = 273,
+     IF = 274,
+     THEN = 275,
+     ELSE = 276,
+     REPEAT = 277,
+     UNTIL = 278,
+     WHILE = 279,
+     DO = 280,
+     FOR = 281,
+     CASE = 282,
+     OF = 283,
+     GOTO = 284,
+     DOT = 285,
+     DOTDOT = 286,
+     SEMI = 287,
+     COLON = 288,
+     COMMA = 289,
+     LB = 290,
+     RB = 291,
+     LP = 292,
+     RP = 293,
+     ASSIGN = 294,
+     NOT = 295,
+     NEG = 296,
+     EQUAL = 297,
+     UNEQUAL = 298,
+     GE = 299,
+     GT = 300,
+     LE = 301,
+     LT = 302,
+     PLUS = 303,
+     MINUS = 304,
+     OR = 305,
+     MUL = 306,
+     DIV = 307,
+     MOD = 308,
+     AND = 309,
+     TO = 310,
+     DOWNTO = 311,
+     SYS_TYPE = 312,
+     SYS_FUNCT = 313,
+     SYS_PROC = 314,
+     SYS_CON = 315,
+     LOWER_THAN_ELSE = 316
+   };
+#endif
+/* Tokens.  */
+#define ID 258
+#define INTEGER 259
+#define REAL 260
+#define CHAR 261
+#define STRING 262
+#define PROGRAM 263
+#define CONST 264
+#define ARRAY 265
+#define RECORD 266
+#define BEGINN 267
+#define END 268
+#define VAR 269
+#define FUNCTION 270
+#define PROCEDURE 271
+#define TYPE 272
+#define READ 273
+#define IF 274
+#define THEN 275
+#define ELSE 276
+#define REPEAT 277
+#define UNTIL 278
+#define WHILE 279
+#define DO 280
+#define FOR 281
+#define CASE 282
+#define OF 283
+#define GOTO 284
+#define DOT 285
+#define DOTDOT 286
+#define SEMI 287
+#define COLON 288
+#define COMMA 289
+#define LB 290
+#define RB 291
+#define LP 292
+#define RP 293
+#define ASSIGN 294
+#define NOT 295
+#define NEG 296
+#define EQUAL 297
+#define UNEQUAL 298
+#define GE 299
+#define GT 300
+#define LE 301
+#define LT 302
+#define PLUS 303
+#define MINUS 304
+#define OR 305
+#define MUL 306
+#define DIV 307
+#define MOD 308
+#define AND 309
+#define TO 310
+#define DOWNTO 311
+#define SYS_TYPE 312
+#define SYS_FUNCT 313
+#define SYS_PROC 314
+#define SYS_CON 315
+#define LOWER_THAN_ELSE 316
+
+
+
+
+/* Copy the first part of user declarations.  */
 #line 1 "pascal.y"
 
 
@@ -80,8 +208,28 @@ extern int yylex(void);
 extern int line_no;
 
 
-#line 17 "pascal.y"
-typedef union
+
+/* Enabling traces.  */
+#ifndef YYDEBUG
+# define YYDEBUG 0
+#endif
+
+/* Enabling verbose error messages.  */
+#ifdef YYERROR_VERBOSE
+# undef YYERROR_VERBOSE
+# define YYERROR_VERBOSE 1
+#else
+# define YYERROR_VERBOSE 0
+#endif
+
+/* Enabling the token table.  */
+#ifndef YYTOKEN_TABLE
+# define YYTOKEN_TABLE 0
+#endif
+
+#if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
+typedef union YYSTYPE
+#line 18 "pascal.y"
 {
     int ival;
 	double dval;
@@ -159,566 +307,1277 @@ typedef union
     A_plus_op plus_op;
     A_mul_op mul_op;
     A_direction direction;
-} YYSTYPE;
-#include <stdio.h>
-
-#ifndef __cplusplus
-#ifndef __STDC__
-#define const
-#endif
-#endif
-
-
-
-#define	YYFINAL		261
-#define	YYFLAG		-32768
-#define	YYNTBASE	62
-
-#define YYTRANSLATE(x) ((unsigned)(x) <= 315 ? yytranslate[x] : 117)
-
-static const char yytranslate[] = {     0,
-     2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-     2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-     2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-     2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-     2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-     2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-     2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-     2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-     2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-     2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-     2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-     2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-     2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-     2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-     2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-     2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-     2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-     2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-     2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-     2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-     2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-     2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-     2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-     2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-     2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-     2,     2,     2,     2,     2,     1,     3,     4,     5,     6,
-     7,     8,     9,    10,    11,    12,    13,    14,    15,    16,
-    17,    18,    19,    20,    21,    22,    23,    24,    25,    26,
-    27,    28,    29,    30,    31,    32,    33,    34,    35,    36,
-    37,    38,    39,    40,    41,    42,    43,    44,    45,    46,
-    47,    48,    49,    50,    51,    52,    53,    54,    55,    56,
-    57,    58,    59,    60,    61
-};
-
-#if YYDEBUG != 0
-static const short yyprhs[] = {     0,
-     0,     4,     8,    11,    14,    20,    21,    24,    25,    31,
-    36,    38,    40,    42,    44,    46,    49,    50,    53,    55,
-    60,    62,    64,    66,    68,    70,    74,    78,    83,    89,
-    93,   100,   104,   107,   109,   114,   118,   120,   123,   124,
-   127,   129,   134,   137,   140,   142,   144,   145,   150,   156,
-   161,   165,   169,   170,   174,   176,   180,   184,   187,   189,
-   191,   195,   199,   200,   204,   206,   208,   210,   212,   214,
-   216,   218,   220,   222,   224,   228,   235,   241,   243,   248,
-   250,   255,   260,   266,   269,   270,   275,   280,   289,   291,
-   293,   299,   302,   304,   309,   314,   317,   321,   323,   327,
-   331,   335,   339,   343,   347,   349,   353,   357,   361,   363,
-   367,   371,   375,   379,   381,   383,   388,   390,   395,   397,
-   401,   404,   407,   412,   416,   420
-};
-
-static const short yyrhs[] = {    63,
-    64,    30,     0,     8,     3,    32,     0,    66,    94,     0,
-    66,    94,     0,    67,    68,    71,    81,    84,     0,     0,
-     9,    69,     0,     0,    69,     3,    42,    70,    32,     0,
-     3,    42,    70,    32,     0,     4,     0,     5,     0,     6,
-     0,     7,     0,    60,     0,    17,    72,     0,     0,    72,
-    73,     0,    73,     0,     3,    42,    74,    32,     0,    75,
-     0,    76,     0,    77,     0,    57,     0,     3,     0,    37,
-    80,    38,     0,    70,    31,    70,     0,    49,    70,    31,
-    70,     0,    49,    70,    31,    49,    70,     0,     3,    31,
-     3,     0,    10,    35,    75,    36,    28,    74,     0,    11,
-    78,    13,     0,    78,    79,     0,    79,     0,    80,    33,
-    74,    32,     0,    80,    34,     3,     0,     3,     0,    14,
-    82,     0,     0,    82,    83,     0,    83,     0,    80,    33,
-    74,    32,     0,    84,    85,     0,    84,    87,     0,    85,
-     0,    87,     0,     0,    86,    32,    65,    32,     0,    15,
-     3,    89,    33,    75,     0,    88,    32,    65,    32,     0,
-    16,     3,    89,     0,    37,    90,    38,     0,     0,    90,
-    32,    91,     0,    91,     0,    92,    33,    75,     0,    93,
-    33,    75,     0,    14,    80,     0,    80,     0,    95,     0,
-    12,    96,    13,     0,    96,    97,    32,     0,     0,     4,
-    33,    98,     0,    98,     0,    99,     0,   100,     0,    95,
-     0,   101,     0,   103,     0,   104,     0,   105,     0,   107,
-     0,   110,     0,     3,    39,   112,     0,     3,    35,   112,
-    36,    39,   112,     0,     3,    30,     3,    39,   112,     0,
-     3,     0,     3,    37,   116,    38,     0,    59,     0,    59,
-    37,   111,    38,     0,    18,    37,   115,    38,     0,    19,
-   112,    20,    97,   102,     0,    21,    97,     0,     0,    22,
-    96,    23,   112,     0,    24,   112,    25,    97,     0,    26,
-     3,    39,   112,   106,   112,    25,    97,     0,    55,     0,
-    56,     0,    27,   112,    28,   108,    13,     0,   108,   109,
-     0,   109,     0,    70,    33,    97,    32,     0,     3,    33,
-    97,    32,     0,    29,     4,     0,   111,    34,   112,     0,
-   112,     0,   112,    44,   113,     0,   112,    45,   113,     0,
-   112,    46,   113,     0,   112,    47,   113,     0,   112,    42,
-   113,     0,   112,    43,   113,     0,   113,     0,   113,    48,
-   114,     0,   113,    49,   114,     0,   113,    50,   114,     0,
-   114,     0,   114,    51,   115,     0,   114,    52,   115,     0,
-   114,    53,   115,     0,   114,    54,   115,     0,   115,     0,
-     3,     0,     3,    37,   116,    38,     0,    58,     0,    58,
-    37,   116,    38,     0,    70,     0,    37,   112,    38,     0,
-    40,   115,     0,    49,   115,     0,     3,    35,   112,    36,
-     0,     3,    30,     3,     0,   116,    34,   112,     0,   112,
-     0
-};
-
-#endif
-
-#if YYDEBUG != 0
-static const short yyrline[] = { 0,
-   190,   195,   200,   205,   210,   215,   220,   223,   228,   232,
-   237,   240,   243,   246,   249,   254,   257,   262,   265,   270,
-   276,   279,   282,   287,   290,   294,   297,   300,   310,   322,
-   328,   333,   338,   341,   346,   351,   355,   361,   364,   369,
-   372,   377,   382,   385,   388,   391,   394,   399,   404,   409,
-   414,   420,   423,   428,   431,   437,   440,   445,   450,   455,
-   460,   465,   468,   473,   476,   481,   484,   487,   490,   493,
-   496,   499,   502,   505,   510,   514,   518,   524,   528,   531,
-   534,   537,   542,   547,   549,   555,   560,   565,   570,   573,
-   578,   583,   586,   591,   594,   600,   605,   608,   613,   616,
-   619,   622,   625,   628,   631,   636,   639,   642,   645,   650,
-   653,   656,   659,   662,   667,   671,   675,   678,   681,   684,
-   687,   690,   693,   697,   703,   706
-};
+}
+/* Line 193 of yacc.c.  */
+#line 313 "pascal.tab.c"
+	YYSTYPE;
+# define yystype YYSTYPE /* obsolescent; will be withdrawn */
+# define YYSTYPE_IS_DECLARED 1
+# define YYSTYPE_IS_TRIVIAL 1
 #endif
 
 
-#if YYDEBUG != 0 || defined (YYERROR_VERBOSE)
 
-static const char * const yytname[] = {   "$","error","$undefined.","ID","INTEGER",
-"REAL","CHAR","STRING","PROGRAM","CONST","ARRAY","RECORD","BEGIN","END","VAR",
-"FUNCTION","PROCEDURE","TYPE","READ","IF","THEN","ELSE","REPEAT","UNTIL","WHILE",
-"DO","FOR","CASE","OF","GOTO","DOT","DOTDOT","SEMI","COLON","COMMA","LB","RB",
-"LP","RP","ASSIGN","NOT","NEG","EQUAL","UNEQUAL","GE","GT","LE","LT","PLUS",
-"MINUS","OR","MUL","DIV","MOD","AND","TO","DOWNTO","SYS_TYPE","SYS_FUNCT","SYS_PROC",
-"SYS_CON","LOWER_THAN_ELSE","program","program_head","routine","sub_routine",
-"routine_head","label_part","const_part","const_expr_list","const_value","type_part",
-"type_decl_list","type_definition","type_decl","simple_type_decl","array_type_decl",
-"record_type_decl","field_decl_list","field_decl","name_list","var_part","var_decl_list",
-"var_decl","routine_part","function_decl","function_head","procedure_decl","procedure_head",
-"parameters","para_decl_list","para_type_list","var_para_list","val_para_list",
-"routine_body","compound_stmt","stmt_list","stmt","non_label_stmt","assign_stmt",
-"proc_stmt","if_stmt","else_clause","repeat_stmt","while_stmt","for_stmt","direction",
-"case_stmt","case_expr_list","case_expr","goto_stmt","expression_list","expression",
-"expr","term","factor","args_list", NULL
+/* Copy the second part of user declarations.  */
+
+
+/* Line 216 of yacc.c.  */
+#line 326 "pascal.tab.c"
+
+#ifdef short
+# undef short
+#endif
+
+#ifdef YYTYPE_UINT8
+typedef YYTYPE_UINT8 yytype_uint8;
+#else
+typedef unsigned char yytype_uint8;
+#endif
+
+#ifdef YYTYPE_INT8
+typedef YYTYPE_INT8 yytype_int8;
+#elif (defined __STDC__ || defined __C99__FUNC__ \
+     || defined __cplusplus || defined _MSC_VER)
+typedef signed char yytype_int8;
+#else
+typedef short int yytype_int8;
+#endif
+
+#ifdef YYTYPE_UINT16
+typedef YYTYPE_UINT16 yytype_uint16;
+#else
+typedef unsigned short int yytype_uint16;
+#endif
+
+#ifdef YYTYPE_INT16
+typedef YYTYPE_INT16 yytype_int16;
+#else
+typedef short int yytype_int16;
+#endif
+
+#ifndef YYSIZE_T
+# ifdef __SIZE_TYPE__
+#  define YYSIZE_T __SIZE_TYPE__
+# elif defined size_t
+#  define YYSIZE_T size_t
+# elif ! defined YYSIZE_T && (defined __STDC__ || defined __C99__FUNC__ \
+     || defined __cplusplus || defined _MSC_VER)
+#  include <stddef.h> /* INFRINGES ON USER NAME SPACE */
+#  define YYSIZE_T size_t
+# else
+#  define YYSIZE_T unsigned int
+# endif
+#endif
+
+#define YYSIZE_MAXIMUM ((YYSIZE_T) -1)
+
+#ifndef YY_
+# if defined YYENABLE_NLS && YYENABLE_NLS
+#  if ENABLE_NLS
+#   include <libintl.h> /* INFRINGES ON USER NAME SPACE */
+#   define YY_(msgid) dgettext ("bison-runtime", msgid)
+#  endif
+# endif
+# ifndef YY_
+#  define YY_(msgid) msgid
+# endif
+#endif
+
+/* Suppress unused-variable warnings by "using" E.  */
+#if ! defined lint || defined __GNUC__
+# define YYUSE(e) ((void) (e))
+#else
+# define YYUSE(e) /* empty */
+#endif
+
+/* Identity function, used to suppress warnings about constant conditions.  */
+#ifndef lint
+# define YYID(n) (n)
+#else
+#if (defined __STDC__ || defined __C99__FUNC__ \
+     || defined __cplusplus || defined _MSC_VER)
+static int
+YYID (int i)
+#else
+static int
+YYID (i)
+    int i;
+#endif
+{
+  return i;
+}
+#endif
+
+#if ! defined yyoverflow || YYERROR_VERBOSE
+
+/* The parser invokes alloca or malloc; define the necessary symbols.  */
+
+# ifdef YYSTACK_USE_ALLOCA
+#  if YYSTACK_USE_ALLOCA
+#   ifdef __GNUC__
+#    define YYSTACK_ALLOC __builtin_alloca
+#   elif defined __BUILTIN_VA_ARG_INCR
+#    include <alloca.h> /* INFRINGES ON USER NAME SPACE */
+#   elif defined _AIX
+#    define YYSTACK_ALLOC __alloca
+#   elif defined _MSC_VER
+#    include <malloc.h> /* INFRINGES ON USER NAME SPACE */
+#    define alloca _alloca
+#   else
+#    define YYSTACK_ALLOC alloca
+#    if ! defined _ALLOCA_H && ! defined _STDLIB_H && (defined __STDC__ || defined __C99__FUNC__ \
+     || defined __cplusplus || defined _MSC_VER)
+#     include <stdlib.h> /* INFRINGES ON USER NAME SPACE */
+#     ifndef _STDLIB_H
+#      define _STDLIB_H 1
+#     endif
+#    endif
+#   endif
+#  endif
+# endif
+
+# ifdef YYSTACK_ALLOC
+   /* Pacify GCC's `empty if-body' warning.  */
+#  define YYSTACK_FREE(Ptr) do { /* empty */; } while (YYID (0))
+#  ifndef YYSTACK_ALLOC_MAXIMUM
+    /* The OS might guarantee only one guard page at the bottom of the stack,
+       and a page size can be as small as 4096 bytes.  So we cannot safely
+       invoke alloca (N) if N exceeds 4096.  Use a slightly smaller number
+       to allow for a few compiler-allocated temporary stack slots.  */
+#   define YYSTACK_ALLOC_MAXIMUM 4032 /* reasonable circa 2006 */
+#  endif
+# else
+#  define YYSTACK_ALLOC YYMALLOC
+#  define YYSTACK_FREE YYFREE
+#  ifndef YYSTACK_ALLOC_MAXIMUM
+#   define YYSTACK_ALLOC_MAXIMUM YYSIZE_MAXIMUM
+#  endif
+#  if (defined __cplusplus && ! defined _STDLIB_H \
+       && ! ((defined YYMALLOC || defined malloc) \
+	     && (defined YYFREE || defined free)))
+#   include <stdlib.h> /* INFRINGES ON USER NAME SPACE */
+#   ifndef _STDLIB_H
+#    define _STDLIB_H 1
+#   endif
+#  endif
+#  ifndef YYMALLOC
+#   define YYMALLOC malloc
+#   if ! defined malloc && ! defined _STDLIB_H && (defined __STDC__ || defined __C99__FUNC__ \
+     || defined __cplusplus || defined _MSC_VER)
+void *malloc (YYSIZE_T); /* INFRINGES ON USER NAME SPACE */
+#   endif
+#  endif
+#  ifndef YYFREE
+#   define YYFREE free
+#   if ! defined free && ! defined _STDLIB_H && (defined __STDC__ || defined __C99__FUNC__ \
+     || defined __cplusplus || defined _MSC_VER)
+void free (void *); /* INFRINGES ON USER NAME SPACE */
+#   endif
+#  endif
+# endif
+#endif /* ! defined yyoverflow || YYERROR_VERBOSE */
+
+
+#if (! defined yyoverflow \
+     && (! defined __cplusplus \
+	 || (defined YYSTYPE_IS_TRIVIAL && YYSTYPE_IS_TRIVIAL)))
+
+/* A type that is properly aligned for any stack member.  */
+union yyalloc
+{
+  yytype_int16 yyss;
+  YYSTYPE yyvs;
+  };
+
+/* The size of the maximum gap between one aligned stack and the next.  */
+# define YYSTACK_GAP_MAXIMUM (sizeof (union yyalloc) - 1)
+
+/* The size of an array large to enough to hold all stacks, each with
+   N elements.  */
+# define YYSTACK_BYTES(N) \
+     ((N) * (sizeof (yytype_int16) + sizeof (YYSTYPE)) \
+      + YYSTACK_GAP_MAXIMUM)
+
+/* Copy COUNT objects from FROM to TO.  The source and destination do
+   not overlap.  */
+# ifndef YYCOPY
+#  if defined __GNUC__ && 1 < __GNUC__
+#   define YYCOPY(To, From, Count) \
+      __builtin_memcpy (To, From, (Count) * sizeof (*(From)))
+#  else
+#   define YYCOPY(To, From, Count)		\
+      do					\
+	{					\
+	  YYSIZE_T yyi;				\
+	  for (yyi = 0; yyi < (Count); yyi++)	\
+	    (To)[yyi] = (From)[yyi];		\
+	}					\
+      while (YYID (0))
+#  endif
+# endif
+
+/* Relocate STACK from its old location to the new one.  The
+   local variables YYSIZE and YYSTACKSIZE give the old and new number of
+   elements in the stack, and YYPTR gives the new location of the
+   stack.  Advance YYPTR to a properly aligned location for the next
+   stack.  */
+# define YYSTACK_RELOCATE(Stack)					\
+    do									\
+      {									\
+	YYSIZE_T yynewbytes;						\
+	YYCOPY (&yyptr->Stack, Stack, yysize);				\
+	Stack = &yyptr->Stack;						\
+	yynewbytes = yystacksize * sizeof (*Stack) + YYSTACK_GAP_MAXIMUM; \
+	yyptr += yynewbytes / sizeof (*yyptr);				\
+      }									\
+    while (YYID (0))
+
+#endif
+
+/* YYFINAL -- State number of the termination state.  */
+#define YYFINAL  5
+/* YYLAST -- Last index in YYTABLE.  */
+#define YYLAST   338
+
+/* YYNTOKENS -- Number of terminals.  */
+#define YYNTOKENS  62
+/* YYNNTS -- Number of nonterminals.  */
+#define YYNNTS  56
+/* YYNRULES -- Number of rules.  */
+#define YYNRULES  127
+/* YYNRULES -- Number of states.  */
+#define YYNSTATES  261
+
+/* YYTRANSLATE(YYLEX) -- Bison symbol number corresponding to YYLEX.  */
+#define YYUNDEFTOK  2
+#define YYMAXUTOK   316
+
+#define YYTRANSLATE(YYX)						\
+  ((unsigned int) (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
+
+/* YYTRANSLATE[YYLEX] -- Bison symbol number corresponding to YYLEX.  */
+static const yytype_uint8 yytranslate[] =
+{
+       0,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
+       5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
+      15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
+      25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
+      35,    36,    37,    38,    39,    40,    41,    42,    43,    44,
+      45,    46,    47,    48,    49,    50,    51,    52,    53,    54,
+      55,    56,    57,    58,    59,    60,    61
+};
+
+#if YYDEBUG
+/* YYPRHS[YYN] -- Index of the first RHS symbol of rule number YYN in
+   YYRHS.  */
+static const yytype_uint16 yyprhs[] =
+{
+       0,     0,     3,     7,    11,    14,    17,    23,    24,    27,
+      28,    34,    39,    41,    43,    45,    47,    49,    52,    53,
+      56,    58,    63,    65,    67,    69,    71,    73,    77,    81,
+      86,    92,    96,   103,   107,   110,   112,   117,   121,   123,
+     126,   127,   130,   132,   137,   140,   143,   145,   147,   148,
+     153,   159,   164,   168,   172,   173,   177,   179,   183,   187,
+     190,   192,   194,   198,   202,   203,   207,   209,   211,   213,
+     215,   217,   219,   221,   223,   225,   227,   231,   238,   244,
+     246,   251,   253,   258,   263,   269,   272,   273,   278,   283,
+     292,   294,   296,   302,   305,   307,   312,   317,   320,   324,
+     326,   330,   334,   338,   342,   346,   350,   352,   356,   360,
+     364,   366,   370,   374,   378,   382,   384,   386,   391,   393,
+     398,   400,   404,   407,   410,   415,   419,   423
+};
+
+/* YYRHS -- A `-1'-separated list of the rules' RHS.  */
+static const yytype_int8 yyrhs[] =
+{
+      63,     0,    -1,    64,    65,    30,    -1,     8,     3,    32,
+      -1,    67,    95,    -1,    67,    95,    -1,    68,    69,    72,
+      82,    85,    -1,    -1,     9,    70,    -1,    -1,    70,     3,
+      42,    71,    32,    -1,     3,    42,    71,    32,    -1,     4,
+      -1,     5,    -1,     6,    -1,     7,    -1,    60,    -1,    17,
+      73,    -1,    -1,    73,    74,    -1,    74,    -1,     3,    42,
+      75,    32,    -1,    76,    -1,    77,    -1,    78,    -1,    57,
+      -1,     3,    -1,    37,    81,    38,    -1,    71,    31,    71,
+      -1,    49,    71,    31,    71,    -1,    49,    71,    31,    49,
+      71,    -1,     3,    31,     3,    -1,    10,    35,    76,    36,
+      28,    75,    -1,    11,    79,    13,    -1,    79,    80,    -1,
+      80,    -1,    81,    33,    75,    32,    -1,    81,    34,     3,
+      -1,     3,    -1,    14,    83,    -1,    -1,    83,    84,    -1,
+      84,    -1,    81,    33,    75,    32,    -1,    85,    86,    -1,
+      85,    88,    -1,    86,    -1,    88,    -1,    -1,    87,    32,
+      66,    32,    -1,    15,     3,    90,    33,    76,    -1,    89,
+      32,    66,    32,    -1,    16,     3,    90,    -1,    37,    91,
+      38,    -1,    -1,    91,    32,    92,    -1,    92,    -1,    93,
+      33,    76,    -1,    94,    33,    76,    -1,    14,    81,    -1,
+      81,    -1,    96,    -1,    12,    97,    13,    -1,    97,    98,
+      32,    -1,    -1,     4,    33,    99,    -1,    99,    -1,   100,
+      -1,   101,    -1,    96,    -1,   102,    -1,   104,    -1,   105,
+      -1,   106,    -1,   108,    -1,   111,    -1,     3,    39,   113,
+      -1,     3,    35,   113,    36,    39,   113,    -1,     3,    30,
+       3,    39,   113,    -1,     3,    -1,     3,    37,   117,    38,
+      -1,    59,    -1,    59,    37,   112,    38,    -1,    18,    37,
+     116,    38,    -1,    19,   113,    20,    98,   103,    -1,    21,
+      98,    -1,    -1,    22,    97,    23,   113,    -1,    24,   113,
+      25,    98,    -1,    26,     3,    39,   113,   107,   113,    25,
+      98,    -1,    55,    -1,    56,    -1,    27,   113,    28,   109,
+      13,    -1,   109,   110,    -1,   110,    -1,    71,    33,    98,
+      32,    -1,     3,    33,    98,    32,    -1,    29,     4,    -1,
+     112,    34,   113,    -1,   113,    -1,   113,    44,   114,    -1,
+     113,    45,   114,    -1,   113,    46,   114,    -1,   113,    47,
+     114,    -1,   113,    42,   114,    -1,   113,    43,   114,    -1,
+     114,    -1,   114,    48,   115,    -1,   114,    49,   115,    -1,
+     114,    50,   115,    -1,   115,    -1,   115,    51,   116,    -1,
+     115,    52,   116,    -1,   115,    53,   116,    -1,   115,    54,
+     116,    -1,   116,    -1,     3,    -1,     3,    37,   117,    38,
+      -1,    58,    -1,    58,    37,   117,    38,    -1,    71,    -1,
+      37,   113,    38,    -1,    40,   116,    -1,    49,   116,    -1,
+       3,    35,   113,    36,    -1,     3,    30,     3,    -1,   117,
+      34,   113,    -1,   113,    -1
+};
+
+/* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
+static const yytype_uint16 yyrline[] =
+{
+       0,   190,   190,   195,   200,   205,   210,   215,   220,   223,
+     228,   232,   237,   240,   243,   246,   249,   254,   257,   262,
+     265,   270,   276,   279,   282,   287,   290,   294,   297,   300,
+     310,   322,   328,   333,   338,   341,   346,   351,   355,   361,
+     364,   369,   372,   377,   382,   385,   388,   391,   394,   399,
+     404,   409,   414,   420,   423,   428,   431,   437,   440,   445,
+     450,   455,   460,   465,   468,   473,   476,   481,   484,   487,
+     490,   493,   496,   499,   502,   505,   510,   514,   518,   524,
+     528,   531,   534,   537,   542,   547,   549,   555,   560,   565,
+     570,   573,   578,   583,   586,   591,   594,   600,   605,   608,
+     613,   616,   619,   622,   625,   628,   631,   636,   639,   642,
+     645,   650,   653,   656,   659,   662,   667,   671,   675,   678,
+     681,   684,   687,   690,   693,   697,   703,   706
 };
 #endif
 
-static const short yyr1[] = {     0,
-    62,    63,    64,    65,    66,    67,    68,    68,    69,    69,
-    70,    70,    70,    70,    70,    71,    71,    72,    72,    73,
-    74,    74,    74,    75,    75,    75,    75,    75,    75,    75,
-    76,    77,    78,    78,    79,    80,    80,    81,    81,    82,
-    82,    83,    84,    84,    84,    84,    84,    85,    86,    87,
-    88,    89,    89,    90,    90,    91,    91,    92,    93,    94,
-    95,    96,    96,    97,    97,    98,    98,    98,    98,    98,
-    98,    98,    98,    98,    99,    99,    99,   100,   100,   100,
-   100,   100,   101,   102,   102,   103,   104,   105,   106,   106,
-   107,   108,   108,   109,   109,   110,   111,   111,   112,   112,
-   112,   112,   112,   112,   112,   113,   113,   113,   113,   114,
-   114,   114,   114,   114,   115,   115,   115,   115,   115,   115,
-   115,   115,   115,   115,   116,   116
+#if YYDEBUG || YYERROR_VERBOSE || YYTOKEN_TABLE
+/* YYTNAME[SYMBOL-NUM] -- String name of the symbol SYMBOL-NUM.
+   First, the terminals, then, starting at YYNTOKENS, nonterminals.  */
+static const char *const yytname[] =
+{
+  "$end", "error", "$undefined", "ID", "INTEGER", "REAL", "CHAR",
+  "STRING", "PROGRAM", "CONST", "ARRAY", "RECORD", "BEGINN", "END", "VAR",
+  "FUNCTION", "PROCEDURE", "TYPE", "READ", "IF", "THEN", "ELSE", "REPEAT",
+  "UNTIL", "WHILE", "DO", "FOR", "CASE", "OF", "GOTO", "DOT", "DOTDOT",
+  "SEMI", "COLON", "COMMA", "LB", "RB", "LP", "RP", "ASSIGN", "NOT", "NEG",
+  "EQUAL", "UNEQUAL", "GE", "GT", "LE", "LT", "PLUS", "MINUS", "OR", "MUL",
+  "DIV", "MOD", "AND", "TO", "DOWNTO", "SYS_TYPE", "SYS_FUNCT", "SYS_PROC",
+  "SYS_CON", "LOWER_THAN_ELSE", "$accept", "program", "program_head",
+  "routine", "sub_routine", "routine_head", "label_part", "const_part",
+  "const_expr_list", "const_value", "type_part", "type_decl_list",
+  "type_definition", "type_decl", "simple_type_decl", "array_type_decl",
+  "record_type_decl", "field_decl_list", "field_decl", "name_list",
+  "var_part", "var_decl_list", "var_decl", "routine_part", "function_decl",
+  "function_head", "procedure_decl", "procedure_head", "parameters",
+  "para_decl_list", "para_type_list", "var_para_list", "val_para_list",
+  "routine_body", "compound_stmt", "stmt_list", "stmt", "non_label_stmt",
+  "assign_stmt", "proc_stmt", "if_stmt", "else_clause", "repeat_stmt",
+  "while_stmt", "for_stmt", "direction", "case_stmt", "case_expr_list",
+  "case_expr", "goto_stmt", "expression_list", "expression", "expr",
+  "term", "factor", "args_list", 0
+};
+#endif
+
+# ifdef YYPRINT
+/* YYTOKNUM[YYLEX-NUM] -- Internal token number corresponding to
+   token YYLEX-NUM.  */
+static const yytype_uint16 yytoknum[] =
+{
+       0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
+     265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
+     275,   276,   277,   278,   279,   280,   281,   282,   283,   284,
+     285,   286,   287,   288,   289,   290,   291,   292,   293,   294,
+     295,   296,   297,   298,   299,   300,   301,   302,   303,   304,
+     305,   306,   307,   308,   309,   310,   311,   312,   313,   314,
+     315,   316
+};
+# endif
+
+/* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
+static const yytype_uint8 yyr1[] =
+{
+       0,    62,    63,    64,    65,    66,    67,    68,    69,    69,
+      70,    70,    71,    71,    71,    71,    71,    72,    72,    73,
+      73,    74,    75,    75,    75,    76,    76,    76,    76,    76,
+      76,    76,    77,    78,    79,    79,    80,    81,    81,    82,
+      82,    83,    83,    84,    85,    85,    85,    85,    85,    86,
+      87,    88,    89,    90,    90,    91,    91,    92,    92,    93,
+      94,    95,    96,    97,    97,    98,    98,    99,    99,    99,
+      99,    99,    99,    99,    99,    99,   100,   100,   100,   101,
+     101,   101,   101,   101,   102,   103,   103,   104,   105,   106,
+     107,   107,   108,   109,   109,   110,   110,   111,   112,   112,
+     113,   113,   113,   113,   113,   113,   113,   114,   114,   114,
+     114,   115,   115,   115,   115,   115,   116,   116,   116,   116,
+     116,   116,   116,   116,   116,   116,   117,   117
 };
 
-static const short yyr2[] = {     0,
-     3,     3,     2,     2,     5,     0,     2,     0,     5,     4,
-     1,     1,     1,     1,     1,     2,     0,     2,     1,     4,
-     1,     1,     1,     1,     1,     3,     3,     4,     5,     3,
-     6,     3,     2,     1,     4,     3,     1,     2,     0,     2,
-     1,     4,     2,     2,     1,     1,     0,     4,     5,     4,
-     3,     3,     0,     3,     1,     3,     3,     2,     1,     1,
-     3,     3,     0,     3,     1,     1,     1,     1,     1,     1,
-     1,     1,     1,     1,     3,     6,     5,     1,     4,     1,
-     4,     4,     5,     2,     0,     4,     4,     8,     1,     1,
-     5,     2,     1,     4,     4,     2,     3,     1,     3,     3,
-     3,     3,     3,     3,     1,     3,     3,     3,     1,     3,
-     3,     3,     3,     1,     1,     4,     1,     4,     1,     3,
-     2,     2,     4,     3,     3,     1
+/* YYR2[YYN] -- Number of symbols composing right hand side of rule YYN.  */
+static const yytype_uint8 yyr2[] =
+{
+       0,     2,     3,     3,     2,     2,     5,     0,     2,     0,
+       5,     4,     1,     1,     1,     1,     1,     2,     0,     2,
+       1,     4,     1,     1,     1,     1,     1,     3,     3,     4,
+       5,     3,     6,     3,     2,     1,     4,     3,     1,     2,
+       0,     2,     1,     4,     2,     2,     1,     1,     0,     4,
+       5,     4,     3,     3,     0,     3,     1,     3,     3,     2,
+       1,     1,     3,     3,     0,     3,     1,     1,     1,     1,
+       1,     1,     1,     1,     1,     1,     3,     6,     5,     1,
+       4,     1,     4,     4,     5,     2,     0,     4,     4,     8,
+       1,     1,     5,     2,     1,     4,     4,     2,     3,     1,
+       3,     3,     3,     3,     3,     3,     1,     3,     3,     3,
+       1,     3,     3,     3,     3,     1,     1,     4,     1,     4,
+       1,     3,     2,     2,     4,     3,     3,     1
 };
 
-static const short yydefact[] = {     0,
-     0,     6,     0,     0,     0,     8,     2,     1,    63,     3,
-    60,     0,    17,     0,     0,     7,     0,    39,    78,     0,
-    61,     0,     0,    63,     0,     0,     0,     0,    80,    68,
-     0,    65,    66,    67,    69,    70,    71,    72,    73,    74,
-     0,     0,     0,    16,    19,     0,    47,     0,     0,     0,
-     0,     0,     0,   115,    11,    12,    13,    14,     0,     0,
-     0,   117,    15,   119,     0,   105,   109,   114,     0,     0,
-     0,     0,    96,     0,    62,     0,     0,     0,    18,    37,
-     0,    38,    41,     0,     0,     5,    45,     0,    46,     0,
-     0,     0,   126,     0,    75,    64,     0,     0,     0,     0,
-     0,   121,   122,     0,     0,     0,     0,     0,     0,     0,
-     0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-     0,     0,     0,    98,    10,     0,    25,     0,     0,     0,
-     0,    24,     0,     0,    21,    22,    23,     0,     0,    40,
-    53,    53,    43,    44,     6,     6,     0,     0,     0,    79,
-    82,   124,     0,     0,   120,     0,    85,   103,   104,    99,
-   100,   101,   102,   106,   107,   108,   110,   111,   112,   113,
-    86,    87,     0,     0,     0,     0,    93,     0,    81,     9,
-     0,     0,     0,    34,     0,     0,     0,     0,    20,     0,
-    36,     0,     0,    51,     0,     0,     0,    77,     0,   125,
-   123,   116,   118,     0,    83,    89,    90,     0,     0,     0,
-    91,    92,    97,    30,     0,    32,    33,     0,    26,     0,
-    27,    42,     0,    59,     0,    55,     0,     0,     0,    48,
-     4,    50,    76,    84,     0,     0,     0,     0,     0,     0,
-    28,    58,     0,    52,     0,     0,    49,     0,    95,    94,
-     0,    35,    29,    54,    56,    57,    88,    31,     0,     0,
-     0
+/* YYDEFACT[STATE-NAME] -- Default rule to reduce with in state
+   STATE-NUM when YYTABLE doesn't specify something else to do.  Zero
+   means the default is an error.  */
+static const yytype_uint8 yydefact[] =
+{
+       0,     0,     0,     7,     0,     1,     0,     0,     9,     3,
+       2,    64,     4,    61,     0,    18,     0,     0,     8,     0,
+      40,    79,     0,    62,     0,     0,    64,     0,     0,     0,
+       0,    81,    69,     0,    66,    67,    68,    70,    71,    72,
+      73,    74,    75,     0,     0,     0,    17,    20,     0,    48,
+       0,     0,     0,     0,     0,     0,   116,    12,    13,    14,
+      15,     0,     0,     0,   118,    16,   120,     0,   106,   110,
+     115,     0,     0,     0,     0,    97,     0,    63,     0,     0,
+       0,    19,    38,     0,    39,    42,     0,     0,     6,    46,
+       0,    47,     0,     0,     0,   127,     0,    76,    65,     0,
+       0,     0,     0,     0,   122,   123,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,     0,    99,    11,     0,    26,
+       0,     0,     0,     0,    25,     0,     0,    22,    23,    24,
+       0,     0,    41,    54,    54,    44,    45,     7,     7,     0,
+       0,     0,    80,    83,   125,     0,     0,   121,     0,    86,
+     104,   105,   100,   101,   102,   103,   107,   108,   109,   111,
+     112,   113,   114,    87,    88,     0,     0,     0,     0,    94,
+       0,    82,    10,     0,     0,     0,    35,     0,     0,     0,
+       0,    21,     0,    37,     0,     0,    52,     0,     0,     0,
+      78,     0,   126,   124,   117,   119,     0,    84,    90,    91,
+       0,     0,     0,    92,    93,    98,    31,     0,    33,    34,
+       0,    27,     0,    28,    43,     0,    60,     0,    56,     0,
+       0,     0,    49,     5,    51,    77,    85,     0,     0,     0,
+       0,     0,     0,    29,    59,     0,    53,     0,     0,    50,
+       0,    96,    95,     0,    36,    30,    55,    57,    58,    89,
+      32
 };
 
-static const short yydefgoto[] = {   259,
-     2,     4,   195,   196,     6,    13,    16,    64,    18,    44,
-    45,   134,   135,   136,   137,   183,   184,    81,    47,    82,
-    83,    86,    87,    88,    89,    90,   193,   225,   226,   227,
-   228,    10,    30,    14,    31,    32,    33,    34,    35,   205,
-    36,    37,    38,   208,    39,   176,   177,    40,   123,    93,
-    66,    67,    68,    94
+/* YYDEFGOTO[NTERM-NUM].  */
+static const yytype_int16 yydefgoto[] =
+{
+      -1,     2,     3,     6,   197,   198,     8,    15,    18,    66,
+      20,    46,    47,   136,   137,   138,   139,   185,   186,    83,
+      49,    84,    85,    88,    89,    90,    91,    92,   195,   227,
+     228,   229,   230,    12,    32,    16,    33,    34,    35,    36,
+      37,   207,    38,    39,    40,   210,    41,   178,   179,    42,
+     125,    95,    68,    69,    70,    96
 };
 
-static const short yypact[] = {     5,
-    24,-32768,    23,    27,    57,    78,-32768,-32768,-32768,-32768,
--32768,    96,    72,   171,    85,   111,   133,   124,    15,   107,
--32768,   102,    28,-32768,    28,   139,    28,   140,   112,-32768,
-   126,-32768,-32768,-32768,-32768,-32768,-32768,-32768,-32768,-32768,
-    99,   114,   122,   133,-32768,   170,    31,   173,    28,    28,
-    28,   241,    28,    21,-32768,-32768,-32768,-32768,    28,    28,
-    28,   128,-32768,-32768,   192,    74,   162,-32768,   199,   125,
-   141,    87,-32768,    28,-32768,   149,    99,   106,-32768,-32768,
-    49,   170,-32768,   179,   182,    31,-32768,   154,-32768,   159,
-   155,   252,   281,   -23,   281,-32768,   163,   203,    28,    28,
-   275,-32768,-32768,    28,   228,    28,    28,    28,    28,    28,
-    28,    28,    28,    28,    28,    28,    28,    28,    28,   228,
-    28,    19,    10,   281,-32768,   176,   178,   184,   170,   170,
-    99,-32768,   189,   195,-32768,-32768,-32768,   106,   221,-32768,
-   196,   196,-32768,-32768,-32768,-32768,    28,   190,    28,-32768,
--32768,-32768,   265,    26,-32768,    29,   220,    74,    74,    74,
-    74,    74,    74,   162,   162,   162,-32768,-32768,-32768,-32768,
-   281,-32768,   237,   209,   210,    36,-32768,    28,-32768,-32768,
-   242,    88,    16,-32768,    86,    46,   217,    99,-32768,   219,
--32768,     7,   216,-32768,   229,    57,   230,   281,    28,   281,
--32768,-32768,-32768,   228,-32768,-32768,-32768,    28,   228,   228,
--32768,-32768,   281,-32768,   233,-32768,-32768,   106,-32768,   147,
--32768,-32768,   170,   232,   -18,-32768,   238,   239,    88,-32768,
--32768,-32768,   281,-32768,   231,   253,   254,   236,   257,    99,
--32768,   232,     7,-32768,    88,    88,-32768,   228,-32768,-32768,
-   106,-32768,-32768,-32768,-32768,-32768,-32768,-32768,   290,   291,
--32768
+/* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
+   STATE-NUM.  */
+#define YYPACT_NINF -173
+static const yytype_int16 yypact[] =
+{
+       5,    52,    27,  -173,    25,  -173,    32,    54,    60,  -173,
+    -173,  -173,  -173,  -173,    79,    72,   171,    57,   111,   124,
+     122,    15,   109,  -173,   107,    28,  -173,    28,   146,    28,
+     152,   121,  -173,   130,  -173,  -173,  -173,  -173,  -173,  -173,
+    -173,  -173,  -173,    99,   123,   131,   124,  -173,   161,    31,
+     173,    28,    28,    28,   241,    28,    21,  -173,  -173,  -173,
+    -173,    28,    28,    28,   143,  -173,  -173,   192,    74,   162,
+    -173,   199,   125,   142,    87,  -173,    28,  -173,   150,    99,
+     106,  -173,  -173,    86,   161,  -173,   182,   183,    31,  -173,
+     159,  -173,   169,   155,   252,   281,    10,   281,  -173,   168,
+     205,    28,    28,   275,  -173,  -173,    28,   228,    28,    28,
+      28,    28,    28,    28,    28,    28,    28,    28,    28,    28,
+      28,    28,   228,    28,    19,    26,   281,  -173,   177,   188,
+     185,   161,   161,    99,  -173,   193,   195,  -173,  -173,  -173,
+     106,   226,  -173,   196,   196,  -173,  -173,  -173,  -173,    28,
+     202,    28,  -173,  -173,  -173,   265,    29,  -173,    46,   222,
+      74,    74,    74,    74,    74,    74,   162,   162,   162,  -173,
+    -173,  -173,  -173,   281,  -173,   237,   209,   212,    36,  -173,
+      28,  -173,  -173,   245,    88,    16,  -173,   127,    49,   218,
+      99,  -173,   219,  -173,     7,   229,  -173,   232,    54,   234,
+     281,    28,   281,  -173,  -173,  -173,   228,  -173,  -173,  -173,
+      28,   228,   228,  -173,  -173,   281,  -173,   225,  -173,  -173,
+     106,  -173,   147,  -173,  -173,   161,   235,   -18,  -173,   238,
+     239,    88,  -173,  -173,  -173,   281,  -173,   231,   253,   254,
+     261,   258,    99,  -173,   235,     7,  -173,    88,    88,  -173,
+     228,  -173,  -173,   106,  -173,  -173,  -173,  -173,  -173,  -173,
+    -173
 };
 
-static const short yypgoto[] = {-32768,
--32768,-32768,   156,   301,-32768,-32768,-32768,   -41,-32768,-32768,
-   260,  -133,  -170,-32768,-32768,-32768,   123,  -122,-32768,-32768,
-   234,-32768,   249,-32768,   250,-32768,   172,-32768,    62,-32768,
--32768,   119,    -4,   313,  -102,   286,-32768,-32768,-32768,-32768,
--32768,-32768,-32768,-32768,-32768,-32768,   164,-32768,-32768,   -21,
-   223,    48,   -44,   -38
+/* YYPGOTO[NTERM-NUM].  */
+static const yytype_int16 yypgoto[] =
+{
+    -173,  -173,  -173,  -173,   154,   288,  -173,  -173,  -173,   -43,
+    -173,  -173,   257,  -135,  -172,  -173,  -173,  -173,   119,  -124,
+    -173,  -173,   230,  -173,   217,  -173,   227,  -173,   172,  -173,
+      61,  -173,  -173,   137,    -6,   310,  -104,   283,  -173,  -173,
+    -173,  -173,  -173,  -173,  -173,  -173,  -173,  -173,   160,  -173,
+    -173,   -23,   221,    24,   -46,   -91
 };
 
-
-#define	YYLAST		340
-
-
-static const short yytable[] = {    76,
-    11,    65,   157,    70,   190,    72,   185,   186,    97,    80,
-   149,   215,     1,   243,   150,   102,   103,   172,    80,   244,
-   223,   174,    55,    56,    57,    58,     3,    92,   216,    95,
-    54,    55,    56,    57,    58,   126,   133,   101,   174,    55,
-    56,    57,    58,   178,    48,    84,    85,   179,   211,    49,
-    98,    50,   124,    51,     7,    99,     8,   100,   247,   149,
-   185,   154,   149,   202,    59,   156,   203,    60,     9,   224,
-   167,   168,   169,   170,   255,   256,    61,   153,    63,   139,
-   175,   138,   139,   219,   239,    62,    12,    63,    17,   187,
-   127,    55,    56,    57,    58,    63,   133,   171,    15,   173,
-   242,   234,    55,    56,    57,    58,   236,   237,   127,    55,
-    56,    57,    58,    42,   122,   128,   129,   258,   218,   139,
-   224,   112,   113,   114,   130,   198,    41,   200,   106,   107,
-   108,   109,   110,   111,   175,    43,   131,    46,    53,    52,
-   133,    71,   130,    73,   132,   257,   221,    63,    74,   120,
-    55,    56,    57,    58,   131,    77,   213,    75,    63,   164,
-   165,   166,   132,    78,   104,    63,   106,   107,   108,   109,
-   110,   111,    80,    19,    20,    91,   133,   233,   241,   121,
-   125,   141,     9,    21,   142,   145,   235,   133,    22,    23,
-   146,    11,    24,   147,    25,   240,    26,    27,   253,    28,
-   151,    19,    20,   133,   133,   152,    63,   180,   181,   133,
-     9,   105,   115,   116,   117,   118,    22,    23,   182,   188,
-    24,   119,    25,   191,    26,    27,   189,    28,   199,    29,
-    19,    20,   192,   106,   107,   108,   109,   110,   111,     9,
-   204,   209,   210,    19,   214,    22,    23,   220,   229,    24,
-   222,    25,     9,    26,    27,   248,    28,    29,    22,    23,
-   230,   232,    24,   251,    25,   139,    26,    27,   238,    28,
-   245,   246,   106,   107,   108,   109,   110,   111,   106,   107,
-   108,   109,   110,   111,   249,   250,    29,   148,   252,   260,
-   261,   206,   207,   106,   107,   108,   109,   110,   111,    29,
-   201,   197,     5,    79,   254,   217,   106,   107,   108,   109,
-   110,   111,   155,   194,   231,   140,   106,   107,   108,   109,
-   110,   111,   106,   107,   108,   109,   110,   111,   158,   159,
-   160,   161,   162,   163,   143,   144,    69,    96,     0,   212
+/* YYTABLE[YYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
+   positive, shift that token.  If negative, reduce the rule which
+   number is the opposite.  If zero, do what YYDEFACT says.
+   If YYTABLE_NINF, syntax error.  */
+#define YYTABLE_NINF -1
+static const yytype_uint16 yytable[] =
+{
+      78,    13,    67,   159,    72,   192,    74,   187,   188,    99,
+      82,   156,   217,     1,   245,   158,   104,   105,   174,    82,
+     246,   225,   176,    57,    58,    59,    60,     5,    94,   218,
+      97,    56,    57,    58,    59,    60,   128,   135,   103,   176,
+      57,    58,    59,    60,   151,    50,    86,    87,   152,   213,
+      51,   100,    52,   126,    53,     4,   101,     9,   102,   249,
+     180,   187,    10,   151,   181,    61,    11,   204,    62,    14,
+     226,   169,   170,   171,   172,   257,   258,    63,   155,    65,
+     151,   177,    17,   141,   205,   241,    64,   221,    65,    19,
+     189,   129,    57,    58,    59,    60,    65,   135,   173,    43,
+     175,   244,   236,    57,    58,    59,    60,   238,   239,   129,
+      57,    58,    59,    60,    44,   124,   130,   131,   260,   140,
+     141,   226,   114,   115,   116,   132,   200,    45,   202,   108,
+     109,   110,   111,   112,   113,   177,    48,   133,   166,   167,
+     168,   135,    54,   132,    55,   134,   259,   223,    65,    73,
+     122,    57,    58,    59,    60,   133,    75,   215,    76,    65,
+     220,   141,    77,   134,    82,    79,    65,   108,   109,   110,
+     111,   112,   113,    80,    21,    22,    93,   135,   235,   243,
+     106,   123,   127,    11,    23,   143,   144,   237,   135,    24,
+      25,   147,    13,    26,   149,    27,   242,    28,    29,   255,
+      30,   148,    21,    22,   135,   135,   153,    65,   154,   182,
+     135,    11,   107,   117,   118,   119,   120,    24,    25,   183,
+     184,    26,   121,    27,   190,    28,    29,   191,    30,   193,
+      31,    21,    22,   194,   108,   109,   110,   111,   112,   113,
+      11,   201,   211,   206,    21,   212,    24,    25,   216,   222,
+      26,   224,    27,    11,    28,    29,   250,    30,    31,    24,
+      25,   240,   231,    26,   232,    27,   234,    28,    29,   141,
+      30,   247,   248,   108,   109,   110,   111,   112,   113,   108,
+     109,   110,   111,   112,   113,   251,   252,    31,   150,   253,
+     254,     7,   208,   209,   108,   109,   110,   111,   112,   113,
+      31,   203,   199,    81,   219,   145,   256,   108,   109,   110,
+     111,   112,   113,   157,   142,   146,   196,   108,   109,   110,
+     111,   112,   113,   108,   109,   110,   111,   112,   113,   160,
+     161,   162,   163,   164,   165,   233,    71,    98,   214
 };
 
-static const short yycheck[] = {    41,
-     5,    23,   105,    25,   138,    27,   129,   130,    53,     3,
-    34,   182,     8,    32,    38,    60,    61,   120,     3,    38,
-    14,     3,     4,     5,     6,     7,     3,    49,    13,    51,
-     3,     4,     5,     6,     7,    77,    78,    59,     3,     4,
-     5,     6,     7,    34,    30,    15,    16,    38,    13,    35,
-    30,    37,    74,    39,    32,    35,    30,    37,   229,    34,
-   183,   100,    34,    38,    37,   104,    38,    40,    12,   192,
-   115,   116,   117,   118,   245,   246,    49,    99,    60,    34,
-   122,    33,    34,    38,   218,    58,     9,    60,    17,   131,
-     3,     4,     5,     6,     7,    60,   138,   119,     3,   121,
-   223,   204,     4,     5,     6,     7,   209,   210,     3,     4,
-     5,     6,     7,     3,    28,    10,    11,   251,    33,    34,
-   243,    48,    49,    50,    37,   147,    42,   149,    42,    43,
-    44,    45,    46,    47,   176,     3,    49,    14,    37,    33,
-   182,     3,    37,     4,    57,   248,   188,    60,    37,    25,
-     4,     5,     6,     7,    49,    42,   178,    32,    60,   112,
-   113,   114,    57,    42,    37,    60,    42,    43,    44,    45,
-    46,    47,     3,     3,     4,     3,   218,   199,   220,    39,
-    32,     3,    12,    13,     3,    32,   208,   229,    18,    19,
-    32,   196,    22,    39,    24,    49,    26,    27,   240,    29,
-    38,     3,     4,   245,   246,     3,    60,    32,    31,   251,
-    12,    20,    51,    52,    53,    54,    18,    19,    35,    31,
-    22,    23,    24,     3,    26,    27,    32,    29,    39,    59,
-     3,     4,    37,    42,    43,    44,    45,    46,    47,    12,
-    21,    33,    33,     3,     3,    18,    19,    31,    33,    22,
-    32,    24,    12,    26,    27,    25,    29,    59,    18,    19,
-    32,    32,    22,    28,    24,    34,    26,    27,    36,    29,
-    33,    33,    42,    43,    44,    45,    46,    47,    42,    43,
-    44,    45,    46,    47,    32,    32,    59,    36,    32,     0,
-     0,    55,    56,    42,    43,    44,    45,    46,    47,    59,
-    36,   146,     2,    44,   243,   183,    42,    43,    44,    45,
-    46,    47,    38,   142,   196,    82,    42,    43,    44,    45,
-    46,    47,    42,    43,    44,    45,    46,    47,   106,   107,
-   108,   109,   110,   111,    86,    86,    24,    52,    -1,   176
+static const yytype_uint8 yycheck[] =
+{
+      43,     7,    25,   107,    27,   140,    29,   131,   132,    55,
+       3,   102,   184,     8,    32,   106,    62,    63,   122,     3,
+      38,    14,     3,     4,     5,     6,     7,     0,    51,    13,
+      53,     3,     4,     5,     6,     7,    79,    80,    61,     3,
+       4,     5,     6,     7,    34,    30,    15,    16,    38,    13,
+      35,    30,    37,    76,    39,     3,    35,    32,    37,   231,
+      34,   185,    30,    34,    38,    37,    12,    38,    40,     9,
+     194,   117,   118,   119,   120,   247,   248,    49,   101,    60,
+      34,   124,     3,    34,    38,   220,    58,    38,    60,    17,
+     133,     3,     4,     5,     6,     7,    60,   140,   121,    42,
+     123,   225,   206,     4,     5,     6,     7,   211,   212,     3,
+       4,     5,     6,     7,     3,    28,    10,    11,   253,    33,
+      34,   245,    48,    49,    50,    37,   149,     3,   151,    42,
+      43,    44,    45,    46,    47,   178,    14,    49,   114,   115,
+     116,   184,    33,    37,    37,    57,   250,   190,    60,     3,
+      25,     4,     5,     6,     7,    49,     4,   180,    37,    60,
+      33,    34,    32,    57,     3,    42,    60,    42,    43,    44,
+      45,    46,    47,    42,     3,     4,     3,   220,   201,   222,
+      37,    39,    32,    12,    13,     3,     3,   210,   231,    18,
+      19,    32,   198,    22,    39,    24,    49,    26,    27,   242,
+      29,    32,     3,     4,   247,   248,    38,    60,     3,    32,
+     253,    12,    20,    51,    52,    53,    54,    18,    19,    31,
+      35,    22,    23,    24,    31,    26,    27,    32,    29,     3,
+      59,     3,     4,    37,    42,    43,    44,    45,    46,    47,
+      12,    39,    33,    21,     3,    33,    18,    19,     3,    31,
+      22,    32,    24,    12,    26,    27,    25,    29,    59,    18,
+      19,    36,    33,    22,    32,    24,    32,    26,    27,    34,
+      29,    33,    33,    42,    43,    44,    45,    46,    47,    42,
+      43,    44,    45,    46,    47,    32,    32,    59,    36,    28,
+      32,     3,    55,    56,    42,    43,    44,    45,    46,    47,
+      59,    36,   148,    46,   185,    88,   245,    42,    43,    44,
+      45,    46,    47,    38,    84,    88,   144,    42,    43,    44,
+      45,    46,    47,    42,    43,    44,    45,    46,    47,   108,
+     109,   110,   111,   112,   113,   198,    26,    54,   178
 };
-/* -*-C-*-  Note some compilers choke on comments on `#line' lines.  */
-#line 3 "bison.simple"
 
-/* Skeleton output parser for bison,
-   Copyright (C) 1984, 1989, 1990 Bob Corbett and Richard Stallman
-
-   This program is free software; you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 1, or (at your option)
-   any later version.
-
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-
-   You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  */
-
-
-#ifndef alloca
-#ifdef __GNUC__
-#define alloca __builtin_alloca
-#else /* not GNU C.  */
-#if (!defined (__STDC__) && defined (sparc)) || defined (__sparc__) || defined (__sparc)
-#include <alloca.h>
-#else /* not sparc */
-#if (defined (MSDOS) || defined(WIN32)) && !defined (__TURBOC__)
-#include <malloc.h>
-#else /* not MSDOS, or __TURBOC__ */
-#if defined(_AIX)
-#include <malloc.h>
- #pragma alloca
-#endif /* not _AIX */
-#endif /* not MSDOS, or __TURBOC__ */
-#endif /* not sparc.  */
-#endif /* not GNU C.  */
-#endif /* alloca not defined.  */
-
-/* This is the parser code that is written into each bison parser
-  when the %semantic_parser declaration is not specified in the grammar.
-  It was written by Richard Stallman by simplifying the hairy parser
-  used when %semantic_parser is specified.  */
-
-/* Note: there must be only one dollar sign in this file.
-   It is replaced by the list of actions, each action
-   as one case of the switch.  */
+/* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
+   symbol of state STATE-NUM.  */
+static const yytype_uint8 yystos[] =
+{
+       0,     8,    63,    64,     3,     0,    65,    67,    68,    32,
+      30,    12,    95,    96,     9,    69,    97,     3,    70,    17,
+      72,     3,     4,    13,    18,    19,    22,    24,    26,    27,
+      29,    59,    96,    98,    99,   100,   101,   102,   104,   105,
+     106,   108,   111,    42,     3,     3,    73,    74,    14,    82,
+      30,    35,    37,    39,    33,    37,     3,     4,     5,     6,
+       7,    37,    40,    49,    58,    60,    71,   113,   114,   115,
+     116,    97,   113,     3,   113,     4,    37,    32,    71,    42,
+      42,    74,     3,    81,    83,    84,    15,    16,    85,    86,
+      87,    88,    89,     3,   113,   113,   117,   113,    99,   116,
+      30,    35,    37,   113,   116,   116,    37,    20,    42,    43,
+      44,    45,    46,    47,    48,    49,    50,    51,    52,    53,
+      54,    23,    25,    39,    28,   112,   113,    32,    71,     3,
+      10,    11,    37,    49,    57,    71,    75,    76,    77,    78,
+      33,    34,    84,     3,     3,    86,    88,    32,    32,    39,
+      36,    34,    38,    38,     3,   113,   117,    38,   117,    98,
+     114,   114,   114,   114,   114,   114,   115,   115,   115,   116,
+     116,   116,   116,   113,    98,   113,     3,    71,   109,   110,
+      34,    38,    32,    31,    35,    79,    80,    81,    81,    71,
+      31,    32,    75,     3,    37,    90,    90,    66,    67,    66,
+     113,    39,   113,    36,    38,    38,    21,   103,    55,    56,
+     107,    33,    33,    13,   110,   113,     3,    76,    13,    80,
+      33,    38,    31,    71,    32,    14,    81,    91,    92,    93,
+      94,    33,    32,    95,    32,   113,    98,   113,    98,    98,
+      36,    75,    49,    71,    81,    32,    38,    33,    33,    76,
+      25,    32,    32,    28,    32,    71,    92,    76,    76,    98,
+      75
+};
 
 #define yyerrok		(yyerrstatus = 0)
 #define yyclearin	(yychar = YYEMPTY)
-#define YYEMPTY		-2
+#define YYEMPTY		(-2)
 #define YYEOF		0
-#define YYACCEPT	return(0)
-#define YYABORT 	return(1)
-#define YYERROR		goto yyerrlab1
-/* Like YYERROR except do call yyerror.
-   This remains here temporarily to ease the
-   transition to the new meaning of YYERROR, for GCC.
+
+#define YYACCEPT	goto yyacceptlab
+#define YYABORT		goto yyabortlab
+#define YYERROR		goto yyerrorlab
+
+
+/* Like YYERROR except do call yyerror.  This remains here temporarily
+   to ease the transition to the new meaning of YYERROR, for GCC.
    Once GCC version 2 has supplanted version 1, this can go.  */
+
 #define YYFAIL		goto yyerrlab
+
 #define YYRECOVERING()  (!!yyerrstatus)
-#define YYBACKUP(token, value) \
+
+#define YYBACKUP(Token, Value)					\
 do								\
   if (yychar == YYEMPTY && yylen == 1)				\
-    { yychar = (token), yylval = (value);			\
-      yychar1 = YYTRANSLATE (yychar);				\
-      YYPOPSTACK;						\
+    {								\
+      yychar = (Token);						\
+      yylval = (Value);						\
+      yytoken = YYTRANSLATE (yychar);				\
+      YYPOPSTACK (1);						\
       goto yybackup;						\
     }								\
   else								\
-    { yyerror ("syntax error: cannot back up"); YYERROR; }	\
-while (0)
+    {								\
+      yyerror (YY_("syntax error: cannot back up")); \
+      YYERROR;							\
+    }								\
+while (YYID (0))
+
 
 #define YYTERROR	1
 #define YYERRCODE	256
 
-#ifndef YYPURE
-#define YYLEX		yylex()
+
+/* YYLLOC_DEFAULT -- Set CURRENT to span from RHS[1] to RHS[N].
+   If N is 0, then set CURRENT to the empty location which ends
+   the previous symbol: RHS[0] (always defined).  */
+
+#define YYRHSLOC(Rhs, K) ((Rhs)[K])
+#ifndef YYLLOC_DEFAULT
+# define YYLLOC_DEFAULT(Current, Rhs, N)				\
+    do									\
+      if (YYID (N))                                                    \
+	{								\
+	  (Current).first_line   = YYRHSLOC (Rhs, 1).first_line;	\
+	  (Current).first_column = YYRHSLOC (Rhs, 1).first_column;	\
+	  (Current).last_line    = YYRHSLOC (Rhs, N).last_line;		\
+	  (Current).last_column  = YYRHSLOC (Rhs, N).last_column;	\
+	}								\
+      else								\
+	{								\
+	  (Current).first_line   = (Current).last_line   =		\
+	    YYRHSLOC (Rhs, 0).last_line;				\
+	  (Current).first_column = (Current).last_column =		\
+	    YYRHSLOC (Rhs, 0).last_column;				\
+	}								\
+    while (YYID (0))
 #endif
 
-#ifdef YYPURE
-#ifdef YYLSP_NEEDED
-#define YYLEX		yylex(&yylval, &yylloc)
+
+/* YY_LOCATION_PRINT -- Print the location on the stream.
+   This macro was not mandated originally: define only if we know
+   we won't break user code: when these are the locations we know.  */
+
+#ifndef YY_LOCATION_PRINT
+# if defined YYLTYPE_IS_TRIVIAL && YYLTYPE_IS_TRIVIAL
+#  define YY_LOCATION_PRINT(File, Loc)			\
+     fprintf (File, "%d.%d-%d.%d",			\
+	      (Loc).first_line, (Loc).first_column,	\
+	      (Loc).last_line,  (Loc).last_column)
+# else
+#  define YY_LOCATION_PRINT(File, Loc) ((void) 0)
+# endif
+#endif
+
+
+/* YYLEX -- calling `yylex' with the right arguments.  */
+
+#ifdef YYLEX_PARAM
+# define YYLEX yylex (YYLEX_PARAM)
 #else
-#define YYLEX		yylex(&yylval)
-#endif
-#endif
-
-/* If nonreentrant, generate the variables here */
-
-#ifndef YYPURE
-
-int	yychar;			/*  the lookahead symbol		*/
-YYSTYPE	yylval;			/*  the semantic value of the		*/
-				/*  lookahead symbol			*/
-
-#ifdef YYLSP_NEEDED
-YYLTYPE yylloc;			/*  location data for the lookahead	*/
-				/*  symbol				*/
+# define YYLEX yylex ()
 #endif
 
-int yynerrs;			/*  number of parse errors so far       */
-#endif  /* not YYPURE */
+/* Enable debugging if requested.  */
+#if YYDEBUG
 
-#if YYDEBUG != 0
-int yydebug;			/*  nonzero means print parse trace	*/
-/* Since this is uninitialized, it does not stop multiple parsers
-   from coexisting.  */
+# ifndef YYFPRINTF
+#  include <stdio.h> /* INFRINGES ON USER NAME SPACE */
+#  define YYFPRINTF fprintf
+# endif
+
+# define YYDPRINTF(Args)			\
+do {						\
+  if (yydebug)					\
+    YYFPRINTF Args;				\
+} while (YYID (0))
+
+# define YY_SYMBOL_PRINT(Title, Type, Value, Location)			  \
+do {									  \
+  if (yydebug)								  \
+    {									  \
+      YYFPRINTF (stderr, "%s ", Title);					  \
+      yy_symbol_print (stderr,						  \
+		  Type, Value); \
+      YYFPRINTF (stderr, "\n");						  \
+    }									  \
+} while (YYID (0))
+
+
+/*--------------------------------.
+| Print this symbol on YYOUTPUT.  |
+`--------------------------------*/
+
+/*ARGSUSED*/
+#if (defined __STDC__ || defined __C99__FUNC__ \
+     || defined __cplusplus || defined _MSC_VER)
+static void
+yy_symbol_value_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep)
+#else
+static void
+yy_symbol_value_print (yyoutput, yytype, yyvaluep)
+    FILE *yyoutput;
+    int yytype;
+    YYSTYPE const * const yyvaluep;
 #endif
+{
+  if (!yyvaluep)
+    return;
+# ifdef YYPRINT
+  if (yytype < YYNTOKENS)
+    YYPRINT (yyoutput, yytoknum[yytype], *yyvaluep);
+# else
+  YYUSE (yyoutput);
+# endif
+  switch (yytype)
+    {
+      default:
+	break;
+    }
+}
 
-/*  YYINITDEPTH indicates the initial size of the parser's stacks	*/
 
+/*--------------------------------.
+| Print this symbol on YYOUTPUT.  |
+`--------------------------------*/
+
+#if (defined __STDC__ || defined __C99__FUNC__ \
+     || defined __cplusplus || defined _MSC_VER)
+static void
+yy_symbol_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep)
+#else
+static void
+yy_symbol_print (yyoutput, yytype, yyvaluep)
+    FILE *yyoutput;
+    int yytype;
+    YYSTYPE const * const yyvaluep;
+#endif
+{
+  if (yytype < YYNTOKENS)
+    YYFPRINTF (yyoutput, "token %s (", yytname[yytype]);
+  else
+    YYFPRINTF (yyoutput, "nterm %s (", yytname[yytype]);
+
+  yy_symbol_value_print (yyoutput, yytype, yyvaluep);
+  YYFPRINTF (yyoutput, ")");
+}
+
+/*------------------------------------------------------------------.
+| yy_stack_print -- Print the state stack from its BOTTOM up to its |
+| TOP (included).                                                   |
+`------------------------------------------------------------------*/
+
+#if (defined __STDC__ || defined __C99__FUNC__ \
+     || defined __cplusplus || defined _MSC_VER)
+static void
+yy_stack_print (yytype_int16 *bottom, yytype_int16 *top)
+#else
+static void
+yy_stack_print (bottom, top)
+    yytype_int16 *bottom;
+    yytype_int16 *top;
+#endif
+{
+  YYFPRINTF (stderr, "Stack now");
+  for (; bottom <= top; ++bottom)
+    YYFPRINTF (stderr, " %d", *bottom);
+  YYFPRINTF (stderr, "\n");
+}
+
+# define YY_STACK_PRINT(Bottom, Top)				\
+do {								\
+  if (yydebug)							\
+    yy_stack_print ((Bottom), (Top));				\
+} while (YYID (0))
+
+
+/*------------------------------------------------.
+| Report that the YYRULE is going to be reduced.  |
+`------------------------------------------------*/
+
+#if (defined __STDC__ || defined __C99__FUNC__ \
+     || defined __cplusplus || defined _MSC_VER)
+static void
+yy_reduce_print (YYSTYPE *yyvsp, int yyrule)
+#else
+static void
+yy_reduce_print (yyvsp, yyrule)
+    YYSTYPE *yyvsp;
+    int yyrule;
+#endif
+{
+  int yynrhs = yyr2[yyrule];
+  int yyi;
+  unsigned long int yylno = yyrline[yyrule];
+  YYFPRINTF (stderr, "Reducing stack by rule %d (line %lu):\n",
+	     yyrule - 1, yylno);
+  /* The symbols being reduced.  */
+  for (yyi = 0; yyi < yynrhs; yyi++)
+    {
+      fprintf (stderr, "   $%d = ", yyi + 1);
+      yy_symbol_print (stderr, yyrhs[yyprhs[yyrule] + yyi],
+		       &(yyvsp[(yyi + 1) - (yynrhs)])
+		       		       );
+      fprintf (stderr, "\n");
+    }
+}
+
+# define YY_REDUCE_PRINT(Rule)		\
+do {					\
+  if (yydebug)				\
+    yy_reduce_print (yyvsp, Rule); \
+} while (YYID (0))
+
+/* Nonzero means print parse trace.  It is left uninitialized so that
+   multiple parsers can coexist.  */
+int yydebug;
+#else /* !YYDEBUG */
+# define YYDPRINTF(Args)
+# define YY_SYMBOL_PRINT(Title, Type, Value, Location)
+# define YY_STACK_PRINT(Bottom, Top)
+# define YY_REDUCE_PRINT(Rule)
+#endif /* !YYDEBUG */
+
+
+/* YYINITDEPTH -- initial size of the parser's stacks.  */
 #ifndef	YYINITDEPTH
-#define YYINITDEPTH 200
+# define YYINITDEPTH 200
 #endif
 
-/*  YYMAXDEPTH is the maximum size the stacks can grow to
-    (effective only if the built-in stack extension method is used).  */
+/* YYMAXDEPTH -- maximum size the stacks can grow to (effective only
+   if the built-in stack extension method is used).
 
-#if YYMAXDEPTH == 0
-#undef YYMAXDEPTH
-#endif
+   Do not make this value too large; the results are undefined if
+   YYSTACK_ALLOC_MAXIMUM < YYSTACK_BYTES (YYMAXDEPTH)
+   evaluated with infinite-precision integer arithmetic.  */
 
 #ifndef YYMAXDEPTH
-#define YYMAXDEPTH 10000
-#endif
-
-#if __GNUC__ > 1		/* GNU C and GNU C++ define this.  */
-#define __yy_bcopy(FROM,TO,COUNT)	__builtin_memcpy(TO,FROM,COUNT)
-#else				/* not GNU C or C++ */
-#ifndef __cplusplus
-
-/* This is the most reliable way to avoid incompatibilities
-   in available built-in functions on various systems.  */
-static void
-__yy_bcopy (from, to, count)
-     char *from;
-     char *to;
-     int count;
-{
-  register char *f = from;
-  register char *t = to;
-  register int i = count;
-
-  while (i-- > 0)
-    *t++ = *f++;
-}
-
-#else /* __cplusplus */
-
-/* This is the most reliable way to avoid incompatibilities
-   in available built-in functions on various systems.  */
-static void
-__yy_bcopy (char *from, char *to, int count)
-{
-  register char *f = from;
-  register char *t = to;
-  register int i = count;
-
-  while (i-- > 0)
-    *t++ = *f++;
-}
-
-#endif
+# define YYMAXDEPTH 10000
 #endif
 
 
-#line 169 "bison.simple"
-int
-yyparse()
-{
-  register int yystate;
-  register int yyn;
-  register short *yyssp;
-  register YYSTYPE *yyvsp;
-  int yyerrstatus;	/*  number of tokens to shift before error messages enabled */
-  int yychar1;		/*  lookahead token as an internal (translated) token number */
 
-  short	yyssa[YYINITDEPTH];	/*  the state stack			*/
-  YYSTYPE yyvsa[YYINITDEPTH];	/*  the semantic value stack		*/
+#if YYERROR_VERBOSE
 
-  short *yyss = yyssa;		/*  refer to the stacks thru separate pointers */
-  YYSTYPE *yyvs = yyvsa;	/*  to allow yyoverflow to reallocate them elsewhere */
-
-#ifdef YYLSP_NEEDED
-  YYLTYPE yylsa[YYINITDEPTH];	/*  the location stack			*/
-  YYLTYPE *yyls = yylsa;
-  YYLTYPE *yylsp;
-
-#define YYPOPSTACK   (yyvsp--, yyssp--, yylsp--)
+# ifndef yystrlen
+#  if defined __GLIBC__ && defined _STRING_H
+#   define yystrlen strlen
+#  else
+/* Return the length of YYSTR.  */
+#if (defined __STDC__ || defined __C99__FUNC__ \
+     || defined __cplusplus || defined _MSC_VER)
+static YYSIZE_T
+yystrlen (const char *yystr)
 #else
-#define YYPOPSTACK   (yyvsp--, yyssp--)
+static YYSIZE_T
+yystrlen (yystr)
+    const char *yystr;
+#endif
+{
+  YYSIZE_T yylen;
+  for (yylen = 0; yystr[yylen]; yylen++)
+    continue;
+  return yylen;
+}
+#  endif
+# endif
+
+# ifndef yystpcpy
+#  if defined __GLIBC__ && defined _STRING_H && defined _GNU_SOURCE
+#   define yystpcpy stpcpy
+#  else
+/* Copy YYSRC to YYDEST, returning the address of the terminating '\0' in
+   YYDEST.  */
+#if (defined __STDC__ || defined __C99__FUNC__ \
+     || defined __cplusplus || defined _MSC_VER)
+static char *
+yystpcpy (char *yydest, const char *yysrc)
+#else
+static char *
+yystpcpy (yydest, yysrc)
+    char *yydest;
+    const char *yysrc;
+#endif
+{
+  char *yyd = yydest;
+  const char *yys = yysrc;
+
+  while ((*yyd++ = *yys++) != '\0')
+    continue;
+
+  return yyd - 1;
+}
+#  endif
+# endif
+
+# ifndef yytnamerr
+/* Copy to YYRES the contents of YYSTR after stripping away unnecessary
+   quotes and backslashes, so that it's suitable for yyerror.  The
+   heuristic is that double-quoting is unnecessary unless the string
+   contains an apostrophe, a comma, or backslash (other than
+   backslash-backslash).  YYSTR is taken from yytname.  If YYRES is
+   null, do not copy; instead, return the length of what the result
+   would have been.  */
+static YYSIZE_T
+yytnamerr (char *yyres, const char *yystr)
+{
+  if (*yystr == '"')
+    {
+      YYSIZE_T yyn = 0;
+      char const *yyp = yystr;
+
+      for (;;)
+	switch (*++yyp)
+	  {
+	  case '\'':
+	  case ',':
+	    goto do_not_strip_quotes;
+
+	  case '\\':
+	    if (*++yyp != '\\')
+	      goto do_not_strip_quotes;
+	    /* Fall through.  */
+	  default:
+	    if (yyres)
+	      yyres[yyn] = *yyp;
+	    yyn++;
+	    break;
+
+	  case '"':
+	    if (yyres)
+	      yyres[yyn] = '\0';
+	    return yyn;
+	  }
+    do_not_strip_quotes: ;
+    }
+
+  if (! yyres)
+    return yystrlen (yystr);
+
+  return yystpcpy (yyres, yystr) - yyres;
+}
+# endif
+
+/* Copy into YYRESULT an error message about the unexpected token
+   YYCHAR while in state YYSTATE.  Return the number of bytes copied,
+   including the terminating null byte.  If YYRESULT is null, do not
+   copy anything; just return the number of bytes that would be
+   copied.  As a special case, return 0 if an ordinary "syntax error"
+   message will do.  Return YYSIZE_MAXIMUM if overflow occurs during
+   size calculation.  */
+static YYSIZE_T
+yysyntax_error (char *yyresult, int yystate, int yychar)
+{
+  int yyn = yypact[yystate];
+
+  if (! (YYPACT_NINF < yyn && yyn <= YYLAST))
+    return 0;
+  else
+    {
+      int yytype = YYTRANSLATE (yychar);
+      YYSIZE_T yysize0 = yytnamerr (0, yytname[yytype]);
+      YYSIZE_T yysize = yysize0;
+      YYSIZE_T yysize1;
+      int yysize_overflow = 0;
+      enum { YYERROR_VERBOSE_ARGS_MAXIMUM = 5 };
+      char const *yyarg[YYERROR_VERBOSE_ARGS_MAXIMUM];
+      int yyx;
+
+# if 0
+      /* This is so xgettext sees the translatable formats that are
+	 constructed on the fly.  */
+      YY_("syntax error, unexpected %s");
+      YY_("syntax error, unexpected %s, expecting %s");
+      YY_("syntax error, unexpected %s, expecting %s or %s");
+      YY_("syntax error, unexpected %s, expecting %s or %s or %s");
+      YY_("syntax error, unexpected %s, expecting %s or %s or %s or %s");
+# endif
+      char *yyfmt;
+      char const *yyf;
+      static char const yyunexpected[] = "syntax error, unexpected %s";
+      static char const yyexpecting[] = ", expecting %s";
+      static char const yyor[] = " or %s";
+      char yyformat[sizeof yyunexpected
+		    + sizeof yyexpecting - 1
+		    + ((YYERROR_VERBOSE_ARGS_MAXIMUM - 2)
+		       * (sizeof yyor - 1))];
+      char const *yyprefix = yyexpecting;
+
+      /* Start YYX at -YYN if negative to avoid negative indexes in
+	 YYCHECK.  */
+      int yyxbegin = yyn < 0 ? -yyn : 0;
+
+      /* Stay within bounds of both yycheck and yytname.  */
+      int yychecklim = YYLAST - yyn + 1;
+      int yyxend = yychecklim < YYNTOKENS ? yychecklim : YYNTOKENS;
+      int yycount = 1;
+
+      yyarg[0] = yytname[yytype];
+      yyfmt = yystpcpy (yyformat, yyunexpected);
+
+      for (yyx = yyxbegin; yyx < yyxend; ++yyx)
+	if (yycheck[yyx + yyn] == yyx && yyx != YYTERROR)
+	  {
+	    if (yycount == YYERROR_VERBOSE_ARGS_MAXIMUM)
+	      {
+		yycount = 1;
+		yysize = yysize0;
+		yyformat[sizeof yyunexpected - 1] = '\0';
+		break;
+	      }
+	    yyarg[yycount++] = yytname[yyx];
+	    yysize1 = yysize + yytnamerr (0, yytname[yyx]);
+	    yysize_overflow |= (yysize1 < yysize);
+	    yysize = yysize1;
+	    yyfmt = yystpcpy (yyfmt, yyprefix);
+	    yyprefix = yyor;
+	  }
+
+      yyf = YY_(yyformat);
+      yysize1 = yysize + yystrlen (yyf);
+      yysize_overflow |= (yysize1 < yysize);
+      yysize = yysize1;
+
+      if (yysize_overflow)
+	return YYSIZE_MAXIMUM;
+
+      if (yyresult)
+	{
+	  /* Avoid sprintf, as that infringes on the user's name space.
+	     Don't have undefined behavior even if the translation
+	     produced a string with the wrong number of "%s"s.  */
+	  char *yyp = yyresult;
+	  int yyi = 0;
+	  while ((*yyp = *yyf) != '\0')
+	    {
+	      if (*yyp == '%' && yyf[1] == 's' && yyi < yycount)
+		{
+		  yyp += yytnamerr (yyp, yyarg[yyi++]);
+		  yyf += 2;
+		}
+	      else
+		{
+		  yyp++;
+		  yyf++;
+		}
+	    }
+	}
+      return yysize;
+    }
+}
+#endif /* YYERROR_VERBOSE */
+
+
+/*-----------------------------------------------.
+| Release the memory associated to this symbol.  |
+`-----------------------------------------------*/
+
+/*ARGSUSED*/
+#if (defined __STDC__ || defined __C99__FUNC__ \
+     || defined __cplusplus || defined _MSC_VER)
+static void
+yydestruct (const char *yymsg, int yytype, YYSTYPE *yyvaluep)
+#else
+static void
+yydestruct (yymsg, yytype, yyvaluep)
+    const char *yymsg;
+    int yytype;
+    YYSTYPE *yyvaluep;
+#endif
+{
+  YYUSE (yyvaluep);
+
+  if (!yymsg)
+    yymsg = "Deleting";
+  YY_SYMBOL_PRINT (yymsg, yytype, yyvaluep, yylocationp);
+
+  switch (yytype)
+    {
+
+      default:
+	break;
+    }
+}
+
+
+/* Prevent warnings from -Wmissing-prototypes.  */
+
+#ifdef YYPARSE_PARAM
+#if defined __STDC__ || defined __cplusplus
+int yyparse (void *YYPARSE_PARAM);
+#else
+int yyparse ();
+#endif
+#else /* ! YYPARSE_PARAM */
+#if defined __STDC__ || defined __cplusplus
+int yyparse (void);
+#else
+int yyparse ();
+#endif
+#endif /* ! YYPARSE_PARAM */
+
+
+
+/* The look-ahead symbol.  */
+int yychar;
+
+/* The semantic value of the look-ahead symbol.  */
+YYSTYPE yylval;
+
+/* Number of syntax errors so far.  */
+int yynerrs;
+
+
+
+/*----------.
+| yyparse.  |
+`----------*/
+
+#ifdef YYPARSE_PARAM
+#if (defined __STDC__ || defined __C99__FUNC__ \
+     || defined __cplusplus || defined _MSC_VER)
+int
+yyparse (void *YYPARSE_PARAM)
+#else
+int
+yyparse (YYPARSE_PARAM)
+    void *YYPARSE_PARAM;
+#endif
+#else /* ! YYPARSE_PARAM */
+#if (defined __STDC__ || defined __C99__FUNC__ \
+     || defined __cplusplus || defined _MSC_VER)
+int
+yyparse (void)
+#else
+int
+yyparse ()
+
+#endif
+#endif
+{
+  
+  int yystate;
+  int yyn;
+  int yyresult;
+  /* Number of tokens to shift before error messages enabled.  */
+  int yyerrstatus;
+  /* Look-ahead token as an internal (translated) token number.  */
+  int yytoken = 0;
+#if YYERROR_VERBOSE
+  /* Buffer for error messages, and its allocated size.  */
+  char yymsgbuf[128];
+  char *yymsg = yymsgbuf;
+  YYSIZE_T yymsg_alloc = sizeof yymsgbuf;
 #endif
 
-  int yystacksize = YYINITDEPTH;
+  /* Three stacks and their tools:
+     `yyss': related to states,
+     `yyvs': related to semantic values,
+     `yyls': related to locations.
 
-#ifdef YYPURE
-  int yychar;
-  YYSTYPE yylval;
-  int yynerrs;
-#ifdef YYLSP_NEEDED
-  YYLTYPE yylloc;
-#endif
-#endif
+     Refer to the stacks thru separate pointers, to allow yyoverflow
+     to reallocate them elsewhere.  */
 
-  YYSTYPE yyval;		/*  the variable used to return		*/
-				/*  semantic values from the action	*/
-				/*  routines				*/
+  /* The state stack.  */
+  yytype_int16 yyssa[YYINITDEPTH];
+  yytype_int16 *yyss = yyssa;
+  yytype_int16 *yyssp;
 
-  int yylen;
+  /* The semantic value stack.  */
+  YYSTYPE yyvsa[YYINITDEPTH];
+  YYSTYPE *yyvs = yyvsa;
+  YYSTYPE *yyvsp;
 
-#if YYDEBUG != 0
-  if (yydebug)
-    fprintf(stderr, "Starting parse\n");
-#endif
+
+
+#define YYPOPSTACK(N)   (yyvsp -= (N), yyssp -= (N))
+
+  YYSIZE_T yystacksize = YYINITDEPTH;
+
+  /* The variables used to return semantic value and location from the
+     action routines.  */
+  YYSTYPE yyval;
+
+
+  /* The number of symbols on the RHS of the reduced rule.
+     Keep to zero when no symbol should be popped.  */
+  int yylen = 0;
+
+  YYDPRINTF ((stderr, "Starting parse\n"));
 
   yystate = 0;
   yyerrstatus = 0;
@@ -730,1205 +1589,1320 @@ yyparse()
      so that they stay on the same level as the state stack.
      The wasted elements are never initialized.  */
 
-  yyssp = yyss - 1;
+  yyssp = yyss;
   yyvsp = yyvs;
-#ifdef YYLSP_NEEDED
-  yylsp = yyls;
-#endif
 
-/* Push a new state, which is found in  yystate  .  */
-/* In all cases, when you get here, the value and location stacks
-   have just been pushed. so pushing a state here evens the stacks.  */
-yynewstate:
+  goto yysetstate;
 
-  *++yyssp = yystate;
+/*------------------------------------------------------------.
+| yynewstate -- Push a new state, which is found in yystate.  |
+`------------------------------------------------------------*/
+ yynewstate:
+  /* In all cases, when you get here, the value and location stacks
+     have just been pushed.  So pushing a state here evens the stacks.  */
+  yyssp++;
 
-  if (yyssp >= yyss + yystacksize - 1)
+ yysetstate:
+  *yyssp = yystate;
+
+  if (yyss + yystacksize - 1 <= yyssp)
     {
-      /* Give user a chance to reallocate the stack */
-      /* Use copies of these so that the &'s don't force the real ones into memory. */
-      YYSTYPE *yyvs1 = yyvs;
-      short *yyss1 = yyss;
-#ifdef YYLSP_NEEDED
-      YYLTYPE *yyls1 = yyls;
-#endif
-
       /* Get the current used size of the three stacks, in elements.  */
-      int size = yyssp - yyss + 1;
+      YYSIZE_T yysize = yyssp - yyss + 1;
 
 #ifdef yyoverflow
-      /* Each stack pointer address is followed by the size of
-	 the data in use in that stack, in bytes.  */
-      yyoverflow("parser stack overflow",
-		 &yyss1, size * sizeof (*yyssp),
-		 &yyvs1, size * sizeof (*yyvsp),
-#ifdef YYLSP_NEEDED
-		 &yyls1, size * sizeof (*yylsp),
-#endif
-		 &yystacksize);
+      {
+	/* Give user a chance to reallocate the stack.  Use copies of
+	   these so that the &'s don't force the real ones into
+	   memory.  */
+	YYSTYPE *yyvs1 = yyvs;
+	yytype_int16 *yyss1 = yyss;
 
-      yyss = yyss1; yyvs = yyvs1;
-#ifdef YYLSP_NEEDED
-      yyls = yyls1;
-#endif
+
+	/* Each stack pointer address is followed by the size of the
+	   data in use in that stack, in bytes.  This used to be a
+	   conditional around just the two extra args, but that might
+	   be undefined if yyoverflow is a macro.  */
+	yyoverflow (YY_("memory exhausted"),
+		    &yyss1, yysize * sizeof (*yyssp),
+		    &yyvs1, yysize * sizeof (*yyvsp),
+
+		    &yystacksize);
+
+	yyss = yyss1;
+	yyvs = yyvs1;
+      }
 #else /* no yyoverflow */
+# ifndef YYSTACK_RELOCATE
+      goto yyexhaustedlab;
+# else
       /* Extend the stack our own way.  */
-      if (yystacksize >= YYMAXDEPTH)
-	{
-	  yyerror("parser stack overflow");
-	  return 2;
-	}
+      if (YYMAXDEPTH <= yystacksize)
+	goto yyexhaustedlab;
       yystacksize *= 2;
-      if (yystacksize > YYMAXDEPTH)
+      if (YYMAXDEPTH < yystacksize)
 	yystacksize = YYMAXDEPTH;
-      yyss = (short *) alloca (yystacksize * sizeof (*yyssp));
-      __yy_bcopy ((char *)yyss1, (char *)yyss, size * sizeof (*yyssp));
-      yyvs = (YYSTYPE *) alloca (yystacksize * sizeof (*yyvsp));
-      __yy_bcopy ((char *)yyvs1, (char *)yyvs, size * sizeof (*yyvsp));
-#ifdef YYLSP_NEEDED
-      yyls = (YYLTYPE *) alloca (yystacksize * sizeof (*yylsp));
-      __yy_bcopy ((char *)yyls1, (char *)yyls, size * sizeof (*yylsp));
-#endif
+
+      {
+	yytype_int16 *yyss1 = yyss;
+	union yyalloc *yyptr =
+	  (union yyalloc *) YYSTACK_ALLOC (YYSTACK_BYTES (yystacksize));
+	if (! yyptr)
+	  goto yyexhaustedlab;
+	YYSTACK_RELOCATE (yyss);
+	YYSTACK_RELOCATE (yyvs);
+
+#  undef YYSTACK_RELOCATE
+	if (yyss1 != yyssa)
+	  YYSTACK_FREE (yyss1);
+      }
+# endif
 #endif /* no yyoverflow */
 
-      yyssp = yyss + size - 1;
-      yyvsp = yyvs + size - 1;
-#ifdef YYLSP_NEEDED
-      yylsp = yyls + size - 1;
-#endif
+      yyssp = yyss + yysize - 1;
+      yyvsp = yyvs + yysize - 1;
 
-#if YYDEBUG != 0
-      if (yydebug)
-	fprintf(stderr, "Stack size increased to %d\n", yystacksize);
-#endif
 
-      if (yyssp >= yyss + yystacksize - 1)
+      YYDPRINTF ((stderr, "Stack size increased to %lu\n",
+		  (unsigned long int) yystacksize));
+
+      if (yyss + yystacksize - 1 <= yyssp)
 	YYABORT;
     }
 
-#if YYDEBUG != 0
-  if (yydebug)
-    fprintf(stderr, "Entering state %d\n", yystate);
-#endif
+  YYDPRINTF ((stderr, "Entering state %d\n", yystate));
 
   goto yybackup;
- yybackup:
 
-/* Do appropriate processing given the current state.  */
-/* Read a lookahead token if we need one and don't already have one.  */
-/* yyresume: */
+/*-----------.
+| yybackup.  |
+`-----------*/
+yybackup:
 
-  /* First try to decide what to do without reference to lookahead token.  */
+  /* Do appropriate processing given the current state.  Read a
+     look-ahead token if we need one and don't already have one.  */
 
+  /* First try to decide what to do without reference to look-ahead token.  */
   yyn = yypact[yystate];
-  if (yyn == YYFLAG)
+  if (yyn == YYPACT_NINF)
     goto yydefault;
 
-  /* Not known => get a lookahead token if don't already have one.  */
+  /* Not known => get a look-ahead token if don't already have one.  */
 
-  /* yychar is either YYEMPTY or YYEOF
-     or a valid token in external form.  */
-
+  /* YYCHAR is either YYEMPTY or YYEOF or a valid look-ahead symbol.  */
   if (yychar == YYEMPTY)
     {
-#if YYDEBUG != 0
-      if (yydebug)
-	fprintf(stderr, "Reading a token: ");
-#endif
+      YYDPRINTF ((stderr, "Reading a token: "));
       yychar = YYLEX;
     }
 
-  /* Convert token to internal form (in yychar1) for indexing tables with */
-
-  if (yychar <= 0)		/* This means end of input. */
+  if (yychar <= YYEOF)
     {
-      yychar1 = 0;
-      yychar = YYEOF;		/* Don't call YYLEX any more */
-
-#if YYDEBUG != 0
-      if (yydebug)
-	fprintf(stderr, "Now at end of input.\n");
-#endif
+      yychar = yytoken = YYEOF;
+      YYDPRINTF ((stderr, "Now at end of input.\n"));
     }
   else
     {
-      yychar1 = YYTRANSLATE(yychar);
-
-#if YYDEBUG != 0
-      if (yydebug)
-	{
-	  fprintf (stderr, "Next token is %d (%s", yychar, yytname[yychar1]);
-	  /* Give the individual parser a way to print the precise meaning
-	     of a token, for further debugging info.  */
-#ifdef YYPRINT
-	  YYPRINT (stderr, yychar, yylval);
-#endif
-	  fprintf (stderr, ")\n");
-	}
-#endif
+      yytoken = YYTRANSLATE (yychar);
+      YY_SYMBOL_PRINT ("Next token is", yytoken, &yylval, &yylloc);
     }
 
-  yyn += yychar1;
-  if (yyn < 0 || yyn > YYLAST || yycheck[yyn] != yychar1)
+  /* If the proper action on seeing token YYTOKEN is to reduce or to
+     detect an error, take that action.  */
+  yyn += yytoken;
+  if (yyn < 0 || YYLAST < yyn || yycheck[yyn] != yytoken)
     goto yydefault;
-
   yyn = yytable[yyn];
-
-  /* yyn is what to do for this token type in this state.
-     Negative => reduce, -yyn is rule number.
-     Positive => shift, yyn is new state.
-       New state is final state => don't bother to shift,
-       just return success.
-     0, or most negative number => error.  */
-
-  if (yyn < 0)
+  if (yyn <= 0)
     {
-      if (yyn == YYFLAG)
+      if (yyn == 0 || yyn == YYTABLE_NINF)
 	goto yyerrlab;
       yyn = -yyn;
       goto yyreduce;
     }
-  else if (yyn == 0)
-    goto yyerrlab;
 
   if (yyn == YYFINAL)
     YYACCEPT;
 
-  /* Shift the lookahead token.  */
+  /* Count tokens shifted since error; after three, turn off error
+     status.  */
+  if (yyerrstatus)
+    yyerrstatus--;
 
-#if YYDEBUG != 0
-  if (yydebug)
-    fprintf(stderr, "Shifting token %d (%s), ", yychar, yytname[yychar1]);
-#endif
+  /* Shift the look-ahead token.  */
+  YY_SYMBOL_PRINT ("Shifting", yytoken, &yylval, &yylloc);
 
-  /* Discard the token being shifted unless it is eof.  */
+  /* Discard the shifted token unless it is eof.  */
   if (yychar != YYEOF)
     yychar = YYEMPTY;
 
-  *++yyvsp = yylval;
-#ifdef YYLSP_NEEDED
-  *++yylsp = yylloc;
-#endif
-
-  /* count tokens shifted since error; after three, turn off error status.  */
-  if (yyerrstatus) yyerrstatus--;
-
   yystate = yyn;
+  *++yyvsp = yylval;
+
   goto yynewstate;
 
-/* Do the default action for the current state.  */
-yydefault:
 
+/*-----------------------------------------------------------.
+| yydefault -- do the default action for the current state.  |
+`-----------------------------------------------------------*/
+yydefault:
   yyn = yydefact[yystate];
   if (yyn == 0)
     goto yyerrlab;
+  goto yyreduce;
 
-/* Do a reduction.  yyn is the number of a rule to reduce with.  */
+
+/*-----------------------------.
+| yyreduce -- Do a reduction.  |
+`-----------------------------*/
 yyreduce:
+  /* yyn is the number of a rule to reduce with.  */
   yylen = yyr2[yyn];
-  yyval = yyvsp[1-yylen]; /* implement default value of the action */
 
-#if YYDEBUG != 0
-  if (yydebug)
+  /* If YYLEN is nonzero, implement the default value of the action:
+     `$$ = $1'.
+
+     Otherwise, the following line sets YYVAL to garbage.
+     This behavior is undocumented and Bison
+     users should not rely upon it.  Assigning to YYVAL
+     unconditionally makes the parser a bit smaller, and it avoids a
+     GCC warning that YYVAL may be used uninitialized.  */
+  yyval = yyvsp[1-yylen];
+
+
+  YY_REDUCE_PRINT (yyn);
+  switch (yyn)
     {
-      int i;
-
-      fprintf (stderr, "Reducing via rule %d (line %d), ",
-	       yyn, yyrline[yyn]);
-
-      /* Print the symbols being reduced, and their result.  */
-      for (i = yyprhs[yyn]; yyrhs[i] > 0; i++)
-	fprintf (stderr, "%s ", yytname[yyrhs[i]]);
-      fprintf (stderr, " -> %s\n", yytname[yyr1[yyn]]);
-    }
-#endif
-
-
-  switch (yyn) {
-
-case 1:
+        case 2:
 #line 190 "pascal.y"
-{
-    yyval.program = A_Program(line_no, yyvsp[-2].program_head, yyvsp[-1].routine);
-;
-    break;}
-case 2:
-#line 195 "pascal.y"
-{
-    yyval.program_head = A_ProgramHead(line_no, yyvsp[-1].sval);
-;
-    break;}
-case 3:
-#line 200 "pascal.y"
-{
-    yyval.routine = A_Routine(line_no, yyvsp[-1].routine_head, yyvsp[0].routine_body);
-;
-    break;}
-case 4:
-#line 205 "pascal.y"
-{
-    yyval.sub_routine = A_SubRoutine(line_no, yyvsp[-1].routine_head, yyvsp[0].routine_body);
-;
-    break;}
-case 5:
-#line 210 "pascal.y"
-{
-    yyval.routine_head = A_RoutineHead(line_no, yyvsp[-4].label_part, yyvsp[-3].const_part, yyvsp[-2].type_part, yyvsp[-1].var_part, yyvsp[0].routine_part);
-;
-    break;}
-case 6:
-#line 215 "pascal.y"
-{
-    yyval.label_part = A_LabelPart(line_no);
-;
-    break;}
-case 7:
-#line 220 "pascal.y"
-{
-    yyval.const_part = A_ConstPart(line_no, yyvsp[0].const_expr_list);
-;
-    break;}
-case 8:
-#line 223 "pascal.y"
-{
-    yyval.const_part = A_ConstPart(line_no, NULL);
- ;
-    break;}
-case 9:
-#line 228 "pascal.y"
-{
-    // $$ = A_ConstExprListSeq(line_no, $1, $2, $4);
-    yyval.const_expr_list = A_ConstExprListSeq(line_no, yyvsp[-4].const_expr_list, S_Symbol(yyvsp[-3].sval), yyvsp[-1].const_value);
-;
-    break;}
-case 10:
-#line 232 "pascal.y"
-{
-    yyval.const_expr_list = A_ConstExprList(line_no, S_Symbol(yyvsp[-3].sval), yyvsp[-1].const_value);
-;
-    break;}
-case 11:
-#line 237 "pascal.y"
-{
-    yyval.const_value = A_ConstValueInteger(line_no, yyvsp[0].ival);
-;
-    break;}
-case 12:
-#line 240 "pascal.y"
-{
-    yyval.const_value = A_ConstValueReal(line_no, yyvsp[0].dval);
-;
-    break;}
-case 13:
-#line 243 "pascal.y"
-{
-    yyval.const_value = A_ConstValueChar(line_no, yyvsp[0].sval);
-;
-    break;}
-case 14:
-#line 246 "pascal.y"
-{
-    yyval.const_value = A_ConstValueString(line_no, yyvsp[0].sval);
-;
-    break;}
-case 15:
-#line 249 "pascal.y"
-{
-    yyval.const_value = A_ConstValueSysCon(line_no, yyvsp[0].sys_con);
-;
-    break;}
-case 16:
-#line 254 "pascal.y"
-{
-    yyval.type_part = A_TypePart(line_no, yyvsp[0].type_decl_list);
-;
-    break;}
-case 17:
-#line 257 "pascal.y"
-{
-    yyval.type_part = A_TypePart(line_no, NULL);
-;
-    break;}
-case 18:
-#line 262 "pascal.y"
-{
-    yyval.type_decl_list = A_TypeDeclListSeq(line_no, yyvsp[-1].type_decl_list, yyvsp[0].type_definition);
-;
-    break;}
-case 19:
-#line 265 "pascal.y"
-{
-    yyval.type_decl_list = A_TypeDeclList(line_no, yyvsp[0].type_definition);
-;
-    break;}
-case 20:
-#line 270 "pascal.y"
-{
-    // $$ = A_TypeDefinition(line_no, $1, $3);
-    yyval.type_definition = A_TypeDefinition(line_no, S_Symbol(yyvsp[-3].sval), yyvsp[-1].type_decl);
-;
-    break;}
-case 21:
-#line 276 "pascal.y"
-{
-    yyval.type_decl = A_TypeDeclSimple(line_no, yyvsp[0].simple_type_decl);
-;
-    break;}
-case 22:
-#line 279 "pascal.y"
-{
-    yyval.type_decl = A_TypeDeclArray(line_no, yyvsp[0].array_type_decl);
-;
-    break;}
-case 23:
-#line 282 "pascal.y"
-{
-    yyval.type_decl = A_TypeDeclRecord(line_no, yyvsp[0].record_type_decl);
-;
-    break;}
-case 24:
-#line 287 "pascal.y"
-{
-    yyval.simple_type_decl = A_SimpleTypeDeclSysType(line_no, yyvsp[0].sys_type);
-;
-    break;}
-case 25:
-#line 290 "pascal.y"
-{
-    // $$ = A_SimpleTypeDeclId(line_no, $1);
-    yyval.simple_type_decl = A_SimpleTypeDeclId(line_no, S_Symbol(yyvsp[0].sval));
-;
-    break;}
-case 26:
-#line 294 "pascal.y"
-{
-    yyval.simple_type_decl = A_SimpleTypeDeclNameList(line_no, yyvsp[-1].name_list);
-;
-    break;}
-case 27:
-#line 297 "pascal.y"
-{
-    yyval.simple_type_decl = A_SimpleTypeDeclRangeConst(line_no, yyvsp[-2].const_value, yyvsp[0].const_value);
-;
-    break;}
-case 28:
-#line 300 "pascal.y"
-{
-    A_const_value from = NULL;
-    if (yyvsp[-2].const_value->kind == INTEGER) {
-        from = A_ConstValueInteger(line_no, -(yyvsp[-2].const_value->u.intt));
-    }
-    else if (yyvsp[-2].const_value->kind == REAL) {
-        from = A_ConstValueReal(line_no, -(yyvsp[-2].const_value->u.real));
-    }
-    yyval.simple_type_decl = A_SimpleTypeDeclRangeConst(line_no, from, yyvsp[0].const_value);
-;
-    break;}
-case 29:
-#line 310 "pascal.y"
-{
-    A_const_value from = NULL, to = NULL;
-    if (yyvsp[-3].const_value->kind == INTEGER) {
-        from = A_ConstValueInteger(line_no, -(yyvsp[-3].const_value->u.intt));
-        to = A_ConstValueInteger(line_no, -(yyvsp[-3].const_value->u.intt));
-    }
-    else if (yyvsp[-3].const_value->kind == REAL) {
-        from = A_ConstValueReal(line_no, -(yyvsp[0].const_value->u.real));
-        to = A_ConstValueReal(line_no, -(yyvsp[0].const_value->u.real));
-    }
-    yyval.simple_type_decl = A_SimpleTypeDeclRangeConst(line_no, from, to);
-;
-    break;}
-case 30:
-#line 322 "pascal.y"
-{
-    //  $$ = A_SimpleTypeDeclIdRangeId(line_no, $1, $3);
-    yyval.simple_type_decl = A_SimpleTypeDeclRangeId(line_no, S_Symbol(yyvsp[-2].sval), S_Symbol(yyvsp[0].sval));
-;
-    break;}
-case 31:
-#line 328 "pascal.y"
-{
-    yyval.array_type_decl = A_ArrayTypeDecl(line_no, yyvsp[-3].simple_type_decl, yyvsp[0].type_decl);
-;
-    break;}
-case 32:
-#line 333 "pascal.y"
-{
-    yyval.record_type_decl = A_RecordTypeDecl(line_no, yyvsp[-1].field_decl_list);
-;
-    break;}
-case 33:
-#line 338 "pascal.y"
-{
-    yyval.field_decl_list = A_FieldDeclListSeq(line_no, yyvsp[-1].field_decl_list, yyvsp[0].field_decl);
-;
-    break;}
-case 34:
-#line 341 "pascal.y"
-{
-    yyval.field_decl_list = A_FieldDeclList(line_no, yyvsp[0].field_decl);
-;
-    break;}
-case 35:
-#line 346 "pascal.y"
-{
-    yyval.field_decl = A_FieldDecl(line_no, yyvsp[-3].name_list, yyvsp[-1].type_decl);
-;
-    break;}
-case 36:
-#line 351 "pascal.y"
-{
-    // $$ = A_NameListSeq(line_no, $1, $3);
-    yyval.name_list = A_NameListSeq(line_no, yyvsp[-2].name_list, S_Symbol(yyvsp[0].sval));
-;
-    break;}
-case 37:
-#line 355 "pascal.y"
-{
-    // $$ = A_NameList(line_no, $1);
-    yyval.name_list = A_NameList(line_no, S_Symbol(yyvsp[0].sval));
-;
-    break;}
-case 38:
-#line 361 "pascal.y"
-{
-    yyval.var_part = A_VarPart(line_no, yyvsp[0].var_decl_list);
-;
-    break;}
-case 39:
-#line 364 "pascal.y"
-{
-    yyval.var_part = A_VarPart(line_no, NULL);
-;
-    break;}
-case 40:
-#line 369 "pascal.y"
-{
-    yyval.var_decl_list = A_VarDeclListSeq(line_no, yyvsp[-1].var_decl_list, yyvsp[0].var_decl);
-;
-    break;}
-case 41:
-#line 372 "pascal.y"
-{
-    yyval.var_decl_list = A_VarDeclList(line_no, yyvsp[0].var_decl);
-;
-    break;}
-case 42:
-#line 377 "pascal.y"
-{
-    yyval.var_decl = A_VarDecl(line_no, yyvsp[-3].name_list, yyvsp[-1].type_decl);
-;
-    break;}
-case 43:
-#line 382 "pascal.y"
-{
-    yyval.routine_part = A_RoutinePartSeqWithFunctionDecl(line_no, yyvsp[-1].routine_part, yyvsp[0].function_decl);
-;
-    break;}
-case 44:
-#line 385 "pascal.y"
-{
-    yyval.routine_part = A_RoutinePartSeqWithProcedureDecl(line_no, yyvsp[-1].routine_part, yyvsp[0].procedure_decl);
-;
-    break;}
-case 45:
-#line 388 "pascal.y"
-{
-    yyval.routine_part = A_RoutinePartWithFunctionDecl(line_no, yyvsp[0].function_decl);
-;
-    break;}
-case 46:
-#line 391 "pascal.y"
-{
-    yyval.routine_part = A_RoutinePartWithProcedureDecl(line_no, yyvsp[0].procedure_decl);
-;
-    break;}
-case 47:
-#line 394 "pascal.y"
-{
-    yyval.routine_part = NULL;
-;
-    break;}
-case 48:
-#line 399 "pascal.y"
-{
-    yyval.function_decl = A_FunctionDecl(line_no, yyvsp[-3].function_head, yyvsp[-1].sub_routine);
-;
-    break;}
-case 49:
-#line 404 "pascal.y"
-{
-    yyval.function_head = A_FunctionHead(line_no, S_Symbol(yyvsp[-3].sval), yyvsp[-2].parameters, yyvsp[0].simple_type_decl);
-;
-    break;}
-case 50:
-#line 409 "pascal.y"
-{
-    yyval.procedure_decl = A_ProcedureDecl(line_no, yyvsp[-3].procedure_head, yyvsp[-1].sub_routine);
-;
-    break;}
-case 51:
-#line 414 "pascal.y"
-{
-    //$$ = A_ProcedureHead(line_no, $2, $3);
-    yyval.procedure_head = A_ProcedureHead(line_no, S_Symbol(yyvsp[-1].sval), yyvsp[0].parameters);
-;
-    break;}
-case 52:
-#line 420 "pascal.y"
-{
-    yyval.parameters = A_Parameters(line_no, yyvsp[-1].para_decl_list);
-;
-    break;}
-case 53:
-#line 423 "pascal.y"
-{
-    yyval.parameters = NULL;
-;
-    break;}
-case 54:
-#line 428 "pascal.y"
-{
-    yyval.para_decl_list = A_ParaDeclListSeq(line_no, yyvsp[-2].para_decl_list, yyvsp[0].para_type_list);
-;
-    break;}
-case 55:
-#line 431 "pascal.y"
-{
-    yyval.para_decl_list = A_ParaDeclList(line_no, yyvsp[0].para_type_list);
-;
-    break;}
-case 56:
-#line 437 "pascal.y"
-{
-    yyval.para_type_list = A_ParaTypeListVar(line_no, yyvsp[-2].var_para_list, yyvsp[0].simple_type_decl);
-;
-    break;}
-case 57:
-#line 440 "pascal.y"
-{
-    yyval.para_type_list = A_ParaTypeListVal(line_no, yyvsp[-2].val_para_list, yyvsp[0].simple_type_decl);
-;
-    break;}
-case 58:
-#line 445 "pascal.y"
-{
-    yyval.var_para_list = A_VarParaList(line_no, yyvsp[0].name_list);
-;
-    break;}
-case 59:
-#line 450 "pascal.y"
-{
-    yyval.val_para_list = A_ValParaList(line_no, yyvsp[0].name_list);
-;
-    break;}
-case 60:
-#line 455 "pascal.y"
-{
-    yyval.routine_body = A_RoutineBody(line_no, yyvsp[0].compound_stmt);
-;
-    break;}
-case 61:
-#line 460 "pascal.y"
-{
-    yyval.compound_stmt = A_CompoundStmt(line_no, yyvsp[-1].stmt_list);
-;
-    break;}
-case 62:
-#line 465 "pascal.y"
-{
-    yyval.stmt_list = A_StmtList(line_no, yyvsp[-2].stmt_list, yyvsp[-1].stmt);
-;
-    break;}
-case 63:
-#line 468 "pascal.y"
-{
-    yyval.stmt_list = NULL;
-;
-    break;}
-case 64:
-#line 473 "pascal.y"
-{
-    yyval.stmt = A_StmtLabel(line_no, yyvsp[-2].ival, yyvsp[0].non_label_stmt);
-;
-    break;}
-case 65:
-#line 476 "pascal.y"
-{
-    yyval.stmt = A_StmtNonLabel(line_no, yyvsp[0].non_label_stmt);
-;
-    break;}
-case 66:
-#line 481 "pascal.y"
-{
-    yyval.non_label_stmt = A_NonLabelStmtAssign(line_no, yyvsp[0].assign_stmt);
-;
-    break;}
-case 67:
-#line 484 "pascal.y"
-{
-    yyval.non_label_stmt = A_NonLabelStmtProc(line_no, yyvsp[0].proc_stmt);
-;
-    break;}
-case 68:
-#line 487 "pascal.y"
-{
-    yyval.non_label_stmt = A_NonLabelStmtCompound(line_no, yyvsp[0].compound_stmt);
-;
-    break;}
-case 69:
-#line 490 "pascal.y"
-{
-    yyval.non_label_stmt = A_NonLabelStmtIf(line_no, yyvsp[0].if_stmt);
-;
-    break;}
-case 70:
-#line 493 "pascal.y"
-{
-    yyval.non_label_stmt = A_NonLabelStmtRepeat(line_no, yyvsp[0].repeat_stmt);
-;
-    break;}
-case 71:
-#line 496 "pascal.y"
-{
-    yyval.non_label_stmt = A_NonLabelStmtWhile(line_no, yyvsp[0].while_stmt);
-;
-    break;}
-case 72:
-#line 499 "pascal.y"
-{
-    yyval.non_label_stmt = A_NonLabelStmtFor(line_no, yyvsp[0].for_stmt);
-;
-    break;}
-case 73:
-#line 502 "pascal.y"
-{
-    yyval.non_label_stmt = A_NonLabelStmtCase(line_no, yyvsp[0].case_stmt);
-;
-    break;}
-case 74:
-#line 505 "pascal.y"
-{
-    yyval.non_label_stmt = A_NonLabelStmtGoto(line_no, yyvsp[0].goto_stmt);
-;
-    break;}
-case 75:
-#line 510 "pascal.y"
-{
-    //$$ = A_AssignStmtSimple(line_no, $1, $3);
-    yyval.assign_stmt = A_AssignStmtSimple(line_no, S_Symbol(yyvsp[-2].sval), yyvsp[0].expression);
-;
-    break;}
-case 76:
-#line 514 "pascal.y"
-{
-    //$$ = A_AssignStmtArray(line_no, $1, $3, $6);
-    yyval.assign_stmt = A_AssignStmtArray(line_no, S_Symbol(yyvsp[-5].sval), yyvsp[-3].expression, yyvsp[0].expression);
-;
-    break;}
-case 77:
-#line 518 "pascal.y"
-{
-    //$$ = A_AssignStmtRecord(line_no, $1, $3, $5);
-    yyval.assign_stmt = A_AssignStmtRecord(line_no, S_Symbol(yyvsp[-4].sval), S_Symbol(yyvsp[-2].sval), yyvsp[0].expression);
-;
-    break;}
-case 78:
-#line 524 "pascal.y"
-{
-    // $$ = A_ProcStmtID(line_no, $1);
-    yyval.proc_stmt = A_ProcStmtID(line_no, S_Symbol(yyvsp[0].sval));
-;
-    break;}
-case 79:
-#line 528 "pascal.y"
-{
-    yyval.proc_stmt = A_ProcStmtIDWithArgs(line_no, S_Symbol(yyvsp[-3].sval), yyvsp[-1].args_list);
-;
-    break;}
-case 80:
-#line 531 "pascal.y"
-{
-    yyval.proc_stmt = A_ProcStmtSysProc(line_no, yyvsp[0].sys_proc);
-;
-    break;}
-case 81:
-#line 534 "pascal.y"
-{
-    yyval.proc_stmt = A_ProcStmtSysProcWithArgs(line_no, yyvsp[-3].sys_proc, yyvsp[-1].expression_list);
-;
-    break;}
-case 82:
-#line 537 "pascal.y"
-{
-    yyval.proc_stmt = A_ProcStmtRead(line_no, yyvsp[-1].factor);
-;
-    break;}
-case 83:
-#line 542 "pascal.y"
-{
-    yyval.if_stmt = A_IfStmt(line_no, yyvsp[-3].expression, yyvsp[-1].stmt, yyvsp[0].else_clause);
-;
-    break;}
-case 84:
-#line 547 "pascal.y"
-{
-    yyval.else_clause = A_ElseClause(line_no, yyvsp[0].stmt);
-;
-    break;}
-case 85:
-#line 549 "pascal.y"
-{
-    yyval.else_clause = A_ElseClause(line_no, NULL);
-;
-    break;}
-case 86:
-#line 555 "pascal.y"
-{
-    yyval.repeat_stmt = A_RepeatStmt(line_no, yyvsp[-2].stmt_list, yyvsp[0].expression);
-;
-    break;}
-case 87:
-#line 560 "pascal.y"
-{
-    yyval.while_stmt = A_WhileStmt(line_no, yyvsp[-2].expression, yyvsp[0].stmt);
-;
-    break;}
-case 88:
-#line 565 "pascal.y"
-{
-    yyval.for_stmt = A_ForStmt(line_no, S_Symbol(yyvsp[-6].sval), yyvsp[-4].expression, yyvsp[-3].direction, yyvsp[-2].expression, yyvsp[0].stmt);
-;
-    break;}
-case 89:
-#line 570 "pascal.y"
-{
-    yyval.direction = yyvsp[0].direction;
-;
-    break;}
-case 90:
-#line 573 "pascal.y"
-{
-    yyval.direction = yyvsp[0].direction;
-;
-    break;}
-case 91:
-#line 578 "pascal.y"
-{
-    yyval.case_stmt = A_CaseStmt(line_no, yyvsp[-3].expression, yyvsp[-1].case_expr_list);
-;
-    break;}
-case 92:
-#line 583 "pascal.y"
-{
-    yyval.case_expr_list = A_CaseExprListSeq(line_no, yyvsp[-1].case_expr_list, yyvsp[0].case_expr);
-;
-    break;}
-case 93:
-#line 586 "pascal.y"
-{
-    yyval.case_expr_list = A_CaseExprList(line_no, yyvsp[0].case_expr);
-;
-    break;}
-case 94:
-#line 591 "pascal.y"
-{
-    yyval.case_expr = A_CaseExprConst(line_no, yyvsp[-3].const_value, yyvsp[-1].stmt);
-;
-    break;}
-case 95:
-#line 594 "pascal.y"
-{
-    //$$ = A_CaseExprNonConst(line_no, $1, $3);
-    yyval.case_expr = A_CaseExprNonConst(line_no, S_Symbol(yyvsp[-3].sval), yyvsp[-1].stmt);
-;
-    break;}
-case 96:
-#line 600 "pascal.y"
-{
-    yyval.goto_stmt = A_GotoStmt(line_no, yyvsp[0].ival);
-;
-    break;}
-case 97:
-#line 605 "pascal.y"
-{
-    yyval.expression_list = A_ExpressionListSeq(line_no, yyvsp[-2].expression_list, yyvsp[0].expression);
-;
-    break;}
-case 98:
-#line 608 "pascal.y"
-{
-    yyval.expression_list = A_ExpressionList(line_no, yyvsp[0].expression);
-;
-    break;}
-case 99:
-#line 613 "pascal.y"
-{
-    yyval.expression = A_ExpressionBin(line_no, yyvsp[-2].expression, OP_GE, yyvsp[0].expr);
-;
-    break;}
-case 100:
-#line 616 "pascal.y"
-{
-    yyval.expression = A_ExpressionBin(line_no, yyvsp[-2].expression, OP_GT, yyvsp[0].expr);
-;
-    break;}
-case 101:
-#line 619 "pascal.y"
-{
-    yyval.expression = A_ExpressionBin(line_no, yyvsp[-2].expression, OP_LE, yyvsp[0].expr);
-;
-    break;}
-case 102:
-#line 622 "pascal.y"
-{
-    yyval.expression = A_ExpressionBin(line_no, yyvsp[-2].expression, OP_LT, yyvsp[0].expr);
-;
-    break;}
-case 103:
-#line 625 "pascal.y"
-{
-    yyval.expression = A_ExpressionBin(line_no, yyvsp[-2].expression, OP_EQUAL, yyvsp[0].expr);
-;
-    break;}
-case 104:
-#line 628 "pascal.y"
-{
-    yyval.expression = A_ExpressionBin(line_no, yyvsp[-2].expression, OP_UNEQUAL, yyvsp[0].expr);
-;
-    break;}
-case 105:
-#line 631 "pascal.y"
-{
-    yyval.expression = A_ExpressionUn(line_no, yyvsp[0].expr);
-;
-    break;}
-case 106:
-#line 636 "pascal.y"
-{
-    yyval.expr = A_ExprBin(line_no, yyvsp[-2].expr, OP_PLUS, yyvsp[0].term);
-;
-    break;}
-case 107:
-#line 639 "pascal.y"
-{
-    yyval.expr = A_ExprBin(line_no, yyvsp[-2].expr, OP_MINUS, yyvsp[0].term);
-;
-    break;}
-case 108:
-#line 642 "pascal.y"
-{
-    yyval.expr = A_ExprBin(line_no, yyvsp[-2].expr, OP_OR, yyvsp[0].term);
-;
-    break;}
-case 109:
-#line 645 "pascal.y"
-{
-    yyval.expr = A_ExprUn(line_no, yyvsp[0].term);
-;
-    break;}
-case 110:
-#line 650 "pascal.y"
-{
-    yyval.term = A_TermBin(line_no, yyvsp[-2].term, OP_MUL, yyvsp[0].factor);
-;
-    break;}
-case 111:
-#line 653 "pascal.y"
-{
-    yyval.term = A_TermBin(line_no, yyvsp[-2].term, OP_DIV, yyvsp[0].factor);
-;
-    break;}
-case 112:
-#line 656 "pascal.y"
-{
-    yyval.term = A_TermBin(line_no, yyvsp[-2].term, OP_MOD, yyvsp[0].factor);
-;
-    break;}
-case 113:
-#line 659 "pascal.y"
-{
-    yyval.term = A_TermBin(line_no, yyvsp[-2].term, OP_AND, yyvsp[0].factor);
-;
-    break;}
-case 114:
-#line 662 "pascal.y"
-{
-    yyval.term = A_TermUn(line_no, yyvsp[0].factor);
-;
-    break;}
-case 115:
-#line 667 "pascal.y"
-{
-    //$$ = A_FactorId(line_no, $1);
-    yyval.factor = A_FactorId(line_no, S_Symbol(yyvsp[0].sval));
-;
-    break;}
-case 116:
-#line 671 "pascal.y"
-{
-    //$$ = A_FactorIdWithArgs(line_no, $1, $3);
-    yyval.factor = A_FactorIdWithArgs(line_no, S_Symbol(yyvsp[-3].sval), yyvsp[-1].args_list);
-;
-    break;}
-case 117:
-#line 675 "pascal.y"
-{
-    yyval.factor = A_FactorSysFunct(line_no, yyvsp[0].sys_funct);
-;
-    break;}
-case 118:
-#line 678 "pascal.y"
-{
-    yyval.factor = A_FactorSysFunctWithArgs(line_no, yyvsp[-3].sys_funct, yyvsp[-1].args_list);
-;
-    break;}
-case 119:
-#line 681 "pascal.y"
-{
-    yyval.factor = A_FactorConst(line_no, yyvsp[0].const_value);
-;
-    break;}
-case 120:
-#line 684 "pascal.y"
-{
-    yyval.factor = A_FactorInBrackets(line_no, yyvsp[-1].expression);
-;
-    break;}
-case 121:
-#line 687 "pascal.y"
-{
-    yyval.factor = A_FactorUnOp(line_no, NOT, yyvsp[0].factor);
-;
-    break;}
-case 122:
-#line 690 "pascal.y"
-{
-    yyval.factor = A_FactorUnOp(line_no, NEG, yyvsp[0].factor);
-;
-    break;}
-case 123:
-#line 693 "pascal.y"
-{
-    //$$ = A_FactorArrayVar(line_no, $1, $3);
-    yyval.factor = A_FactorArrayVar(line_no, S_Symbol(yyvsp[-3].sval), yyvsp[-1].expression);
-;
-    break;}
-case 124:
-#line 697 "pascal.y"
-{
-    //$$ = A_FactorRecordVar(line_no, $1, $3);
-    yyval.factor = A_FactorRecordVar(line_no, S_Symbol(yyvsp[-2].sval), S_Symbol(yyvsp[0].sval));
-;
-    break;}
-case 125:
-#line 703 "pascal.y"
-{
-    yyval.args_list = A_ArgsListSeq(line_no, yyvsp[-2].args_list, yyvsp[0].expression);
-;
-    break;}
-case 126:
-#line 706 "pascal.y"
-{
-    yyval.args_list = A_ArgsList(line_no, yyvsp[0].expression);
-;
-    break;}
-}
-   /* the action file gets copied in in place of this dollarsign */
-#line 442 "bison.simple"
-
-  yyvsp -= yylen;
-  yyssp -= yylen;
-#ifdef YYLSP_NEEDED
-  yylsp -= yylen;
-#endif
-
-#if YYDEBUG != 0
-  if (yydebug)
     {
-      short *ssp1 = yyss - 1;
-      fprintf (stderr, "state stack now");
-      while (ssp1 != yyssp)
-	fprintf (stderr, " %d", *++ssp1);
-      fprintf (stderr, "\n");
+    (yyval.program) = A_Program(line_no, (yyvsp[(1) - (3)].program_head), (yyvsp[(2) - (3)].routine));
+;}
+    break;
+
+  case 3:
+#line 195 "pascal.y"
+    {
+    (yyval.program_head) = A_ProgramHead(line_no, (yyvsp[(2) - (3)].sval));
+;}
+    break;
+
+  case 4:
+#line 200 "pascal.y"
+    {
+    (yyval.routine) = A_Routine(line_no, (yyvsp[(1) - (2)].routine_head), (yyvsp[(2) - (2)].routine_body));
+;}
+    break;
+
+  case 5:
+#line 205 "pascal.y"
+    {
+    (yyval.sub_routine) = A_SubRoutine(line_no, (yyvsp[(1) - (2)].routine_head), (yyvsp[(2) - (2)].routine_body));
+;}
+    break;
+
+  case 6:
+#line 210 "pascal.y"
+    {
+    (yyval.routine_head) = A_RoutineHead(line_no, (yyvsp[(1) - (5)].label_part), (yyvsp[(2) - (5)].const_part), (yyvsp[(3) - (5)].type_part), (yyvsp[(4) - (5)].var_part), (yyvsp[(5) - (5)].routine_part));
+;}
+    break;
+
+  case 7:
+#line 215 "pascal.y"
+    {
+    (yyval.label_part) = A_LabelPart(line_no);
+;}
+    break;
+
+  case 8:
+#line 220 "pascal.y"
+    {
+    (yyval.const_part) = A_ConstPart(line_no, (yyvsp[(2) - (2)].const_expr_list));
+;}
+    break;
+
+  case 9:
+#line 223 "pascal.y"
+    {
+    (yyval.const_part) = A_ConstPart(line_no, NULL);
+ ;}
+    break;
+
+  case 10:
+#line 228 "pascal.y"
+    {
+    // $$ = A_ConstExprListSeq(line_no, $1, $2, $4);
+    (yyval.const_expr_list) = A_ConstExprListSeq(line_no, (yyvsp[(1) - (5)].const_expr_list), S_Symbol((yyvsp[(2) - (5)].sval)), (yyvsp[(4) - (5)].const_value));
+;}
+    break;
+
+  case 11:
+#line 232 "pascal.y"
+    {
+    (yyval.const_expr_list) = A_ConstExprList(line_no, S_Symbol((yyvsp[(1) - (4)].sval)), (yyvsp[(3) - (4)].const_value));
+;}
+    break;
+
+  case 12:
+#line 237 "pascal.y"
+    {
+    (yyval.const_value) = A_ConstValueInteger(line_no, (yyvsp[(1) - (1)].ival));
+;}
+    break;
+
+  case 13:
+#line 240 "pascal.y"
+    {
+    (yyval.const_value) = A_ConstValueReal(line_no, (yyvsp[(1) - (1)].dval));
+;}
+    break;
+
+  case 14:
+#line 243 "pascal.y"
+    {
+    (yyval.const_value) = A_ConstValueChar(line_no, (yyvsp[(1) - (1)].sval));
+;}
+    break;
+
+  case 15:
+#line 246 "pascal.y"
+    {
+    (yyval.const_value) = A_ConstValueString(line_no, (yyvsp[(1) - (1)].sval));
+;}
+    break;
+
+  case 16:
+#line 249 "pascal.y"
+    {
+    (yyval.const_value) = A_ConstValueSysCon(line_no, (yyvsp[(1) - (1)].sys_con));
+;}
+    break;
+
+  case 17:
+#line 254 "pascal.y"
+    {
+    (yyval.type_part) = A_TypePart(line_no, (yyvsp[(2) - (2)].type_decl_list));
+;}
+    break;
+
+  case 18:
+#line 257 "pascal.y"
+    {
+    (yyval.type_part) = A_TypePart(line_no, NULL);
+;}
+    break;
+
+  case 19:
+#line 262 "pascal.y"
+    {
+    (yyval.type_decl_list) = A_TypeDeclListSeq(line_no, (yyvsp[(1) - (2)].type_decl_list), (yyvsp[(2) - (2)].type_definition));
+;}
+    break;
+
+  case 20:
+#line 265 "pascal.y"
+    {
+    (yyval.type_decl_list) = A_TypeDeclList(line_no, (yyvsp[(1) - (1)].type_definition));
+;}
+    break;
+
+  case 21:
+#line 270 "pascal.y"
+    {
+    // $$ = A_TypeDefinition(line_no, $1, $3);
+    (yyval.type_definition) = A_TypeDefinition(line_no, S_Symbol((yyvsp[(1) - (4)].sval)), (yyvsp[(3) - (4)].type_decl));
+;}
+    break;
+
+  case 22:
+#line 276 "pascal.y"
+    {
+    (yyval.type_decl) = A_TypeDeclSimple(line_no, (yyvsp[(1) - (1)].simple_type_decl));
+;}
+    break;
+
+  case 23:
+#line 279 "pascal.y"
+    {
+    (yyval.type_decl) = A_TypeDeclArray(line_no, (yyvsp[(1) - (1)].array_type_decl));
+;}
+    break;
+
+  case 24:
+#line 282 "pascal.y"
+    {
+    (yyval.type_decl) = A_TypeDeclRecord(line_no, (yyvsp[(1) - (1)].record_type_decl));
+;}
+    break;
+
+  case 25:
+#line 287 "pascal.y"
+    {
+    (yyval.simple_type_decl) = A_SimpleTypeDeclSysType(line_no, (yyvsp[(1) - (1)].sys_type));
+;}
+    break;
+
+  case 26:
+#line 290 "pascal.y"
+    {
+    // $$ = A_SimpleTypeDeclId(line_no, $1);
+    (yyval.simple_type_decl) = A_SimpleTypeDeclId(line_no, S_Symbol((yyvsp[(1) - (1)].sval)));
+;}
+    break;
+
+  case 27:
+#line 294 "pascal.y"
+    {
+    (yyval.simple_type_decl) = A_SimpleTypeDeclNameList(line_no, (yyvsp[(2) - (3)].name_list));
+;}
+    break;
+
+  case 28:
+#line 297 "pascal.y"
+    {
+    (yyval.simple_type_decl) = A_SimpleTypeDeclRangeConst(line_no, (yyvsp[(1) - (3)].const_value), (yyvsp[(3) - (3)].const_value));
+;}
+    break;
+
+  case 29:
+#line 300 "pascal.y"
+    {
+    A_const_value from = NULL;
+    if ((yyvsp[(2) - (4)].const_value)->kind == INTEGER) {
+        from = A_ConstValueInteger(line_no, -((yyvsp[(2) - (4)].const_value)->u.intt));
     }
-#endif
+    else if ((yyvsp[(2) - (4)].const_value)->kind == REAL) {
+        from = A_ConstValueReal(line_no, -((yyvsp[(2) - (4)].const_value)->u.real));
+    }
+    (yyval.simple_type_decl) = A_SimpleTypeDeclRangeConst(line_no, from, (yyvsp[(4) - (4)].const_value));
+;}
+    break;
+
+  case 30:
+#line 310 "pascal.y"
+    {
+    A_const_value from = NULL, to = NULL;
+    if ((yyvsp[(2) - (5)].const_value)->kind == INTEGER) {
+        from = A_ConstValueInteger(line_no, -((yyvsp[(2) - (5)].const_value)->u.intt));
+        to = A_ConstValueInteger(line_no, -((yyvsp[(2) - (5)].const_value)->u.intt));
+    }
+    else if ((yyvsp[(2) - (5)].const_value)->kind == REAL) {
+        from = A_ConstValueReal(line_no, -((yyvsp[(5) - (5)].const_value)->u.real));
+        to = A_ConstValueReal(line_no, -((yyvsp[(5) - (5)].const_value)->u.real));
+    }
+    (yyval.simple_type_decl) = A_SimpleTypeDeclRangeConst(line_no, from, to);
+;}
+    break;
+
+  case 31:
+#line 322 "pascal.y"
+    {
+    //  $$ = A_SimpleTypeDeclIdRangeId(line_no, $1, $3);
+    (yyval.simple_type_decl) = A_SimpleTypeDeclRangeId(line_no, S_Symbol((yyvsp[(1) - (3)].sval)), S_Symbol((yyvsp[(3) - (3)].sval)));
+;}
+    break;
+
+  case 32:
+#line 328 "pascal.y"
+    {
+    (yyval.array_type_decl) = A_ArrayTypeDecl(line_no, (yyvsp[(3) - (6)].simple_type_decl), (yyvsp[(6) - (6)].type_decl));
+;}
+    break;
+
+  case 33:
+#line 333 "pascal.y"
+    {
+    (yyval.record_type_decl) = A_RecordTypeDecl(line_no, (yyvsp[(2) - (3)].field_decl_list));
+;}
+    break;
+
+  case 34:
+#line 338 "pascal.y"
+    {
+    (yyval.field_decl_list) = A_FieldDeclListSeq(line_no, (yyvsp[(1) - (2)].field_decl_list), (yyvsp[(2) - (2)].field_decl));
+;}
+    break;
+
+  case 35:
+#line 341 "pascal.y"
+    {
+    (yyval.field_decl_list) = A_FieldDeclList(line_no, (yyvsp[(1) - (1)].field_decl));
+;}
+    break;
+
+  case 36:
+#line 346 "pascal.y"
+    {
+    (yyval.field_decl) = A_FieldDecl(line_no, (yyvsp[(1) - (4)].name_list), (yyvsp[(3) - (4)].type_decl));
+;}
+    break;
+
+  case 37:
+#line 351 "pascal.y"
+    {
+    // $$ = A_NameListSeq(line_no, $1, $3);
+    (yyval.name_list) = A_NameListSeq(line_no, (yyvsp[(1) - (3)].name_list), S_Symbol((yyvsp[(3) - (3)].sval)));
+;}
+    break;
+
+  case 38:
+#line 355 "pascal.y"
+    {
+    // $$ = A_NameList(line_no, $1);
+    (yyval.name_list) = A_NameList(line_no, S_Symbol((yyvsp[(1) - (1)].sval)));
+;}
+    break;
+
+  case 39:
+#line 361 "pascal.y"
+    {
+    (yyval.var_part) = A_VarPart(line_no, (yyvsp[(2) - (2)].var_decl_list));
+;}
+    break;
+
+  case 40:
+#line 364 "pascal.y"
+    {
+    (yyval.var_part) = A_VarPart(line_no, NULL);
+;}
+    break;
+
+  case 41:
+#line 369 "pascal.y"
+    {
+    (yyval.var_decl_list) = A_VarDeclListSeq(line_no, (yyvsp[(1) - (2)].var_decl_list), (yyvsp[(2) - (2)].var_decl));
+;}
+    break;
+
+  case 42:
+#line 372 "pascal.y"
+    {
+    (yyval.var_decl_list) = A_VarDeclList(line_no, (yyvsp[(1) - (1)].var_decl));
+;}
+    break;
+
+  case 43:
+#line 377 "pascal.y"
+    {
+    (yyval.var_decl) = A_VarDecl(line_no, (yyvsp[(1) - (4)].name_list), (yyvsp[(3) - (4)].type_decl));
+;}
+    break;
+
+  case 44:
+#line 382 "pascal.y"
+    {
+    (yyval.routine_part) = A_RoutinePartSeqWithFunctionDecl(line_no, (yyvsp[(1) - (2)].routine_part), (yyvsp[(2) - (2)].function_decl));
+;}
+    break;
+
+  case 45:
+#line 385 "pascal.y"
+    {
+    (yyval.routine_part) = A_RoutinePartSeqWithProcedureDecl(line_no, (yyvsp[(1) - (2)].routine_part), (yyvsp[(2) - (2)].procedure_decl));
+;}
+    break;
+
+  case 46:
+#line 388 "pascal.y"
+    {
+    (yyval.routine_part) = A_RoutinePartWithFunctionDecl(line_no, (yyvsp[(1) - (1)].function_decl));
+;}
+    break;
+
+  case 47:
+#line 391 "pascal.y"
+    {
+    (yyval.routine_part) = A_RoutinePartWithProcedureDecl(line_no, (yyvsp[(1) - (1)].procedure_decl));
+;}
+    break;
+
+  case 48:
+#line 394 "pascal.y"
+    {
+    (yyval.routine_part) = NULL;
+;}
+    break;
+
+  case 49:
+#line 399 "pascal.y"
+    {
+    (yyval.function_decl) = A_FunctionDecl(line_no, (yyvsp[(1) - (4)].function_head), (yyvsp[(3) - (4)].sub_routine));
+;}
+    break;
+
+  case 50:
+#line 404 "pascal.y"
+    {
+    (yyval.function_head) = A_FunctionHead(line_no, S_Symbol((yyvsp[(2) - (5)].sval)), (yyvsp[(3) - (5)].parameters), (yyvsp[(5) - (5)].simple_type_decl));
+;}
+    break;
+
+  case 51:
+#line 409 "pascal.y"
+    {
+    (yyval.procedure_decl) = A_ProcedureDecl(line_no, (yyvsp[(1) - (4)].procedure_head), (yyvsp[(3) - (4)].sub_routine));
+;}
+    break;
+
+  case 52:
+#line 414 "pascal.y"
+    {
+    //$$ = A_ProcedureHead(line_no, $2, $3);
+    (yyval.procedure_head) = A_ProcedureHead(line_no, S_Symbol((yyvsp[(2) - (3)].sval)), (yyvsp[(3) - (3)].parameters));
+;}
+    break;
+
+  case 53:
+#line 420 "pascal.y"
+    {
+    (yyval.parameters) = A_Parameters(line_no, (yyvsp[(2) - (3)].para_decl_list));
+;}
+    break;
+
+  case 54:
+#line 423 "pascal.y"
+    {
+    (yyval.parameters) = NULL;
+;}
+    break;
+
+  case 55:
+#line 428 "pascal.y"
+    {
+    (yyval.para_decl_list) = A_ParaDeclListSeq(line_no, (yyvsp[(1) - (3)].para_decl_list), (yyvsp[(3) - (3)].para_type_list));
+;}
+    break;
+
+  case 56:
+#line 431 "pascal.y"
+    {
+    (yyval.para_decl_list) = A_ParaDeclList(line_no, (yyvsp[(1) - (1)].para_type_list));
+;}
+    break;
+
+  case 57:
+#line 437 "pascal.y"
+    {
+    (yyval.para_type_list) = A_ParaTypeListVar(line_no, (yyvsp[(1) - (3)].var_para_list), (yyvsp[(3) - (3)].simple_type_decl));
+;}
+    break;
+
+  case 58:
+#line 440 "pascal.y"
+    {
+    (yyval.para_type_list) = A_ParaTypeListVal(line_no, (yyvsp[(1) - (3)].val_para_list), (yyvsp[(3) - (3)].simple_type_decl));
+;}
+    break;
+
+  case 59:
+#line 445 "pascal.y"
+    {
+    (yyval.var_para_list) = A_VarParaList(line_no, (yyvsp[(2) - (2)].name_list));
+;}
+    break;
+
+  case 60:
+#line 450 "pascal.y"
+    {
+    (yyval.val_para_list) = A_ValParaList(line_no, (yyvsp[(1) - (1)].name_list));
+;}
+    break;
+
+  case 61:
+#line 455 "pascal.y"
+    {
+    (yyval.routine_body) = A_RoutineBody(line_no, (yyvsp[(1) - (1)].compound_stmt));
+;}
+    break;
+
+  case 62:
+#line 460 "pascal.y"
+    {
+    (yyval.compound_stmt) = A_CompoundStmt(line_no, (yyvsp[(2) - (3)].stmt_list));
+;}
+    break;
+
+  case 63:
+#line 465 "pascal.y"
+    {
+    (yyval.stmt_list) = A_StmtList(line_no, (yyvsp[(1) - (3)].stmt_list), (yyvsp[(2) - (3)].stmt));
+;}
+    break;
+
+  case 64:
+#line 468 "pascal.y"
+    {
+    (yyval.stmt_list) = NULL;
+;}
+    break;
+
+  case 65:
+#line 473 "pascal.y"
+    {
+    (yyval.stmt) = A_StmtLabel(line_no, (yyvsp[(1) - (3)].ival), (yyvsp[(3) - (3)].non_label_stmt));
+;}
+    break;
+
+  case 66:
+#line 476 "pascal.y"
+    {
+    (yyval.stmt) = A_StmtNonLabel(line_no, (yyvsp[(1) - (1)].non_label_stmt));
+;}
+    break;
+
+  case 67:
+#line 481 "pascal.y"
+    {
+    (yyval.non_label_stmt) = A_NonLabelStmtAssign(line_no, (yyvsp[(1) - (1)].assign_stmt));
+;}
+    break;
+
+  case 68:
+#line 484 "pascal.y"
+    {
+    (yyval.non_label_stmt) = A_NonLabelStmtProc(line_no, (yyvsp[(1) - (1)].proc_stmt));
+;}
+    break;
+
+  case 69:
+#line 487 "pascal.y"
+    {
+    (yyval.non_label_stmt) = A_NonLabelStmtCompound(line_no, (yyvsp[(1) - (1)].compound_stmt));
+;}
+    break;
+
+  case 70:
+#line 490 "pascal.y"
+    {
+    (yyval.non_label_stmt) = A_NonLabelStmtIf(line_no, (yyvsp[(1) - (1)].if_stmt));
+;}
+    break;
+
+  case 71:
+#line 493 "pascal.y"
+    {
+    (yyval.non_label_stmt) = A_NonLabelStmtRepeat(line_no, (yyvsp[(1) - (1)].repeat_stmt));
+;}
+    break;
+
+  case 72:
+#line 496 "pascal.y"
+    {
+    (yyval.non_label_stmt) = A_NonLabelStmtWhile(line_no, (yyvsp[(1) - (1)].while_stmt));
+;}
+    break;
+
+  case 73:
+#line 499 "pascal.y"
+    {
+    (yyval.non_label_stmt) = A_NonLabelStmtFor(line_no, (yyvsp[(1) - (1)].for_stmt));
+;}
+    break;
+
+  case 74:
+#line 502 "pascal.y"
+    {
+    (yyval.non_label_stmt) = A_NonLabelStmtCase(line_no, (yyvsp[(1) - (1)].case_stmt));
+;}
+    break;
+
+  case 75:
+#line 505 "pascal.y"
+    {
+    (yyval.non_label_stmt) = A_NonLabelStmtGoto(line_no, (yyvsp[(1) - (1)].goto_stmt));
+;}
+    break;
+
+  case 76:
+#line 510 "pascal.y"
+    {
+    //$$ = A_AssignStmtSimple(line_no, $1, $3);
+    (yyval.assign_stmt) = A_AssignStmtSimple(line_no, S_Symbol((yyvsp[(1) - (3)].sval)), (yyvsp[(3) - (3)].expression));
+;}
+    break;
+
+  case 77:
+#line 514 "pascal.y"
+    {
+    //$$ = A_AssignStmtArray(line_no, $1, $3, $6);
+    (yyval.assign_stmt) = A_AssignStmtArray(line_no, S_Symbol((yyvsp[(1) - (6)].sval)), (yyvsp[(3) - (6)].expression), (yyvsp[(6) - (6)].expression));
+;}
+    break;
+
+  case 78:
+#line 518 "pascal.y"
+    {
+    //$$ = A_AssignStmtRecord(line_no, $1, $3, $5);
+    (yyval.assign_stmt) = A_AssignStmtRecord(line_no, S_Symbol((yyvsp[(1) - (5)].sval)), S_Symbol((yyvsp[(3) - (5)].sval)), (yyvsp[(5) - (5)].expression));
+;}
+    break;
+
+  case 79:
+#line 524 "pascal.y"
+    {
+    // $$ = A_ProcStmtID(line_no, $1);
+    (yyval.proc_stmt) = A_ProcStmtID(line_no, S_Symbol((yyvsp[(1) - (1)].sval)));
+;}
+    break;
+
+  case 80:
+#line 528 "pascal.y"
+    {
+    (yyval.proc_stmt) = A_ProcStmtIDWithArgs(line_no, S_Symbol((yyvsp[(1) - (4)].sval)), (yyvsp[(3) - (4)].args_list));
+;}
+    break;
+
+  case 81:
+#line 531 "pascal.y"
+    {
+    (yyval.proc_stmt) = A_ProcStmtSysProc(line_no, (yyvsp[(1) - (1)].sys_proc));
+;}
+    break;
+
+  case 82:
+#line 534 "pascal.y"
+    {
+    (yyval.proc_stmt) = A_ProcStmtSysProcWithArgs(line_no, (yyvsp[(1) - (4)].sys_proc), (yyvsp[(3) - (4)].expression_list));
+;}
+    break;
+
+  case 83:
+#line 537 "pascal.y"
+    {
+    (yyval.proc_stmt) = A_ProcStmtRead(line_no, (yyvsp[(3) - (4)].factor));
+;}
+    break;
+
+  case 84:
+#line 542 "pascal.y"
+    {
+    (yyval.if_stmt) = A_IfStmt(line_no, (yyvsp[(2) - (5)].expression), (yyvsp[(4) - (5)].stmt), (yyvsp[(5) - (5)].else_clause));
+;}
+    break;
+
+  case 85:
+#line 547 "pascal.y"
+    {
+    (yyval.else_clause) = A_ElseClause(line_no, (yyvsp[(2) - (2)].stmt));
+;}
+    break;
+
+  case 86:
+#line 549 "pascal.y"
+    {
+    (yyval.else_clause) = A_ElseClause(line_no, NULL);
+;}
+    break;
+
+  case 87:
+#line 555 "pascal.y"
+    {
+    (yyval.repeat_stmt) = A_RepeatStmt(line_no, (yyvsp[(2) - (4)].stmt_list), (yyvsp[(4) - (4)].expression));
+;}
+    break;
+
+  case 88:
+#line 560 "pascal.y"
+    {
+    (yyval.while_stmt) = A_WhileStmt(line_no, (yyvsp[(2) - (4)].expression), (yyvsp[(4) - (4)].stmt));
+;}
+    break;
+
+  case 89:
+#line 565 "pascal.y"
+    {
+    (yyval.for_stmt) = A_ForStmt(line_no, S_Symbol((yyvsp[(2) - (8)].sval)), (yyvsp[(4) - (8)].expression), (yyvsp[(5) - (8)].direction), (yyvsp[(6) - (8)].expression), (yyvsp[(8) - (8)].stmt));
+;}
+    break;
+
+  case 90:
+#line 570 "pascal.y"
+    {
+    (yyval.direction) = (yyvsp[(1) - (1)].direction);
+;}
+    break;
+
+  case 91:
+#line 573 "pascal.y"
+    {
+    (yyval.direction) = (yyvsp[(1) - (1)].direction);
+;}
+    break;
+
+  case 92:
+#line 578 "pascal.y"
+    {
+    (yyval.case_stmt) = A_CaseStmt(line_no, (yyvsp[(2) - (5)].expression), (yyvsp[(4) - (5)].case_expr_list));
+;}
+    break;
+
+  case 93:
+#line 583 "pascal.y"
+    {
+    (yyval.case_expr_list) = A_CaseExprListSeq(line_no, (yyvsp[(1) - (2)].case_expr_list), (yyvsp[(2) - (2)].case_expr));
+;}
+    break;
+
+  case 94:
+#line 586 "pascal.y"
+    {
+    (yyval.case_expr_list) = A_CaseExprList(line_no, (yyvsp[(1) - (1)].case_expr));
+;}
+    break;
+
+  case 95:
+#line 591 "pascal.y"
+    {
+    (yyval.case_expr) = A_CaseExprConst(line_no, (yyvsp[(1) - (4)].const_value), (yyvsp[(3) - (4)].stmt));
+;}
+    break;
+
+  case 96:
+#line 594 "pascal.y"
+    {
+    //$$ = A_CaseExprNonConst(line_no, $1, $3);
+    (yyval.case_expr) = A_CaseExprNonConst(line_no, S_Symbol((yyvsp[(1) - (4)].sval)), (yyvsp[(3) - (4)].stmt));
+;}
+    break;
+
+  case 97:
+#line 600 "pascal.y"
+    {
+    (yyval.goto_stmt) = A_GotoStmt(line_no, (yyvsp[(2) - (2)].ival));
+;}
+    break;
+
+  case 98:
+#line 605 "pascal.y"
+    {
+    (yyval.expression_list) = A_ExpressionListSeq(line_no, (yyvsp[(1) - (3)].expression_list), (yyvsp[(3) - (3)].expression));
+;}
+    break;
+
+  case 99:
+#line 608 "pascal.y"
+    {
+    (yyval.expression_list) = A_ExpressionList(line_no, (yyvsp[(1) - (1)].expression));
+;}
+    break;
+
+  case 100:
+#line 613 "pascal.y"
+    {
+    (yyval.expression) = A_ExpressionBin(line_no, (yyvsp[(1) - (3)].expression), OP_GE, (yyvsp[(3) - (3)].expr));
+;}
+    break;
+
+  case 101:
+#line 616 "pascal.y"
+    {
+    (yyval.expression) = A_ExpressionBin(line_no, (yyvsp[(1) - (3)].expression), OP_GT, (yyvsp[(3) - (3)].expr));
+;}
+    break;
+
+  case 102:
+#line 619 "pascal.y"
+    {
+    (yyval.expression) = A_ExpressionBin(line_no, (yyvsp[(1) - (3)].expression), OP_LE, (yyvsp[(3) - (3)].expr));
+;}
+    break;
+
+  case 103:
+#line 622 "pascal.y"
+    {
+    (yyval.expression) = A_ExpressionBin(line_no, (yyvsp[(1) - (3)].expression), OP_LT, (yyvsp[(3) - (3)].expr));
+;}
+    break;
+
+  case 104:
+#line 625 "pascal.y"
+    {
+    (yyval.expression) = A_ExpressionBin(line_no, (yyvsp[(1) - (3)].expression), OP_EQUAL, (yyvsp[(3) - (3)].expr));
+;}
+    break;
+
+  case 105:
+#line 628 "pascal.y"
+    {
+    (yyval.expression) = A_ExpressionBin(line_no, (yyvsp[(1) - (3)].expression), OP_UNEQUAL, (yyvsp[(3) - (3)].expr));
+;}
+    break;
+
+  case 106:
+#line 631 "pascal.y"
+    {
+    (yyval.expression) = A_ExpressionUn(line_no, (yyvsp[(1) - (1)].expr));
+;}
+    break;
+
+  case 107:
+#line 636 "pascal.y"
+    {
+    (yyval.expr) = A_ExprBin(line_no, (yyvsp[(1) - (3)].expr), OP_PLUS, (yyvsp[(3) - (3)].term));
+;}
+    break;
+
+  case 108:
+#line 639 "pascal.y"
+    {
+    (yyval.expr) = A_ExprBin(line_no, (yyvsp[(1) - (3)].expr), OP_MINUS, (yyvsp[(3) - (3)].term));
+;}
+    break;
+
+  case 109:
+#line 642 "pascal.y"
+    {
+    (yyval.expr) = A_ExprBin(line_no, (yyvsp[(1) - (3)].expr), OP_OR, (yyvsp[(3) - (3)].term));
+;}
+    break;
+
+  case 110:
+#line 645 "pascal.y"
+    {
+    (yyval.expr) = A_ExprUn(line_no, (yyvsp[(1) - (1)].term));
+;}
+    break;
+
+  case 111:
+#line 650 "pascal.y"
+    {
+    (yyval.term) = A_TermBin(line_no, (yyvsp[(1) - (3)].term), OP_MUL, (yyvsp[(3) - (3)].factor));
+;}
+    break;
+
+  case 112:
+#line 653 "pascal.y"
+    {
+    (yyval.term) = A_TermBin(line_no, (yyvsp[(1) - (3)].term), OP_DIV, (yyvsp[(3) - (3)].factor));
+;}
+    break;
+
+  case 113:
+#line 656 "pascal.y"
+    {
+    (yyval.term) = A_TermBin(line_no, (yyvsp[(1) - (3)].term), OP_MOD, (yyvsp[(3) - (3)].factor));
+;}
+    break;
+
+  case 114:
+#line 659 "pascal.y"
+    {
+    (yyval.term) = A_TermBin(line_no, (yyvsp[(1) - (3)].term), OP_AND, (yyvsp[(3) - (3)].factor));
+;}
+    break;
+
+  case 115:
+#line 662 "pascal.y"
+    {
+    (yyval.term) = A_TermUn(line_no, (yyvsp[(1) - (1)].factor));
+;}
+    break;
+
+  case 116:
+#line 667 "pascal.y"
+    {
+    //$$ = A_FactorId(line_no, $1);
+    (yyval.factor) = A_FactorId(line_no, S_Symbol((yyvsp[(1) - (1)].sval)));
+;}
+    break;
+
+  case 117:
+#line 671 "pascal.y"
+    {
+    //$$ = A_FactorIdWithArgs(line_no, $1, $3);
+    (yyval.factor) = A_FactorIdWithArgs(line_no, S_Symbol((yyvsp[(1) - (4)].sval)), (yyvsp[(3) - (4)].args_list));
+;}
+    break;
+
+  case 118:
+#line 675 "pascal.y"
+    {
+    (yyval.factor) = A_FactorSysFunct(line_no, (yyvsp[(1) - (1)].sys_funct));
+;}
+    break;
+
+  case 119:
+#line 678 "pascal.y"
+    {
+    (yyval.factor) = A_FactorSysFunctWithArgs(line_no, (yyvsp[(1) - (4)].sys_funct), (yyvsp[(3) - (4)].args_list));
+;}
+    break;
+
+  case 120:
+#line 681 "pascal.y"
+    {
+    (yyval.factor) = A_FactorConst(line_no, (yyvsp[(1) - (1)].const_value));
+;}
+    break;
+
+  case 121:
+#line 684 "pascal.y"
+    {
+    (yyval.factor) = A_FactorInBrackets(line_no, (yyvsp[(2) - (3)].expression));
+;}
+    break;
+
+  case 122:
+#line 687 "pascal.y"
+    {
+    (yyval.factor) = A_FactorUnOp(line_no, NOT, (yyvsp[(2) - (2)].factor));
+;}
+    break;
+
+  case 123:
+#line 690 "pascal.y"
+    {
+    (yyval.factor) = A_FactorUnOp(line_no, NEG, (yyvsp[(2) - (2)].factor));
+;}
+    break;
+
+  case 124:
+#line 693 "pascal.y"
+    {
+    //$$ = A_FactorArrayVar(line_no, $1, $3);
+    (yyval.factor) = A_FactorArrayVar(line_no, S_Symbol((yyvsp[(1) - (4)].sval)), (yyvsp[(3) - (4)].expression));
+;}
+    break;
+
+  case 125:
+#line 697 "pascal.y"
+    {
+    //$$ = A_FactorRecordVar(line_no, $1, $3);
+    (yyval.factor) = A_FactorRecordVar(line_no, S_Symbol((yyvsp[(1) - (3)].sval)), S_Symbol((yyvsp[(3) - (3)].sval)));
+;}
+    break;
+
+  case 126:
+#line 703 "pascal.y"
+    {
+    (yyval.args_list) = A_ArgsListSeq(line_no, (yyvsp[(1) - (3)].args_list), (yyvsp[(3) - (3)].expression));
+;}
+    break;
+
+  case 127:
+#line 706 "pascal.y"
+    {
+    (yyval.args_list) = A_ArgsList(line_no, (yyvsp[(1) - (1)].expression));
+;}
+    break;
+
+
+/* Line 1267 of yacc.c.  */
+#line 2693 "pascal.tab.c"
+      default: break;
+    }
+  YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
+
+  YYPOPSTACK (yylen);
+  yylen = 0;
+  YY_STACK_PRINT (yyss, yyssp);
 
   *++yyvsp = yyval;
 
-#ifdef YYLSP_NEEDED
-  yylsp++;
-  if (yylen == 0)
-    {
-      yylsp->first_line = yylloc.first_line;
-      yylsp->first_column = yylloc.first_column;
-      yylsp->last_line = (yylsp-1)->last_line;
-      yylsp->last_column = (yylsp-1)->last_column;
-      yylsp->text = 0;
-    }
-  else
-    {
-      yylsp->last_line = (yylsp+yylen-1)->last_line;
-      yylsp->last_column = (yylsp+yylen-1)->last_column;
-    }
-#endif
 
-  /* Now "shift" the result of the reduction.
-     Determine what state that goes to,
-     based on the state we popped back to
-     and the rule number reduced by.  */
+  /* Now `shift' the result of the reduction.  Determine what state
+     that goes to, based on the state we popped back to and the rule
+     number reduced by.  */
 
   yyn = yyr1[yyn];
 
-  yystate = yypgoto[yyn - YYNTBASE] + *yyssp;
-  if (yystate >= 0 && yystate <= YYLAST && yycheck[yystate] == *yyssp)
+  yystate = yypgoto[yyn - YYNTOKENS] + *yyssp;
+  if (0 <= yystate && yystate <= YYLAST && yycheck[yystate] == *yyssp)
     yystate = yytable[yystate];
   else
-    yystate = yydefgoto[yyn - YYNTBASE];
+    yystate = yydefgoto[yyn - YYNTOKENS];
 
   goto yynewstate;
 
-yyerrlab:   /* here on detecting error */
 
-  if (! yyerrstatus)
-    /* If not already recovering from an error, report this error.  */
+/*------------------------------------.
+| yyerrlab -- here on detecting error |
+`------------------------------------*/
+yyerrlab:
+  /* If not already recovering from an error, report this error.  */
+  if (!yyerrstatus)
     {
       ++yynerrs;
+#if ! YYERROR_VERBOSE
+      yyerror (YY_("syntax error"));
+#else
+      {
+	YYSIZE_T yysize = yysyntax_error (0, yystate, yychar);
+	if (yymsg_alloc < yysize && yymsg_alloc < YYSTACK_ALLOC_MAXIMUM)
+	  {
+	    YYSIZE_T yyalloc = 2 * yysize;
+	    if (! (yysize <= yyalloc && yyalloc <= YYSTACK_ALLOC_MAXIMUM))
+	      yyalloc = YYSTACK_ALLOC_MAXIMUM;
+	    if (yymsg != yymsgbuf)
+	      YYSTACK_FREE (yymsg);
+	    yymsg = (char *) YYSTACK_ALLOC (yyalloc);
+	    if (yymsg)
+	      yymsg_alloc = yyalloc;
+	    else
+	      {
+		yymsg = yymsgbuf;
+		yymsg_alloc = sizeof yymsgbuf;
+	      }
+	  }
 
-#ifdef YYERROR_VERBOSE
-      yyn = yypact[yystate];
-
-      if (yyn > YYFLAG && yyn < YYLAST)
-	{
-	  int size = 0;
-	  char *msg;
-	  int x, count;
-
-	  count = 0;
-	  for (x = 0; x < (sizeof(yytname) / sizeof(char *)); x++)
-	    if (yycheck[x + yyn] == x)
-	      size += strlen(yytname[x]) + 15, count++;
-	  msg = (char *) malloc(size + 15);
-	  if (msg != 0)
-	    {
-	      strcpy(msg, "parse error");
-
-	      if (count < 5)
-		{
-		  count = 0;
-		  for (x = 0; x < (sizeof(yytname) / sizeof(char *)); x++)
-		    if (yycheck[x + yyn] == x)
-		      {
-			strcat(msg, count == 0 ? ", expecting `" : " or `");
-			strcat(msg, yytname[x]);
-			strcat(msg, "'");
-			count++;
-		      }
-		}
-	      yyerror(msg);
-	      free(msg);
-	    }
-	  else
-	    yyerror ("parse error; also virtual memory exceeded");
-	}
-      else
-#endif /* YYERROR_VERBOSE */
-	yyerror("parse error");
+	if (0 < yysize && yysize <= yymsg_alloc)
+	  {
+	    (void) yysyntax_error (yymsg, yystate, yychar);
+	    yyerror (yymsg);
+	  }
+	else
+	  {
+	    yyerror (YY_("syntax error"));
+	    if (yysize != 0)
+	      goto yyexhaustedlab;
+	  }
+      }
+#endif
     }
 
-  goto yyerrlab1;
-yyerrlab1:   /* here on error raised explicitly by an action */
+
 
   if (yyerrstatus == 3)
     {
-      /* if just tried and failed to reuse lookahead token after an error, discard it.  */
+      /* If just tried and failed to reuse look-ahead token after an
+	 error, discard it.  */
 
-      /* return failure if at end of input */
-      if (yychar == YYEOF)
+      if (yychar <= YYEOF)
+	{
+	  /* Return failure if at end of input.  */
+	  if (yychar == YYEOF)
+	    YYABORT;
+	}
+      else
+	{
+	  yydestruct ("Error: discarding",
+		      yytoken, &yylval);
+	  yychar = YYEMPTY;
+	}
+    }
+
+  /* Else will try to reuse look-ahead token after shifting the error
+     token.  */
+  goto yyerrlab1;
+
+
+/*---------------------------------------------------.
+| yyerrorlab -- error raised explicitly by YYERROR.  |
+`---------------------------------------------------*/
+yyerrorlab:
+
+  /* Pacify compilers like GCC when the user code never invokes
+     YYERROR and the label yyerrorlab therefore never appears in user
+     code.  */
+  if (/*CONSTCOND*/ 0)
+     goto yyerrorlab;
+
+  /* Do not reclaim the symbols of the rule which action triggered
+     this YYERROR.  */
+  YYPOPSTACK (yylen);
+  yylen = 0;
+  YY_STACK_PRINT (yyss, yyssp);
+  yystate = *yyssp;
+  goto yyerrlab1;
+
+
+/*-------------------------------------------------------------.
+| yyerrlab1 -- common code for both syntax error and YYERROR.  |
+`-------------------------------------------------------------*/
+yyerrlab1:
+  yyerrstatus = 3;	/* Each real token shifted decrements this.  */
+
+  for (;;)
+    {
+      yyn = yypact[yystate];
+      if (yyn != YYPACT_NINF)
+	{
+	  yyn += YYTERROR;
+	  if (0 <= yyn && yyn <= YYLAST && yycheck[yyn] == YYTERROR)
+	    {
+	      yyn = yytable[yyn];
+	      if (0 < yyn)
+		break;
+	    }
+	}
+
+      /* Pop the current state because it cannot handle the error token.  */
+      if (yyssp == yyss)
 	YYABORT;
 
-#if YYDEBUG != 0
-      if (yydebug)
-	fprintf(stderr, "Discarding token %d (%s).\n", yychar, yytname[yychar1]);
-#endif
 
-      yychar = YYEMPTY;
+      yydestruct ("Error: popping",
+		  yystos[yystate], yyvsp);
+      YYPOPSTACK (1);
+      yystate = *yyssp;
+      YY_STACK_PRINT (yyss, yyssp);
     }
-
-  /* Else will try to reuse lookahead token
-     after shifting the error token.  */
-
-  yyerrstatus = 3;		/* Each real token shifted decrements this */
-
-  goto yyerrhandle;
-
-yyerrdefault:  /* current state does not do anything special for the error token. */
-
-#if 0
-  /* This is wrong; only states that explicitly want error tokens
-     should shift them.  */
-  yyn = yydefact[yystate];  /* If its default is to accept any token, ok.  Otherwise pop it.*/
-  if (yyn) goto yydefault;
-#endif
-
-yyerrpop:   /* pop the current state because it cannot handle the error token */
-
-  if (yyssp == yyss) YYABORT;
-  yyvsp--;
-  yystate = *--yyssp;
-#ifdef YYLSP_NEEDED
-  yylsp--;
-#endif
-
-#if YYDEBUG != 0
-  if (yydebug)
-    {
-      short *ssp1 = yyss - 1;
-      fprintf (stderr, "Error: state stack now");
-      while (ssp1 != yyssp)
-	fprintf (stderr, " %d", *++ssp1);
-      fprintf (stderr, "\n");
-    }
-#endif
-
-yyerrhandle:
-
-  yyn = yypact[yystate];
-  if (yyn == YYFLAG)
-    goto yyerrdefault;
-
-  yyn += YYTERROR;
-  if (yyn < 0 || yyn > YYLAST || yycheck[yyn] != YYTERROR)
-    goto yyerrdefault;
-
-  yyn = yytable[yyn];
-  if (yyn < 0)
-    {
-      if (yyn == YYFLAG)
-	goto yyerrpop;
-      yyn = -yyn;
-      goto yyreduce;
-    }
-  else if (yyn == 0)
-    goto yyerrpop;
 
   if (yyn == YYFINAL)
     YYACCEPT;
 
-#if YYDEBUG != 0
-  if (yydebug)
-    fprintf(stderr, "Shifting error token, ");
-#endif
-
   *++yyvsp = yylval;
-#ifdef YYLSP_NEEDED
-  *++yylsp = yylloc;
-#endif
+
+
+  /* Shift the error token.  */
+  YY_SYMBOL_PRINT ("Shifting", yystos[yyn], yyvsp, yylsp);
 
   yystate = yyn;
   goto yynewstate;
+
+
+/*-------------------------------------.
+| yyacceptlab -- YYACCEPT comes here.  |
+`-------------------------------------*/
+yyacceptlab:
+  yyresult = 0;
+  goto yyreturn;
+
+/*-----------------------------------.
+| yyabortlab -- YYABORT comes here.  |
+`-----------------------------------*/
+yyabortlab:
+  yyresult = 1;
+  goto yyreturn;
+
+#ifndef yyoverflow
+/*-------------------------------------------------.
+| yyexhaustedlab -- memory exhaustion comes here.  |
+`-------------------------------------------------*/
+yyexhaustedlab:
+  yyerror (YY_("memory exhausted"));
+  yyresult = 2;
+  /* Fall through.  */
+#endif
+
+yyreturn:
+  if (yychar != YYEOF && yychar != YYEMPTY)
+     yydestruct ("Cleanup: discarding lookahead",
+		 yytoken, &yylval);
+  /* Do not reclaim the symbols of the rule which action triggered
+     this YYABORT or YYACCEPT.  */
+  YYPOPSTACK (yylen);
+  YY_STACK_PRINT (yyss, yyssp);
+  while (yyssp != yyss)
+    {
+      yydestruct ("Cleanup: popping",
+		  yystos[*yyssp], yyvsp);
+      YYPOPSTACK (1);
+    }
+#ifndef yyoverflow
+  if (yyss != yyssa)
+    YYSTACK_FREE (yyss);
+#endif
+#if YYERROR_VERBOSE
+  if (yymsg != yymsgbuf)
+    YYSTACK_FREE (yymsg);
+#endif
+  /* Make sure YYID is used.  */
+  return YYID (yyresult);
 }
+
+
 #line 712 "pascal.y"
 
    

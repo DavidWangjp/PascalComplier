@@ -5,7 +5,6 @@
 #ifndef PASCALCOMPLIER_TYPES_H
 #define PASCALCOMPLIER_TYPES_H
 
-#include <crtdbg.h>
 #include "absyn.h"
 #include "symbol.h"
 

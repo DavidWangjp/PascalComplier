@@ -3,7 +3,7 @@
 /* C Declarations: */
 #include <stdio.h>
 #include <stdlib.h>
-#include <string>
+#include <string.h>
 
 #include "absyn.h"
 #include "util.h"
