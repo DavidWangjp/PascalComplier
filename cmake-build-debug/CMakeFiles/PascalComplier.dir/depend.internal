@@ -39,6 +39,7 @@ CMakeFiles/PascalComplier.dir/main.c.obj
  D:/Workspace/CLionProjects/PascalComplier/errormsg.h
  D:/Workspace/CLionProjects/PascalComplier/frame.h
  D:/Workspace/CLionProjects/PascalComplier/main.c
+ D:/Workspace/CLionProjects/PascalComplier/prabsyn.h
  D:/Workspace/CLionProjects/PascalComplier/printtree.h
  D:/Workspace/CLionProjects/PascalComplier/semant.h
  D:/Workspace/CLionProjects/PascalComplier/symbol.h
@@ -50,6 +51,12 @@ CMakeFiles/PascalComplier.dir/main.c.obj
 CMakeFiles/PascalComplier.dir/pascal.tab.c.obj
  D:/Workspace/CLionProjects/PascalComplier/absyn.h
  D:/Workspace/CLionProjects/PascalComplier/pascal.tab.c
+ D:/Workspace/CLionProjects/PascalComplier/symbol.h
+ D:/Workspace/CLionProjects/PascalComplier/util.h
+CMakeFiles/PascalComplier.dir/prabsyn.c.obj
+ D:/Workspace/CLionProjects/PascalComplier/absyn.h
+ D:/Workspace/CLionProjects/PascalComplier/prabsyn.c
+ D:/Workspace/CLionProjects/PascalComplier/prabsyn.h
  D:/Workspace/CLionProjects/PascalComplier/symbol.h
  D:/Workspace/CLionProjects/PascalComplier/util.h
 CMakeFiles/PascalComplier.dir/printtree.c.obj

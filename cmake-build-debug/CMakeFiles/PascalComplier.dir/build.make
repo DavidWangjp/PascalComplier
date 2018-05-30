@@ -33,10 +33,10 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "D:\Program Files\JetBrains\apps\CLion\ch-0\182.2371.31\bin\cmake\bin\cmake.exe"
+CMAKE_COMMAND = "D:\Program Files\JetBrains\apps\CLion\ch-0\182.2574.4\bin\cmake\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "D:\Program Files\JetBrains\apps\CLion\ch-0\182.2371.31\bin\cmake\bin\cmake.exe" -E remove -f
+RM = "D:\Program Files\JetBrains\apps\CLion\ch-0\182.2574.4\bin\cmake\bin\cmake.exe" -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -251,9 +251,22 @@ CMakeFiles/PascalComplier.dir/errormsg.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PascalComplier.dir/errormsg.c.s"
 	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Workspace\CLionProjects\PascalComplier\errormsg.c -o CMakeFiles\PascalComplier.dir\errormsg.c.s
 
+CMakeFiles/PascalComplier.dir/prabsyn.c.obj: CMakeFiles/PascalComplier.dir/flags.make
+CMakeFiles/PascalComplier.dir/prabsyn.c.obj: ../prabsyn.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/PascalComplier.dir/prabsyn.c.obj"
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\prabsyn.c.obj   -c D:\Workspace\CLionProjects\PascalComplier\prabsyn.c
+
+CMakeFiles/PascalComplier.dir/prabsyn.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PascalComplier.dir/prabsyn.c.i"
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\Workspace\CLionProjects\PascalComplier\prabsyn.c > CMakeFiles\PascalComplier.dir\prabsyn.c.i
+
+CMakeFiles/PascalComplier.dir/prabsyn.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PascalComplier.dir/prabsyn.c.s"
+	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\Workspace\CLionProjects\PascalComplier\prabsyn.c -o CMakeFiles\PascalComplier.dir\prabsyn.c.s
+
 CMakeFiles/PascalComplier.dir/main.c.obj: CMakeFiles/PascalComplier.dir/flags.make
 CMakeFiles/PascalComplier.dir/main.c.obj: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building C object CMakeFiles/PascalComplier.dir/main.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building C object CMakeFiles/PascalComplier.dir/main.c.obj"
 	"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PascalComplier.dir\main.c.obj   -c D:\Workspace\CLionProjects\PascalComplier\main.c
 
 CMakeFiles/PascalComplier.dir/main.c.i: cmake_force
@@ -281,6 +294,7 @@ PascalComplier_OBJECTS = \
 "CMakeFiles/PascalComplier.dir/pascal.tab.c.obj" \
 "CMakeFiles/PascalComplier.dir/printtree.c.obj" \
 "CMakeFiles/PascalComplier.dir/errormsg.c.obj" \
+"CMakeFiles/PascalComplier.dir/prabsyn.c.obj" \
 "CMakeFiles/PascalComplier.dir/main.c.obj"
 
 # External object files for target PascalComplier
@@ -301,12 +315,13 @@ PascalComplier.exe: CMakeFiles/PascalComplier.dir/lex.yy.c.obj
 PascalComplier.exe: CMakeFiles/PascalComplier.dir/pascal.tab.c.obj
 PascalComplier.exe: CMakeFiles/PascalComplier.dir/printtree.c.obj
 PascalComplier.exe: CMakeFiles/PascalComplier.dir/errormsg.c.obj
+PascalComplier.exe: CMakeFiles/PascalComplier.dir/prabsyn.c.obj
 PascalComplier.exe: CMakeFiles/PascalComplier.dir/main.c.obj
 PascalComplier.exe: CMakeFiles/PascalComplier.dir/build.make
 PascalComplier.exe: CMakeFiles/PascalComplier.dir/linklibs.rsp
 PascalComplier.exe: CMakeFiles/PascalComplier.dir/objects1.rsp
 PascalComplier.exe: CMakeFiles/PascalComplier.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking C executable PascalComplier.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking C executable PascalComplier.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\PascalComplier.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

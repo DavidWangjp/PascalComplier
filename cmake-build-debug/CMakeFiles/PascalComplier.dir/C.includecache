@@ -99,10 +99,6 @@ stdlib.h
 D:/Workspace/CLionProjects/PascalComplier/main.c
 stdio.h
 -
-stdlib.h
--
-string.h
--
 util.h
 D:/Workspace/CLionProjects/PascalComplier/util.h
 absyn.h
@@ -113,6 +109,8 @@ semant.h
 D:/Workspace/CLionProjects/PascalComplier/semant.h
 printtree.h
 D:/Workspace/CLionProjects/PascalComplier/printtree.h
+prabsyn.h
+D:/Workspace/CLionProjects/PascalComplier/prabsyn.h
 
 D:/Workspace/CLionProjects/PascalComplier/pascal.tab.c
 stdio.h
@@ -143,6 +141,18 @@ stdio.h
 -
 
 D:/Workspace/CLionProjects/PascalComplier/pascal.tab.h
+absyn.h
+D:/Workspace/CLionProjects/PascalComplier/absyn.h
+
+D:/Workspace/CLionProjects/PascalComplier/prabsyn.c
+prabsyn.h
+D:/Workspace/CLionProjects/PascalComplier/prabsyn.h
+symbol.h
+D:/Workspace/CLionProjects/PascalComplier/symbol.h
+
+D:/Workspace/CLionProjects/PascalComplier/prabsyn.h
+stdio.h
+-
 absyn.h
 D:/Workspace/CLionProjects/PascalComplier/absyn.h
 

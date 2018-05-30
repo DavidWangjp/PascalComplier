@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "D:/Workspace/CLionProjects/PascalComplier/lex.yy.c" "D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/lex.yy.c.obj"
   "D:/Workspace/CLionProjects/PascalComplier/main.c" "D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/main.c.obj"
   "D:/Workspace/CLionProjects/PascalComplier/pascal.tab.c" "D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/pascal.tab.c.obj"
+  "D:/Workspace/CLionProjects/PascalComplier/prabsyn.c" "D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/prabsyn.c.obj"
   "D:/Workspace/CLionProjects/PascalComplier/printtree.c" "D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/printtree.c.obj"
   "D:/Workspace/CLionProjects/PascalComplier/semant.c" "D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/semant.c.obj"
   "D:/Workspace/CLionProjects/PascalComplier/symbol.c" "D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/symbol.c.obj"

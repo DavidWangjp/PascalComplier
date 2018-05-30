@@ -38,6 +38,7 @@ CMakeFiles/PascalComplier.dir/main.c.obj: ../absyn.h
 CMakeFiles/PascalComplier.dir/main.c.obj: ../errormsg.h
 CMakeFiles/PascalComplier.dir/main.c.obj: ../frame.h
 CMakeFiles/PascalComplier.dir/main.c.obj: ../main.c
+CMakeFiles/PascalComplier.dir/main.c.obj: ../prabsyn.h
 CMakeFiles/PascalComplier.dir/main.c.obj: ../printtree.h
 CMakeFiles/PascalComplier.dir/main.c.obj: ../semant.h
 CMakeFiles/PascalComplier.dir/main.c.obj: ../symbol.h
@@ -51,6 +52,12 @@ CMakeFiles/PascalComplier.dir/pascal.tab.c.obj: ../absyn.h
 CMakeFiles/PascalComplier.dir/pascal.tab.c.obj: ../pascal.tab.c
 CMakeFiles/PascalComplier.dir/pascal.tab.c.obj: ../symbol.h
 CMakeFiles/PascalComplier.dir/pascal.tab.c.obj: ../util.h
+
+CMakeFiles/PascalComplier.dir/prabsyn.c.obj: ../absyn.h
+CMakeFiles/PascalComplier.dir/prabsyn.c.obj: ../prabsyn.c
+CMakeFiles/PascalComplier.dir/prabsyn.c.obj: ../prabsyn.h
+CMakeFiles/PascalComplier.dir/prabsyn.c.obj: ../symbol.h
+CMakeFiles/PascalComplier.dir/prabsyn.c.obj: ../util.h
 
 CMakeFiles/PascalComplier.dir/printtree.c.obj: ../absyn.h
 CMakeFiles/PascalComplier.dir/printtree.c.obj: ../frame.h

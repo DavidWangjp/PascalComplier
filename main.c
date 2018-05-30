@@ -1,6 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 #include "util.h"
 #include "absyn.h"
@@ -10,11 +8,13 @@
 #include "prabsyn.h"
 
 extern int yyparse(void);
+
 A_program root;
 
-A_program parse(string file_name){
+A_program parse(string file_name)
+{
     EM_reset(file_name);
-    if(yyparse() == 0)
+    if (yyparse() == 0)
         return root;
     else
         printf("syntax error!\n");
@@ -30,7 +30,8 @@ int main(int argc, string *argv)
 
     parse(file_name);
 
-    if(root != NULL) {
+    if (root != NULL)
+    {
         pr_program(root, 0);
         return 1;
     }

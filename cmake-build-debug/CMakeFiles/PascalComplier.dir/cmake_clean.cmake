@@ -14,6 +14,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/PascalComplier.dir/pascal.tab.c.obj"
   "CMakeFiles/PascalComplier.dir/printtree.c.obj"
   "CMakeFiles/PascalComplier.dir/errormsg.c.obj"
+  "CMakeFiles/PascalComplier.dir/prabsyn.c.obj"
   "CMakeFiles/PascalComplier.dir/main.c.obj"
   "PascalComplier.pdb"
   "PascalComplier.exe"

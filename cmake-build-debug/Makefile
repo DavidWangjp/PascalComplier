@@ -38,10 +38,10 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "D:\Program Files\JetBrains\apps\CLion\ch-0\182.2371.31\bin\cmake\bin\cmake.exe"
+CMAKE_COMMAND = "D:\Program Files\JetBrains\apps\CLion\ch-0\182.2574.4\bin\cmake\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "D:\Program Files\JetBrains\apps\CLion\ch-0\182.2371.31\bin\cmake\bin\cmake.exe" -E remove -f
+RM = "D:\Program Files\JetBrains\apps\CLion\ch-0\182.2574.4\bin\cmake\bin\cmake.exe" -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -58,7 +58,7 @@ CMAKE_BINARY_DIR = D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	"D:\Program Files\JetBrains\apps\CLion\ch-0\182.2371.31\bin\cmake\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+	"D:\Program Files\JetBrains\apps\CLion\ch-0\182.2574.4\bin\cmake\bin\cmake.exe" -E echo "No interactive CMake dialog available."
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -69,7 +69,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	"D:\Program Files\JetBrains\apps\CLion\ch-0\182.2371.31\bin\cmake\bin\cmake.exe" -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	"D:\Program Files\JetBrains\apps\CLion\ch-0\182.2574.4\bin\cmake\bin\cmake.exe" -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -310,6 +310,33 @@ pascal.tab.s: pascal.tab.c.s
 pascal.tab.c.s:
 	$(MAKE) -f CMakeFiles\PascalComplier.dir\build.make CMakeFiles/PascalComplier.dir/pascal.tab.c.s
 .PHONY : pascal.tab.c.s
+
+prabsyn.obj: prabsyn.c.obj
+
+.PHONY : prabsyn.obj
+
+# target to build an object file
+prabsyn.c.obj:
+	$(MAKE) -f CMakeFiles\PascalComplier.dir\build.make CMakeFiles/PascalComplier.dir/prabsyn.c.obj
+.PHONY : prabsyn.c.obj
+
+prabsyn.i: prabsyn.c.i
+
+.PHONY : prabsyn.i
+
+# target to preprocess a source file
+prabsyn.c.i:
+	$(MAKE) -f CMakeFiles\PascalComplier.dir\build.make CMakeFiles/PascalComplier.dir/prabsyn.c.i
+.PHONY : prabsyn.c.i
+
+prabsyn.s: prabsyn.c.s
+
+.PHONY : prabsyn.s
+
+# target to generate assembly for a file
+prabsyn.c.s:
+	$(MAKE) -f CMakeFiles\PascalComplier.dir\build.make CMakeFiles/PascalComplier.dir/prabsyn.c.s
+.PHONY : prabsyn.c.s
 
 printtree.obj: printtree.c.obj
 
@@ -584,6 +611,9 @@ help:
 	@echo ... pascal.tab.obj
 	@echo ... pascal.tab.i
 	@echo ... pascal.tab.s
+	@echo ... prabsyn.obj
+	@echo ... prabsyn.i
+	@echo ... prabsyn.s
 	@echo ... printtree.obj
 	@echo ... printtree.i
 	@echo ... printtree.s

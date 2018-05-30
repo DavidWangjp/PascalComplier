@@ -110,6 +110,12 @@
 		<Unit filename="D:/Workspace/CLionProjects/PascalComplier/pascal.tab.h">
 			<Option target="PascalComplier"/>
 		</Unit>
+		<Unit filename="D:/Workspace/CLionProjects/PascalComplier/prabsyn.c">
+			<Option target="PascalComplier"/>
+		</Unit>
+		<Unit filename="D:/Workspace/CLionProjects/PascalComplier/prabsyn.h">
+			<Option target="PascalComplier"/>
+		</Unit>
 		<Unit filename="D:/Workspace/CLionProjects/PascalComplier/printtree.c">
 			<Option target="PascalComplier"/>
 		</Unit>
