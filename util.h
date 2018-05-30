@@ -15,9 +15,6 @@ typedef char bool;
 #define BOOL_SIZE 1
 #define REAL_SIZE 8
 
-//int EM_tokPos = 0;
-//int line_no = 1;
-
 void *checked_malloc(int);
 
 string String(char *);

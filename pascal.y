@@ -571,10 +571,10 @@ for_stmt :          FOR  ID  ASSIGN  expression  direction  expression  DO stmt 
 ;
 
 direction :         TO {
-    $$ = $1;
+    $$ = DIRECTION_TO;
 }
                 |   DOWNTO {
-    $$ = $1;
+    $$ = DIRECTION_DOWNTO;
 }
 ;
 
@@ -694,11 +694,9 @@ factor :            ID {
     $$ = A_FactorUnOp(line_no, OP_NEG, $2);
 }
                 |   ID  LB  expression  RB {
-    //$$ = A_FactorArrayVar(line_no, $1, $3);
     $$ = A_FactorArrayVar(line_no, S_Symbol($1), $3);
 }
                 |   ID  DOT  ID {
-    //$$ = A_FactorRecordVar(line_no, $1, $3);
     $$ = A_FactorRecordVar(line_no, S_Symbol($1), S_Symbol($3));
 }
 ;
@@ -716,5 +714,5 @@ args_list :         args_list  COMMA  expression {
    
 void yyerror(const char *s)
 {
-	printf("%s | line: %d.\n", s, line_no);					//out error information
+	printf("yyerror: %s | line: %d.\n", s, line_no);					//out error information
 }

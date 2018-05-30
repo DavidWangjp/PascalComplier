@@ -19,5 +19,6 @@ add_executable(PascalComplier
         pascal.tab.c pascal.tab.h
         printtree.c printtree.h
         errormsg.c errormsg.h
+        prabsyn.c prabsyn.h
         main.c
         )

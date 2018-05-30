@@ -621,6 +621,7 @@ struct A_for_stmt_
 
 struct A_case_stmt_
 {
+    A_pos pos;
     A_expression expression;
     A_case_expr_list case_expr_list;
 };

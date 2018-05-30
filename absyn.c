@@ -559,6 +559,7 @@ A_compound_stmt A_CompoundStmt(A_pos pos, A_stmt_list stmt_list)
 A_stmt_list A_StmtList(A_pos pos, A_stmt_list stmt_list, A_stmt stmt)
 {
     A_stmt_list p = (A_stmt_list) checked_malloc(sizeof(struct A_stmt_list_));
+    p->pos = pos;
     p->stmt_list = stmt_list;
     p->stmt = stmt;
     return p;

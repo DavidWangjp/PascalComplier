@@ -7,6 +7,7 @@
 #include "errormsg.h"
 #include "semant.h"
 #include "printtree.h"
+#include "prabsyn.h"
 
 extern int yyparse(void);
 A_program root;
@@ -22,14 +23,18 @@ A_program parse(string file_name){
 
 int main(int argc, string *argv)
 {
-    string file_name = argv[0];
+    root = NULL;
+    string file_name = argv[1];
     FILE *out = stdout;
     struct expty result_expty;
 
     parse(file_name);
-    
-    if(root == NULL)
+
+    if(root != NULL) {
+        pr_program(root, 0);
         return 1;
+    }
+
     // //打印抽象语法树
     // pr_program(root, 0);
 

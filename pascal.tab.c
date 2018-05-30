@@ -631,7 +631,7 @@ static const yytype_uint16 yyrline[] =
      573,   576,   581,   586,   589,   594,   597,   603,   608,   611,
      616,   619,   622,   625,   628,   631,   634,   639,   642,   645,
      648,   653,   656,   659,   662,   665,   670,   674,   678,   681,
-     684,   687,   690,   693,   696,   700,   706,   709
+     684,   687,   690,   693,   696,   699,   704,   707
 };
 #endif
 
@@ -2551,7 +2551,7 @@ yyreduce:
 /* Line 1455 of yacc.c  */
 #line 573 "pascal.y"
     {
-    (yyval.direction) = (yyvsp[(1) - (1)].direction);
+    (yyval.direction) = DIRECTION_TO;
 ;}
     break;
 
@@ -2560,7 +2560,7 @@ yyreduce:
 /* Line 1455 of yacc.c  */
 #line 576 "pascal.y"
     {
-    (yyval.direction) = (yyvsp[(1) - (1)].direction);
+    (yyval.direction) = DIRECTION_DOWNTO;
 ;}
     break;
 
@@ -2860,7 +2860,6 @@ yyreduce:
 /* Line 1455 of yacc.c  */
 #line 696 "pascal.y"
     {
-    //$$ = A_FactorArrayVar(line_no, $1, $3);
     (yyval.factor) = A_FactorArrayVar(line_no, S_Symbol((yyvsp[(1) - (4)].sval)), (yyvsp[(3) - (4)].expression));
 ;}
     break;
@@ -2868,9 +2867,8 @@ yyreduce:
   case 125:
 
 /* Line 1455 of yacc.c  */
-#line 700 "pascal.y"
+#line 699 "pascal.y"
     {
-    //$$ = A_FactorRecordVar(line_no, $1, $3);
     (yyval.factor) = A_FactorRecordVar(line_no, S_Symbol((yyvsp[(1) - (3)].sval)), S_Symbol((yyvsp[(3) - (3)].sval)));
 ;}
     break;
@@ -2878,7 +2876,7 @@ yyreduce:
   case 126:
 
 /* Line 1455 of yacc.c  */
-#line 706 "pascal.y"
+#line 704 "pascal.y"
     {
     (yyval.args_list) = A_ArgsListSeq(line_no, (yyvsp[(1) - (3)].args_list), (yyvsp[(3) - (3)].expression));
 ;}
@@ -2887,7 +2885,7 @@ yyreduce:
   case 127:
 
 /* Line 1455 of yacc.c  */
-#line 709 "pascal.y"
+#line 707 "pascal.y"
     {
     (yyval.args_list) = A_ArgsList(line_no, (yyvsp[(1) - (1)].expression));
 ;}
@@ -2896,7 +2894,7 @@ yyreduce:
 
 
 /* Line 1455 of yacc.c  */
-#line 2900 "pascal.tab.c"
+#line 2898 "pascal.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -3108,10 +3106,10 @@ yyreturn:
 
 
 /* Line 1675 of yacc.c  */
-#line 715 "pascal.y"
+#line 713 "pascal.y"
 
    
 void yyerror(const char *s)
 {
-	printf("%s | line: %d.\n", s, line_no);					//out error information
+	printf("yyerror: %s | line: %d.\n", s, line_no);					//out error information
 }
