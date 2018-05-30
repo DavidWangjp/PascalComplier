@@ -11,6 +11,7 @@
 #include "semant.h"
 #include "env.h"
 #include "errormsg.h"
+#include "absyn.h"
 
 
 struct expty expTy(Tr_exp exp, Ty_ty ty)
@@ -948,7 +949,21 @@ struct expty transStm(Tr_level level, S_table venv, S_table tenv, A_stmt a)
                 case proc_stmt_sys_proc:
                     break;
                 case proc_stmt_sys_proc_with_args:
-                    break;
+                {
+                    E_enventry fun = (E_enventry) S_look(venv, a->non_label_stmt->u.proc_stmt->u.id_with_args.id);
+                    if (fun && fun->kind == E_funEntry)
+                    {
+                        Tr_expList argList = makeArgsList(level, venv, tenv,
+                                                          a->non_label_stmt->u.proc_stmt->u.id_with_args.args_list,
+                                                          fun);
+                        return expTy(Tr_CallExp(fun->u.fun.label, fun->u.fun.level, level, argList), fun->u.fun.result);
+                    }
+                    else
+                    {
+                        EM_error(a->pos, "Function is not declared.\n");
+                        return expTy(NULL, Ty_Int());
+                    }
+                }
                 case proc_stmt_read:
                     break;
             }
@@ -1234,7 +1249,7 @@ struct expty transExpr(Tr_level level, S_table venv, S_table tenv, A_expr a)
         {
             left = transExpr(level, venv, tenv, a->u.bin_op.left_expr);
             right = transTerm(level, venv, tenv, a->u.bin_op.right_term);
-            if (left.ty->kind == right.ty->kind)
+            if (typeMatch(left.ty, right.ty))
                 return expTy(Tr_PlusArithExp(a->u.bin_op.plus_op, left.exp, right.exp),
                              left.ty);
             else
@@ -1254,7 +1269,7 @@ struct expty transExp(Tr_level level, S_table venv, S_table tenv, A_expression a
     {
         case NONBINOP:
         {
-            right = transExpr(level, venv, tenv, a->u.bin_op.right_expr);
+            right = transExpr(level, venv, tenv, a->u.expr);
             return expTy(right.exp, right.ty);
         }
 

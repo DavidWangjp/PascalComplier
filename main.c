@@ -30,14 +30,15 @@ int main(int argc, string *argv)
 
     parse(file_name);
 
-    if (root != NULL)
-    {
-        pr_program(root, 0);
-        return 1;
-    }
+//    if (root != NULL)
+//    {
+//        pr_program(root, 0);
+//        return 1;
+//    }
 
-    // //打印抽象语法树
-    // pr_program(root, 0);
+     //打印抽象语法树
+     pr_program(root, 0);
+
 
     result_expty = SEM_transProg(root);
 
