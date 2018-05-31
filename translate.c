@@ -434,7 +434,7 @@ Tr_exp Tr_SeqExp(Tr_exp left, Tr_exp right){
 }
 
 Tr_exp Tr_LabelExp(Temp_label label){
-    return Tr_Nx(T_Exp(T_Name(label)));
+    return Tr_Ex(T_Name(label));
 }
 
 Tr_exp Tr_NullExp(void){
