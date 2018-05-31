@@ -1,3 +1,0 @@
-/Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir
