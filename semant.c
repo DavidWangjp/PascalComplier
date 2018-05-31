@@ -11,7 +11,6 @@
 #include "semant.h"
 #include "env.h"
 #include "errormsg.h"
-#include "absyn.h"
 
 
 struct expty expTy(Tr_exp exp, Ty_ty ty)
@@ -1049,7 +1048,7 @@ struct expty transStm(Tr_level level, S_table venv, S_table tenv, A_stmt a)
 
 struct expty transStms(Tr_level level, S_table venv, S_table tenv, A_stmt_list stmts)
 {
-    struct expty exp = expTy(NULL, Ty_Void());
+    struct expty exp;
     if (stmts->stmt->is_label == LABEL)
     {
         char label[10];
@@ -1278,7 +1277,7 @@ struct expty transExp(Tr_level level, S_table venv, S_table tenv, A_expression a
         {
             left = transExp(level, venv, tenv, a->u.bin_op.left_expression);
             right = transExpr(level, venv, tenv, a->u.bin_op.right_expr);
-            if (left.ty->kind == right.ty->kind)
+            if (typeMatch(left.ty, right.ty))
             {
                 return expTy(Tr_RelExp(a->u.bin_op.rel_op, left.exp, right.exp),
                              Ty_Bool());
