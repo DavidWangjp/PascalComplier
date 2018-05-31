@@ -6,33 +6,33 @@
 
 #IncludeRegexTransform: 
 
-D:/Workspace/CLionProjects/PascalComplier/absyn.c
+/Users/sr/Documents/github/PascalComplier/absyn.c
 stdio.h
 -
 util.h
-D:/Workspace/CLionProjects/PascalComplier/util.h
+/Users/sr/Documents/github/PascalComplier/util.h
 absyn.h
-D:/Workspace/CLionProjects/PascalComplier/absyn.h
+/Users/sr/Documents/github/PascalComplier/absyn.h
 
-D:/Workspace/CLionProjects/PascalComplier/absyn.h
+/Users/sr/Documents/github/PascalComplier/absyn.h
 util.h
-D:/Workspace/CLionProjects/PascalComplier/util.h
+/Users/sr/Documents/github/PascalComplier/util.h
 symbol.h
-D:/Workspace/CLionProjects/PascalComplier/symbol.h
+/Users/sr/Documents/github/PascalComplier/symbol.h
 
-D:/Workspace/CLionProjects/PascalComplier/env.c
+/Users/sr/Documents/github/PascalComplier/env.c
 env.h
-D:/Workspace/CLionProjects/PascalComplier/env.h
+/Users/sr/Documents/github/PascalComplier/env.h
 
-D:/Workspace/CLionProjects/PascalComplier/env.h
+/Users/sr/Documents/github/PascalComplier/env.h
 types.h
-D:/Workspace/CLionProjects/PascalComplier/types.h
+/Users/sr/Documents/github/PascalComplier/types.h
 symbol.h
-D:/Workspace/CLionProjects/PascalComplier/symbol.h
+/Users/sr/Documents/github/PascalComplier/symbol.h
 translate.h
-D:/Workspace/CLionProjects/PascalComplier/translate.h
+/Users/sr/Documents/github/PascalComplier/translate.h
 
-D:/Workspace/CLionProjects/PascalComplier/errormsg.c
+/Users/sr/Documents/github/PascalComplier/errormsg.c
 stdio.h
 -
 stdlib.h
@@ -40,49 +40,49 @@ stdlib.h
 stdarg.h
 -
 util.h
-D:/Workspace/CLionProjects/PascalComplier/util.h
+/Users/sr/Documents/github/PascalComplier/util.h
 errormsg.h
-D:/Workspace/CLionProjects/PascalComplier/errormsg.h
+/Users/sr/Documents/github/PascalComplier/errormsg.h
 
-D:/Workspace/CLionProjects/PascalComplier/errormsg.h
+/Users/sr/Documents/github/PascalComplier/errormsg.h
 
-D:/Workspace/CLionProjects/PascalComplier/frame.c
+/Users/sr/Documents/github/PascalComplier/frame.c
 stdio.h
 -
 stdlib.h
 -
 util.h
-D:/Workspace/CLionProjects/PascalComplier/util.h
+/Users/sr/Documents/github/PascalComplier/util.h
 symbol.h
-D:/Workspace/CLionProjects/PascalComplier/symbol.h
+/Users/sr/Documents/github/PascalComplier/symbol.h
 temp.h
-D:/Workspace/CLionProjects/PascalComplier/temp.h
+/Users/sr/Documents/github/PascalComplier/temp.h
 frame.h
-D:/Workspace/CLionProjects/PascalComplier/frame.h
+/Users/sr/Documents/github/PascalComplier/frame.h
 
-D:/Workspace/CLionProjects/PascalComplier/frame.h
+/Users/sr/Documents/github/PascalComplier/frame.h
 util.h
-D:/Workspace/CLionProjects/PascalComplier/util.h
+/Users/sr/Documents/github/PascalComplier/util.h
 symbol.h
-D:/Workspace/CLionProjects/PascalComplier/symbol.h
+/Users/sr/Documents/github/PascalComplier/symbol.h
 temp.h
-D:/Workspace/CLionProjects/PascalComplier/temp.h
+/Users/sr/Documents/github/PascalComplier/temp.h
 tree.h
-D:/Workspace/CLionProjects/PascalComplier/tree.h
+/Users/sr/Documents/github/PascalComplier/tree.h
 
-D:/Workspace/CLionProjects/PascalComplier/lex.yy.c
+/Users/sr/Documents/github/PascalComplier/lex.yy.c
 stdio.h
 -
-stdlib.h
+string.h
 -
-unistd.h
--
-io.h
+errno.h
 -
 stdlib.h
+-
+inttypes.h
 -
 pascal.tab.h
-D:/Workspace/CLionProjects/PascalComplier/pascal.tab.h
+/Users/sr/Documents/github/PascalComplier/pascal.tab.h
 stdio.h
 -
 stdlib.h
@@ -90,29 +90,29 @@ stdlib.h
 string.h
 -
 absyn.h
-D:/Workspace/CLionProjects/PascalComplier/absyn.h
+/Users/sr/Documents/github/PascalComplier/absyn.h
 util.h
-D:/Workspace/CLionProjects/PascalComplier/util.h
-stdlib.h
+/Users/sr/Documents/github/PascalComplier/util.h
+unistd.h
 -
 
-D:/Workspace/CLionProjects/PascalComplier/main.c
+/Users/sr/Documents/github/PascalComplier/main.c
 stdio.h
 -
 util.h
-D:/Workspace/CLionProjects/PascalComplier/util.h
+/Users/sr/Documents/github/PascalComplier/util.h
 absyn.h
-D:/Workspace/CLionProjects/PascalComplier/absyn.h
+/Users/sr/Documents/github/PascalComplier/absyn.h
 errormsg.h
-D:/Workspace/CLionProjects/PascalComplier/errormsg.h
+/Users/sr/Documents/github/PascalComplier/errormsg.h
 semant.h
-D:/Workspace/CLionProjects/PascalComplier/semant.h
+/Users/sr/Documents/github/PascalComplier/semant.h
 printtree.h
-D:/Workspace/CLionProjects/PascalComplier/printtree.h
+/Users/sr/Documents/github/PascalComplier/printtree.h
 prabsyn.h
-D:/Workspace/CLionProjects/PascalComplier/prabsyn.h
+/Users/sr/Documents/github/PascalComplier/prabsyn.h
 
-D:/Workspace/CLionProjects/PascalComplier/pascal.tab.c
+/Users/sr/Documents/github/PascalComplier/pascal.tab.c
 stdio.h
 -
 stdlib.h
@@ -120,11 +120,11 @@ stdlib.h
 string.h
 -
 absyn.h
-D:/Workspace/CLionProjects/PascalComplier/absyn.h
+/Users/sr/Documents/github/PascalComplier/absyn.h
 util.h
-D:/Workspace/CLionProjects/PascalComplier/util.h
+/Users/sr/Documents/github/PascalComplier/util.h
 symbol.h
-D:/Workspace/CLionProjects/PascalComplier/symbol.h
+/Users/sr/Documents/github/PascalComplier/symbol.h
 stddef.h
 -
 libintl.h
@@ -140,145 +140,147 @@ stdlib.h
 stdio.h
 -
 
-D:/Workspace/CLionProjects/PascalComplier/pascal.tab.h
+/Users/sr/Documents/github/PascalComplier/pascal.tab.h
 absyn.h
-D:/Workspace/CLionProjects/PascalComplier/absyn.h
+/Users/sr/Documents/github/PascalComplier/absyn.h
 
-D:/Workspace/CLionProjects/PascalComplier/prabsyn.c
+/Users/sr/Documents/github/PascalComplier/prabsyn.c
 prabsyn.h
-D:/Workspace/CLionProjects/PascalComplier/prabsyn.h
+/Users/sr/Documents/github/PascalComplier/prabsyn.h
 symbol.h
-D:/Workspace/CLionProjects/PascalComplier/symbol.h
+/Users/sr/Documents/github/PascalComplier/symbol.h
 
-D:/Workspace/CLionProjects/PascalComplier/prabsyn.h
+/Users/sr/Documents/github/PascalComplier/prabsyn.h
 stdio.h
 -
 absyn.h
-D:/Workspace/CLionProjects/PascalComplier/absyn.h
+/Users/sr/Documents/github/PascalComplier/absyn.h
 
-D:/Workspace/CLionProjects/PascalComplier/printtree.c
+/Users/sr/Documents/github/PascalComplier/printtree.c
 stdio.h
 -
 util.h
-D:/Workspace/CLionProjects/PascalComplier/util.h
+/Users/sr/Documents/github/PascalComplier/util.h
 symbol.h
-D:/Workspace/CLionProjects/PascalComplier/symbol.h
+/Users/sr/Documents/github/PascalComplier/symbol.h
 temp.h
-D:/Workspace/CLionProjects/PascalComplier/temp.h
+/Users/sr/Documents/github/PascalComplier/temp.h
 tree.h
-D:/Workspace/CLionProjects/PascalComplier/tree.h
+/Users/sr/Documents/github/PascalComplier/tree.h
 printtree.h
-D:/Workspace/CLionProjects/PascalComplier/printtree.h
+/Users/sr/Documents/github/PascalComplier/printtree.h
 translate.h
-D:/Workspace/CLionProjects/PascalComplier/translate.h
+/Users/sr/Documents/github/PascalComplier/translate.h
 
-D:/Workspace/CLionProjects/PascalComplier/printtree.h
+/Users/sr/Documents/github/PascalComplier/printtree.h
 translate.h
-D:/Workspace/CLionProjects/PascalComplier/translate.h
+/Users/sr/Documents/github/PascalComplier/translate.h
 
-D:/Workspace/CLionProjects/PascalComplier/semant.c
+/Users/sr/Documents/github/PascalComplier/semant.c
 semant.h
-D:/Workspace/CLionProjects/PascalComplier/semant.h
+/Users/sr/Documents/github/PascalComplier/semant.h
 env.h
-D:/Workspace/CLionProjects/PascalComplier/env.h
+/Users/sr/Documents/github/PascalComplier/env.h
 errormsg.h
-D:/Workspace/CLionProjects/PascalComplier/errormsg.h
-
-D:/Workspace/CLionProjects/PascalComplier/semant.h
-types.h
-D:/Workspace/CLionProjects/PascalComplier/types.h
-translate.h
-D:/Workspace/CLionProjects/PascalComplier/translate.h
+/Users/sr/Documents/github/PascalComplier/errormsg.h
 absyn.h
-D:/Workspace/CLionProjects/PascalComplier/absyn.h
+/Users/sr/Documents/github/PascalComplier/absyn.h
 
-D:/Workspace/CLionProjects/PascalComplier/symbol.c
+/Users/sr/Documents/github/PascalComplier/semant.h
+types.h
+/Users/sr/Documents/github/PascalComplier/types.h
+translate.h
+/Users/sr/Documents/github/PascalComplier/translate.h
+absyn.h
+/Users/sr/Documents/github/PascalComplier/absyn.h
+
+/Users/sr/Documents/github/PascalComplier/symbol.c
 stdio.h
 -
 string.h
 -
 symbol.h
-D:/Workspace/CLionProjects/PascalComplier/symbol.h
+/Users/sr/Documents/github/PascalComplier/symbol.h
 table.h
-D:/Workspace/CLionProjects/PascalComplier/table.h
+/Users/sr/Documents/github/PascalComplier/table.h
 
-D:/Workspace/CLionProjects/PascalComplier/symbol.h
+/Users/sr/Documents/github/PascalComplier/symbol.h
 util.h
-D:/Workspace/CLionProjects/PascalComplier/util.h
+/Users/sr/Documents/github/PascalComplier/util.h
 
-D:/Workspace/CLionProjects/PascalComplier/table.c
+/Users/sr/Documents/github/PascalComplier/table.c
 stdio.h
 -
 util.h
-D:/Workspace/CLionProjects/PascalComplier/util.h
+/Users/sr/Documents/github/PascalComplier/util.h
 table.h
-D:/Workspace/CLionProjects/PascalComplier/table.h
+/Users/sr/Documents/github/PascalComplier/table.h
 
-D:/Workspace/CLionProjects/PascalComplier/table.h
+/Users/sr/Documents/github/PascalComplier/table.h
 
-D:/Workspace/CLionProjects/PascalComplier/temp.c
+/Users/sr/Documents/github/PascalComplier/temp.c
 stdio.h
 -
 util.h
-D:/Workspace/CLionProjects/PascalComplier/util.h
+/Users/sr/Documents/github/PascalComplier/util.h
 symbol.h
-D:/Workspace/CLionProjects/PascalComplier/symbol.h
+/Users/sr/Documents/github/PascalComplier/symbol.h
 temp.h
-D:/Workspace/CLionProjects/PascalComplier/temp.h
+/Users/sr/Documents/github/PascalComplier/temp.h
 table.h
-D:/Workspace/CLionProjects/PascalComplier/table.h
+/Users/sr/Documents/github/PascalComplier/table.h
 
-D:/Workspace/CLionProjects/PascalComplier/temp.h
+/Users/sr/Documents/github/PascalComplier/temp.h
 stdio.h
 -
 symbol.h
-D:/Workspace/CLionProjects/PascalComplier/symbol.h
+/Users/sr/Documents/github/PascalComplier/symbol.h
 
-D:/Workspace/CLionProjects/PascalComplier/translate.c
+/Users/sr/Documents/github/PascalComplier/translate.c
 translate.h
-D:/Workspace/CLionProjects/PascalComplier/translate.h
+/Users/sr/Documents/github/PascalComplier/translate.h
 
-D:/Workspace/CLionProjects/PascalComplier/translate.h
+/Users/sr/Documents/github/PascalComplier/translate.h
 temp.h
-D:/Workspace/CLionProjects/PascalComplier/temp.h
+/Users/sr/Documents/github/PascalComplier/temp.h
 tree.h
-D:/Workspace/CLionProjects/PascalComplier/tree.h
+/Users/sr/Documents/github/PascalComplier/tree.h
 frame.h
-D:/Workspace/CLionProjects/PascalComplier/frame.h
+/Users/sr/Documents/github/PascalComplier/frame.h
 absyn.h
-D:/Workspace/CLionProjects/PascalComplier/absyn.h
+/Users/sr/Documents/github/PascalComplier/absyn.h
 
-D:/Workspace/CLionProjects/PascalComplier/tree.c
+/Users/sr/Documents/github/PascalComplier/tree.c
 stdio.h
 -
 util.h
-D:/Workspace/CLionProjects/PascalComplier/util.h
+/Users/sr/Documents/github/PascalComplier/util.h
 symbol.h
-D:/Workspace/CLionProjects/PascalComplier/symbol.h
+/Users/sr/Documents/github/PascalComplier/symbol.h
 temp.h
-D:/Workspace/CLionProjects/PascalComplier/temp.h
+/Users/sr/Documents/github/PascalComplier/temp.h
 tree.h
-D:/Workspace/CLionProjects/PascalComplier/tree.h
+/Users/sr/Documents/github/PascalComplier/tree.h
 
-D:/Workspace/CLionProjects/PascalComplier/tree.h
+/Users/sr/Documents/github/PascalComplier/tree.h
 temp.h
-D:/Workspace/CLionProjects/PascalComplier/temp.h
+/Users/sr/Documents/github/PascalComplier/temp.h
 
-D:/Workspace/CLionProjects/PascalComplier/types.c
+/Users/sr/Documents/github/PascalComplier/types.c
 util.h
-D:/Workspace/CLionProjects/PascalComplier/util.h
+/Users/sr/Documents/github/PascalComplier/util.h
 symbol.h
-D:/Workspace/CLionProjects/PascalComplier/symbol.h
+/Users/sr/Documents/github/PascalComplier/symbol.h
 types.h
-D:/Workspace/CLionProjects/PascalComplier/types.h
+/Users/sr/Documents/github/PascalComplier/types.h
 
-D:/Workspace/CLionProjects/PascalComplier/types.h
+/Users/sr/Documents/github/PascalComplier/types.h
 absyn.h
-D:/Workspace/CLionProjects/PascalComplier/absyn.h
+/Users/sr/Documents/github/PascalComplier/absyn.h
 symbol.h
-D:/Workspace/CLionProjects/PascalComplier/symbol.h
+/Users/sr/Documents/github/PascalComplier/symbol.h
 
-D:/Workspace/CLionProjects/PascalComplier/util.c
+/Users/sr/Documents/github/PascalComplier/util.c
 stdio.h
 -
 stdlib.h
@@ -286,9 +288,9 @@ stdlib.h
 string.h
 -
 util.h
-D:/Workspace/CLionProjects/PascalComplier/util.h
+/Users/sr/Documents/github/PascalComplier/util.h
 
-D:/Workspace/CLionProjects/PascalComplier/util.h
+/Users/sr/Documents/github/PascalComplier/util.h
 assert.h
 -
 

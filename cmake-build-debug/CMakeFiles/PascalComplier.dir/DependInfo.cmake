@@ -4,25 +4,25 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "D:/Workspace/CLionProjects/PascalComplier/absyn.c" "D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/absyn.c.obj"
-  "D:/Workspace/CLionProjects/PascalComplier/env.c" "D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/env.c.obj"
-  "D:/Workspace/CLionProjects/PascalComplier/errormsg.c" "D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/errormsg.c.obj"
-  "D:/Workspace/CLionProjects/PascalComplier/frame.c" "D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/frame.c.obj"
-  "D:/Workspace/CLionProjects/PascalComplier/lex.yy.c" "D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/lex.yy.c.obj"
-  "D:/Workspace/CLionProjects/PascalComplier/main.c" "D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/main.c.obj"
-  "D:/Workspace/CLionProjects/PascalComplier/pascal.tab.c" "D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/pascal.tab.c.obj"
-  "D:/Workspace/CLionProjects/PascalComplier/prabsyn.c" "D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/prabsyn.c.obj"
-  "D:/Workspace/CLionProjects/PascalComplier/printtree.c" "D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/printtree.c.obj"
-  "D:/Workspace/CLionProjects/PascalComplier/semant.c" "D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/semant.c.obj"
-  "D:/Workspace/CLionProjects/PascalComplier/symbol.c" "D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/symbol.c.obj"
-  "D:/Workspace/CLionProjects/PascalComplier/table.c" "D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/table.c.obj"
-  "D:/Workspace/CLionProjects/PascalComplier/temp.c" "D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/temp.c.obj"
-  "D:/Workspace/CLionProjects/PascalComplier/translate.c" "D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/translate.c.obj"
-  "D:/Workspace/CLionProjects/PascalComplier/tree.c" "D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/tree.c.obj"
-  "D:/Workspace/CLionProjects/PascalComplier/types.c" "D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/types.c.obj"
-  "D:/Workspace/CLionProjects/PascalComplier/util.c" "D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/util.c.obj"
+  "/Users/sr/Documents/github/PascalComplier/absyn.c" "/Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/absyn.c.o"
+  "/Users/sr/Documents/github/PascalComplier/env.c" "/Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/env.c.o"
+  "/Users/sr/Documents/github/PascalComplier/errormsg.c" "/Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/errormsg.c.o"
+  "/Users/sr/Documents/github/PascalComplier/frame.c" "/Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/frame.c.o"
+  "/Users/sr/Documents/github/PascalComplier/lex.yy.c" "/Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/lex.yy.c.o"
+  "/Users/sr/Documents/github/PascalComplier/main.c" "/Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/main.c.o"
+  "/Users/sr/Documents/github/PascalComplier/pascal.tab.c" "/Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/pascal.tab.c.o"
+  "/Users/sr/Documents/github/PascalComplier/prabsyn.c" "/Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/prabsyn.c.o"
+  "/Users/sr/Documents/github/PascalComplier/printtree.c" "/Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/printtree.c.o"
+  "/Users/sr/Documents/github/PascalComplier/semant.c" "/Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/semant.c.o"
+  "/Users/sr/Documents/github/PascalComplier/symbol.c" "/Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/symbol.c.o"
+  "/Users/sr/Documents/github/PascalComplier/table.c" "/Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/table.c.o"
+  "/Users/sr/Documents/github/PascalComplier/temp.c" "/Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/temp.c.o"
+  "/Users/sr/Documents/github/PascalComplier/translate.c" "/Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/translate.c.o"
+  "/Users/sr/Documents/github/PascalComplier/tree.c" "/Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/tree.c.o"
+  "/Users/sr/Documents/github/PascalComplier/types.c" "/Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/types.c.o"
+  "/Users/sr/Documents/github/PascalComplier/util.c" "/Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/PascalComplier.dir/util.c.o"
   )
-set(CMAKE_C_COMPILER_ID "GNU")
+set(CMAKE_C_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH

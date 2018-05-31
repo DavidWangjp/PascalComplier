@@ -1211,6 +1211,7 @@ struct expty transFactor(Tr_level level, S_table venv, S_table tenv, A_factor a)
 
 struct expty transTerm(Tr_level level, S_table venv, S_table tenv, A_term a)
 {
+
     struct expty left, right;
     switch (a->is_bin_op)
     {

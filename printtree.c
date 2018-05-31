@@ -113,12 +113,5 @@ void printStmList (FILE *out, T_stmList stmList)
 
 void print_Tr_exp (FILE *out, Tr_exp exp){
   T_stm node = exp->u.nx;
-  T_stm left = node->u.SEQ.left;
-  T_stm right = node->u.SEQ.right;
-  while(node != NULL){
-    left = node->u.SEQ.left;
-    pr_stm(out, left, 0);
-    fprintf(out, "\n");
-    node = node->u.SEQ.right;
-  }
+  pr_stm(out, node, 0);
 }

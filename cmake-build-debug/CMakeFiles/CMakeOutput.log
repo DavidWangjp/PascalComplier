@@ -1,6 +1,6 @@
-The system is: Windows - 10.0.17134 - AMD64
+The system is: Darwin - 17.5.0 - x86_64
 Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
-Compiler: D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/gcc.exe 
+Compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc 
 Build flags: 
 Id flags:  
 
@@ -8,110 +8,105 @@ The output was:
 0
 
 
-Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.exe"
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
 
-The C compiler identification is GNU, found in "D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/3.11.2/CompilerIdC/a.exe"
+The C compiler identification is AppleClang, found in "/Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/3.10.3/CompilerIdC/a.out"
 
 Determining if the C compiler works passed with the following output:
-Change Dir: D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/mingw32-make.exe" "cmTC_2b519/fast"
-D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/mingw32-make.exe -f CMakeFiles\cmTC_2b519.dir\build.make CMakeFiles/cmTC_2b519.dir/build
-mingw32-make.exe[1]: Entering directory 'D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_2b519.dir/testCCompiler.c.obj
-"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe"    -o CMakeFiles\cmTC_2b519.dir\testCCompiler.c.obj   -c D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles\CMakeTmp\testCCompiler.c
-Linking C executable cmTC_2b519.exe
-"D:\Program Files\JetBrains\apps\CLion\ch-0\182.2371.31\bin\cmake\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_2b519.dir\link.txt --verbose=1
-"D:\Program Files\JetBrains\apps\CLion\ch-0\182.2371.31\bin\cmake\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_2b519.dir/objects.a
-"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\ar.exe" cr CMakeFiles\cmTC_2b519.dir/objects.a @CMakeFiles\cmTC_2b519.dir\objects1.rsp
-"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe"      -Wl,--whole-archive CMakeFiles\cmTC_2b519.dir/objects.a -Wl,--no-whole-archive  -o cmTC_2b519.exe -Wl,--out-implib,libcmTC_2b519.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_2b519.dir\linklibs.rsp
-mingw32-make.exe[1]: Leaving directory 'D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_029a4/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_029a4.dir/build.make CMakeFiles/cmTC_029a4.dir/build
+Building C object CMakeFiles/cmTC_029a4.dir/testCCompiler.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -o CMakeFiles/cmTC_029a4.dir/testCCompiler.c.o   -c /Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_029a4
+/Applications/CLion.app/Contents/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_029a4.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_029a4.dir/testCCompiler.c.o  -o cmTC_029a4 
 
 
 Detecting C compiler ABI info compiled with the following output:
-Change Dir: D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/mingw32-make.exe" "cmTC_26316/fast"
-D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/mingw32-make.exe -f CMakeFiles\cmTC_26316.dir\build.make CMakeFiles/cmTC_26316.dir/build
-mingw32-make.exe[1]: Entering directory 'D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_26316.dir/CMakeCCompilerABI.c.obj
-"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe"    -o CMakeFiles\cmTC_26316.dir\CMakeCCompilerABI.c.obj   -c "D:\Program Files\JetBrains\apps\CLion\ch-0\182.2371.31\bin\cmake\share\cmake-3.11\Modules\CMakeCCompilerABI.c"
-Linking C executable cmTC_26316.exe
-"D:\Program Files\JetBrains\apps\CLion\ch-0\182.2371.31\bin\cmake\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_26316.dir\link.txt --verbose=1
-"D:\Program Files\JetBrains\apps\CLion\ch-0\182.2371.31\bin\cmake\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_26316.dir/objects.a
-"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\ar.exe" cr CMakeFiles\cmTC_26316.dir/objects.a @CMakeFiles\cmTC_26316.dir\objects1.rsp
-"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe"     -v -Wl,--whole-archive CMakeFiles\cmTC_26316.dir/objects.a -Wl,--no-whole-archive  -o cmTC_26316.exe -Wl,--out-implib,libcmTC_26316.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
-Using built-in specs.
-COLLECT_GCC=D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe
-COLLECT_LTO_WRAPPER=D:/Program\ Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../libexec/gcc/x86_64-w64-mingw32/7.1.0/lto-wrapper.exe
-Target: x86_64-w64-mingw32
-Configured with: ../../../src/gcc-7.1.0/configure --host=x86_64-w64-mingw32 --build=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --prefix=/mingw64 --with-sysroot=/c/mingw710/x86_64-710-posix-seh-rt_v5-rev0/mingw64 --enable-shared --enable-static --disable-multilib --enable-languages=c,c++,fortran,lto --enable-libstdcxx-time=yes --enable-threads=posix --enable-libgomp --enable-libatomic --enable-lto --enable-graphite --enable-checking=release --enable-fully-dynamic-string --enable-version-specific-runtime-libs --enable-libstdcxx-filesystem-ts=yes --disable-libstdcxx-pch --disable-libstdcxx-debug --enable-bootstrap --disable-rpath --disable-win32-registry --disable-nls --disable-werror --disable-symvers --with-gnu-as --with-gnu-ld --with-arch=nocona --with-tune=core2 --with-libiconv --with-system-zlib --with-gmp=/c/mingw710/prerequisites/x86_64-w64-mingw32-static --with-mpfr=/c/mingw710/prerequisites/x86_64-w64-mingw32-static --with-mpc=/c/mingw710/prerequisites/x86_64-w64-mingw32-static --with-isl=/c/mingw710/prerequisites/x86_64-w64-mingw32-static --with-pkgversion='x86_64-posix-seh-rev0, Built by MinGW-W64 project' --with-bugurl=http://sourceforge.net/projects/mingw-w64 CFLAGS='-O2 -pipe -fno-ident -I/c/mingw710/x86_64-710-posix-seh-rt_v5-rev0/mingw64/opt/include -I/c/mingw710/prerequisites/x86_64-zlib-static/include -I/c/mingw710/prerequisites/x86_64-w64-mingw32-static/include' CXXFLAGS='-O2 -pipe -fno-ident -I/c/mingw710/x86_64-710-posix-seh-rt_v5-rev0/mingw64/opt/include -I/c/mingw710/prerequisites/x86_64-zlib-static/include -I/c/mingw710/prerequisites/x86_64-w64-mingw32-static/include' CPPFLAGS=' -I/c/mingw710/x86_64-710-posix-seh-rt_v5-rev0/mingw64/opt/include -I/c/mingw710/prerequisites/x86_64-zlib-static/include -I/c/mingw710/prerequisites/x86_64-w64-mingw32-static/include' LDFLAGS='-pipe -fno-ident -L/c/mingw710/x86_64-710-posix-seh-rt_v5-rev0/mingw64/opt/lib -L/c/mingw710/prerequisites/x86_64-zlib-static/lib -L/c/mingw710/prerequisites/x86_64-w64-mingw32-static/lib '
-Thread model: posix
-gcc version 7.1.0 (x86_64-posix-seh-rev0, Built by MinGW-W64 project) 
-COMPILER_PATH=D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../libexec/gcc/x86_64-w64-mingw32/7.1.0/;D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../libexec/gcc/;D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0/../../../../x86_64-w64-mingw32/bin/
-LIBRARY_PATH=D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0/;D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/;D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0/../../../../x86_64-w64-mingw32/lib/../lib/;D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0/../../../../lib/;D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0/../../../../x86_64-w64-mingw32/lib/;D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0/../../../
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_26316.exe' '-mtune=core2' '-march=nocona'
- D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../libexec/gcc/x86_64-w64-mingw32/7.1.0/collect2.exe -plugin D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../libexec/gcc/x86_64-w64-mingw32/7.1.0/liblto_plugin-0.dll -plugin-opt=D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../libexec/gcc/x86_64-w64-mingw32/7.1.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\DAVIDW~1\AppData\Local\Temp\cczDKJIb.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-liconv -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt --sysroot=C:/mingw710/x86_64-710-posix-seh-rt_v5-rev0/mingw64 -m i386pep -Bdynamic -o cmTC_26316.exe D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0/../../../../x86_64-w64-mingw32/lib/../lib/crt2.o D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0/crtbegin.o -LD:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0 -LD:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc -LD:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0/../../../../x86_64-w64-mingw32/lib/../lib -LD:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0/../../../../lib -LD:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0/../../../../x86_64-w64-mingw32/lib -LD:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0/../../.. --whole-archive CMakeFiles\cmTC_26316.dir/objects.a --no-whole-archive --out-implib libcmTC_26316.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -liconv -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0/crtend.o
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_26316.exe' '-mtune=core2' '-march=nocona'
-mingw32-make.exe[1]: Leaving directory 'D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_d70fe/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_d70fe.dir/build.make CMakeFiles/cmTC_d70fe.dir/build
+Building C object CMakeFiles/cmTC_d70fe.dir/CMakeCCompilerABI.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -o CMakeFiles/cmTC_d70fe.dir/CMakeCCompilerABI.c.o   -c /Applications/CLion.app/Contents/bin/cmake/share/cmake-3.10/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_d70fe
+/Applications/CLion.app/Contents/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d70fe.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_d70fe.dir/CMakeCCompilerABI.c.o  -o cmTC_d70fe 
+Apple LLVM version 9.0.0 (clang-900.0.38)
+Target: x86_64-apple-darwin17.5.0
+Thread model: posix
+InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch x86_64 -macosx_version_min 10.13.0 -o cmTC_d70fe -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_d70fe.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/lib/darwin/libclang_rt.osx.a
+@(#)PROGRAM:ld  PROJECT:ld64-302.3.1
+configured to support archs: armv6 armv7 armv7s arm64 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em (tvOS)
+Library search paths:
+	/usr/lib
+	/usr/local/lib
+Framework search paths:
+	/Library/Frameworks/
+	/System/Library/Frameworks/
 
 
 Parsed C implicit link information from above output:
-  link line regex: [^( *|.*[/\])(ld\.exe|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
-  ignore line: [Change Dir: D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/CMakeTmp]
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/mingw32-make.exe" "cmTC_26316/fast"]
-  ignore line: [D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/mingw32-make.exe -f CMakeFiles\cmTC_26316.dir\build.make CMakeFiles/cmTC_26316.dir/build]
-  ignore line: [mingw32-make.exe[1]: Entering directory 'D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_26316.dir/CMakeCCompilerABI.c.obj]
-  ignore line: ["D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe"    -o CMakeFiles\cmTC_26316.dir\CMakeCCompilerABI.c.obj   -c "D:\Program Files\JetBrains\apps\CLion\ch-0\182.2371.31\bin\cmake\share\cmake-3.11\Modules\CMakeCCompilerABI.c"]
-  ignore line: [Linking C executable cmTC_26316.exe]
-  ignore line: ["D:\Program Files\JetBrains\apps\CLion\ch-0\182.2371.31\bin\cmake\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_26316.dir\link.txt --verbose=1]
-  ignore line: ["D:\Program Files\JetBrains\apps\CLion\ch-0\182.2371.31\bin\cmake\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_26316.dir/objects.a]
-  ignore line: ["D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\ar.exe" cr CMakeFiles\cmTC_26316.dir/objects.a @CMakeFiles\cmTC_26316.dir\objects1.rsp]
-  ignore line: ["D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe"     -v -Wl,--whole-archive CMakeFiles\cmTC_26316.dir/objects.a -Wl,--no-whole-archive  -o cmTC_26316.exe -Wl,--out-implib,libcmTC_26316.dll.a -Wl,--major-image-version,0,--minor-image-version,0 ]
-  ignore line: [Using built-in specs.]
-  ignore line: [COLLECT_GCC=D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe]
-  ignore line: [COLLECT_LTO_WRAPPER=D:/Program\ Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../libexec/gcc/x86_64-w64-mingw32/7.1.0/lto-wrapper.exe]
-  ignore line: [Target: x86_64-w64-mingw32]
-  ignore line: [Configured with: ../../../src/gcc-7.1.0/configure --host=x86_64-w64-mingw32 --build=x86_64-w64-mingw32 --target=x86_64-w64-mingw32 --prefix=/mingw64 --with-sysroot=/c/mingw710/x86_64-710-posix-seh-rt_v5-rev0/mingw64 --enable-shared --enable-static --disable-multilib --enable-languages=c,c++,fortran,lto --enable-libstdcxx-time=yes --enable-threads=posix --enable-libgomp --enable-libatomic --enable-lto --enable-graphite --enable-checking=release --enable-fully-dynamic-string --enable-version-specific-runtime-libs --enable-libstdcxx-filesystem-ts=yes --disable-libstdcxx-pch --disable-libstdcxx-debug --enable-bootstrap --disable-rpath --disable-win32-registry --disable-nls --disable-werror --disable-symvers --with-gnu-as --with-gnu-ld --with-arch=nocona --with-tune=core2 --with-libiconv --with-system-zlib --with-gmp=/c/mingw710/prerequisites/x86_64-w64-mingw32-static --with-mpfr=/c/mingw710/prerequisites/x86_64-w64-mingw32-static --with-mpc=/c/mingw710/prerequisites/x86_64-w64-mingw32-static --with-isl=/c/mingw710/prerequisites/x86_64-w64-mingw32-static --with-pkgversion='x86_64-posix-seh-rev0, Built by MinGW-W64 project' --with-bugurl=http://sourceforge.net/projects/mingw-w64 CFLAGS='-O2 -pipe -fno-ident -I/c/mingw710/x86_64-710-posix-seh-rt_v5-rev0/mingw64/opt/include -I/c/mingw710/prerequisites/x86_64-zlib-static/include -I/c/mingw710/prerequisites/x86_64-w64-mingw32-static/include' CXXFLAGS='-O2 -pipe -fno-ident -I/c/mingw710/x86_64-710-posix-seh-rt_v5-rev0/mingw64/opt/include -I/c/mingw710/prerequisites/x86_64-zlib-static/include -I/c/mingw710/prerequisites/x86_64-w64-mingw32-static/include' CPPFLAGS=' -I/c/mingw710/x86_64-710-posix-seh-rt_v5-rev0/mingw64/opt/include -I/c/mingw710/prerequisites/x86_64-zlib-static/include -I/c/mingw710/prerequisites/x86_64-w64-mingw32-static/include' LDFLAGS='-pipe -fno-ident -L/c/mingw710/x86_64-710-posix-seh-rt_v5-rev0/mingw64/opt/lib -L/c/mingw710/prerequisites/x86_64-zlib-static/lib -L/c/mingw710/prerequisites/x86_64-w64-mingw32-static/lib ']
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_d70fe/fast"]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_d70fe.dir/build.make CMakeFiles/cmTC_d70fe.dir/build]
+  ignore line: [Building C object CMakeFiles/cmTC_d70fe.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc    -o CMakeFiles/cmTC_d70fe.dir/CMakeCCompilerABI.c.o   -c /Applications/CLion.app/Contents/bin/cmake/share/cmake-3.10/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_d70fe]
+  ignore line: [/Applications/CLion.app/Contents/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d70fe.dir/link.txt --verbose=1]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_d70fe.dir/CMakeCCompilerABI.c.o  -o cmTC_d70fe ]
+  ignore line: [Apple LLVM version 9.0.0 (clang-900.0.38)]
+  ignore line: [Target: x86_64-apple-darwin17.5.0]
   ignore line: [Thread model: posix]
-  ignore line: [gcc version 7.1.0 (x86_64-posix-seh-rev0, Built by MinGW-W64 project) ]
-  ignore line: [COMPILER_PATH=D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../libexec/gcc/x86_64-w64-mingw32/7.1.0/]
-  ignore line: [D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../libexec/gcc/]
-  ignore line: [D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0/../../../../x86_64-w64-mingw32/bin/]
-  ignore line: [LIBRARY_PATH=D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0/]
-  ignore line: [D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/]
-  ignore line: [D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0/../../../../x86_64-w64-mingw32/lib/../lib/]
-  ignore line: [D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0/../../../../lib/]
-  ignore line: [D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0/../../../../x86_64-w64-mingw32/lib/]
-  ignore line: [D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0/../../../]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_26316.exe' '-mtune=core2' '-march=nocona']
-  ignore line: [ D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../libexec/gcc/x86_64-w64-mingw32/7.1.0/collect2.exe -plugin D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../libexec/gcc/x86_64-w64-mingw32/7.1.0/liblto_plugin-0.dll -plugin-opt=D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../libexec/gcc/x86_64-w64-mingw32/7.1.0/lto-wrapper.exe -plugin-opt=-fresolution=C:\Users\DAVIDW~1\AppData\Local\Temp\cczDKJIb.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-liconv -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt --sysroot=C:/mingw710/x86_64-710-posix-seh-rt_v5-rev0/mingw64 -m i386pep -Bdynamic -o cmTC_26316.exe D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0/../../../../x86_64-w64-mingw32/lib/../lib/crt2.o D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0/crtbegin.o -LD:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0 -LD:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc -LD:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0/../../../../x86_64-w64-mingw32/lib/../lib -LD:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0/../../../../lib -LD:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0/../../../../x86_64-w64-mingw32/lib -LD:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0/../../.. --whole-archive CMakeFiles\cmTC_26316.dir/objects.a --no-whole-archive --out-implib libcmTC_26316.dll.a --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -liconv -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.1.0/crtend.o]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_26316.exe' '-mtune=core2' '-march=nocona']
-  ignore line: [mingw32-make.exe[1]: Leaving directory 'D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/CMakeTmp']
-  ignore line: []
+  ignore line: [InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
+  link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch x86_64 -macosx_version_min 10.13.0 -o cmTC_d70fe -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_d70fe.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/lib/darwin/libclang_rt.osx.a]
+    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld] ==> ignore
+    arg [-demangle] ==> ignore
+    arg [-lto_library] ==> ignore, skip following value
+    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib] ==> skip value of -lto_library
+    arg [-dynamic] ==> ignore
+    arg [-arch] ==> ignore
+    arg [x86_64] ==> ignore
+    arg [-macosx_version_min] ==> ignore
+    arg [10.13.0] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_d70fe] ==> ignore
+    arg [-search_paths_first] ==> ignore
+    arg [-headerpad_max_install_names] ==> ignore
+    arg [-v] ==> ignore
+    arg [CMakeFiles/cmTC_d70fe.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lSystem] ==> lib [System]
+    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/lib/darwin/libclang_rt.osx.a] ==> lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/lib/darwin/libclang_rt.osx.a]
+  Library search paths: [;/usr/lib;/usr/local/lib]
+  Framework search paths: [;/Library/Frameworks/;/System/Library/Frameworks/]
+  remove lib [System]
+  remove lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/lib/darwin/libclang_rt.osx.a]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+  collapse framework dir [/Library/Frameworks/] ==> [/Library/Frameworks]
+  collapse framework dir [/System/Library/Frameworks/] ==> [/System/Library/Frameworks]
   implicit libs: []
-  implicit dirs: []
-  implicit fwks: []
+  implicit dirs: [/usr/lib;/usr/local/lib]
+  implicit fwks: [/Library/Frameworks;/System/Library/Frameworks]
 
 
 
 
 Detecting C [-std=c11] compiler features compiled with the following output:
-Change Dir: D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/mingw32-make.exe" "cmTC_469c4/fast"
-D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/mingw32-make.exe -f CMakeFiles\cmTC_469c4.dir\build.make CMakeFiles/cmTC_469c4.dir/build
-mingw32-make.exe[1]: Entering directory 'D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_469c4.dir/feature_tests.c.obj
-"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe"   -std=c11 -o CMakeFiles\cmTC_469c4.dir\feature_tests.c.obj   -c D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles\feature_tests.c
-Linking C executable cmTC_469c4.exe
-"D:\Program Files\JetBrains\apps\CLion\ch-0\182.2371.31\bin\cmake\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_469c4.dir\link.txt --verbose=1
-"D:\Program Files\JetBrains\apps\CLion\ch-0\182.2371.31\bin\cmake\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_469c4.dir/objects.a
-"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\ar.exe" cr CMakeFiles\cmTC_469c4.dir/objects.a @CMakeFiles\cmTC_469c4.dir\objects1.rsp
-"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe"      -Wl,--whole-archive CMakeFiles\cmTC_469c4.dir/objects.a -Wl,--no-whole-archive  -o cmTC_469c4.exe -Wl,--out-implib,libcmTC_469c4.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_469c4.dir\linklibs.rsp
-mingw32-make.exe[1]: Leaving directory 'D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_d73c9/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_d73c9.dir/build.make CMakeFiles/cmTC_d73c9.dir/build
+Building C object CMakeFiles/cmTC_d73c9.dir/feature_tests.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_d73c9.dir/feature_tests.c.o   -c /Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/feature_tests.c
+Linking C executable cmTC_d73c9
+/Applications/CLion.app/Contents/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d73c9.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_d73c9.dir/feature_tests.c.o  -o cmTC_d73c9 
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -121,19 +116,15 @@ mingw32-make.exe[1]: Leaving directory 'D:/Workspace/CLionProjects/PascalComplie
 
 
 Detecting C [-std=c99] compiler features compiled with the following output:
-Change Dir: D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/mingw32-make.exe" "cmTC_df00f/fast"
-D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/mingw32-make.exe -f CMakeFiles\cmTC_df00f.dir\build.make CMakeFiles/cmTC_df00f.dir/build
-mingw32-make.exe[1]: Entering directory 'D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_df00f.dir/feature_tests.c.obj
-"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe"   -std=c99 -o CMakeFiles\cmTC_df00f.dir\feature_tests.c.obj   -c D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles\feature_tests.c
-Linking C executable cmTC_df00f.exe
-"D:\Program Files\JetBrains\apps\CLion\ch-0\182.2371.31\bin\cmake\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_df00f.dir\link.txt --verbose=1
-"D:\Program Files\JetBrains\apps\CLion\ch-0\182.2371.31\bin\cmake\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_df00f.dir/objects.a
-"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\ar.exe" cr CMakeFiles\cmTC_df00f.dir/objects.a @CMakeFiles\cmTC_df00f.dir\objects1.rsp
-"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe"      -Wl,--whole-archive CMakeFiles\cmTC_df00f.dir/objects.a -Wl,--no-whole-archive  -o cmTC_df00f.exe -Wl,--out-implib,libcmTC_df00f.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_df00f.dir\linklibs.rsp
-mingw32-make.exe[1]: Leaving directory 'D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_27447/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_27447.dir/build.make CMakeFiles/cmTC_27447.dir/build
+Building C object CMakeFiles/cmTC_27447.dir/feature_tests.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_27447.dir/feature_tests.c.o   -c /Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/feature_tests.c
+Linking C executable cmTC_27447
+/Applications/CLion.app/Contents/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_27447.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_27447.dir/feature_tests.c.o  -o cmTC_27447 
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -143,19 +134,15 @@ mingw32-make.exe[1]: Leaving directory 'D:/Workspace/CLionProjects/PascalComplie
 
 
 Detecting C [-std=c90] compiler features compiled with the following output:
-Change Dir: D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/CMakeTmp
+Change Dir: /Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command:"D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/mingw32-make.exe" "cmTC_8fe70/fast"
-D:/Program Files/mingw-w64/x86_64-7.1.0-posix-seh-rt_v5-rev0/mingw64/bin/mingw32-make.exe -f CMakeFiles\cmTC_8fe70.dir\build.make CMakeFiles/cmTC_8fe70.dir/build
-mingw32-make.exe[1]: Entering directory 'D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_8fe70.dir/feature_tests.c.obj
-"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe"   -std=c90 -o CMakeFiles\cmTC_8fe70.dir\feature_tests.c.obj   -c D:\Workspace\CLionProjects\PascalComplier\cmake-build-debug\CMakeFiles\feature_tests.c
-Linking C executable cmTC_8fe70.exe
-"D:\Program Files\JetBrains\apps\CLion\ch-0\182.2371.31\bin\cmake\bin\cmake.exe" -E cmake_link_script CMakeFiles\cmTC_8fe70.dir\link.txt --verbose=1
-"D:\Program Files\JetBrains\apps\CLion\ch-0\182.2371.31\bin\cmake\bin\cmake.exe" -E remove -f CMakeFiles\cmTC_8fe70.dir/objects.a
-"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\ar.exe" cr CMakeFiles\cmTC_8fe70.dir/objects.a @CMakeFiles\cmTC_8fe70.dir\objects1.rsp
-"D:\Program Files\mingw-w64\x86_64-7.1.0-posix-seh-rt_v5-rev0\mingw64\bin\gcc.exe"      -Wl,--whole-archive CMakeFiles\cmTC_8fe70.dir/objects.a -Wl,--no-whole-archive  -o cmTC_8fe70.exe -Wl,--out-implib,libcmTC_8fe70.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\cmTC_8fe70.dir\linklibs.rsp
-mingw32-make.exe[1]: Leaving directory 'D:/Workspace/CLionProjects/PascalComplier/cmake-build-debug/CMakeFiles/CMakeTmp'
+Run Build Command:"/usr/bin/make" "cmTC_0a670/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_0a670.dir/build.make CMakeFiles/cmTC_0a670.dir/build
+Building C object CMakeFiles/cmTC_0a670.dir/feature_tests.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_0a670.dir/feature_tests.c.o   -c /Users/sr/Documents/github/PascalComplier/cmake-build-debug/CMakeFiles/feature_tests.c
+Linking C executable cmTC_0a670
+/Applications/CLion.app/Contents/bin/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0a670.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/cmTC_0a670.dir/feature_tests.c.o  -o cmTC_0a670 
 
 
     Feature record: C_FEATURE:1c_function_prototypes

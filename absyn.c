@@ -922,6 +922,7 @@ A_term A_TermBin(A_pos pos, A_term left_term, A_mul_op mul_op, A_factor right_fa
     p->is_bin_op = BINOP;
     p->u.bin_op.mul_op = mul_op;
     p->u.factor = right_factor;
+    return p;
 }
 
 A_term A_TermUn(A_pos pos, A_factor factor)
@@ -930,6 +931,7 @@ A_term A_TermUn(A_pos pos, A_factor factor)
     p->pos = pos;
     p->is_bin_op = NONBINOP;
     p->u.factor = factor;
+    return p;
 }
 
 //A_factor A_FactorId(A_pos pos, char *id)
