@@ -1,5 +1,6 @@
 #include "prabsyn.h"
 #include "symbol.h"
+#include "absyn.h"
 
 void pr_program(A_program t, int layer) {
     int i;
@@ -119,7 +120,7 @@ void pr_const_expr_list(A_const_expr_list t, int layer) {
         pr_const_expr_list(t->const_expr_list, layer + 1);
     for (i = 0; i < layer + 1; i++)
         printf("  ");
-    printf("id: %s = ", S_name(t->id));
+    printf("id: %s\n", S_name(t->id));
     pr_const_value(t->const_value, layer + 1);
 }
 
@@ -162,7 +163,7 @@ void pr_type_definition(A_type_definition t, int layer) {
     printf("type_definition: %d\n", t->pos);
     for (i = 0; i < layer + 1; i++)
         printf("  ");
-    printf("id: %s = ", S_name(t->id));
+    printf("id: %s\n", S_name(t->id));
     pr_type_decl(t->type_decl, layer + 1);
 }
 
@@ -649,7 +650,7 @@ void pr_case_expr_list(A_case_expr_list t, int layer) {
     int i;
     for (i = 0; i < layer; i++)
         printf("  ");
-    printf("case_expr_list: %d", t->pos);
+    printf("case_expr_list: %d\n", t->pos);
     if (t->is_seq == SEQ)
         pr_case_expr_list(t->case_expr_list, layer + 1);
     pr_case_expr(t->case_expr, layer + 1);
