@@ -11,6 +11,7 @@
 #include "semant.h"
 #include "env.h"
 #include "errormsg.h"
+#include "types.h"
 
 
 struct expty expTy(Tr_exp exp, Ty_ty ty)
@@ -1119,7 +1120,7 @@ struct expty transVar(Tr_level level, S_table venv, S_table tenv, A_var a)
                     (subscript.ty->kind == Ty_const_ty && subscript.ty->u.constt == TY_CONST_INT))
                 {
                     return expTy(Tr_SubscriptVar(Tr_SimpleVar(varEntry->u.var.access, level),
-                                                 subscript.exp, typeSize(actual_ty(varEntry->u.var.ty))),
+                                                 subscript.exp, typeSize(varEntry->u.var.ty->u.array.ty)),
                                  actual_ty(varEntry->u.var.ty->u.array.ty));
                 }
                 else
