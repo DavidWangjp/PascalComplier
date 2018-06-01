@@ -133,7 +133,7 @@ int typeSize(Ty_ty ty)
         {
             int size = 0;
             for (Ty_fieldList l = ty->u.record; l; l = l->tail)
-                size += typeSize(l->head->ty);
+                size += typeSize(actual_ty(l->head->ty));
             return size;
         }
         case Ty_array:
