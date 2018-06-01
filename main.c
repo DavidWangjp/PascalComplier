@@ -5,6 +5,7 @@
 #include "errormsg.h"
 #include "semant.h"
 #include "printtree.h"
+#include "printgraph.h"
 #include "prabsyn.h"
 
 extern int yyparse(void);
@@ -25,7 +26,9 @@ int main(int argc, string *argv)
 {
     root = NULL;
     string file_name = argv[1];
-    FILE *out = stdout;
+    FILE *tree_out = stdout;
+    FILE *graph_out;
+    graph_out = fopen("graph.dot", "w+");
     struct expty result_expty;
 
     parse(file_name);
@@ -42,8 +45,9 @@ int main(int argc, string *argv)
 
     result_expty = SEM_transProg(root);
 
-    print_Tr_exp(out, result_expty.exp);
+    print_Tr_exp(tree_out, result_expty.exp);
 
-    getchar();
+    print_graph_Tr_exp(graph_out, result_expty.exp);
+
     return 0;
 }

@@ -20,5 +20,5 @@ add_executable(PascalComplier
         printtree.c printtree.h
         errormsg.c errormsg.h
         prabsyn.c prabsyn.h
-        main.c
-        )
+        printgraph.h printgraph.c
+        main.c)
