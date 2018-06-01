@@ -106,10 +106,17 @@ struct expty transExp(Tr_level level, S_table venv, S_table tenv, A_expression a
 
 /***************************** Implementations start *****************************/
 
+Ty_ty actual_ty(Ty_ty ty)
+{
+    if (ty->kind == Ty_name_ty)
+        return actual_ty(ty->u.name.ty);
+    else
+        return ty;
+}
 
 int typeSize(Ty_ty ty)
 {
-    switch (ty->kind)
+    switch (actual_ty(ty)->kind)
     {
         case Ty_int:
             return INT_SIZE;
@@ -166,14 +173,6 @@ int typeSize(Ty_ty ty)
             break;
     }
     return 0;
-}
-
-Ty_ty actual_ty(Ty_ty ty)
-{
-    if (ty->kind == Ty_name_ty)
-        return actual_ty(ty->u.name.ty);
-    else
-        return ty;
 }
 
 bool typeMatch(Ty_ty ty1, Ty_ty ty2)
@@ -541,7 +540,7 @@ void transVarDec(Tr_level level, S_table venv, S_table tenv, A_var_part a)
         for (A_name_list name = l->var_decl->name_list; name; name = name->name_list)
         {
             Ty_ty ty = transTy(level, venv, tenv, l->var_decl->type_decl);
-            Tr_access local = Tr_AllocLocal(level, TRUE, typeSize(ty));
+            Tr_access local = Tr_AllocLocal(level, TRUE, typeSize(actual_ty(ty)));
             S_enter(venv, name->id, E_VarEntry(local, ty));
         }
     }
@@ -651,7 +650,7 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
             }
         }
     }
-    for (A_routine_part l = reverse_routine_dec_list(a); l; l = l->routine_part)
+    for (A_routine_part l = a; l; l = l->routine_part)
     {
         switch (l->kind)
         {
@@ -885,6 +884,8 @@ struct expty transStm(Tr_level level, S_table venv, S_table tenv, A_stmt a)
                     left = transVar(level, venv, tenv,
                                     A_Simple(a->non_label_stmt->u.assign_stmt->pos,
                                              a->non_label_stmt->u.assign_stmt->u.simple_var_assign_stmt.id));
+                    right = transExp(level, venv, tenv,
+                                     a->non_label_stmt->u.assign_stmt->u.simple_var_assign_stmt.right_expression);
                     break;
                 }
                 case assign_stmt_record:
@@ -893,6 +894,8 @@ struct expty transStm(Tr_level level, S_table venv, S_table tenv, A_stmt a)
                                     A_Record(a->non_label_stmt->u.assign_stmt->pos,
                                              a->non_label_stmt->u.assign_stmt->u.record_var_assign_stmt.id,
                                              a->non_label_stmt->u.assign_stmt->u.record_var_assign_stmt.field_id));
+                    right = transExp(level, venv, tenv,
+                                     a->non_label_stmt->u.assign_stmt->u.record_var_assign_stmt.right_expression);
                     break;
                 }
                 case assign_stmt_array:
@@ -901,11 +904,12 @@ struct expty transStm(Tr_level level, S_table venv, S_table tenv, A_stmt a)
                                     A_Array(a->non_label_stmt->u.assign_stmt->pos,
                                             a->non_label_stmt->u.assign_stmt->u.array_var_assign_stmt.id,
                                             a->non_label_stmt->u.assign_stmt->u.array_var_assign_stmt.subscript_expression));
+                    right = transExp(level, venv, tenv,
+                                     a->non_label_stmt->u.assign_stmt->u.array_var_assign_stmt.right_expression);
                     break;
                 }
             }
-            right = transExp(level, venv, tenv,
-                             a->non_label_stmt->u.assign_stmt->u.simple_var_assign_stmt.right_expression);
+
 
             if (left.ty->kind == Ty_const_ty)
             {
@@ -984,15 +988,18 @@ struct expty transStm(Tr_level level, S_table venv, S_table tenv, A_stmt a)
         {
             struct expty cond = transExp(level, venv, tenv, a->non_label_stmt->u.repeat_stmt->until);
             struct expty body = transStms(level, venv, tenv, a->non_label_stmt->u.repeat_stmt->body);
-            return expTy(Tr_SeqExp(body.exp,
-                                   Tr_WhileExp(cond.exp, body.exp, Tr_LabelExp(Temp_newlabel()))),
+            Tr_exp label = Tr_LabelExp(Temp_newlabel());
+            return expTy(Tr_SeqExp(Tr_SeqExp(body.exp,
+                                             Tr_WhileExp(cond.exp, body.exp, label)),
+                                   label),
                          Ty_Void());
         }
         case non_label_stmt_while:
         {
             struct expty cond = transExp(level, venv, tenv, a->non_label_stmt->u.while_stmt->test);
             struct expty body = transStm(level, venv, tenv, a->non_label_stmt->u.while_stmt->body);
-            return expTy(Tr_WhileExp(cond.exp, body.exp, Tr_LabelExp(Temp_newlabel())), Ty_Void());
+            Tr_exp label = Tr_LabelExp(Temp_newlabel());
+            return expTy(Tr_SeqExp(Tr_WhileExp(cond.exp, body.exp, label), label), Ty_Void());
         }
         case non_label_stmt_for:
         {
@@ -1026,8 +1033,11 @@ struct expty transStm(Tr_level level, S_table venv, S_table tenv, A_stmt a)
                     break;
                 }
             }
-            return expTy(Tr_SeqExp(loopVarInit,
-                                   Tr_WhileExp(cond, body, Tr_LabelExp(Temp_newlabel()))), Ty_Void());
+            Tr_exp label = Tr_LabelExp(Temp_newlabel());
+            return expTy(Tr_SeqExp(Tr_SeqExp(loopVarInit,
+                                             Tr_WhileExp(cond, body, label)),
+                                   label),
+                         Ty_Void());
 
         }
         case non_label_stmt_case:
@@ -1105,11 +1115,12 @@ struct expty transVar(Tr_level level, S_table venv, S_table tenv, A_var a)
                 varEntry->u.var.ty->kind == Ty_array)
             {
                 struct expty subscript = transExp(level, venv, tenv, a->u.array.subscript);
-                if (subscript.ty->kind == Ty_int)
+                if (subscript.ty->kind == Ty_int ||
+                    (subscript.ty->kind == Ty_const_ty && subscript.ty->u.constt == TY_CONST_INT))
                 {
                     return expTy(Tr_SubscriptVar(Tr_SimpleVar(varEntry->u.var.access, level),
-                                                 subscript.exp, typeSize(varEntry->u.var.ty)),
-                                 actual_ty(varEntry->u.var.ty));
+                                                 subscript.exp, typeSize(actual_ty(varEntry->u.var.ty))),
+                                 actual_ty(varEntry->u.var.ty->u.array.ty));
                 }
                 else
                 {
@@ -1134,9 +1145,9 @@ struct expty transVar(Tr_level level, S_table venv, S_table tenv, A_var a)
             }
             int offset = 0;
             if (varEntry->kind == E_varEntry &&
-                varEntry->u.var.ty->kind == Ty_record)
+                actual_ty(varEntry->u.var.ty)->kind == Ty_record)
             {
-                for (Ty_fieldList field = varEntry->u.var.ty->u.record; field; field = field->tail)
+                for (Ty_fieldList field = actual_ty(varEntry->u.var.ty)->u.record; field; field = field->tail)
                 {
                     int size = typeSize(field->head->ty);
                     if (field->head->name == a->u.record.field)
@@ -1223,7 +1234,7 @@ struct expty transTerm(Tr_level level, S_table venv, S_table tenv, A_term a)
         {
             left = transTerm(level, venv, tenv, a->u.bin_op.left_term);
             right = transFactor(level, venv, tenv, a->u.bin_op.right_factor);
-            if (left.ty->kind == right.ty->kind)
+            if (typeMatch(left.ty, right.ty))
                 return expTy(Tr_MulArithExp(a->u.bin_op.mul_op, left.exp, right.exp),
                              left.ty);
             else

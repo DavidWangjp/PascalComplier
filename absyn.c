@@ -920,8 +920,9 @@ A_term A_TermBin(A_pos pos, A_term left_term, A_mul_op mul_op, A_factor right_fa
     A_term p = (A_term) checked_malloc(sizeof(struct A_term_));
     p->pos = pos;
     p->is_bin_op = BINOP;
+    p->u.bin_op.left_term = left_term;
     p->u.bin_op.mul_op = mul_op;
-    p->u.factor = right_factor;
+    p->u.bin_op.right_factor = right_factor;
     return p;
 }
 
@@ -994,7 +995,7 @@ A_factor A_FactorInBrackets(A_pos pos, A_expression expression)
 
 A_factor A_FactorUnOp(A_pos pos, A_un_op un_op, A_factor factor)
 {
-    A_factor p = (A_factor) checked_malloc(sizeof(struct A_args_list_));
+    A_factor p = (A_factor) checked_malloc(sizeof(struct A_factor_));
     p->pos = pos;
     p->kind = factor_un_op; // un_op
     p->u.un_op.un_op = un_op;
@@ -1005,7 +1006,7 @@ A_factor A_FactorUnOp(A_pos pos, A_un_op un_op, A_factor factor)
 //A_factor A_FactorRecordVar(A_pos pos, char *id, char *field_id)
 A_factor A_FactorRecordVar(A_pos pos, S_symbol id, S_symbol field_id)
 {
-    A_factor p = (A_factor) checked_malloc(sizeof(struct A_args_list_));
+    A_factor p = (A_factor) checked_malloc(sizeof(struct A_factor_));
     p->pos = pos;
     p->kind = factor_record_var; // record_var
     p->u.record_var.id = id;
@@ -1016,7 +1017,7 @@ A_factor A_FactorRecordVar(A_pos pos, S_symbol id, S_symbol field_id)
 //A_factor A_FactorArrayVar(A_pos pos, char *id, A_expression subscript_expression)
 A_factor A_FactorArrayVar(A_pos pos, S_symbol id, A_expression subscript_expression)
 {
-    A_factor p = (A_factor) checked_malloc(sizeof(struct A_args_list_));
+    A_factor p = (A_factor) checked_malloc(sizeof(struct A_factor_));
     p->pos = pos;
     p->kind = factor_array_var; // array_var
     p->u.array_var.id = id;

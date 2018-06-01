@@ -186,6 +186,8 @@ extern int line_no;
 
 %nonassoc LOWER_THAN_ELSE
 %nonassoc ELSE
+%nonassoc PREC_SHIFT_ROUT_PROC
+%nonassoc PREC_SHIFT_ROUT_FUNC
 
 %%
 
@@ -668,11 +670,9 @@ term :              term  MUL  factor {
 ;
 
 factor :            ID {
-    //$$ = A_FactorId(line_no, $1);
     $$ = A_FactorId(line_no, S_Symbol($1));
 }
                 |   ID  LP  args_list  RP {
-    //$$ = A_FactorIdWithArgs(line_no, $1, $3);
     $$ = A_FactorIdWithArgs(line_no, S_Symbol($1), $3);
 }
                 |   SYS_FUNCT {

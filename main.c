@@ -40,7 +40,7 @@ int main(int argc, string *argv)
 //    }
 
      //打印抽象语法树
-//     pr_program(root, 0);
+     pr_program(root, 0);
 
 
     result_expty = SEM_transProg(root);
