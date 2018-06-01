@@ -1,4 +1,5 @@
 #include "translate.h"
+#include "tree.h"
 
 static Tr_level outermost_l = NULL;
 
@@ -134,11 +135,11 @@ Tr_exp Tr_SimpleVar(Tr_access access, Tr_level level){
 }
 
 Tr_exp Tr_SubscriptVar(Tr_exp base, Tr_exp e, int size){
-    return Tr_Ex(T_Mem(T_Binop(T_plus, unEx(base), T_Binop(T_mul, unEx(e), T_Const(size*F_wordSize))), size));
+    return Tr_Ex(T_Mem(T_Binop(T_plus, unEx(base)->u.MEM.exp, T_Binop(T_mul, unEx(e), T_Const(size))), size));
 }
 
 Tr_exp Tr_RecordVar(Tr_exp base, int offset, int size){
-    return Tr_Ex(T_Mem(T_Binop(T_plus, unEx(base), T_Const(offset*F_wordSize)), size));
+    return Tr_Ex(T_Mem(T_Binop(T_plus, unEx(base)->u.MEM.exp, T_Const(offset*F_wordSize)), size));
 }
 
 Tr_exp Tr_PlusArithExp(A_plus_op op, Tr_exp left, Tr_exp right){

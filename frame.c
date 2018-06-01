@@ -32,8 +32,8 @@ F_access_List NewAccessList(F_frame f, U_boolList formals, U_byteList bytes)
         else
         {
             size = tmp_byte->byte;
-            new_ac = InFrame(index * F_wordSize, size);
-            index++;
+            new_ac = InFrame(index, size);
+            index = index + size;
         }
         if (head == NULL)
         {
@@ -77,9 +77,10 @@ F_access_List F_formals(F_frame f)
 
 F_access F_allocLocal(F_frame f, bool escape, int size)
 {
-    f->offset++;
-    if (escape)
-        return InFrame(-F_wordSize * f->offset, size);
+    if (escape){
+        f->offset = f->offset + size;
+        return InFrame(-f->offset, size);
+    }
     else
         return InReg(Temp_newtemp());
 }
