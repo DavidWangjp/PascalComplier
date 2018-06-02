@@ -11,7 +11,8 @@
 #include "semant.h"
 #include "env.h"
 #include "errormsg.h"
-#include "types.h"
+#include "escape.h"
+#include "absyn.h"
 
 
 struct expty expTy(Tr_exp exp, Ty_ty ty)
@@ -80,7 +81,7 @@ struct expty transProgram(S_table venv, S_table tenv, A_program a);
 
 struct expty transRoutine(S_table venv, S_table tenv, A_routine a);
 
-void transRoutineHead(Tr_level level, S_table venv, S_table tenv, A_routine_head a);
+void transRoutineHead(S_table escenv, S_table venv, S_table tenv, A_routine_head a, Tr_level level);
 
 struct expty transRoutineBody(Tr_level level, S_table venv, S_table tenv, A_routine_body a);
 
@@ -90,7 +91,7 @@ void transConstDec(Tr_level level, S_table venv, A_const_part a);
 
 void transTypeDec(Tr_level level, S_table venv, S_table tenv, A_type_part a);
 
-void transVarDec(Tr_level level, S_table venv, S_table tenv, A_var_part a);
+void transVarDec(S_table escenv, S_table venv, S_table tenv, A_var_part a, Tr_level level);
 
 void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part a);
 
@@ -275,7 +276,8 @@ struct expty transRoutine(S_table venv, S_table tenv, A_routine a)
 {
     S_beginScope(venv);
     S_beginScope(tenv);
-    transRoutineHead(Tr_outermost(), venv, tenv, a->routine_head);
+    S_table escenv = ESC_findEscape(a->routine_head, a->routine_body);
+    transRoutineHead(escenv, venv, tenv, a->routine_head, Tr_outermost());
     struct expty exp = transRoutineBody(Tr_outermost(), venv, tenv, a->routine_body);
     S_endScope(tenv);
     S_endScope(venv);
@@ -283,11 +285,11 @@ struct expty transRoutine(S_table venv, S_table tenv, A_routine a)
 }
 
 
-void transRoutineHead(Tr_level level, S_table venv, S_table tenv, A_routine_head a)
+void transRoutineHead(S_table escenv, S_table venv, S_table tenv, A_routine_head a, Tr_level level)
 {
     transConstDec(level, venv, a->const_part);
     transTypeDec(level, venv, tenv, a->type_part);
-    transVarDec(level, venv, tenv, a->var_part);
+    transVarDec(escenv, venv, tenv, a->var_part, level);
     transRoutineDec(level, venv, tenv, a->routine_part);
 }
 
@@ -534,14 +536,22 @@ void transTypeDec(Tr_level level, S_table venv, S_table tenv, A_type_part a)
     }
 }
 
-void transVarDec(Tr_level level, S_table venv, S_table tenv, A_var_part a)
+void transVarDec(S_table escenv, S_table venv, S_table tenv, A_var_part a, Tr_level level)
 {
     for (A_var_decl_list l = a->var_decl_list; l; l = l->var_decl_list)
     {
         for (A_name_list name = l->var_decl->name_list; name; name = name->name_list)
         {
+            if (S_look(venv, name->id))
+                EM_error(l->var_decl->pos, "Variable redefine\n");
             Ty_ty ty = transTy(level, venv, tenv, l->var_decl->type_decl);
-            Tr_access local = Tr_AllocLocal(level, TRUE, typeSize(actual_ty(ty)));
+            Tr_access local;
+
+            if (S_look(escenv, name->id))
+                local = Tr_AllocLocal(level, TRUE, typeSize(actual_ty(ty)));
+            else
+                local = Tr_AllocLocal(level, FALSE, typeSize(actual_ty(ty)));
+
             S_enter(venv, name->id, E_VarEntry(local, ty));
         }
     }
@@ -637,6 +647,8 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
                 Ty_tyList formalTys = makeFormalTyList(level, venv, tenv,
                                                        l->u.function_decl->function_head->parameters->para_decl_list);
                 Temp_label label = Temp_namedlabel(S_name(l->u.function_decl->function_head->id));
+                if (S_look(venv, l->u.function_decl->function_head->id))
+                    EM_error(l->u.function_decl->function_head->pos, "Function redefine\n");
                 S_enter(venv, l->u.function_decl->function_head->id, E_FunEntry(level, label, formalTys, resultTy));
                 break;
             }
@@ -646,6 +658,8 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
                 Ty_tyList formalTys = makeFormalTyList(level, venv, tenv,
                                                        l->u.procedure_decl->procedure_head->parameters->para_decl_list);
                 Temp_label label = Temp_namedlabel(S_name(l->u.procedure_decl->procedure_head->id));
+                if (S_look(venv, l->u.procedure_decl->procedure_head->id))
+                    EM_error(l->u.procedure_decl->procedure_head->pos, "Procedure redefine\n");
                 S_enter(venv, l->u.procedure_decl->procedure_head->id, E_FunEntry(level, label, formalTys, resultTy));
                 break;
             }
@@ -703,7 +717,9 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
                             }
                         }
                     }
-                    transRoutineHead(newLevel, venv, tenv, l->u.function_decl->sub_routine->routine_head);
+                    S_table escenv = ESC_findEscape(l->u.function_decl->sub_routine->routine_head,
+                                                    l->u.function_decl->sub_routine->routine_body);
+                    transRoutineHead(escenv, venv, tenv, l->u.function_decl->sub_routine->routine_head, newLevel);
                 }
                 transRoutineBody(level, venv, tenv, l->u.function_decl->sub_routine->routine_body);
                 S_endScope(venv);
@@ -758,7 +774,9 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
                             }
                         }
                     }
-                    transRoutineHead(newLevel, venv, tenv, l->u.procedure_decl->sub_routine->routine_head);
+                    S_table escenv = ESC_findEscape(l->u.procedure_decl->sub_routine->routine_head,
+                                                    l->u.procedure_decl->sub_routine->routine_body);
+                    transRoutineHead(escenv, venv, tenv, l->u.procedure_decl->sub_routine->routine_head, newLevel);
                 }
                 transRoutineBody(level, venv, tenv, l->u.procedure_decl->sub_routine->routine_body);
                 S_endScope(venv);
