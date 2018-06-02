@@ -441,3 +441,7 @@ Tr_exp Tr_LabelExp(Temp_label label){
 Tr_exp Tr_NullExp(void){
     return Tr_Ex(T_Const(0));
 }
+
+Tr_exp Tr_MinusExp(Tr_exp e){
+    return Tr_Ex(T_Binop(T_minus, T_Const(0), unEx(e)));
+}

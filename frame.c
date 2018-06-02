@@ -77,7 +77,7 @@ F_access_List F_formals(F_frame f)
 
 F_access F_allocLocal(F_frame f, bool escape, int size)
 {
-    if (escape){
+    if (escape || size > 4){
         f->offset = f->offset + size;
         return InFrame(-f->offset, size);
     }

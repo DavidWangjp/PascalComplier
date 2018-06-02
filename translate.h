@@ -160,4 +160,6 @@ Tr_exp Tr_LabelExp(Temp_label label);
 
 Tr_exp Tr_NullExp(void);
 
+Tr_exp Tr_MinusExp(Tr_exp e);
+
 #endif
