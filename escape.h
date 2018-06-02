@@ -7,6 +7,6 @@
 
 #include "absyn.h"
 
-void Esc_findEscape(A_program a);
+S_table ESC_findEscape(A_routine_head head, A_routine_body body);
 
 #endif //PASCALCOMPLIER_ESCAPE_H
