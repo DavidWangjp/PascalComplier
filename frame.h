@@ -55,6 +55,8 @@ static F_access InFrame(int offset, int size);
 static F_access InReg(Temp_temp reg);
 
 Temp_temp F_FP(void);
+Temp_temp F_RA(void);
+Temp_temp F_RV(void);
 
 T_exp F_Exp(F_access acc, T_exp framePtr);
 

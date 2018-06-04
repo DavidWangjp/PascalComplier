@@ -162,4 +162,8 @@ Tr_exp Tr_NullExp(void);
 
 Tr_exp Tr_MinusExp(Tr_exp e);
 
+Tr_exp Tr_RtnAddressExp(void);
+
+Tr_exp Tr_RtnValueMenExp(void);
+
 #endif

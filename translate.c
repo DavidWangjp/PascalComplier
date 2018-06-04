@@ -445,3 +445,11 @@ Tr_exp Tr_NullExp(void){
 Tr_exp Tr_MinusExp(Tr_exp e){
     return Tr_Ex(T_Binop(T_minus, T_Const(0), unEx(e)));
 }
+
+Tr_exp Tr_RtnAddressExp(void){
+    return Tr_Nx(T_Jump(T_Temp(F_RA()), Temp_LabelList(T_Temp(F_RA()), NULL)));
+}
+
+Tr_exp Tr_RtnValueMenExp(void){
+    return Tr_Ex(T_Temp(F_RV()));
+}

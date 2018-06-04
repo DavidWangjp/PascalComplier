@@ -10,9 +10,10 @@
 
 Temp_map f_map = NULL;
 Temp_temp fp = NULL;
+Temp_temp ra = NULL;
+Temp_temp rv = NULL;
 
-F_access_List NewAccessList(F_frame f, U_boolList formals, U_byteList bytes)
-{
+F_access_List NewAccessList(F_frame f, U_boolList formals, U_byteList bytes){
     F_access_List head = NULL;
     F_access_List tail = NULL;
     U_boolList tmp_para = formals;
@@ -56,8 +57,7 @@ F_access_List NewAccessList(F_frame f, U_boolList formals, U_byteList bytes)
     return head;
 }
 
-F_frame F_newFrame(Temp_label name, U_boolList formals, U_byteList bytes)
-{
+F_frame F_newFrame(Temp_label name, U_boolList formals, U_byteList bytes){
     F_frame f = checked_malloc(sizeof(*f));
     f->name = name;
     f->paras = NewAccessList(f, formals, bytes);
@@ -65,18 +65,15 @@ F_frame F_newFrame(Temp_label name, U_boolList formals, U_byteList bytes)
     return f;
 }
 
-Temp_label F_name(F_frame F)
-{
+Temp_label F_name(F_frame F){
     return F->name;
 }
 
-F_access_List F_formals(F_frame f)
-{
+F_access_List F_formals(F_frame f){
     return f->paras;
 }
 
-F_access F_allocLocal(F_frame f, bool escape, int size)
-{
+F_access F_allocLocal(F_frame f, bool escape, int size){
     if (escape || size > 4){
         f->offset = f->offset + size;
         return InFrame(-f->offset, size);
@@ -85,8 +82,7 @@ F_access F_allocLocal(F_frame f, bool escape, int size)
         return InReg(Temp_newtemp());
 }
 
-static F_access InFrame(int offset, int size)
-{
+static F_access InFrame(int offset, int size){
     F_access ac = checked_malloc(sizeof(*ac));
     ac->kind = inFrame;
     ac->u.offset = offset;
@@ -94,16 +90,14 @@ static F_access InFrame(int offset, int size)
     return ac;
 }
 
-static F_access InReg(Temp_temp reg)
-{
+static F_access InReg(Temp_temp reg){
     F_access ac = checked_malloc(sizeof(*ac));
     ac->kind = inReg;
     ac->u.reg = reg;
     return ac;
 }
 
-Temp_temp F_FP(void)
-{
+Temp_temp F_FP(void){
     if (!fp)
     {
         if (!f_map)
@@ -116,8 +110,33 @@ Temp_temp F_FP(void)
     return fp;
 }
 
-T_exp F_Exp(F_access acc, T_exp framePtr)
-{
+Temp_temp F_RA(void){
+    if (!ra)
+    {
+        if (!f_map)
+        {
+            f_map = Temp_empty();
+        }
+        ra = Temp_newtemp();
+        Temp_enter(f_map, ra, "ra");
+    }
+    return ra;
+}
+
+Temp_temp F_RV(void){
+    if (!rv)
+    {
+        if (!f_map)
+        {
+            f_map = Temp_empty();
+        }
+        rv = Temp_newtemp();
+        Temp_enter(f_map, rv, "rv");
+    }
+    return rv;
+}
+
+T_exp F_Exp(F_access acc, T_exp framePtr){
     if (acc->kind == inFrame)
     {
         return T_Mem(T_Binop(T_plus, framePtr, T_Const(acc->u.offset)), acc->size);
@@ -128,7 +147,6 @@ T_exp F_Exp(F_access acc, T_exp framePtr)
     }
 }
 
-T_exp F_externalCall(string s, T_expList args)
-{
+T_exp F_externalCall(string s, T_expList args){
     return T_Call(T_Name(Temp_namedlabel(s)), args);
 }
