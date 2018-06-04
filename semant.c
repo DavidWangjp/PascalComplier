@@ -77,11 +77,9 @@ A_var A_Record(A_pos pos, S_symbol s, S_symbol f)
     return record;
 }
 
-struct expty transProgram(S_table venv, S_table tenv, A_program a);
-
 struct expty transRoutine(S_table venv, S_table tenv, A_routine a);
 
-void transRoutineHead(S_table escenv, S_table venv, S_table tenv, A_routine_head a, Tr_level level);
+struct expty transRoutineHead(S_table escenv, S_table venv, S_table tenv, A_routine_head a, Tr_level level);
 
 struct expty transRoutineBody(Tr_level level, S_table venv, S_table tenv, A_routine_body a);
 
@@ -93,7 +91,7 @@ void transTypeDec(Tr_level level, S_table venv, S_table tenv, A_type_part a);
 
 void transVarDec(S_table escenv, S_table venv, S_table tenv, A_var_part a, Tr_level level);
 
-void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part a);
+struct expty transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part a);
 
 struct expty transStm(Tr_level level, S_table venv, S_table tenv, A_stmt a);
 
@@ -261,14 +259,8 @@ struct expty SEM_transProg(A_program a)
     struct expty exp;
     S_table type_base_env = E_base_tenv();
     S_table value_base_env = E_base_venv();
-    exp = transProgram(value_base_env, type_base_env, a);
+    exp = transRoutine(value_base_env, type_base_env, a->routine);
     return exp;
-}
-
-
-struct expty transProgram(S_table venv, S_table tenv, A_program a)
-{
-    return transRoutine(venv, tenv, a->routine);
 };
 
 
@@ -277,20 +269,23 @@ struct expty transRoutine(S_table venv, S_table tenv, A_routine a)
     S_beginScope(venv);
     S_beginScope(tenv);
     S_table escenv = ESC_findEscape(a->routine_head, a->routine_body);
-    transRoutineHead(escenv, venv, tenv, a->routine_head, Tr_outermost());
-    struct expty exp = transRoutineBody(Tr_outermost(), venv, tenv, a->routine_body);
+    struct expty routineDec =  transRoutineHead(escenv, venv, tenv, a->routine_head, Tr_outermost());
+    routineDec = expTy(Tr_SeqExp(Tr_GotoExp(Tr_LabelExp(Temp_namedlabel("main"))), routineDec.exp), Ty_Void());
+
+    struct expty body = transRoutineBody(Tr_outermost(), venv, tenv, a->routine_body);
+    body = expTy(Tr_SeqExp(Tr_LabelExp(Temp_namedlabel("main")), body.exp), Ty_Void());
     S_endScope(tenv);
     S_endScope(venv);
-    return exp;
+    return expTy(Tr_SeqExp(routineDec.exp, body.exp), Ty_Void());
 }
 
 
-void transRoutineHead(S_table escenv, S_table venv, S_table tenv, A_routine_head a, Tr_level level)
+struct expty transRoutineHead(S_table escenv, S_table venv, S_table tenv, A_routine_head a, Tr_level level)
 {
     transConstDec(level, venv, a->const_part);
     transTypeDec(level, venv, tenv, a->type_part);
     transVarDec(escenv, venv, tenv, a->var_part, level);
-    transRoutineDec(level, venv, tenv, a->routine_part);
+    return transRoutineDec(level, venv, tenv, a->routine_part);
 }
 
 /*
@@ -632,9 +627,11 @@ U_boolList makeFormalEscapeList(A_para_decl_list a)
     return list;
 }
 
-void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part a)
+struct expty transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part a)
 {
-    for (A_routine_part l = reverse_routine_dec_list(a); l; l = l->routine_part)
+    Tr_exp routineDec = NULL;
+    A_routine_part reversed = reverse_routine_dec_list(a);
+    for (A_routine_part l = reversed; l; l = l->routine_part)
     {
         switch (l->kind)
         {
@@ -642,7 +639,7 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
             {
                 A_type_decl ty = checked_malloc(sizeof(*ty));
                 ty->kind = type_decl_simple;
-                ty->u.simple_type_decl = a->u.function_decl->function_head->simple_type_decl;
+                ty->u.simple_type_decl = l->u.function_decl->function_head->simple_type_decl;
                 Ty_ty resultTy = transTy(level, venv, tenv, ty);
                 Ty_tyList formalTys = makeFormalTyList(level, venv, tenv,
                                                        l->u.function_decl->function_head->parameters->para_decl_list);
@@ -665,7 +662,7 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
             }
         }
     }
-    for (A_routine_part l = a; l; l = l->routine_part)
+    for (A_routine_part l = reversed; l; l = l->routine_part)
     {
         switch (l->kind)
         {
@@ -682,6 +679,12 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
                 S_beginScope(tenv);
                 S_beginScope(venv);
                 {
+                    /*
+                     * allocate register for return value
+                     */
+                    Tr_access returnValue = Tr_ReturnValue(typeSize(actual_ty(fun->u.fun.result)));
+                    S_enter(venv, l->u.function_decl->function_head->id, E_VarEntry(returnValue, fun->u.fun.result));
+
                     A_para_decl_list declList;
                     Ty_tyList tyList;
                     for (declList =
@@ -695,11 +698,12 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
                         {
                             case para_type_list_var:
                             {
+
                                 for (A_name_list nameList =
                                         declList->para_type_list->u.var_para_list.var_para_list->name_list;
                                      nameList; nameList = nameList->name_list)
                                 {
-                                    Tr_access local = Tr_AllocLocal(newLevel, TRUE, typeSize(tyList->head));
+                                    Tr_access local = Tr_AllocLocal(newLevel, TRUE, typeSize(actual_ty(tyList->head)));
                                     S_enter(venv, nameList->id, E_VarEntry(local, tyList->head));
                                 }
                                 break;
@@ -710,7 +714,7 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
                                         declList->para_type_list->u.var_para_list.var_para_list->name_list;
                                      nameList; nameList = nameList->name_list)
                                 {
-                                    Tr_access local = Tr_AllocLocal(newLevel, TRUE, typeSize(tyList->head));
+                                    Tr_access local = Tr_AllocLocal(newLevel, TRUE, typeSize(actual_ty(tyList->head)));
                                     S_enter(venv, nameList->id, E_VarEntry(local, tyList->head));
                                 }
                                 break;
@@ -721,7 +725,15 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
                                                     l->u.function_decl->sub_routine->routine_body);
                     transRoutineHead(escenv, venv, tenv, l->u.function_decl->sub_routine->routine_head, newLevel);
                 }
-                transRoutineBody(level, venv, tenv, l->u.function_decl->sub_routine->routine_body);
+                // todo:
+                Tr_exp  body = transRoutineBody(level, venv, tenv, l->u.function_decl->sub_routine->routine_body).exp;
+                body = Tr_SeqExp(Tr_LabelExp(Temp_namedlabel(S_name(l->u.function_decl->function_head->id))),
+                        Tr_SeqExp(body, Tr_Return()));
+                if (routineDec == NULL)
+                    routineDec = body;
+                else
+                    routineDec = Tr_SeqExp(routineDec, body);
+
                 S_endScope(venv);
                 S_endScope(tenv);
                 break;
@@ -756,7 +768,7 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
                                         declList->para_type_list->u.var_para_list.var_para_list->name_list;
                                      nameList; nameList = nameList->name_list)
                                 {
-                                    Tr_access local = Tr_AllocLocal(newLevel, TRUE, typeSize(tyList->head));
+                                    Tr_access local = Tr_AllocLocal(newLevel, TRUE, typeSize(actual_ty(tyList->head)));
                                     S_enter(venv, nameList->id, E_VarEntry(local, tyList->head));
                                 }
                                 break;
@@ -778,7 +790,15 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
                                                     l->u.procedure_decl->sub_routine->routine_body);
                     transRoutineHead(escenv, venv, tenv, l->u.procedure_decl->sub_routine->routine_head, newLevel);
                 }
-                transRoutineBody(level, venv, tenv, l->u.procedure_decl->sub_routine->routine_body);
+
+                // todo:
+                Tr_exp  body = transRoutineBody(level, venv, tenv, l->u.procedure_decl->sub_routine->routine_body).exp;
+                body = Tr_SeqExp(Tr_LabelExp(Temp_namedlabel(S_name(l->u.procedure_decl->procedure_head->id))),
+                                 Tr_SeqExp(body, Tr_Return()));
+                if (routineDec == NULL)
+                    routineDec = body;
+                else
+                    routineDec = Tr_SeqExp(routineDec, body);
                 S_endScope(venv);
                 S_endScope(tenv);
                 break;
@@ -786,6 +806,7 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
         }
 
     }
+    return expTy(routineDec, Ty_Void());
 }
 
 /*
@@ -1215,7 +1236,50 @@ struct expty transFactor(Tr_level level, S_table venv, S_table tenv, A_factor a)
         case factor_sys_funct:
             break;
         case factor_sys_funct_with_args:
-            break;
+        {
+            char *name;
+            switch (a->u.sys_funct_with_args.sys_funct)
+            {
+                case SYS_FUNCT_ABS:
+                {
+                    name = "abs";
+                    break;
+                }
+                case SYS_FUNCT_CHR:
+                    break;
+                case SYS_FUNCT_ODD:
+                    break;
+                case SYS_FUNCT_ORD:
+                    break;
+                case SYS_FUNCT_PRED:
+                    break;
+                case SYS_FUNCT_SQR:
+                {
+                    name = "sqr";
+                    break;
+                }
+                case SYS_FUNCT_SQRT:
+                {
+                    name = "sqrt";
+                    break;
+                }
+                case SYS_FUNCT_SUCC:
+                    break;
+            }
+            E_enventry fun = (E_enventry) S_look(venv, S_Symbol(name));
+            if (fun && fun->kind == E_funEntry)
+            {
+                Tr_expList argList = makeArgsList(level, venv, tenv, a->u.id_with_args.args_list, fun);
+                return expTy(Tr_CallExp(fun->u.fun.label, fun->u.fun.level, level, argList),
+                             actual_ty(fun->u.fun.result));
+            }
+            else
+            {
+                EM_error(a->pos, "Function is not declared.\n");
+                return expTy(NULL, Ty_Int());
+            }
+
+        }
         case factor_const_value:
         {
             return transConst(a->u.const_value);
@@ -1225,7 +1289,33 @@ struct expty transFactor(Tr_level level, S_table venv, S_table tenv, A_factor a)
             return transExp(level, venv, tenv, a->u.expression);
         }
         case factor_un_op:
-            break;
+        {
+            if (a->u.un_op.factor->kind == factor_const_value)
+            {
+                switch (a->u.un_op.factor->u.const_value->kind)
+                {
+
+                    case CONST_INTEGER:
+                    {
+                        a->u.un_op.factor->u.const_value->u.intt = -a->u.un_op.factor->u.const_value->u.intt;
+                        return transConst(a->u.un_op.factor->u.const_value);
+                    }
+                    case CONST_REAL:
+                    {
+                        a->u.un_op.factor->u.const_value->u.real = -a->u.un_op.factor->u.const_value->u.real;
+                        return transConst(a->u.un_op.factor->u.const_value);
+                    }
+                    case CONST_CHAR:
+                        break;
+                    case CONST_STRING:
+                        break;
+                    case CONST_SYS_CON:
+                        break;
+                }
+            }
+            struct expty exp = transFactor(level, venv, tenv, a->u.un_op.factor);
+            return expTy(Tr_MinusExp(exp.exp), exp.ty);
+        }
         case factor_array_var:
         {
             return transVar(level, venv, tenv, A_Array(a->pos, a->u.array_var.id, a->u.array_var.subscript_expression));

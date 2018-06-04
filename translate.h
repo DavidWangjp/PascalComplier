@@ -162,8 +162,8 @@ Tr_exp Tr_NullExp(void);
 
 Tr_exp Tr_MinusExp(Tr_exp e);
 
-Tr_exp Tr_Rtn(void);
+Tr_exp Tr_Return(void);
 
-Tr_access Tr_RtnValue(int size);
+Tr_access Tr_ReturnValue(int size);
 
 #endif
