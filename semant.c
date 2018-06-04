@@ -680,7 +680,7 @@ struct expty transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routi
                 S_beginScope(tenv);
                 S_beginScope(venv);
                 {
-                    /*
+                    /*e
                      * allocate register for return value
                      */
                     Tr_access returnValue = Tr_ReturnValue(typeSize(actual_ty(fun->u.fun.result)));

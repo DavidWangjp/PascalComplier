@@ -27,7 +27,7 @@ F_access_List NewAccessList(F_frame f, U_boolList formals, U_byteList bytes){
     {
         F_access new_ac = NULL;
         //有不同
-        if (tmp_para->head == FALSE && num_reg < MAX_ARGS_REG)
+        if (tmp_para->head == FALSE && num_reg < MAX_ARGS_REG && tmp_byte->byte <=4)
         {
             new_ac = InReg(Temp_newtemp());
             num_reg++;
