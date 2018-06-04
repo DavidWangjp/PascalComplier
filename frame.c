@@ -10,8 +10,10 @@
 
 Temp_map f_map = NULL;
 Temp_temp fp = NULL;
+
 Temp_temp ra = NULL;
-Temp_temp rv = NULL;
+
+F_access rv = NULL;
 
 F_access_List NewAccessList(F_frame f, U_boolList formals, U_byteList bytes){
     F_access_List head = NULL;
@@ -123,15 +125,10 @@ Temp_temp F_RA(void){
     return ra;
 }
 
-Temp_temp F_RV(void){
+F_access F_RV(F_frame f){
     if (!rv)
     {
-        if (!f_map)
-        {
-            f_map = Temp_empty();
-        }
-        rv = Temp_newtemp();
-        Temp_enter(f_map, rv, "rv");
+        rv = F_allocLocal(f, TRUE, 8);
     }
     return rv;
 }

@@ -56,7 +56,7 @@ static F_access InReg(Temp_temp reg);
 
 Temp_temp F_FP(void);
 Temp_temp F_RA(void);
-Temp_temp F_RV(void);
+F_access F_RV(F_frame f);
 
 T_exp F_Exp(F_access acc, T_exp framePtr);
 
