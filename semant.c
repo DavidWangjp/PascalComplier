@@ -12,7 +12,6 @@
 #include "env.h"
 #include "errormsg.h"
 #include "escape.h"
-#include "absyn.h"
 
 
 struct expty expTy(Tr_exp exp, Ty_ty ty)
@@ -269,7 +268,7 @@ struct expty transRoutine(S_table venv, S_table tenv, A_routine a)
     S_beginScope(venv);
     S_beginScope(tenv);
     S_table escenv = ESC_findEscape(a->routine_head, a->routine_body);
-    struct expty routineDec =  transRoutineHead(escenv, venv, tenv, a->routine_head, Tr_outermost());
+    struct expty routineDec = transRoutineHead(escenv, venv, tenv, a->routine_head, Tr_outermost());
     routineDec = expTy(Tr_SeqExp(Tr_GotoExp(Tr_LabelExp(Temp_namedlabel("main"))), routineDec.exp), Ty_Void());
 
     struct expty body = transRoutineBody(Tr_outermost(), venv, tenv, a->routine_body);
@@ -623,7 +622,7 @@ U_boolList makeFormalEscapeList(A_para_decl_list a)
 {
     U_boolList list = NULL;
     for (A_para_decl_list l = a; l; l = l->para_decl_list)
-        list = U_BoolList(TRUE, list);
+        list = U_BoolList(FALSE, list);
     return list;
 }
 
@@ -672,6 +671,8 @@ struct expty transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routi
                 Ty_tyList formalTys = fun->u.fun.formals;
                 Temp_label label = fun->u.fun.label;
 
+                S_table escenv = ESC_findEscape(l->u.function_decl->sub_routine->routine_head,
+                                                l->u.function_decl->sub_routine->routine_body);
                 U_boolList formalEscapes = makeFormalEscapeList(
                         l->u.function_decl->function_head->parameters->para_decl_list);
 
@@ -684,6 +685,7 @@ struct expty transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routi
                      */
                     Tr_access returnValue = Tr_ReturnValue(typeSize(actual_ty(fun->u.fun.result)));
                     S_enter(venv, l->u.function_decl->function_head->id, E_VarEntry(returnValue, fun->u.fun.result));
+
 
                     A_para_decl_list declList;
                     Ty_tyList tyList;
@@ -703,7 +705,11 @@ struct expty transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routi
                                         declList->para_type_list->u.var_para_list.var_para_list->name_list;
                                      nameList; nameList = nameList->name_list)
                                 {
-                                    Tr_access local = Tr_AllocLocal(newLevel, TRUE, typeSize(actual_ty(tyList->head)));
+                                    Tr_access local;
+                                    if (S_look(escenv, nameList->id))
+                                        local = Tr_AllocLocal(newLevel, TRUE, typeSize(actual_ty(tyList->head)));
+                                    else
+                                        local = Tr_AllocLocal(newLevel, FALSE, typeSize(actual_ty(tyList->head)));
                                     S_enter(venv, nameList->id, E_VarEntry(local, tyList->head));
                                 }
                                 break;
@@ -714,21 +720,32 @@ struct expty transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routi
                                         declList->para_type_list->u.var_para_list.var_para_list->name_list;
                                      nameList; nameList = nameList->name_list)
                                 {
-                                    Tr_access local = Tr_AllocLocal(newLevel, TRUE, typeSize(actual_ty(tyList->head)));
+                                    Tr_access local;
+                                    if (S_look(escenv, nameList->id))
+                                        local = Tr_AllocLocal(newLevel, TRUE, typeSize(actual_ty(tyList->head)));
+                                    else
+                                        local = Tr_AllocLocal(newLevel, FALSE, typeSize(actual_ty(tyList->head)));
                                     S_enter(venv, nameList->id, E_VarEntry(local, tyList->head));
                                 }
                                 break;
                             }
                         }
                     }
-                    S_table escenv = ESC_findEscape(l->u.function_decl->sub_routine->routine_head,
-                                                    l->u.function_decl->sub_routine->routine_body);
-                    transRoutineHead(escenv, venv, tenv, l->u.function_decl->sub_routine->routine_head, newLevel);
                 }
-                // todo:
-                Tr_exp  body = transRoutineBody(level, venv, tenv, l->u.function_decl->sub_routine->routine_body).exp;
-                body = Tr_SeqExp(Tr_LabelExp(Temp_namedlabel(S_name(l->u.function_decl->function_head->id))),
-                        Tr_SeqExp(body, Tr_Return()));
+                Tr_exp head = transRoutineHead(escenv, venv, tenv, l->u.function_decl->sub_routine->routine_head,
+                                               newLevel).exp;
+
+                Tr_exp body = transRoutineBody(level, venv, tenv, l->u.function_decl->sub_routine->routine_body).exp;
+                if (head == NULL)
+                    body = Tr_SeqExp(Tr_LabelExp(Temp_namedlabel(S_name(l->u.function_decl->function_head->id))),
+                                     Tr_SeqExp(body, Tr_Return()));
+                else
+                    body = Tr_SeqExp(Tr_LabelExp(Temp_namedlabel(S_name(l->u.procedure_decl->procedure_head->id))),
+                                     Tr_SeqExp(
+                                             Tr_SeqExp(head, body),
+                                             Tr_Return()
+                                     ));
+
                 if (routineDec == NULL)
                     routineDec = body;
                 else
@@ -744,6 +761,9 @@ struct expty transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routi
                 Ty_tyList formalTys = fun->u.fun.formals;
                 Temp_label label = fun->u.fun.label;
 
+                S_table escenv = ESC_findEscape(l->u.procedure_decl->sub_routine->routine_head,
+                                                l->u.procedure_decl->sub_routine->routine_body);
+
                 U_boolList formalEscapes = makeFormalEscapeList(
                         l->u.procedure_decl->procedure_head->parameters->para_decl_list);
 
@@ -753,6 +773,8 @@ struct expty transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routi
                 {
                     A_para_decl_list declList;
                     Ty_tyList tyList;
+
+
                     for (declList =
                                  reverse_para_dec_list(
                                          l->u.procedure_decl->procedure_head->parameters->para_decl_list),
@@ -768,7 +790,12 @@ struct expty transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routi
                                         declList->para_type_list->u.var_para_list.var_para_list->name_list;
                                      nameList; nameList = nameList->name_list)
                                 {
-                                    Tr_access local = Tr_AllocLocal(newLevel, TRUE, typeSize(actual_ty(tyList->head)));
+                                    Tr_access local;
+                                    if (S_look(escenv, nameList->id))
+                                        local = Tr_AllocLocal(newLevel, TRUE, typeSize(actual_ty(tyList->head)));
+                                    else
+                                        local = Tr_AllocLocal(newLevel, FALSE, typeSize(actual_ty(tyList->head)));
+
                                     S_enter(venv, nameList->id, E_VarEntry(local, tyList->head));
                                 }
                                 break;
@@ -779,22 +806,32 @@ struct expty transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routi
                                         declList->para_type_list->u.val_para_list.val_para_list->name_list;
                                      nameList; nameList = nameList->name_list)
                                 {
-                                    Tr_access local = Tr_AllocLocal(newLevel, TRUE, typeSize(tyList->head));
+                                    Tr_access local;
+                                    if (S_look(escenv, nameList->id))
+                                        local = Tr_AllocLocal(newLevel, TRUE, typeSize(actual_ty(tyList->head)));
+                                    else
+                                        local = Tr_AllocLocal(newLevel, FALSE, typeSize(actual_ty(tyList->head)));
                                     S_enter(venv, nameList->id, E_VarEntry(local, tyList->head));
                                 }
                                 break;
                             }
                         }
                     }
-                    S_table escenv = ESC_findEscape(l->u.procedure_decl->sub_routine->routine_head,
-                                                    l->u.procedure_decl->sub_routine->routine_body);
-                    transRoutineHead(escenv, venv, tenv, l->u.procedure_decl->sub_routine->routine_head, newLevel);
                 }
+                Tr_exp head = transRoutineHead(escenv, venv, tenv, l->u.procedure_decl->sub_routine->routine_head,
+                                               newLevel).exp;
 
-                // todo:
-                Tr_exp  body = transRoutineBody(level, venv, tenv, l->u.procedure_decl->sub_routine->routine_body).exp;
-                body = Tr_SeqExp(Tr_LabelExp(Temp_namedlabel(S_name(l->u.procedure_decl->procedure_head->id))),
-                                 Tr_SeqExp(body, Tr_Return()));
+                Tr_exp body = transRoutineBody(level, venv, tenv, l->u.procedure_decl->sub_routine->routine_body).exp;
+                if (head == NULL)
+                    body = Tr_SeqExp(Tr_LabelExp(Temp_namedlabel(S_name(l->u.procedure_decl->procedure_head->id))),
+                                     Tr_SeqExp(body, Tr_Return()));
+                else
+                    body = Tr_SeqExp(Tr_LabelExp(Temp_namedlabel(S_name(l->u.procedure_decl->procedure_head->id))),
+                                     Tr_SeqExp(
+                                             Tr_SeqExp(head, body),
+                                             Tr_Return()
+                                     ));
+
                 if (routineDec == NULL)
                     routineDec = body;
                 else
