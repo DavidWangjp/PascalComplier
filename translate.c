@@ -446,14 +446,14 @@ Tr_exp Tr_MinusExp(Tr_exp e){
     return Tr_Ex(T_Binop(T_minus, T_Const(0), unEx(e)));
 }
 
-Tr_exp Tr_RtnAddress(void){
-    return Tr_Nx(T_Jump(T_Temp(F_RA()), Temp_LabelList(T_Temp(F_RA()), NULL)));
+Tr_exp Tr_Rtn(void){
+    return Tr_Nx(T_Return());
 }
 
 Tr_access Tr_RtnValue(int size){
     Tr_access new_a = checked_malloc(sizeof(*new_a));
     new_a->level = Tr_outermost();
-    new_a->access = F_RV;
-    new_a->access->size = size
+    new_a->access = F_RV(Tr_outermost());
+    new_a->access->size = size;
     return new_a;
 }

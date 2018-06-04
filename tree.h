@@ -20,7 +20,7 @@ typedef enum  {T_eq, T_ne, T_lt, T_gt, T_le, T_ge,
 		T_ult, T_ule, T_ugt, T_uge} T_relOp;
 
 struct T_stm_ {
-	enum {T_SEQ, T_LABEL, T_JUMP, T_CJUMP, T_MOVE, T_EXP} kind;
+	enum {T_SEQ, T_LABEL, T_JUMP, T_CJUMP, T_MOVE, T_EXP, T_RETURN} kind;
 	union {
 		struct {T_stm left, right;} SEQ;
 		Temp_label LABEL;
@@ -60,6 +60,7 @@ T_stm T_Cjump(T_relOp op, T_exp left, T_exp right,
 	      Temp_label true_label, Temp_label false_label);
 T_stm T_Move(T_exp, T_exp);
 T_stm T_Exp(T_exp);
+T_stm T_Return(void);
 
 T_exp T_Binop(T_binOp, T_exp, T_exp);
 T_exp T_Mem(T_exp, int size);
