@@ -203,6 +203,7 @@ void print_graph_Tr_exp(FILE *out, Tr_exp exp)
 
 void print_graph_frag_exp (FILE *out, F_fragList list)
 {
+    fprintf(out, "digraph g {\n");
     for(; list; list=list->tail)
     {
         F_frag frag = list->head;
@@ -211,4 +212,5 @@ void print_graph_frag_exp (FILE *out, F_fragList list)
             pr_graph_stm(out, frag->u.proc.body, print_index);
         }
     }
+    fprintf(out, "}\n");
 }
