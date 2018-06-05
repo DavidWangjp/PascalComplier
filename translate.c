@@ -1,6 +1,7 @@
 #include "translate.h"
 
 static Tr_level outermost_l = NULL;
+static F_fragList fragList = NULL;
 
 Tr_exp Tr_Ex(T_exp ex)
 {
@@ -396,17 +397,16 @@ Tr_level Tr_outermost(void)
 {
     if (outermost_l == NULL)
     {
-        outermost_l = Tr_NewLevel(NULL, Temp_newlabel(), NULL);
+        outermost_l = Tr_NewLevel(NULL, Temp_newlabel(), NULL, NULL);
     }
     return outermost_l;
 }
 
-Tr_level Tr_NewLevel(Tr_level parent, Temp_label name, U_boolList formals)
+Tr_level Tr_NewLevel(Tr_level parent, Temp_label name, U_boolList formals, U_byteList bytes)
 {
     Tr_level new_l = checked_malloc(sizeof(*new_l));
-    U_byteList bytes = U_constByteList(4);
     new_l->parent = parent;
-    new_l->frame = F_newFrame(name, U_BoolList(TRUE, formals), bytes);
+    new_l->frame = F_newFrame(name, U_BoolList(TRUE, formals), U_ByteList(4, bytes));
     return new_l;
 }
 
@@ -516,4 +516,13 @@ Tr_access Tr_ReturnValue(int size)
     new_a->access = F_RV(Tr_outermost()->frame);
     new_a->access->size = size;
     return new_a;
+}
+
+void Tr_procEntryExit(Tr_level level, Tr_exp body){
+    F_frag newFrag = F_ProcFrag(unNx(body), level->frame);
+    fragList = F_FragList(newFrag, fragList);
+}
+
+F_fragList Tr_getResult(void){
+    return fragList;
 }

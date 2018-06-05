@@ -147,3 +147,26 @@ T_exp F_Exp(F_access acc, T_exp framePtr){
 T_exp F_externalCall(string s, T_expList args){
     return T_Call(T_Name(Temp_namedlabel(s)), args);
 }
+
+F_frag F_StringFrag(Temp_label label, string str){
+    F_frag tmp_strfrag = checked_malloc(sizeof(*tmp_strfrag));
+    tmp_strfrag->kind = F_stringFrag;
+    tmp_strfrag->u.stringg.label = label;
+    tmp_strfrag->u.stringg.str = str;
+    return tmp_strfrag;
+}
+
+F_frag F_ProcFrag(T_stm body, F_frame frame){
+    F_frag tmp_procfrag = checked_malloc(sizeof(*tmp_procfrag));
+    tmp_procfrag->kind = F_procFrag;
+    tmp_procfrag->u.proc.frame = frame;
+    tmp_procfrag->u.proc.body = body;
+    return tmp_procfrag;
+}
+
+F_fragList F_FragList(F_frag head, F_fragList tail){
+    F_fragList tmp_list = checked_malloc(sizeof(*tmp_list));
+    tmp_list->head = head;
+    tmp_list->tail = tail;
+    return tmp_list;
+}

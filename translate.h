@@ -81,7 +81,7 @@ Tr_accessList Tr_AccessList(Tr_access head, Tr_accessList tail);
 Tr_level Tr_outermost(void);
 
 //在调用函数的时候定义一个新的level
-Tr_level Tr_NewLevel(Tr_level parent, Temp_label name, U_boolList formals);
+Tr_level Tr_NewLevel(Tr_level parent, Temp_label name, U_boolList formals, U_byteList bytes);
 
 //返回当前变量的所有堆栈里的所有变量
 Tr_accessList Tr_formals(Tr_level level);
@@ -165,5 +165,9 @@ Tr_exp Tr_MinusExp(Tr_exp e);
 Tr_exp Tr_Return(void);
 
 Tr_access Tr_ReturnValue(int size);
+//将函数体存入frag片段的list中
+void Tr_procEntryExit(Tr_level level, Tr_exp body);
+//获取所有的frag片段
+F_fragList Tr_getResult(void);
 
 #endif

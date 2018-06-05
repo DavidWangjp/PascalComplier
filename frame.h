@@ -10,33 +10,53 @@
 
 typedef struct F_frame_ *F_frame;
 typedef struct F_access_ *F_access;
+typedef struct F_frag_ *F_frag;
 
 typedef struct F_access_List_ *F_access_List;
-struct F_access_List_
-{
+struct F_access_List_ {
     F_access head;
     F_access_List tail;
 };
 
-struct F_frame_
-{
+
+typedef struct F_fragList_ *F_fragList;
+struct F_fragList_{
+    F_frag head;
+    F_fragList tail;
+};
+
+struct F_frame_ {
     Temp_label name;
     F_access_List paras;
     int offset;
 };
 
-struct F_access_
-{
-    enum
-    {
+struct F_access_ {
+    enum {
         inFrame, inReg
     } kind;
-    union
-    {
+    union {
         int offset;
         Temp_temp reg;
     } u;
     int size;//访问内存的大小
+};
+
+
+struct F_frag_{
+    enum {
+        F_stringFrag, F_procFrag
+    } kind;
+    union {
+        struct {
+            Temp_label label;
+            string str;
+        } stringg;
+        struct {
+            T_stm body;
+            F_frame frame;
+        } proc;
+    } u;
 };
 
 //传入名字 参数逃逸情况 参数的大小(byte) 所有变量的大小都要提供（不论是否存在寄存器中）
@@ -59,5 +79,11 @@ Temp_temp F_RA(void);
 F_access F_RV(F_frame f);
 
 T_exp F_Exp(F_access acc, T_exp framePtr);
+
+F_frag F_StringFrag(Temp_label label, string str);
+
+F_frag F_ProcFrag(T_stm body, F_frame frame);
+
+F_fragList F_FragList(F_frag head, F_fragList tail);
 
 #endif
