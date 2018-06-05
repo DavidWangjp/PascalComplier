@@ -200,3 +200,15 @@ void print_graph_Tr_exp(FILE *out, Tr_exp exp)
     pr_graph_stm(out, node, 0);
     fprintf(out, "}\n");
 }
+
+void print_graph_frag_exp (FILE *out, F_fragList list)
+{
+    for(; list; list=list->tail)
+    {
+        F_frag frag = list->head;
+        if(frag->kind == F_procFrag){
+            print_index ++;
+            pr_graph_stm(out, frag->u.proc.body, print_index);
+        }
+    }
+}

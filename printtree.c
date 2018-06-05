@@ -8,6 +8,7 @@
 #include "temp.h"
 #include "tree.h"
 #include "printtree.h"
+#include "frame.h"
 
 /* local function prototype */
 static void pr_tree_exp(FILE *out, T_exp exp, int d);
@@ -158,4 +159,15 @@ void print_Tr_exp(FILE *out, Tr_exp exp)
 {
     T_stm node = exp->u.nx;
     pr_stm(out, node, 0);
+}
+
+void print_frag_exp (FILE *out, F_fragList list)
+{
+    for(; list; list=list->tail)
+    {
+        F_frag frag = list->head;
+        if(frag->kind == F_procFrag){
+            pr_stm(out, frag->u.proc.body, 0);
+        }
+    }
 }

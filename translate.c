@@ -432,6 +432,7 @@ Tr_accessList Tr_formals(Tr_level level)
             tmp_al->tail = tmp;
         }
         tmp_al = tmp;
+        get_al = get_al->tail;
     }
     return new_al;
 }
