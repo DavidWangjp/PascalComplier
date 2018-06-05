@@ -1,30 +1,24 @@
-program test;
+program p;
 var
-  x : Integer;
+  x : Real;
   y : Integer;
+  z : Integer;
 
-
-
-function G(x : Integer) : Integer;
+procedure Proc(var x : Integer);
 begin
-  G := x * 2;
+  x := 0;
 end;
 
-function F(x : Integer) : Real;
+function Fun(x : Real; var z : Integer) : Real;
+var
+  t : Real;
 begin
-  F := G(x);
+  t := 2 * x;
 end;
 
-procedure P(var y : Integer);
 begin
-  y := y * 2;
-end;
+  x := 1.0;
+  x := Fun(x, z);
+  Proc(y);
 
-
-begin
-  x := -1;
-  x := F(x);
-  y := -5;
-  P(y);
-end
-.
+end.

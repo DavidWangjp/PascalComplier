@@ -29,7 +29,7 @@ int main(int argc, string *argv)
     FILE *tree_out = stdout;
     FILE *graph_out;
     graph_out = fopen("graph.dot", "w+");
-    struct expty result_expty;
+    F_fragList fragList;
 
     parse(file_name);
 
@@ -43,11 +43,11 @@ int main(int argc, string *argv)
      pr_program(root, 0);
 
 
-    result_expty = SEM_transProg(root);
+    fragList = SEM_transProg(root);
 
-    print_Tr_exp(tree_out, result_expty.exp);
+    print_frag_exp(tree_out, fragList);
 
-    print_graph_Tr_exp(graph_out, result_expty.exp);
+    print_graph_frag_exp(graph_out, fragList);
 
     return 0;
 }

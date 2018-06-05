@@ -14,6 +14,7 @@ int yylex();
 extern A_program root;
 extern int line_no;
 
+
 %}
 
 %union
@@ -195,10 +196,29 @@ program :           program_head  routine  DOT {
     $$ = A_Program(line_no, $1, $2);
     root = $$;
 }
+                |   program_head  routine {
+    $$ = A_Program(line_no, $1, $2);
+    root = $$;
+    /* 程序结尾少. */
+    printf("[syntax error] line: %d, expect a \'.\' at the end of the program.\n", line_no);
+}
 ;
 
 program_head :      PROGRAM  ID  SEMI {
     $$ = A_ProgramHead(line_no, $2);
+}
+                |   PROGRAM  ID {
+    $$ = A_ProgramHead(line_no, $2);
+    /* 结尾少SEMI */
+    printf("[syntax error] line: %d, expect a SEMI(\';\') at the end of the program head.\n", line_no);
+}               |   PROGRAM  SEMI {
+    $$ = A_ProgramHead(line_no, "unnamed");
+    /* PROGRAM没ID */
+    printf("[syntax error] line: %d, expect a program ID between PROGRAM and \';\'.\n", line_no);
+}               |   PROGRAM {
+    $$ = A_ProgramHead(line_no, "unnamed");
+    /* both above */
+    printf("[syntax error] line: %d, expect a program ID and a SEMI(\';\') behind PROGRAM.\n", line_no);
 }
 ;
 
@@ -225,17 +245,29 @@ label_part :    {
 const_part :        CONST  const_expr_list {
     $$ = A_ConstPart(line_no, $2);
 }
-            |   {
+                |   {
     $$ = A_ConstPart(line_no, NULL);
- }
+}
 ;
 
 const_expr_list :   const_expr_list  ID  EQUAL  const_value  SEMI {
-    // $$ = A_ConstExprListSeq(line_no, $1, $2, $4);
     $$ = A_ConstExprListSeq(line_no, $1, S_Symbol($2), $4);
 }
                 |   ID  EQUAL  const_value  SEMI {
     $$ = A_ConstExprList(line_no, S_Symbol($1), $3);
+}
+                |   ID  ASSIGN  const_value  SEMI {
+    $$ = A_ConstExprList(line_no, S_Symbol($1), $3);
+    /* EQUAL写成ASSIGN */
+    printf("[syntax error] line: %d, the ASSIGN(\':=\') should be EQUAL(\'=\').\n", line_no);
+}               |   ID  EQUAL  SEMI {
+    $$ = A_ConstExprList(line_no, S_Symbol($1), A_ConstValueInteger(line_no, 0));
+    /* 忘记写右值 */
+    printf("[syntax error] line: %d, expect a const value between EQUAL(\'=\') and SEMI(\';\')\n", line_no);
+}               |   ID  SEMI {
+    $$ = A_ConstExprList(line_no, S_Symbol($1), A_ConstValueInteger(line_no, 0));
+    /* CONST量没赋初值 */
+    printf("[syntax error] line: %d, expect initial assignment for the const value.\n", line_no);
 }
 ;
 
@@ -273,8 +305,12 @@ type_decl_list :    type_decl_list  type_definition {
 ;
 
 type_definition :   ID  EQUAL  type_decl  SEMI {
-    // $$ = A_TypeDefinition(line_no, $1, $3);
     $$ = A_TypeDefinition(line_no, S_Symbol($1), $3);
+}
+                |   ID  ASSIGN  type_decl  SEMI {
+    $$ = A_TypeDefinition(line_no, S_Symbol($1), $3);
+    /* EQUAL写成ASSIGN */
+    printf("[syntax error] line: %d, the ASSIGN(\':=\') should be EQUAL(\'=\').\n", line_no);
 }
 ;
 
@@ -293,7 +329,6 @@ simple_type_decl :  SYS_TYPE {
     $$ = A_SimpleTypeDeclSysType(line_no, $1);
 }
                 |   ID {
-    // $$ = A_SimpleTypeDeclId(line_no, $1);
     $$ = A_SimpleTypeDeclId(line_no, S_Symbol($1));
 }
                 |   LP  name_list  RP {
@@ -325,13 +360,53 @@ simple_type_decl :  SYS_TYPE {
     $$ = A_SimpleTypeDeclRangeConst(line_no, from, to);
 }
                 |   ID  DOTDOT  ID {
-    //  $$ = A_SimpleTypeDeclIdRangeId(line_no, $1, $3);
     $$ = A_SimpleTypeDeclRangeId(line_no, S_Symbol($1), S_Symbol($3));
+}
+                |   const_value  DOT  const_value {
+    $$ = A_SimpleTypeDeclRangeConst(line_no, $1, $3);
+    /* ..写错成. */
+    printf("[syntax error] line: %d, DOT(\'.\') should be DOTDOT(\'..\').\n", line_no);
+}
+                |   MINUS  const_value  DOT  const_value {
+    A_const_value from = NULL;
+    if ($2->kind == INTEGER) {
+        from = A_ConstValueInteger(line_no, -($2->u.intt));
+    }
+    else if ($2->kind == REAL) {
+        from = A_ConstValueReal(line_no, -($2->u.real));
+    }
+    $$ = A_SimpleTypeDeclRangeConst(line_no, from, $4);
+    /* ..写错成. */
+    printf("[syntax error] line: %d, DOT(\'.\') should be DOTDOT(\'..\').\n", line_no);
+}
+                |   MINUS  const_value  DOT  MINUS  const_value {
+    A_const_value from = NULL, to = NULL;
+    if ($2->kind == INTEGER) {
+        from = A_ConstValueInteger(line_no, -($2->u.intt));
+        to = A_ConstValueInteger(line_no, -($2->u.intt));
+    }
+    else if ($2->kind == REAL) {
+        from = A_ConstValueReal(line_no, -($5->u.real));
+        to = A_ConstValueReal(line_no, -($5->u.real));
+    }
+    $$ = A_SimpleTypeDeclRangeConst(line_no, from, to);
+    /* ..写错成. */
+    printf("[syntax error] line: %d, DOT(\'.\') should be DOTDOT(\'..\').\n", line_no);
+}
+                |   ID  DOT  ID {
+    $$ = A_SimpleTypeDeclRangeId(line_no, S_Symbol($1), S_Symbol($3));
+    /* ..写错成. */
+    printf("[syntax error] line: %d, DOT(\'.\') should be DOTDOT(\'..\').\n", line_no);
 }
 ;
 
 array_type_decl :   ARRAY  LB  simple_type_decl  RB  OF  type_decl {
     $$ = A_ArrayTypeDecl(line_no, $3, $6);
+}
+                |   ARRAY  LB  simple_type_decl  RB  type_decl {
+    $$ = A_ArrayTypeDecl(line_no, $3, $5);
+    /* 缺少OF */
+    printf("[syntax error] line: %d, expect OF between RB(\')\') and type declaration.\n", line_no);
 }
 ;
 
@@ -354,11 +429,9 @@ field_decl :        name_list  COLON  type_decl  SEMI {
 ;
 
 name_list :         name_list  COMMA  ID {
-    // $$ = A_NameListSeq(line_no, $1, $3);
     $$ = A_NameListSeq(line_no, $1, S_Symbol($3));
 }
                 |   ID {
-    // $$ = A_NameList(line_no, $1);
     $$ = A_NameList(line_no, S_Symbol($1));
 }
 ;
@@ -382,6 +455,16 @@ var_decl_list :     var_decl_list  var_decl {
 var_decl :          name_list  COLON  type_decl  SEMI {
     $$ = A_VarDecl(line_no, $1, $3);
 }
+                |   name_list  SEMI  type_decl  SEMI {
+    $$ = A_VarDecl(line_no, $1, $3);
+    /* COLON写错成SEMI */
+    printf("[syntax error] line: %d, SEMI(\';\') should be COLON(\':\').\n", line_no);
+}
+                |   name_list  type_decl  SEMI {
+    $$ = A_VarDecl(line_no, $1, $2);
+    /* 少COLON */
+    printf("[syntax error] line: %d, expect SEMI(\';\') between name list and type declaration.\n", line_no);
+}
 ;
 
 routine_part :      routine_part  function_decl {
@@ -404,6 +487,26 @@ routine_part :      routine_part  function_decl {
 function_decl :     function_head  SEMI  sub_routine  SEMI {
     $$ = A_FunctionDecl(line_no, $1, $3);
 }
+                |   function_head  COMMA  sub_routine  SEMI {
+    $$ = A_FunctionDecl(line_no, $1, $3);
+    /* SEMI写错成COMMA */
+    printf("[syntax error] line: %d, COMMA(\',\') should be SEMI(\';\').\n", line_no);
+}
+                |   function_head  COLON  sub_routine  SEMI {
+    $$ = A_FunctionDecl(line_no, $1, $3);
+    /* SEMI写错成COLON */
+    printf("[syntax error] line: %d, COLON(\':\') should be SEMI(\';\').\n", line_no);
+}
+                |   function_head  sub_routine  SEMI {
+    $$ = A_FunctionDecl(line_no, $1, $2);
+    /* 少SEMI 1 */
+    printf("[syntax error] line: %d, expect SEMI(\';\') between function head and subroutine.\n", line_no);
+}
+                |   function_head  sub_routine {
+    $$ = A_FunctionDecl(line_no, $1, $2);
+    /* 少SEMI 2 */
+    printf("[syntax error] line: %d, expect SEMI(\';\') at the end of function declaration.\n", line_no);
+}
 ;
 
 function_head :     FUNCTION  ID  parameters  COLON  simple_type_decl {
@@ -414,11 +517,27 @@ function_head :     FUNCTION  ID  parameters  COLON  simple_type_decl {
 procedure_decl :    procedure_head  SEMI  sub_routine  SEMI {
     $$ = A_ProcedureDecl(line_no, $1, $3);
 }
+                |   procedure_head  COMMA  sub_routine  SEMI {
+    $$ = A_ProcedureDecl(line_no, $1, $3);
+    /* SEMI写错成COMMA */
+    printf("[syntax error] line: %d, COMMA(\',\') should be SEMI(\';\').\n", line_no);
+}
+                |   procedure_head  COLON  sub_routine  SEMI {
+    $$ = A_ProcedureDecl(line_no, $1, $3);
+    /* SEMI写错成COLON */
+    printf("[syntax error] line: %d, COLON(\':\') should be SEMI(\';\').\n", line_no);
+}
 ;
 
-procedure_head :    PROCEDURE ID parameters {
-    //$$ = A_ProcedureHead(line_no, $2, $3);
+procedure_head :    PROCEDURE  ID  parameters {
     $$ = A_ProcedureHead(line_no, S_Symbol($2), $3);
+}
+                |   PROCEDURE  parameters {
+    char id[40] = { 0 };
+    sprintf(id, "unnamed_procedure_at_line_%d\0", line_no);
+    $$ = A_ProcedureHead(line_no, S_Symbol(id), $2);
+    /* PROCEDURE少ID */
+    printf("[syntax error] line: %d, expect procedure ID between PROCEDURE and parameters.\n", line_no);
 }
 ;
 
@@ -436,6 +555,16 @@ para_decl_list :    para_decl_list  SEMI  para_type_list {
                 |   para_type_list {
     $$ = A_ParaDeclList(line_no, $1);
 }
+                |   para_decl_list  COLON  para_type_list {
+    $$ = A_ParaDeclListSeq(line_no, $1, $3);
+    /* SEMI写错成COLON */
+    printf("[syntax error] line: %d, COLON(\':\') should be SEMI(\';\').\n", line_no);
+}
+                |   procedure_head  COMMA  sub_routine  SEMI {
+    $$ = A_ParaDeclListSeq(line_no, $1, $3);
+    /* SEMI写错成COLON */
+    printf("[syntax error] line: %d, COMMA(\',\') should be SEMI(\';\').\n", line_no);
+}
 ;
 
 
@@ -444,6 +573,16 @@ para_type_list :    var_para_list  COLON  simple_type_decl {
 }
                 |   val_para_list  COLON  simple_type_decl {
     $$ = A_ParaTypeListVal(line_no, $1, $3);
+}
+                |   var_para_list  SEMI  simple_type_decl {
+    $$ = A_ParaTypeListVar(line_no, $1, $3);
+    /* COLON写错成SEMI */
+    printf("[syntax error] line: %d, SEMI(\';\') should be COLON(\':\').\n", line_no);
+}
+                |   val_para_list  SEMI  simple_type_decl {
+    $$ = A_ParaTypeListVal(line_no, $1, $3);
+    /* COLON写错成SEMI */
+    printf("[syntax error] line: %d, SEMI(\';\') should be COLON(\':\').\n", line_no);
 }
 ;
 
@@ -513,21 +652,32 @@ non_label_stmt :    assign_stmt {
 ;
 
 assign_stmt :       ID  ASSIGN  expression {
-    //$$ = A_AssignStmtSimple(line_no, $1, $3);
     $$ = A_AssignStmtSimple(line_no, S_Symbol($1), $3);
 }
                 |   ID  LB  expression  RB  ASSIGN  expression {
-    //$$ = A_AssignStmtArray(line_no, $1, $3, $6);
     $$ = A_AssignStmtArray(line_no, S_Symbol($1), $3, $6);
 }
                 |   ID  DOT  ID  ASSIGN  expression {
-    //$$ = A_AssignStmtRecord(line_no, $1, $3, $5);
     $$ = A_AssignStmtRecord(line_no, S_Symbol($1), S_Symbol($3), $5);
+}
+                |   ID  EQUAL  expression {
+    $$ = A_AssignStmtSimple(line_no, S_Symbol($1), $3);
+    /* ASSIGN写错成EQUAL */
+    printf("[syntax error] line: %d, EQUAL(\'=\') should be ASSIGN(\':=\').\n", line_no);
+}
+                |   ID  LB  expression  RB  EQUAL  expression {
+    $$ = A_AssignStmtArray(line_no, S_Symbol($1), $3, $6);
+    /* ASSIGN写错成EQUAL */
+    printf("[syntax error] line: %d, EQUAL(\'=\') should be ASSIGN(\':=\').\n", line_no);
+}
+                |   ID  DOT  ID  EQUAL  expression {
+    $$ = A_AssignStmtRecord(line_no, S_Symbol($1), S_Symbol($3), $5);
+    /* ASSIGN写错成EQUAL */
+    printf("[syntax error] line: %d, EQUAL(\'=\') should be ASSIGN(\':=\').\n", line_no);
 }
 ;
 
 proc_stmt :         ID {
-    // $$ = A_ProcStmtID(line_no, $1);
     $$ = A_ProcStmtID(line_no, S_Symbol($1));
 }
                 |   ID  LP  args_list  RP {
@@ -570,6 +720,11 @@ while_stmt :        WHILE  expression  DO stmt {
 for_stmt :          FOR  ID  ASSIGN  expression  direction  expression  DO stmt {
     $$ = A_ForStmt(line_no, S_Symbol($2), $4, $5, $6, $8);
 }
+                |   FOR  ID  EQUAL  expression  direction  expression  DO stmt {
+    $$ = A_ForStmt(line_no, S_Symbol($2), $4, $5, $6, $8);
+    /* ASSIGN写错成EQUAL */
+    printf("[syntax error] line: %d, EQUAL(\'=\') should be ASSIGN(\':=\').\n", line_no);
+}
 ;
 
 direction :         TO {
@@ -597,8 +752,27 @@ case_expr :         const_value  COLON  stmt  SEMI {
     $$ = A_CaseExprConst(line_no, $1, $3);
 }
                 |   ID  COLON  stmt  SEMI {
-    //$$ = A_CaseExprNonConst(line_no, $1, $3);
     $$ = A_CaseExprNonConst(line_no, S_Symbol($1), $3);
+}
+                |   const_value  COMMA  stmt  SEMI {
+    $$ = A_CaseExprConst(line_no, $1, $3);
+    /* COLON写错成COMMA */
+    printf("[syntax error] line: %d, COMMA(\',\') should be COLON(\':\').\n", line_no);
+}
+                |   ID  COMMA  stmt  SEMI {
+    $$ = A_CaseExprNonConst(line_no, S_Symbol($1), $3);
+    /* COLON写错成COMMA */
+    printf("[syntax error] line: %d, COMMA(\',\') should be COLON(\':\').\n", line_no);
+}
+                |   const_value  SEMI  stmt  SEMI {
+    $$ = A_CaseExprConst(line_no, $1, $3);
+    /* COLON写错成SEMI */
+    printf("[syntax error] line: %d, SEMI(\';\') should be COLON(\':\').\n", line_no);
+}
+                |   ID  SEMI  stmt  SEMI {
+    $$ = A_CaseExprNonConst(line_no, S_Symbol($1), $3);
+    /* COLON写错成SEMI */
+    printf("[syntax error] line: %d, SEMI(\';\') should be COLON(\':\').\n", line_no);
 }
 ;
 

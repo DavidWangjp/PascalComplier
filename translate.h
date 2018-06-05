@@ -165,8 +165,10 @@ Tr_exp Tr_MinusExp(Tr_exp e);
 Tr_exp Tr_Return(void);
 
 Tr_access Tr_ReturnValue(int size);
+
 //将函数体存入frag片段的list中
 void Tr_procEntryExit(Tr_level level, Tr_exp body);
+
 //获取所有的frag片段
 F_fragList Tr_getResult(void);
 

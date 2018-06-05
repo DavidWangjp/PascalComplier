@@ -21,7 +21,7 @@ struct expty
 struct expty expTy(Tr_exp exp, Ty_ty ty);
 
 
-struct expty SEM_transProg(A_program a);
+F_fragList SEM_transProg(A_program a);
 
 
 #endif //PASCALCOMPLIER_SEMANT_H

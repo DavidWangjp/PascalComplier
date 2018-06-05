@@ -78,7 +78,7 @@ A_var A_Record(A_pos pos, S_symbol s, S_symbol f)
 
 struct expty transRoutine(S_table venv, S_table tenv, A_routine a);
 
-struct expty transRoutineHead(S_table escenv, S_table venv, S_table tenv, A_routine_head a, Tr_level level);
+void transRoutineHead(S_table escenv, S_table venv, S_table tenv, A_routine_head a, Tr_level level);
 
 struct expty transRoutineBody(Tr_level level, S_table venv, S_table tenv, A_routine_body a);
 
@@ -90,7 +90,7 @@ void transTypeDec(Tr_level level, S_table venv, S_table tenv, A_type_part a);
 
 void transVarDec(S_table escenv, S_table venv, S_table tenv, A_var_part a, Tr_level level);
 
-struct expty transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part a);
+void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part a);
 
 struct expty transStm(Tr_level level, S_table venv, S_table tenv, A_stmt a);
 
@@ -253,13 +253,15 @@ bool typeMatch(Ty_ty ty1, Ty_ty ty2)
     return FALSE;
 }
 
-struct expty SEM_transProg(A_program a)
+F_fragList SEM_transProg(A_program a)
 {
-    struct expty exp;
+    struct expty program;
     S_table type_base_env = E_base_tenv();
     S_table value_base_env = E_base_venv();
-    exp = transRoutine(value_base_env, type_base_env, a->routine);
-    return exp;
+    program = transRoutine(value_base_env, type_base_env, a->routine);
+
+    Tr_procEntryExit(Tr_outermost(), program.exp);
+    return Tr_getResult();
 };
 
 
@@ -268,23 +270,22 @@ struct expty transRoutine(S_table venv, S_table tenv, A_routine a)
     S_beginScope(venv);
     S_beginScope(tenv);
     S_table escenv = ESC_findEscape(a->routine_head, a->routine_body);
-    struct expty routineDec = transRoutineHead(escenv, venv, tenv, a->routine_head, Tr_outermost());
-    routineDec = expTy(Tr_SeqExp(Tr_GotoExp(Tr_LabelExp(Temp_namedlabel("main"))), routineDec.exp), Ty_Void());
 
+    transRoutineHead(escenv, venv, tenv, a->routine_head, Tr_outermost());
     struct expty body = transRoutineBody(Tr_outermost(), venv, tenv, a->routine_body);
-    body = expTy(Tr_SeqExp(Tr_LabelExp(Temp_namedlabel("main")), body.exp), Ty_Void());
+
     S_endScope(tenv);
     S_endScope(venv);
-    return expTy(Tr_SeqExp(routineDec.exp, body.exp), Ty_Void());
+    return body;
 }
 
 
-struct expty transRoutineHead(S_table escenv, S_table venv, S_table tenv, A_routine_head a, Tr_level level)
+void transRoutineHead(S_table escenv, S_table venv, S_table tenv, A_routine_head a, Tr_level level)
 {
     transConstDec(level, venv, a->const_part);
     transTypeDec(level, venv, tenv, a->type_part);
     transVarDec(escenv, venv, tenv, a->var_part, level);
-    return transRoutineDec(level, venv, tenv, a->routine_part);
+    transRoutineDec(level, venv, tenv, a->routine_part);
 }
 
 /*
@@ -581,6 +582,25 @@ A_para_decl_list reverse_para_dec_list(A_para_decl_list list)
     }
 }
 
+Ty_tyList reverse_type_list(Ty_tyList list)
+{
+    if (list == NULL || list->tail == NULL)
+        return list;
+    else
+    {
+        Ty_tyList new = reverse_type_list(list->tail);
+        list->tail->tail = list;
+        list->tail = NULL;
+        return new;
+    }
+}
+
+struct FormalList
+{
+    U_boolList escapeList;
+    U_byteList byteList;
+};
+
 Ty_tyList makeFormalTyList(Tr_level level, S_table venv, S_table tenv, A_para_decl_list a)
 {
     Ty_tyList tyList = NULL;
@@ -618,18 +638,51 @@ Ty_tyList makeFormalTyList(Tr_level level, S_table venv, S_table tenv, A_para_de
     return tyList;
 }
 
-U_boolList makeFormalEscapeList(A_para_decl_list a)
+struct FormalList makeFormalList(A_para_decl_list a, Ty_tyList tyList)
 {
-    U_boolList list = NULL;
-    for (A_para_decl_list l = a; l; l = l->para_decl_list)
-        list = U_BoolList(FALSE, list);
-    return list;
+    tyList = reverse_type_list(tyList);
+    Ty_tyList t = tyList;
+    A_para_decl_list l;
+    struct FormalList formalList;
+    formalList.escapeList = NULL;
+    formalList.byteList = NULL;
+    for (l = a; l; l = l->para_decl_list)
+    {
+
+        switch (l->para_type_list->kind)
+        {
+            case para_type_list_var:
+            {
+                for (A_name_list para = l->para_type_list->u.var_para_list.var_para_list->name_list;
+                     para; para = para->name_list)
+                {
+                    formalList.escapeList = U_BoolList(TRUE, formalList.escapeList);
+                    formalList.byteList = U_ByteList(typeSize(t->head), formalList.byteList);
+                    t = t->tail;
+                }
+                break;
+            }
+            case para_type_list_val:
+            {
+                for (A_name_list para = l->para_type_list->u.val_para_list.val_para_list->name_list;
+                     para; para = para->name_list)
+                {
+                    formalList.escapeList = U_BoolList(FALSE, formalList.escapeList);
+                    formalList.byteList = U_ByteList(typeSize(t->head), formalList.byteList);
+                    t = t->tail;
+                }
+                break;
+            }
+        }
+    }
+    tyList = reverse_type_list(tyList);
+    return formalList;
 }
 
-struct expty transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part a)
+void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part a)
 {
-    Tr_exp routineDec = NULL;
     A_routine_part reversed = reverse_routine_dec_list(a);
+
     for (A_routine_part l = reversed; l; l = l->routine_part)
     {
         switch (l->kind)
@@ -639,10 +692,13 @@ struct expty transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routi
                 A_type_decl ty = checked_malloc(sizeof(*ty));
                 ty->kind = type_decl_simple;
                 ty->u.simple_type_decl = l->u.function_decl->function_head->simple_type_decl;
+
                 Ty_ty resultTy = transTy(level, venv, tenv, ty);
                 Ty_tyList formalTys = makeFormalTyList(level, venv, tenv,
                                                        l->u.function_decl->function_head->parameters->para_decl_list);
+
                 Temp_label label = Temp_namedlabel(S_name(l->u.function_decl->function_head->id));
+
                 if (S_look(venv, l->u.function_decl->function_head->id))
                     EM_error(l->u.function_decl->function_head->pos, "Function redefine\n");
                 S_enter(venv, l->u.function_decl->function_head->id, E_FunEntry(level, label, formalTys, resultTy));
@@ -653,7 +709,9 @@ struct expty transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routi
                 Ty_ty resultTy = Ty_Void();
                 Ty_tyList formalTys = makeFormalTyList(level, venv, tenv,
                                                        l->u.procedure_decl->procedure_head->parameters->para_decl_list);
+
                 Temp_label label = Temp_namedlabel(S_name(l->u.procedure_decl->procedure_head->id));
+
                 if (S_look(venv, l->u.procedure_decl->procedure_head->id))
                     EM_error(l->u.procedure_decl->procedure_head->pos, "Procedure redefine\n");
                 S_enter(venv, l->u.procedure_decl->procedure_head->id, E_FunEntry(level, label, formalTys, resultTy));
@@ -673,25 +731,21 @@ struct expty transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routi
 
                 S_table escenv = ESC_findEscape(l->u.function_decl->sub_routine->routine_head,
                                                 l->u.function_decl->sub_routine->routine_body);
-                U_boolList formalEscapes = makeFormalEscapeList(
-                        l->u.function_decl->function_head->parameters->para_decl_list);
 
-                Tr_level newLevel = Tr_NewLevel(level, label, formalEscapes);
+                struct FormalList formalList =
+                        makeFormalList(l->u.function_decl->function_head->parameters->para_decl_list,
+                                       fun->u.fun.formals);
+                U_boolList formalEscapes = formalList.escapeList;
+                U_byteList formalBytes = formalList.byteList;
+
+                Tr_level newLevel = Tr_NewLevel(level, label, formalEscapes, formalBytes);
                 S_beginScope(tenv);
                 S_beginScope(venv);
                 {
-                    /*e
-                     * allocate register for return value
-                     */
-                    Tr_access returnValue = Tr_ReturnValue(typeSize(actual_ty(fun->u.fun.result)));
-                    S_enter(venv, l->u.function_decl->function_head->id, E_VarEntry(returnValue, fun->u.fun.result));
-
-
                     A_para_decl_list declList;
                     Ty_tyList tyList;
                     for (declList =
-                                 reverse_para_dec_list(
-                                         l->u.function_decl->function_head->parameters->para_decl_list),
+                                 reverse_para_dec_list(l->u.function_decl->function_head->parameters->para_decl_list),
                                  tyList = formalTys;
                          declList;
                          declList = declList->para_decl_list, tyList = tyList->tail)
@@ -732,24 +786,13 @@ struct expty transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routi
                         }
                     }
                 }
-                Tr_exp head = transRoutineHead(escenv, venv, tenv, l->u.function_decl->sub_routine->routine_head,
-                                               newLevel).exp;
+                transRoutineHead(escenv, venv, tenv, l->u.function_decl->sub_routine->routine_head,
+                                 newLevel);
 
                 Tr_exp body = transRoutineBody(level, venv, tenv, l->u.function_decl->sub_routine->routine_body).exp;
-                if (head == NULL)
-                    body = Tr_SeqExp(Tr_LabelExp(Temp_namedlabel(S_name(l->u.function_decl->function_head->id))),
-                                     Tr_SeqExp(body, Tr_Return()));
-                else
-                    body = Tr_SeqExp(Tr_LabelExp(Temp_namedlabel(S_name(l->u.procedure_decl->procedure_head->id))),
-                                     Tr_SeqExp(
-                                             Tr_SeqExp(head, body),
-                                             Tr_Return()
-                                     ));
+                body = Tr_SeqExp(Tr_LabelExp(Temp_namedlabel(S_name(l->u.function_decl->function_head->id))), body);
 
-                if (routineDec == NULL)
-                    routineDec = body;
-                else
-                    routineDec = Tr_SeqExp(routineDec, body);
+                Tr_procEntryExit(newLevel, body);
 
                 S_endScope(venv);
                 S_endScope(tenv);
@@ -764,10 +807,13 @@ struct expty transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routi
                 S_table escenv = ESC_findEscape(l->u.procedure_decl->sub_routine->routine_head,
                                                 l->u.procedure_decl->sub_routine->routine_body);
 
-                U_boolList formalEscapes = makeFormalEscapeList(
-                        l->u.procedure_decl->procedure_head->parameters->para_decl_list);
+                struct FormalList formalList =
+                        makeFormalList(l->u.function_decl->function_head->parameters->para_decl_list,
+                                       fun->u.fun.formals);
+                U_boolList formalEscapes = formalList.escapeList;
+                U_byteList formalBytes = formalList.byteList;
 
-                Tr_level newLevel = Tr_NewLevel(level, label, formalEscapes);
+                Tr_level newLevel = Tr_NewLevel(level, label, formalEscapes, formalBytes);
                 S_beginScope(tenv);
                 S_beginScope(venv);
                 {
@@ -776,8 +822,7 @@ struct expty transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routi
 
 
                     for (declList =
-                                 reverse_para_dec_list(
-                                         l->u.procedure_decl->procedure_head->parameters->para_decl_list),
+                                 reverse_para_dec_list(l->u.procedure_decl->procedure_head->parameters->para_decl_list),
                                  tyList = formalTys;
                          declList;
                          declList = declList->para_decl_list, tyList = tyList->tail)
@@ -818,24 +863,12 @@ struct expty transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routi
                         }
                     }
                 }
-                Tr_exp head = transRoutineHead(escenv, venv, tenv, l->u.procedure_decl->sub_routine->routine_head,
-                                               newLevel).exp;
 
                 Tr_exp body = transRoutineBody(level, venv, tenv, l->u.procedure_decl->sub_routine->routine_body).exp;
-                if (head == NULL)
-                    body = Tr_SeqExp(Tr_LabelExp(Temp_namedlabel(S_name(l->u.procedure_decl->procedure_head->id))),
-                                     Tr_SeqExp(body, Tr_Return()));
-                else
-                    body = Tr_SeqExp(Tr_LabelExp(Temp_namedlabel(S_name(l->u.procedure_decl->procedure_head->id))),
-                                     Tr_SeqExp(
-                                             Tr_SeqExp(head, body),
-                                             Tr_Return()
-                                     ));
+                body = Tr_SeqExp(Tr_LabelExp(Temp_namedlabel(S_name(l->u.procedure_decl->procedure_head->id))), body);
 
-                if (routineDec == NULL)
-                    routineDec = body;
-                else
-                    routineDec = Tr_SeqExp(routineDec, body);
+                Tr_procEntryExit(newLevel, body);
+
                 S_endScope(venv);
                 S_endScope(tenv);
                 break;
@@ -843,7 +876,6 @@ struct expty transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routi
         }
 
     }
-    return expTy(routineDec, Ty_Void());
 }
 
 /*
@@ -863,20 +895,6 @@ A_stmt_list reverse_stmt_list(A_stmt_list list)
         A_stmt_list new = reverse_stmt_list(list->stmt_list);
         list->stmt_list->stmt_list = list;
         list->stmt_list = NULL;
-        return new;
-    }
-
-}
-
-Ty_tyList reverse_type_list(Ty_tyList list)
-{
-    if (list == NULL || list->tail == NULL)
-        return list;
-    else
-    {
-        Ty_tyList new = reverse_type_list(list->tail);
-        list->tail->tail = list;
-        list->tail = NULL;
         return new;
     }
 

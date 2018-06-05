@@ -519,11 +519,13 @@ Tr_access Tr_ReturnValue(int size)
     return new_a;
 }
 
-void Tr_procEntryExit(Tr_level level, Tr_exp body){
+void Tr_procEntryExit(Tr_level level, Tr_exp body)
+{
     F_frag newFrag = F_ProcFrag(unNx(body), level->frame);
     fragList = F_FragList(newFrag, fragList);
 }
 
-F_fragList Tr_getResult(void){
+F_fragList Tr_getResult(void)
+{
     return fragList;
 }

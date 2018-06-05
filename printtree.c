@@ -165,9 +165,12 @@ void print_frag_exp (FILE *out, F_fragList list)
 {
     for(; list; list=list->tail)
     {
+        printf("-----------------------------\n");
         F_frag frag = list->head;
         if(frag->kind == F_procFrag){
             pr_stm(out, frag->u.proc.body, 0);
         }
+        printf("\n-----------------------------\n");
+
     }
 }
