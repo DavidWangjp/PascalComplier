@@ -13,6 +13,7 @@
 #include "errormsg.h"
 #include "escape.h"
 #include "types.h"
+#include "absyn.h"
 
 
 struct expty expTy(Tr_exp exp, Ty_ty ty)
@@ -254,8 +255,12 @@ bool typeMatch(Ty_ty ty1, Ty_ty ty2)
     return FALSE;
 }
 
+S_table return_value_env;
+
 F_fragList SEM_transProg(A_program a)
 {
+    return_value_env = S_empty();
+
     struct expty program;
     S_table type_base_env = E_base_tenv();
     S_table value_base_env = E_base_venv();
@@ -270,11 +275,14 @@ struct expty transRoutine(S_table venv, S_table tenv, A_routine a)
 {
     S_beginScope(venv);
     S_beginScope(tenv);
+    S_beginScope(return_value_env);
+
     S_table escenv = ESC_findEscape(a->routine_head, a->routine_body);
 
     transRoutineHead(escenv, venv, tenv, a->routine_head, Tr_outermost());
     struct expty body = transRoutineBody(Tr_outermost(), venv, tenv, a->routine_body);
 
+    S_endScope(return_value_env);
     S_endScope(tenv);
     S_endScope(venv);
     return body;
@@ -743,7 +751,14 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
                 Tr_level newLevel = Tr_NewLevel(level, label, formalEscapes, formalBytes);
                 S_beginScope(tenv);
                 S_beginScope(venv);
+                S_beginScope(return_value_env);
                 {
+                    /*
+                     * Allocate return value
+                     */
+                    Tr_access return_value = Tr_ReturnValue(typeSize(fun->u.fun.result));
+                    S_enter(return_value_env, fun->u.fun.label, E_VarEntry(return_value, fun->u.fun.result));
+
                     A_para_decl_list declList;
                     Ty_tyList tyList;
                     for (declList =
@@ -796,6 +811,7 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
 
                 Tr_procEntryExit(newLevel, body);
 
+                S_endScope(return_value_env);
                 S_endScope(venv);
                 S_endScope(tenv);
                 break;
@@ -1179,10 +1195,14 @@ struct expty transVar(Tr_level level, S_table venv, S_table tenv, A_var a)
         case A_SIMPLE:
         {
             E_enventry varEntry = (E_enventry) S_look(venv, a->u.simple);
-            if (!varEntry)
+            if (!varEntry || varEntry->kind != E_varEntry)
             {
-                EM_error(a->pos, "Variable is not declared: %s.\n", S_name(a->u.simple));
-                return expTy(NULL, Ty_Int());
+                varEntry = (E_enventry) S_look(return_value_env, a->u.simple);
+                if (!varEntry)
+                {
+                    EM_error(a->pos, "Variable is not declared: %s.\n", S_name(a->u.simple));
+                    return expTy(NULL, Ty_Int());
+                }
             }
             if (varEntry->kind == E_varEntry &&
                 (varEntry->u.var.ty->kind == Ty_int ||

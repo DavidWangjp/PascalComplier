@@ -1,14 +1,12 @@
 program p;
-type
-  T = record
-    x:Integer;
-    t:Integer;
-  end;
 var
-  x : T;
-  y : T;
+  i : Integer;
+function F(x : Integer) : Integer;
+begin
+  F := 2 * x;
+end;
 
 begin
-  x.x := 1;
-  y.t := 5;
+  i := 1;
+  i := F(i);
 end.
