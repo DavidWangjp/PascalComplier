@@ -2,7 +2,7 @@ program p;
 type
   T = record
     x:Integer;
-    t:T;
+    t:Integer;
   end;
 var
   x : T;
@@ -10,5 +10,5 @@ var
 
 begin
   x.x := 1;
-  y.t := x;
+  y.t := 5;
 end.

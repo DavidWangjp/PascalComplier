@@ -49,36 +49,55 @@ static struct Ty_ty_ tyconstint = {
         .kind=Ty_const_ty,
         .u.constt=TY_CONST_INT};
 
-Ty_ty Ty_Const_Int(void)
+Ty_ty Ty_Const_Int(int value)
 {
-    return &tyconstint;
+//    return &tyconstint;
+    Ty_ty p = checked_malloc(sizeof(*p));
+    p->kind = Ty_const_ty;
+    p->u.constt.kind = TY_CONST_INT;
+    p->u.constt.u.intt = value;
 }
 
 static struct Ty_ty_ tyconstreal = {
         .kind=Ty_const_ty,
         .u.constt=TY_CONST_REAL};
 
-Ty_ty Ty_Const_Real(void)
+Ty_ty Ty_Const_Real(double value)
 {
-    return &tyconstreal;
+//    return &tyconstreal;
+    Ty_ty p = checked_malloc(sizeof(*p));
+    p->kind = Ty_const_ty;
+    p->u.constt.kind = TY_CONST_REAL;
+    p->u.constt.u.real = value;
+
 }
 
 static struct Ty_ty_ tyconstchar = {
         .kind=Ty_const_ty,
         .u.constt=TY_CONST_CHAR};
 
-Ty_ty Ty_Const_Char(void)
+Ty_ty Ty_Const_Char(char value)
 {
-    return &tyconstchar;
+//    return &tyconstchar;
+    Ty_ty p = checked_malloc(sizeof(*p));
+    p->kind = Ty_const_ty;
+    p->u.constt.kind = TY_CONST_CHAR;
+    p->u.constt.u.intt = value;
+
 }
 
 static struct Ty_ty_ tyconstbool = {
         .kind=Ty_const_ty,
         .u.constt=TY_CONST_BOOL};
 
-Ty_ty Ty_Const_Bool(void)
+Ty_ty Ty_Const_Bool(bool value)
 {
-    return &tyconstbool;
+//    return &tyconstbool;
+    Ty_ty p = checked_malloc(sizeof(*p));
+    p->kind = Ty_const_ty;
+    p->u.constt.kind = TY_CONST_BOOL;
+    p->u.constt.u.booll = value;
+
 }
 
 static struct Ty_ty_ tyconststring = {

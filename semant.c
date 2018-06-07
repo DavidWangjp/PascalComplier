@@ -12,7 +12,7 @@
 #include "env.h"
 #include "errormsg.h"
 #include "escape.h"
-#include "absyn.h"
+#include "types.h"
 
 
 struct expty expTy(Tr_exp exp, Ty_ty ty)
@@ -141,7 +141,7 @@ int typeSize(Ty_ty ty)
         }
         case Ty_const_ty:
         {
-            switch (ty->u.constt)
+            switch (ty->u.constt.kind)
             {
                 case TY_CONST_INT:
                     return INT_SIZE;
@@ -228,7 +228,7 @@ bool typeMatch(Ty_ty ty1, Ty_ty ty2)
                 return TRUE;
             else if (ty2->kind == Ty_const_ty)
             {
-                if (ty2->u.constt == TY_CONST_INT || ty2->u.constt == TY_CONST_REAL)
+                if (ty2->u.constt.kind == TY_CONST_INT || ty2->u.constt.kind == TY_CONST_REAL)
                     return TRUE;
                 else
                     return FALSE;
@@ -315,11 +315,11 @@ struct expty transConst(A_const_value a)
     switch (a->kind)
     {
         case CONST_INTEGER:
-            return expTy(Tr_IntExp(a->u.intt), Ty_Const_Int());
+            return expTy(Tr_IntExp(a->u.intt), Ty_Const_Int(a->u.intt));
         case CONST_REAL:
-            return expTy(Tr_RealExp(a->u.real), Ty_Const_Real());
+            return expTy(Tr_RealExp(a->u.real), Ty_Const_Real(a->u.real));
         case CONST_CHAR:
-            return expTy(Tr_CharExp(a->u.charr[0]), Ty_Const_Char());
+            return expTy(Tr_CharExp(a->u.charr[0]), Ty_Const_Char(a->u.charr[0]));
         case CONST_STRING:
             // todo: convert to array
             return expTy(NULL, Ty_Const_String());
@@ -328,11 +328,11 @@ struct expty transConst(A_const_value a)
             switch (a->u.sys_con)
             {
                 case SYS_CON_FALSE:
-                    return expTy(Tr_BoolExp(FALSE), Ty_Const_Bool());
+                    return expTy(Tr_BoolExp(FALSE), Ty_Const_Bool(FALSE));
                 case SYS_CON_TRUE:
-                    return expTy(Tr_BoolExp(TRUE), Ty_Const_Bool());
+                    return expTy(Tr_BoolExp(TRUE), Ty_Const_Bool(TRUE));
                 case SYS_CON_MAXINT:
-                    return expTy(Tr_IntExp(MAXINT), Ty_Const_Int());
+                    return expTy(Tr_IntExp(MAXINT), Ty_Const_Int(MAXINT));
             }
         }
     }
@@ -343,8 +343,8 @@ void transConstDec(Tr_level level, S_table venv, A_const_part a)
     for (A_const_expr_list l = reverse_const_dec_list(a->const_expr_list); l; l = l->const_expr_list)
     {
         struct expty value = transConst(l->const_value);
-        Tr_access local = Tr_AllocLocal(level, FALSE, typeSize(value.ty));
-        S_enter(venv, l->id, E_VarEntry(local, value.ty));
+//        Tr_access local = Tr_AllocLocal(level, FALSE, typeSize(value.ty));
+        S_enter(venv, l->id, E_VarEntry(NULL, value.ty));
     }
 }
 
@@ -483,8 +483,8 @@ Ty_ty transTy(Tr_level level, S_table venv, S_table tenv, A_type_decl a)
 
                     if (leftBound.ty->kind == Ty_const_ty &&
                         rightBound.ty->kind == Ty_const_ty &&
-                        leftBound.ty->u.constt == TY_CONST_INT &&
-                        rightBound.ty->u.constt == TY_CONST_INT)
+                        leftBound.ty->u.constt.kind == TY_CONST_INT &&
+                        rightBound.ty->u.constt.kind == TY_CONST_INT)
                     {
                         return Ty_Array(transTy(level, venv, tenv, a->u.array_type_decl->type_decl),
                                         leftBound.exp->u.ex->u.CONST, rightBound.exp->u.ex->u.CONST);
@@ -1191,6 +1191,31 @@ struct expty transVar(Tr_level level, S_table venv, S_table tenv, A_var a)
                  varEntry->u.var.ty->kind == Ty_bool ||
                  varEntry->u.var.ty->kind == Ty_const_ty))
             {
+                if (varEntry->u.var.ty->kind == Ty_const_ty)
+                {
+                    switch (varEntry->u.var.ty->u.constt.kind)
+                    {
+
+                        case TY_CONST_INT:
+                        {
+                            return expTy(Tr_IntExp(varEntry->u.var.ty->u.constt.u.intt), Ty_Int());
+                        }
+                        case TY_CONST_REAL:
+                        {
+                            return expTy(Tr_RealExp(varEntry->u.var.ty->u.constt.u.real), Ty_Real());
+                        }
+                        case TY_CONST_CHAR:
+                        {
+                            return expTy(Tr_CharExp(varEntry->u.var.ty->u.constt.u.charr), Ty_Char());
+                        }
+                        case TY_CONST_STRING:
+                            break;
+                        case TY_CONST_BOOL:
+                        {
+                            return expTy(Tr_IntExp(varEntry->u.var.ty->u.constt.u.booll), Ty_Bool());
+                        }
+                    }
+                }
                 return expTy(Tr_SimpleVar(varEntry->u.var.access, level), actual_ty(varEntry->u.var.ty));
             }
             else
@@ -1213,7 +1238,7 @@ struct expty transVar(Tr_level level, S_table venv, S_table tenv, A_var a)
             {
                 struct expty subscript = transExp(level, venv, tenv, a->u.array.subscript);
                 if (subscript.ty->kind == Ty_int ||
-                    (subscript.ty->kind == Ty_const_ty && subscript.ty->u.constt == TY_CONST_INT))
+                    (subscript.ty->kind == Ty_const_ty && subscript.ty->u.constt.kind == TY_CONST_INT))
                 {
                     return expTy(Tr_SubscriptVar(Tr_SimpleVar(varEntry->u.var.access, level),
                                                  subscript.exp, typeSize(varEntry->u.var.ty->u.array.ty)),

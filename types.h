@@ -33,7 +33,7 @@ struct Ty_const_
     union
     {
         int intt;
-        char *charr;
+        char charr;
         double real;
         bool booll;
         char *string;
@@ -51,7 +51,20 @@ struct Ty_ty_
     union
     {
         Ty_range range;
-        enum TY_CONST constt;
+//        enum TY_CONST constt;
+//        Ty_const constt;
+        struct
+        {
+            enum TY_CONST kind;
+            union
+            {
+                int intt;
+                char charr;
+                double real;
+                bool booll;
+                char *string;
+            } u;
+        } constt;
         Ty_fieldList record;
         struct
         {
@@ -116,8 +129,6 @@ struct Ty_nameList_
 };
 
 
-
-
 Ty_ty Ty_Int(void);
 
 Ty_ty Ty_Real(void);
@@ -128,13 +139,13 @@ Ty_ty Ty_Char(void);
 
 Ty_ty Ty_Void(void);
 
-Ty_ty Ty_Const_Int(void);
+Ty_ty Ty_Const_Int(int value);
 
-Ty_ty Ty_Const_Char(void);
+Ty_ty Ty_Const_Char(char value);
 
-Ty_ty Ty_Const_Bool(void);
+Ty_ty Ty_Const_Bool(bool value);
 
-Ty_ty Ty_Const_Real(void);
+Ty_ty Ty_Const_Real(double value);
 
 Ty_ty Ty_Const_String(void);
 
