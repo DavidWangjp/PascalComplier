@@ -21,4 +21,6 @@ add_executable(PascalComplier
         errormsg.c errormsg.h
         prabsyn.c prabsyn.h
         printgraph.h printgraph.c
+        canon.c canon.h
+        assem.c assem.h
         main.c escape.c escape.h)

@@ -12,6 +12,7 @@
 #include "env.h"
 #include "errormsg.h"
 #include "escape.h"
+#include "absyn.h"
 
 
 struct expty expTy(Tr_exp exp, Ty_ty ty)
@@ -542,10 +543,11 @@ void transVarDec(S_table escenv, S_table venv, S_table tenv, A_var_part a, Tr_le
             Ty_ty ty = transTy(level, venv, tenv, l->var_decl->type_decl);
             Tr_access local;
 
+            Ty_ty actual_Ty = actual_ty(ty);
             if (S_look(escenv, name->id))
-                local = Tr_AllocLocal(level, TRUE, typeSize(actual_ty(ty)));
+                local = Tr_AllocLocal(level, TRUE, typeSize(actual_Ty));
             else
-                local = Tr_AllocLocal(level, FALSE, typeSize(actual_ty(ty)));
+                local = Tr_AllocLocal(level, FALSE, typeSize(actual_Ty));
 
             S_enter(venv, name->id, E_VarEntry(local, ty));
         }
@@ -1008,7 +1010,7 @@ struct expty transStm(Tr_level level, S_table venv, S_table tenv, A_stmt a)
 
             if (left.ty->kind == Ty_const_ty)
             {
-                EM_error(a->pos, "Const value cannot be assigned.\n");
+                EM_error(a->non_label_stmt->u.assign_stmt->pos, "Const value cannot be assigned.\n");
                 return expTy(NULL, Ty_Void());
             }
 
@@ -1018,7 +1020,7 @@ struct expty transStm(Tr_level level, S_table venv, S_table tenv, A_stmt a)
             }
             else
             {
-                EM_error(a->pos, "Assign statement type dose not match.\n");
+                EM_error(a->non_label_stmt->u.assign_stmt->pos, "Assign statement type dose not match.\n");
                 return expTy(NULL, Ty_Void());
             }
         }
