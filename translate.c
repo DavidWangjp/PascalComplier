@@ -158,7 +158,7 @@ Tr_exp Tr_SubscriptVar(Tr_exp base, Tr_exp e, int size)
 
 Tr_exp Tr_RecordVar(Tr_exp base, int offset, int size)
 {
-    return Tr_Ex(T_Mem(T_Binop(T_plus, unEx(base)->u.MEM.exp, T_Const(offset * F_wordSize)), size));
+    return Tr_Ex(T_Mem(T_Binop(T_plus, unEx(base)->u.MEM.exp, T_Const(offset)), size));
 }
 
 Tr_exp Tr_PlusArithExp(A_plus_op op, Tr_exp left, Tr_exp right)
