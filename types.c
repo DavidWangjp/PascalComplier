@@ -56,6 +56,7 @@ Ty_ty Ty_Const_Int(int value)
     p->kind = Ty_const_ty;
     p->u.constt.kind = TY_CONST_INT;
     p->u.constt.u.intt = value;
+    return p;
 }
 
 static struct Ty_ty_ tyconstreal = {
@@ -69,7 +70,7 @@ Ty_ty Ty_Const_Real(double value)
     p->kind = Ty_const_ty;
     p->u.constt.kind = TY_CONST_REAL;
     p->u.constt.u.real = value;
-
+    return p;
 }
 
 static struct Ty_ty_ tyconstchar = {
@@ -83,7 +84,7 @@ Ty_ty Ty_Const_Char(char value)
     p->kind = Ty_const_ty;
     p->u.constt.kind = TY_CONST_CHAR;
     p->u.constt.u.intt = value;
-
+    return p;
 }
 
 static struct Ty_ty_ tyconstbool = {
@@ -97,7 +98,7 @@ Ty_ty Ty_Const_Bool(bool value)
     p->kind = Ty_const_ty;
     p->u.constt.kind = TY_CONST_BOOL;
     p->u.constt.u.booll = value;
-
+    return p;
 }
 
 static struct Ty_ty_ tyconststring = {
