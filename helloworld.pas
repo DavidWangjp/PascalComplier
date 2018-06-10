@@ -1,12 +1,18 @@
 program p;
 var
-  i : Integer;
-function F(x : Integer) : Integer;
-begin
-  F := 2 * x;
-end;
+  y : Integer;
+
+function func_out(x : Integer) : Integer;
+  function func_in(y : Integer) : Integer;
+  begin
+    func_in := x + y;
+  end;
 
 begin
-  i := 1;
-  i := F(i);
+  func_out := func_in(1);
+end;
+
+
+begin
+  y := func_out(2);
 end.

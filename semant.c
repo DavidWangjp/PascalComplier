@@ -12,7 +12,6 @@
 #include "env.h"
 #include "errormsg.h"
 #include "escape.h"
-#include "types.h"
 #include "absyn.h"
 
 
@@ -419,7 +418,7 @@ Ty_ty transTy(Tr_level level, S_table venv, S_table tenv, A_type_decl a)
                     {
                         EM_error(a->pos, "Undefined type: %s",
                                  S_name(a->u.simple_type_decl->u.id));
-                        return Ty_Int();
+                        return Ty_Void();
                     }
 
                 }
@@ -806,7 +805,7 @@ void transRoutineDec(Tr_level level, S_table venv, S_table tenv, A_routine_part 
                 transRoutineHead(escenv, venv, tenv, l->u.function_decl->sub_routine->routine_head,
                                  newLevel);
 
-                Tr_exp body = transRoutineBody(level, venv, tenv, l->u.function_decl->sub_routine->routine_body).exp;
+                Tr_exp body = transRoutineBody(newLevel, venv, tenv, l->u.function_decl->sub_routine->routine_body).exp;
                 body = Tr_SeqExp(Tr_LabelExp(Temp_namedlabel(S_name(l->u.function_decl->function_head->id))), body);
 
                 Tr_procEntryExit(newLevel, body);
@@ -1058,8 +1057,9 @@ struct expty transStm(Tr_level level, S_table venv, S_table tenv, A_stmt a)
                     }
                     else
                     {
-                        EM_error(a->pos, "Function is not declared.\n");
-                        return expTy(NULL, Ty_Int());
+                        EM_error(a->pos, "Procedure is not declared: %s.\n",
+                                 S_name(a->non_label_stmt->u.proc_stmt->u.id_with_args.id));
+                        return expTy(NULL, Ty_Void());
                     }
                 }
                 case proc_stmt_sys_proc:
@@ -1076,8 +1076,8 @@ struct expty transStm(Tr_level level, S_table venv, S_table tenv, A_stmt a)
                     }
                     else
                     {
-                        EM_error(a->pos, "Function is not declared.\n");
-                        return expTy(NULL, Ty_Int());
+                        EM_error(a->pos, "Procedure is not declared.\n");
+                        return expTy(NULL, Ty_Void());
                     }
                 }
                 case proc_stmt_read:
@@ -1201,7 +1201,7 @@ struct expty transVar(Tr_level level, S_table venv, S_table tenv, A_var a)
                 if (!varEntry)
                 {
                     EM_error(a->pos, "Variable is not declared: %s.\n", S_name(a->u.simple));
-                    return expTy(NULL, Ty_Int());
+                    return expTy(NULL, Ty_Void());
                 }
             }
             if (varEntry->kind == E_varEntry &&
@@ -1218,21 +1218,21 @@ struct expty transVar(Tr_level level, S_table venv, S_table tenv, A_var a)
 
                         case TY_CONST_INT:
                         {
-                            return expTy(Tr_IntExp(varEntry->u.var.ty->u.constt.u.intt), Ty_Int());
+                            return expTy(Tr_IntExp(varEntry->u.var.ty->u.constt.u.intt), varEntry->u.var.ty);
                         }
                         case TY_CONST_REAL:
                         {
-                            return expTy(Tr_RealExp(varEntry->u.var.ty->u.constt.u.real), Ty_Real());
+                            return expTy(Tr_RealExp(varEntry->u.var.ty->u.constt.u.real), varEntry->u.var.ty);
                         }
                         case TY_CONST_CHAR:
                         {
-                            return expTy(Tr_CharExp(varEntry->u.var.ty->u.constt.u.charr), Ty_Char());
+                            return expTy(Tr_CharExp(varEntry->u.var.ty->u.constt.u.charr), varEntry->u.var.ty);
                         }
                         case TY_CONST_STRING:
                             break;
                         case TY_CONST_BOOL:
                         {
-                            return expTy(Tr_IntExp(varEntry->u.var.ty->u.constt.u.booll), Ty_Bool());
+                            return expTy(Tr_IntExp(varEntry->u.var.ty->u.constt.u.booll), varEntry->u.var.ty);
                         }
                     }
                 }
@@ -1241,7 +1241,7 @@ struct expty transVar(Tr_level level, S_table venv, S_table tenv, A_var a)
             else
             {
                 EM_error(a->pos, "Simple type expected: %s.\n", S_name(a->u.simple));
-                return expTy(NULL, Ty_Int());
+                return expTy(NULL, Ty_Void());
             }
         }
         case A_ARRAY:
@@ -1250,7 +1250,7 @@ struct expty transVar(Tr_level level, S_table venv, S_table tenv, A_var a)
             if (!varEntry)
             {
                 EM_error(a->pos, "Variable is not declared: %s.\n", S_name(a->u.array.array));
-                return expTy(NULL, Ty_Int());
+                return expTy(NULL, Ty_Void());
             }
 
             if (varEntry->kind == E_varEntry &&
@@ -1267,13 +1267,13 @@ struct expty transVar(Tr_level level, S_table venv, S_table tenv, A_var a)
                 else
                 {
                     EM_error(a->pos, "Index must be integer.\n", S_name(a->u.array.array));
-                    return expTy(NULL, Ty_Int());
+                    return expTy(NULL, Ty_Void());
                 }
             }
             else
             {
                 EM_error(a->pos, "Array type expected: %s.\n", S_name(a->u.array.array));
-                return expTy(NULL, Ty_Int());
+                return expTy(NULL, Ty_Void());
             }
 
         }
@@ -1283,7 +1283,7 @@ struct expty transVar(Tr_level level, S_table venv, S_table tenv, A_var a)
             if (!varEntry)
             {
                 EM_error(a->pos, "Variable is not declared: %s.\n", S_name(a->u.array.array));
-                return expTy(NULL, Ty_Int());
+                return expTy(NULL, Ty_Void());
             }
             int offset = 0;
             if (varEntry->kind == E_varEntry &&
@@ -1301,12 +1301,12 @@ struct expty transVar(Tr_level level, S_table venv, S_table tenv, A_var a)
                     offset += size;
                 }
                 EM_error(a->pos, "Field does no exist: %s.\n", S_name(a->u.record.field));
-                return expTy(NULL, Ty_Int());
+                return expTy(NULL, Ty_Void());
             }
             else
             {
                 EM_error(a->pos, "Record type expected: %s.\n", S_name(a->u.record.record));
-                return expTy(NULL, Ty_Int());
+                return expTy(NULL, Ty_Void());
             }
         }
     }
@@ -1331,8 +1331,8 @@ struct expty transFactor(Tr_level level, S_table venv, S_table tenv, A_factor a)
             }
             else
             {
-                EM_error(a->pos, "Function is not declared.\n");
-                return expTy(NULL, Ty_Int());
+                EM_error(a->pos, "Function is not declared: %s.\n", S_name(a->u.id_with_args.id));
+                return expTy(NULL, Ty_Void());
             }
         }
         case factor_sys_funct:
@@ -1378,7 +1378,7 @@ struct expty transFactor(Tr_level level, S_table venv, S_table tenv, A_factor a)
             else
             {
                 EM_error(a->pos, "Function is not declared.\n");
-                return expTy(NULL, Ty_Int());
+                return expTy(NULL, Ty_Void());
             }
 
         }
@@ -1451,7 +1451,7 @@ struct expty transTerm(Tr_level level, S_table venv, S_table tenv, A_term a)
             else
             {
                 EM_error(a->pos, "Expression type dose not match.\n");
-                return expTy(NULL, Ty_Int());
+                return expTy(NULL, Ty_Void());
             }
         }
     }
@@ -1477,7 +1477,7 @@ struct expty transExpr(Tr_level level, S_table venv, S_table tenv, A_expr a)
             else
             {
                 EM_error(a->pos, "Expression type dose not match.\n");
-                return expTy(NULL, Ty_Int());
+                return expTy(NULL, Ty_Void());
             }
 
         }
@@ -1507,7 +1507,7 @@ struct expty transExp(Tr_level level, S_table venv, S_table tenv, A_expression a
             else
             {
                 EM_error(a->pos, "Expression type dose not match.\n");
-                return expTy(NULL, Ty_Int());
+                return expTy(NULL, Ty_Void());
             }
         }
     }
