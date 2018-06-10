@@ -1,6 +1,177 @@
-#include "absyn.h"
+/* A Bison parser, made by GNU Bison 2.3.  */
 
-typedef union
+/* Skeleton interface for Bison's Yacc-like parsers in C
+
+   Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005, 2006
+   Free Software Foundation, Inc.
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2, or (at your option)
+   any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor,
+   Boston, MA 02110-1301, USA.  */
+
+/* As a special exception, you may create a larger work that contains
+   part or all of the Bison parser skeleton and distribute that work
+   under terms of your choice, so long as that work isn't itself a
+   parser generator using the skeleton or a modified version thereof
+   as a parser skeleton.  Alternatively, if you modify or redistribute
+   the parser skeleton itself, you may (at your option) remove this
+   special exception, which will cause the skeleton and the resulting
+   Bison output files to be licensed under the GNU General Public
+   License without this special exception.
+
+   This special exception was added by the Free Software Foundation in
+   version 2.2 of Bison.  */
+
+/* Tokens.  */
+#include "absyn.h"
+#ifndef YYTOKENTYPE
+# define YYTOKENTYPE
+   /* Put the tokens into the symbol table, so that GDB and other debuggers
+      know about them.  */
+   enum yytokentype {
+     ID = 258,
+     INTEGER = 259,
+     REAL = 260,
+     CHAR = 261,
+     STRING = 262,
+     PROGRAM = 263,
+     CONST = 264,
+     ARRAY = 265,
+     RECORD = 266,
+     BEGINN = 267,
+     END = 268,
+     VAR = 269,
+     FUNCTION = 270,
+     PROCEDURE = 271,
+     TYPE = 272,
+     READ = 273,
+     IF = 274,
+     THEN = 275,
+     ELSE = 276,
+     REPEAT = 277,
+     UNTIL = 278,
+     WHILE = 279,
+     DO = 280,
+     FOR = 281,
+     CASE = 282,
+     OF = 283,
+     GOTO = 284,
+     DOT = 285,
+     DOTDOT = 286,
+     SEMI = 287,
+     COLON = 288,
+     COMMA = 289,
+     LB = 290,
+     RB = 291,
+     LP = 292,
+     RP = 293,
+     ASSIGN = 294,
+     NOT = 295,
+     NEG = 296,
+     EQUAL = 297,
+     UNEQUAL = 298,
+     GE = 299,
+     GT = 300,
+     LE = 301,
+     LT = 302,
+     PLUS = 303,
+     MINUS = 304,
+     OR = 305,
+     MUL = 306,
+     DIV = 307,
+     MOD = 308,
+     AND = 309,
+     TO = 310,
+     DOWNTO = 311,
+     SYS_TYPE = 312,
+     SYS_FUNCT = 313,
+     SYS_PROC = 314,
+     SYS_CON = 315,
+     LOWER_THAN_ELSE = 316,
+     PREC_SHIFT_ROUT_PROC = 317,
+     PREC_SHIFT_ROUT_FUNC = 318
+   };
+#endif
+/* Tokens.  */
+#define ID 258
+#define INTEGER 259
+#define REAL 260
+#define CHAR 261
+#define STRING 262
+#define PROGRAM 263
+#define CONST 264
+#define ARRAY 265
+#define RECORD 266
+#define BEGINN 267
+#define END 268
+#define VAR 269
+#define FUNCTION 270
+#define PROCEDURE 271
+#define TYPE 272
+#define READ 273
+#define IF 274
+#define THEN 275
+#define ELSE 276
+#define REPEAT 277
+#define UNTIL 278
+#define WHILE 279
+#define DO 280
+#define FOR 281
+#define CASE 282
+#define OF 283
+#define GOTO 284
+#define DOT 285
+#define DOTDOT 286
+#define SEMI 287
+#define COLON 288
+#define COMMA 289
+#define LB 290
+#define RB 291
+#define LP 292
+#define RP 293
+#define ASSIGN 294
+#define NOT 295
+#define NEG 296
+#define EQUAL 297
+#define UNEQUAL 298
+#define GE 299
+#define GT 300
+#define LE 301
+#define LT 302
+#define PLUS 303
+#define MINUS 304
+#define OR 305
+#define MUL 306
+#define DIV 307
+#define MOD 308
+#define AND 309
+#define TO 310
+#define DOWNTO 311
+#define SYS_TYPE 312
+#define SYS_FUNCT 313
+#define SYS_PROC 314
+#define SYS_CON 315
+#define LOWER_THAN_ELSE 316
+#define PREC_SHIFT_ROUT_PROC 317
+#define PREC_SHIFT_ROUT_FUNC 318
+
+
+
+
+#if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
+typedef union YYSTYPE
+#line 21 "pascal.y"
 {
     int ival;
     double dval;
@@ -78,68 +249,14 @@ typedef union
     A_plus_op plus_op;
     A_mul_op mul_op;
     A_direction direction;
-} YYSTYPE;
-#define	ID	257
-#define	INTEGER	258
-#define	REAL	259
-#define	CHAR	260
-#define	STRING	261
-#define	PROGRAM	262
-#define	CONST	263
-#define	ARRAY	264
-#define	RECORD	265
-#define	BEGINN	266
-#define	END	267
-#define	VAR	268
-#define	FUNCTION	269
-#define	PROCEDURE	270
-#define	TYPE	271
-#define	READ	272
-#define	IF	273
-#define	THEN	274
-#define	ELSE	275
-#define	REPEAT	276
-#define	UNTIL	277
-#define	WHILE	278
-#define	DO	279
-#define	FOR	280
-#define	CASE	281
-#define	OF	282
-#define	GOTO	283
-#define	DOT	284
-#define	DOTDOT	285
-#define	SEMI	286
-#define	COLON	287
-#define	COMMA	288
-#define	LB	289
-#define	RB	290
-#define	LP	291
-#define	RP	292
-#define	ASSIGN	293
-#define	NOT	294
-#define	NEG	295
-#define	EQUAL	296
-#define	UNEQUAL	297
-#define	GE	298
-#define	GT	299
-#define	LE	300
-#define	LT	301
-#define	PLUS	302
-#define	MINUS	303
-#define	OR	304
-#define	MUL	305
-#define	DIV	306
-#define	MOD	307
-#define	AND	308
-#define	TO	309
-#define	DOWNTO	310
-#define	SYS_TYPE	311
-#define	SYS_FUNCT	312
-#define	SYS_PROC	313
-#define	SYS_CON	314
-#define	LOWER_THAN_ELSE	315
-#define	PREC_SHIFT_ROUT_PROC	316
-#define	PREC_SHIFT_ROUT_FUNC	317
-
+}
+/* Line 1529 of yacc.c.  */
+#line 254 "pascal.tab.h"
+	YYSTYPE;
+# define yystype YYSTYPE /* obsolescent; will be withdrawn */
+# define YYSTYPE_IS_DECLARED 1
+# define YYSTYPE_IS_TRIVIAL 1
+#endif
 
 extern YYSTYPE yylval;
+

@@ -766,6 +766,7 @@ A_repeat_stmt A_RepeatStmt(A_pos pos, A_stmt_list body, A_expression until)
     p->pos = pos;
     p->body = body;
     p->until = until;
+    return p;
 }
 
 A_while_stmt A_WhileStmt(A_pos pos, A_expression test, A_stmt body)
