@@ -1,3 +1,8 @@
+#ifndef _ASSEM_H_
+#define _ASSEM_H_
+
+#include "temp.h"
+
 /*
  * assem.h - Function prototypes to translate to Assem-instructions
  *             using Maximal Munch.
@@ -36,3 +41,5 @@ struct AS_proc_ {
 };
 
 AS_proc AS_Proc(string p, AS_instrList b, string e);
+
+#endif

@@ -89,9 +89,6 @@ static void pr_graph_stm(FILE *out, T_stm stm, int n)
             fprintf(out, "node%d->node%d;\n", n, print_index);
             pr_graph_tree_stm(out, stm->u.EXP, print_index);
             break;
-        case T_RETURN:
-            fprintf(out, "node%d[label=\"RETUEN\"];\n", n);
-            break;
     }
 }
 

@@ -38,7 +38,7 @@ struct T_stm_
 {
     enum
     {
-        T_SEQ, T_LABEL, T_JUMP, T_CJUMP, T_MOVE, T_EXP, T_RETURN
+        T_SEQ, T_LABEL, T_JUMP, T_CJUMP, T_MOVE, T_EXP
     } kind;
     union
     {
