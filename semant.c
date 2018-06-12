@@ -1102,17 +1102,14 @@ struct expty transStm(Tr_level level, S_table venv, S_table tenv, A_stmt a)
             struct expty cond = transExp(level, venv, tenv, a->non_label_stmt->u.repeat_stmt->until);
             struct expty body = transStms(level, venv, tenv, a->non_label_stmt->u.repeat_stmt->body);
             Tr_exp label = Tr_LabelExp(Temp_newlabel());
-            return expTy(Tr_SeqExp(Tr_SeqExp(body.exp,
-                                             Tr_WhileExp(cond.exp, body.exp, label)),
-                                   label),
-                         Ty_Void());
+            return expTy(Tr_SeqExp(body.exp, Tr_WhileExp(cond.exp, body.exp)), Ty_Void());
         }
         case non_label_stmt_while:
         {
             struct expty cond = transExp(level, venv, tenv, a->non_label_stmt->u.while_stmt->test);
             struct expty body = transStm(level, venv, tenv, a->non_label_stmt->u.while_stmt->body);
             Tr_exp label = Tr_LabelExp(Temp_newlabel());
-            return expTy(Tr_SeqExp(Tr_WhileExp(cond.exp, body.exp, label), label), Ty_Void());
+            return expTy(Tr_WhileExp(cond.exp, body.exp), Ty_Void());
         }
         case non_label_stmt_for:
         {
@@ -1147,9 +1144,7 @@ struct expty transStm(Tr_level level, S_table venv, S_table tenv, A_stmt a)
                 }
             }
             Tr_exp label = Tr_LabelExp(Temp_newlabel());
-            return expTy(Tr_SeqExp(Tr_SeqExp(loopVarInit,
-                                             Tr_WhileExp(cond, body, label)),
-                                   label),
+            return expTy(Tr_SeqExp(loopVarInit, Tr_WhileExp(cond, body)),
                          Ty_Void());
 
         }

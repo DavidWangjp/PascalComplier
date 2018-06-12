@@ -138,7 +138,7 @@ Tr_exp Tr_RecordExp(int n, Tr_expList es, U_byteList bytes);
 Tr_exp Tr_IfExp(Tr_exp e1, Tr_exp e2, Tr_exp e3);
 
 //while cond body done done是一个label  for语句在semant改成while
-Tr_exp Tr_WhileExp(Tr_exp cond, Tr_exp body, Tr_exp done);
+Tr_exp Tr_WhileExp(Tr_exp cond, Tr_exp body);
 
 //函数调用
 Tr_exp Tr_CallExp(Temp_label label, Tr_level def_l, Tr_level call_l, Tr_expList paras);
