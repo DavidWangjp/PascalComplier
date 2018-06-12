@@ -23,4 +23,4 @@ add_executable(PascalComplier
         printgraph.h printgraph.c
         canon.c canon.h
         assem.c assem.h
-        main.c escape.c escape.h)
+        main.c escape.c escape.h codegen.h codegen.c)
