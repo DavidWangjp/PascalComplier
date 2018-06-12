@@ -347,7 +347,7 @@ Tr_exp Tr_WhileExp(Tr_exp cond, Tr_exp body, Tr_exp done)
     Temp_label cond_l = Temp_newlabel();
     Temp_label body_l = Temp_newlabel();
     return Tr_Nx(T_Seq(T_Seq(T_Label(cond_l), T_Cjump(T_eq, unEx(cond), T_Const(1), body_l, unEx(done)->u.NAME)),
-                       T_Seq(unNx(body), T_Jump(T_Name(cond_l), Temp_LabelList(cond_l, NULL)))));
+                       T_Seq(T_Label(body_l), T_Seq(unNx(body), T_Jump(T_Name(cond_l), Temp_LabelList(cond_l, NULL))))));
 }
 
 Tr_exp Tr_CallExp(Temp_label label, Tr_level def_l, Tr_level call_l, Tr_expList paras)
