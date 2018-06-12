@@ -201,6 +201,18 @@ void print_graph_Tr_exp(FILE *out, Tr_exp exp)
     fprintf(out, "}\n");
 }
 
+void print_graph_Stm_List(FILE *out, T_stmList stmList)
+{
+    fprintf(out, "digraph g {\n");
+    for (; stmList; stmList = stmList->tail)
+    {
+        print_index ++;
+        pr_graph_stm(out, stmList->head, print_index);
+    }
+    fprintf(out, "}\n");
+}
+
+
 void print_graph_frag_exp (FILE *out, F_fragList list)
 {
     fprintf(out, "digraph g {\n");

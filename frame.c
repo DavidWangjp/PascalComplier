@@ -138,7 +138,7 @@ F_access F_RV(F_frame f)
 {
     if (!rv)
     {
-        rv = F_allocLocal(f, TRUE, 8);
+        rv = F_allocLocal(f, TRUE, 4);
     }
     return rv;
 }

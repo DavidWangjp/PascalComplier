@@ -114,7 +114,7 @@ static struct stmExp do_exp(T_exp exp)
                                              ExpRefList(&exp->u.BINOP.right, NULL))),
                           exp);
         case T_MEM:
-            return StmExp(reorder(ExpRefList(&exp->u.MEM, NULL)), exp);
+            return StmExp(reorder(ExpRefList(&exp->u.MEM.exp, NULL)), exp);
         case T_ESEQ:
         {
             struct stmExp x = do_exp(exp->u.ESEQ.exp);
@@ -145,7 +145,7 @@ static T_stm do_stm(T_stm stm)
             else if (stm->u.MOVE.dst->kind == T_TEMP)
                 return seq(reorder(ExpRefList(&stm->u.MOVE.src, NULL)), stm);
             else if (stm->u.MOVE.dst->kind == T_MEM)
-                return seq(reorder(ExpRefList(&stm->u.MOVE.dst->u.MEM,
+                return seq(reorder(ExpRefList(&stm->u.MOVE.dst->u.MEM.exp,
                                               ExpRefList(&stm->u.MOVE.src, NULL))), stm);
             else if (stm->u.MOVE.dst->kind == T_ESEQ)
             {
