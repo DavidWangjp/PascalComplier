@@ -115,7 +115,7 @@ Temp_temp F_FP(void)
             f_map = Temp_empty();
         }
         fp = Temp_newtemp();
-        Temp_enter(f_map, fp, "ebp");
+        Temp_enter(f_map, fp, "fp");
     }
     return fp;
 }

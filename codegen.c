@@ -51,14 +51,15 @@ static void munchStm(T_stm s){
             if(dst->u.MEM.exp->kind == T_BINOP && dst->u.MEM.exp->u.BINOP.op == T_plus){
                 if(dst->u.MEM.exp->u.BINOP.right->kind == T_CONST){
                     sprintf(assemInst, "STORE M[`d0+%d] <- `s0\n", dst->u.MEM.exp->u.BINOP.right->u.CONST);
-                    emit(AS_Move(String(assemInst), L(munchExp(dst), NULL), L(munchExp(src), NULL)));
+                    emit(AS_Move(String(assemInst), L(munchExp(dst->u.MEM.exp->u.BINOP.left), NULL), L(munchExp(src), NULL)));
                 }
                 else if(dst->u.MEM.exp->u.BINOP.left->kind == T_CONST){
                     sprintf(assemInst, "STORE M[`d0+%d] <- `s0\n", dst->u.MEM.exp->u.BINOP.left->u.CONST);
-                    emit(AS_Move(String(assemInst), L(munchExp(dst), NULL), L(munchExp(src), NULL)));
+                    emit(AS_Move(String(assemInst), L(munchExp(dst->u.MEM.exp->u.BINOP.right), NULL), L(munchExp(src), NULL)));
                 }
                 else{
-                    assert(0);
+                    sprintf(assemInst, "STORE M[`d0] <- `s0\n");
+                    emit(AS_Move(String(assemInst), L(munchExp(dst->u.MEM.exp), NULL), L(munchExp(src), NULL)));
                 }
             }
             else if(dst->u.MEM.exp->kind == T_CONST){
@@ -67,11 +68,11 @@ static void munchStm(T_stm s){
             }
             else if(src->kind == T_MEM){
                 sprintf(assemInst, "MOVEM M[`d0] <- M[`s0]\n");
-                emit(AS_Move(String(assemInst), L(munchExp(dst), NULL), L(munchExp(src), NULL)));
+                emit(AS_Move(String(assemInst), L(munchExp(dst->u.MEM.exp), NULL), L(munchExp(src->u.MEM.exp), NULL)));
             }
             else{
                 sprintf(assemInst, "STORE M[`d0] <- `s0\n");
-                emit(AS_Move(String(assemInst), L(munchExp(dst), NULL), L(munchExp(src), NULL)));
+                emit(AS_Move(String(assemInst), L(munchExp(dst->u.MEM.exp), NULL), L(munchExp(src), NULL)));
             }
         }
         else{
@@ -177,8 +178,7 @@ static Temp_temp munchExp(T_exp e){
                     emit(AS_Oper(String(assemInst), L(r, NULL), L(munchExp(left), NULL), NULL));
                 }
                 else{
-                    printf("MEM(BINOP(PLUS, a, b)) error\n");
-                    assert(0);
+                    emit(AS_Oper("LOAD `d0 <- M[`s0+0]\n", L(r,NULL), L(munchExp(mem), NULL), NULL));
                 }
             }
             else if (mem->kind == T_CONST){
