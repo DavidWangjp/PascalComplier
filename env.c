@@ -47,12 +47,12 @@ S_table E_base_venv(void)
 {
     S_table value_base_table = S_empty();
 
-    S_enter(value_base_table, S_Symbol("false"),
-            E_VarEntry(Tr_AllocLocal(Tr_outermost(), FALSE, BOOL_SIZE), Ty_Bool()));
-    S_enter(value_base_table, S_Symbol("true"),
-            E_VarEntry(Tr_AllocLocal(Tr_outermost(), FALSE, BOOL_SIZE) , Ty_Bool()));
-    S_enter(value_base_table, S_Symbol("maxint"),
-            E_VarEntry(Tr_AllocLocal(Tr_outermost(), FALSE, INT_SIZE), Ty_Int()));
+//    S_enter(value_base_table, S_Symbol("false"),
+//            E_VarEntry(Tr_AllocLocal(Tr_outermost(), FALSE, BOOL_SIZE), Ty_Bool()));
+//    S_enter(value_base_table, S_Symbol("true"),
+//            E_VarEntry(Tr_AllocLocal(Tr_outermost(), FALSE, BOOL_SIZE) , Ty_Bool()));
+//    S_enter(value_base_table, S_Symbol("maxint"),
+//            E_VarEntry(Tr_AllocLocal(Tr_outermost(), FALSE, INT_SIZE), Ty_Int()));
 
     S_enter(value_base_table, S_Symbol("writeln"),
             E_FunEntry(Tr_outermost(), Temp_namedlabel("writeln"), Ty_TyList(Ty_Write(), NULL), NULL));

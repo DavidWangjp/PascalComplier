@@ -63,7 +63,7 @@ static T_stm reorder(expRefList rlist)
     if (!rlist) return T_Exp(T_Const(0)); /* nop */
     else if ((*rlist->head)->kind == T_CALL)
     {
-        Temp_temp t = Temp_newtemp();
+        Temp_temp t = Temp_newtemp(String(".t"));
         *rlist->head = T_Eseq(T_Move(T_Temp(t), *rlist->head), T_Temp(t));
         return reorder(rlist);
     }
@@ -78,7 +78,7 @@ static T_stm reorder(expRefList rlist)
         }
         else
         {
-            Temp_temp t = Temp_newtemp();
+            Temp_temp t = Temp_newtemp(String(".t"));
             *rlist->head = T_Temp(t);
             return seq(hd.s, seq(T_Move(T_Temp(t), hd.e), s));
         }

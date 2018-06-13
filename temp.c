@@ -36,17 +36,36 @@ Temp_label Temp_namedlabel(string s)
     return S_Symbol(s);
 }
 
-static int temps = 100;
+static int t_temps = 0;
+static int s_temps = 0;
+static int a_temps = 0;
 
-Temp_temp Temp_newtemp(void)
+Temp_temp Temp_newtemp(string s)
 {
     Temp_temp p = (Temp_temp) checked_malloc(sizeof(*p));
-    p->num = temps++;
-    {
-        char r[16];
-        sprintf(r, "%d", p->num);
-        Temp_enter(Temp_name(), p, String(r));
+    char r[16];
+    if(s[0] == '.'){
+        switch (s[1]){
+            case 't':
+                p->num = t_temps++;
+                sprintf(r, "t%d", p->num);
+                break;
+            case 'a':
+                p->num = a_temps++;
+                sprintf(r, "a%d", p->num);
+                break;
+            case 's':
+                p->num = s_temps++;
+                sprintf(r, "s%d", p->num);
+                break;
+        }
     }
+    else{
+        sprintf(r, s);
+    }
+
+    Temp_enter(Temp_name(), p, String(r));
+
     return p;
 }
 

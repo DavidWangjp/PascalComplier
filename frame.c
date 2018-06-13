@@ -4,8 +4,9 @@
 #include "temp.h"
 #include "frame.h"
 
-#define MAX_REG 32
+#define MAX_REG 8
 #define MAX_ARGS_REG 4
+#define MAX_TEMP_REG 8
 
 Temp_map f_map = NULL;
 Temp_temp fp = NULL;
@@ -29,7 +30,7 @@ F_access_List NewAccessList(F_frame f, U_boolList formals, U_byteList bytes)
         //有不同
         if (tmp_para->head == FALSE && num_reg < MAX_ARGS_REG && tmp_byte->byte <= 4)
         {
-            new_ac = InReg(Temp_newtemp());
+            new_ac = InReg(Temp_newtemp(String(".a")));
             num_reg++;
         }
         else
@@ -86,7 +87,7 @@ F_access F_allocLocal(F_frame f, bool escape, int size)
         return InFrame(-f->offset, size);
     }
     else
-        return InReg(Temp_newtemp());
+        return InReg(Temp_newtemp(String(".s")));
 }
 
 static F_access InFrame(int offset, int size)
@@ -114,7 +115,7 @@ Temp_temp F_FP(void)
         {
             f_map = Temp_empty();
         }
-        fp = Temp_newtemp();
+        fp = Temp_newtemp(String("fp"));
         Temp_enter(f_map, fp, "fp");
     }
     return fp;
@@ -128,7 +129,7 @@ Temp_temp F_RA(void)
         {
             f_map = Temp_empty();
         }
-        ra = Temp_newtemp();
+        ra = Temp_newtemp(String("ra"));
         Temp_enter(f_map, ra, "ra");
     }
     return ra;

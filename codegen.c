@@ -120,7 +120,7 @@ static void munchStm(T_stm s){
 }
 
 static Temp_temp munchExp(T_exp e){
-    Temp_temp r = Temp_newtemp();
+    Temp_temp r = Temp_newtemp(String(".t"));
     char assemInst[80];
     char oper[10];
     char op[10];

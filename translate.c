@@ -74,7 +74,7 @@ static T_exp unEx(Tr_exp e)
             return e->u.ex;
         case Tr_cx:
         {
-            Temp_temp r = Temp_newtemp();
+            Temp_temp r = Temp_newtemp(String(".t"));
             Temp_label t = Temp_newlabel(), f = Temp_newlabel();
             doPatch(e->u.cx.trues, t);
             doPatch(e->u.cx.falses, f);
@@ -98,7 +98,7 @@ static T_stm unNx(Tr_exp e)
             return e->u.nx;
         case Tr_cx:
         {
-            Temp_temp r = Temp_newtemp();
+            Temp_temp r = Temp_newtemp(String(".t"));
             Temp_label t = Temp_newlabel(), f = Temp_newlabel();
             doPatch(e->u.cx.trues, t);
             doPatch(e->u.cx.falses, f);
@@ -231,7 +231,7 @@ Tr_exp Tr_CharExp(char i)
 
 Tr_exp Tr_ArrayExp(Tr_exp n, Tr_expList es, int size)
 {
-    Temp_temp r = Temp_newtemp();
+    Temp_temp r = Temp_newtemp(String(".t"));
     T_stm alloc = T_Move(T_Temp(r), F_externalCall(String("malloc"),
                                                    T_ExpList(T_Binop(T_plus, unEx(n), T_Const(F_wordSize)), NULL)));
     T_stm root = NULL;
@@ -248,7 +248,7 @@ Tr_exp Tr_ArrayExp(Tr_exp n, Tr_expList es, int size)
 
 Tr_exp Tr_RecordExp(int n, Tr_expList es, U_byteList bytes)
 {
-    Temp_temp r = Temp_newtemp();
+    Temp_temp r = Temp_newtemp(String(".t"));
     T_stm alloc = T_Move(T_Temp(r), F_externalCall(String("malloc"), T_ExpList(T_Const(n * F_wordSize), NULL)));
     T_stm root = NULL;
     U_byteList tmp_byte = bytes;
